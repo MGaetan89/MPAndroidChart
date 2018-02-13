@@ -301,9 +301,6 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
-
-    @Override
     public void onStopTrackingTouch(SeekBar seekBar) {}
 
     private RectF onValueSelectedRectF = new RectF();

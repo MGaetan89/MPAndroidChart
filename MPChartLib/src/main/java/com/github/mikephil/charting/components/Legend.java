@@ -2,6 +2,8 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.FSize;
@@ -156,12 +158,8 @@ public class Legend extends ComponentBase {
      *
      * @param entries
      */
-    public Legend(LegendEntry[] entries) {
+    public Legend(@NonNull LegendEntry[] entries) {
         this();
-
-        if (entries == null) {
-            throw new IllegalArgumentException("entries array is NULL");
-        }
 
         this.mEntries = entries;
     }
@@ -171,10 +169,11 @@ public class Legend extends ComponentBase {
      *
      * @param entries
      */
-    public void setEntries(List<LegendEntry> entries) {
+    public void setEntries(@NonNull List<LegendEntry> entries) {
         mEntries = entries.toArray(new LegendEntry[entries.size()]);
     }
 
+    @NonNull
     public LegendEntry[] getEntries() {
         return mEntries;
     }
@@ -239,11 +238,11 @@ public class Legend extends ComponentBase {
         return mExtraEntries;
     }
 
-    public void setExtra(List<LegendEntry> entries) {
+    public void setExtra(@NonNull List<LegendEntry> entries) {
         mExtraEntries = entries.toArray(new LegendEntry[entries.size()]);
     }
 
-    public void setExtra(LegendEntry[] entries) {
+    public void setExtra(@Nullable LegendEntry[] entries) {
         if (entries == null)
             entries = new LegendEntry[]{};
         mExtraEntries = entries;
@@ -255,7 +254,7 @@ public class Legend extends ComponentBase {
      * (if the legend has already been calculated, you will need to call notifyDataSetChanged()
      *   to let the changes take effect)
      */
-    public void setExtra(int[] colors, String[] labels) {
+    public void setExtra(int[] colors, @NonNull String[] labels) {
 
         List<LegendEntry> entries = new ArrayList<>();
 

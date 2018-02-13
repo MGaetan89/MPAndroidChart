@@ -7,9 +7,9 @@ import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.realm.implementation.RealmScatterDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class RealmDatabaseActivityScatter extends RealmBaseActivity {
         RealmScatterDataSet<RealmDemoData> set = new RealmScatterDataSet<>(result, "xValue", "yValue");
         set.setLabel("Realm ScatterDataSet");
         set.setScatterShapeSize(9f);
-        set.setColor(ColorTemplate.rgb("#CDDC39"));
+        set.setColor(ColorUtils.rgb("#CDDC39"));
         set.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
         ArrayList<IScatterDataSet> dataSets = new ArrayList<>();

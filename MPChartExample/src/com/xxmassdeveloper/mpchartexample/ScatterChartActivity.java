@@ -24,9 +24,9 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.custom.CustomScatterShapeRenderer;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,15 +121,15 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
         // create a dataset and give it a type
         ScatterDataSet set1 = new ScatterDataSet(values1, "DS 1");
         set1.setScatterShape(ScatterChart.ScatterShape.SQUARE);
-        set1.setColor(ColorTemplate.COLORFUL_COLORS[0]);
+        set1.setColor(ColorUtils.COLORFUL_COLORS[0]);
         ScatterDataSet set2 = new ScatterDataSet(values2, "DS 2");
         set2.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
-        set2.setScatterShapeHoleColor(ColorTemplate.COLORFUL_COLORS[3]);
+        set2.setScatterShapeHoleColor(ColorUtils.COLORFUL_COLORS[3]);
         set2.setScatterShapeHoleRadius(3f);
-        set2.setColor(ColorTemplate.COLORFUL_COLORS[1]);
+        set2.setColor(ColorUtils.COLORFUL_COLORS[1]);
         ScatterDataSet set3 = new ScatterDataSet(values3, "DS 3");
         set3.setShapeRenderer(new CustomScatterShapeRenderer());
-        set3.setColor(ColorTemplate.COLORFUL_COLORS[2]);
+        set3.setColor(ColorUtils.COLORFUL_COLORS[2]);
 
         set1.setScatterShapeSize(8f);
         set2.setScatterShapeSize(8f);

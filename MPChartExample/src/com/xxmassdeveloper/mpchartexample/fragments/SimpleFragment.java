@@ -25,7 +25,7 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import com.xxmassdeveloper.mpchartexample.utils.FileUtils;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public abstract class SimpleFragment extends Fragment {
             }
 
             BarDataSet ds = new BarDataSet(entries, getLabel(i));
-            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+            ds.setColors(ColorUtils.VORDIPLOM_COLORS);
             sets.add(ds);
         }
 
@@ -78,7 +78,7 @@ public abstract class SimpleFragment extends Fragment {
 
         ArrayList<IScatterDataSet> sets = new ArrayList<>();
 
-        ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.getAllDefaultShapes();
+        ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.values();
 
         for(int i = 0; i < dataSets; i++) {
 
@@ -91,7 +91,7 @@ public abstract class SimpleFragment extends Fragment {
             ScatterDataSet ds = new ScatterDataSet(entries, getLabel(i));
             ds.setScatterShapeSize(12f);
             ds.setScatterShape(shapes[i % shapes.length]);
-            ds.setColors(ColorTemplate.COLORFUL_COLORS);
+            ds.setColors(ColorUtils.COLORFUL_COLORS);
             ds.setScatterShapeSize(9f);
             sets.add(ds);
         }
@@ -116,7 +116,7 @@ public abstract class SimpleFragment extends Fragment {
         }
 
         PieDataSet ds1 = new PieDataSet(entries1, "Quarterly Revenues 2015");
-        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ds1.setColors(ColorUtils.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
         ds1.setValueTextColor(Color.WHITE);
         ds1.setValueTextSize(12f);
@@ -139,10 +139,10 @@ public abstract class SimpleFragment extends Fragment {
         ds1.setDrawCircles(false);
         ds2.setDrawCircles(false);
 
-        ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds2.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
+        ds1.setColor(ColorUtils.VORDIPLOM_COLORS[0]);
+        ds2.setColor(ColorUtils.VORDIPLOM_COLORS[1]);
 
-        // load DataSets from files in assets folder
+        // load DataSets from textfiles in assets folders
         sets.add(ds1);
         sets.add(ds2);
 
@@ -155,20 +155,20 @@ public abstract class SimpleFragment extends Fragment {
 
         ArrayList<ILineDataSet> sets = new ArrayList<>();
 
-        LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "n.txt"), "O(n)");
-        LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "nlogn.txt"), "O(nlogn)");
-        LineDataSet ds3 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "square.txt"), "O(n\u00B2)");
-        LineDataSet ds4 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "three.txt"), "O(n\u00B3)");
+        LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "n.txt"), "O(n)");
+        LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "nlogn.txt"), "O(nlogn)");
+        LineDataSet ds3 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "square.txt"), "O(n\u00B2)");
+        LineDataSet ds4 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "three.txt"), "O(n\u00B3)");
 
-        ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds2.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-        ds3.setColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-        ds4.setColor(ColorTemplate.VORDIPLOM_COLORS[3]);
+        ds1.setColor(ColorUtils.VORDIPLOM_COLORS[0]);
+        ds2.setColor(ColorUtils.VORDIPLOM_COLORS[1]);
+        ds3.setColor(ColorUtils.VORDIPLOM_COLORS[2]);
+        ds4.setColor(ColorUtils.VORDIPLOM_COLORS[3]);
 
-        ds1.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds2.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-        ds3.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-        ds4.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[3]);
+        ds1.setCircleColor(ColorUtils.VORDIPLOM_COLORS[0]);
+        ds2.setCircleColor(ColorUtils.VORDIPLOM_COLORS[1]);
+        ds3.setCircleColor(ColorUtils.VORDIPLOM_COLORS[2]);
+        ds4.setCircleColor(ColorUtils.VORDIPLOM_COLORS[3]);
 
         ds1.setLineWidth(2.5f);
         ds1.setCircleRadius(3f);

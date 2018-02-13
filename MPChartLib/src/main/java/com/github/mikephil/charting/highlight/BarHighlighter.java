@@ -1,5 +1,7 @@
 package com.github.mikephil.charting.highlight;
 
+import android.support.annotation.Nullable;
+
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.BarLineScatterCandleBubbleData;
@@ -16,6 +18,7 @@ public class BarHighlighter extends ChartHighlighter<BarDataProvider> {
         super(chart);
     }
 
+    @Nullable
     @Override
     public Highlight getHighlight(float x, float y) {
         Highlight high = super.getHighlight(x, y);
@@ -52,6 +55,7 @@ public class BarHighlighter extends ChartHighlighter<BarDataProvider> {
      * @param yVal
      * @return
      */
+    @Nullable
     public Highlight getStackedHighlight(Highlight high, IBarDataSet set, float xVal, float yVal) {
 
         BarEntry entry = set.getEntryForXValue(xVal, yVal);
@@ -98,7 +102,7 @@ public class BarHighlighter extends ChartHighlighter<BarDataProvider> {
      * @param value
      * @return
      */
-    protected int getClosestStackIndex(Range[] ranges, float value) {
+    protected int getClosestStackIndex(@Nullable Range[] ranges, float value) {
 
         if (ranges == null || ranges.length == 0)
             return 0;

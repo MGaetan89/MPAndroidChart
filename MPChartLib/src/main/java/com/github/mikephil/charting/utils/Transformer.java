@@ -1,9 +1,9 @@
-
 package com.github.mikephil.charting.utils;
 
 import android.graphics.Matrix;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
@@ -95,7 +95,7 @@ public class Transformer {
      * @param data
      * @return
      */
-    public float[] generateTransformedValuesScatter(IScatterDataSet data, float phaseX,
+    public float[] generateTransformedValuesScatter(@NonNull IScatterDataSet data, float phaseX,
                                                     float phaseY, int from, int to) {
 
         final int count = (int) ((to - from) * phaseX + 1) * 2;
@@ -132,7 +132,7 @@ public class Transformer {
      * @param data
      * @return
      */
-    public float[] generateTransformedValuesBubble(IBubbleDataSet data, float phaseY, int from, int to) {
+    public float[] generateTransformedValuesBubble(@NonNull IBubbleDataSet data, float phaseY, int from, int to) {
 
         final int count = (to - from + 1) * 2; // (int) Math.ceil((to - from) * phaseX) * 2;
 
@@ -168,7 +168,7 @@ public class Transformer {
      * @param data
      * @return
      */
-    public float[] generateTransformedValuesLine(ILineDataSet data,
+    public float[] generateTransformedValuesLine(@NonNull ILineDataSet data,
                                                  float phaseX, float phaseY,
                                                  int min, int max) {
 
@@ -206,7 +206,7 @@ public class Transformer {
      * @param data
      * @return
      */
-    public float[] generateTransformedValuesCandle(ICandleDataSet data,
+    public float[] generateTransformedValuesCandle(@NonNull ICandleDataSet data,
                                                    float phaseX, float phaseY, int from, int to) {
 
         final int count = (int) ((to - from) * phaseX + 1) * 2;
@@ -240,7 +240,7 @@ public class Transformer {
      *
      * @param path
      */
-    public void pathValueToPixel(Path path) {
+    public void pathValueToPixel(@NonNull Path path) {
 
         path.transform(mMatrixValueToPx);
         path.transform(mViewPortHandler.getMatrixTouch());
@@ -252,7 +252,7 @@ public class Transformer {
      *
      * @param paths
      */
-    public void pathValuesToPixel(List<Path> paths) {
+    public void pathValuesToPixel(@NonNull List<Path> paths) {
 
         for (int i = 0; i < paths.size(); i++) {
             pathValueToPixel(paths.get(i));
@@ -290,7 +290,7 @@ public class Transformer {
      * @param r
      * @param phaseY
      */
-    public void rectToPixelPhase(RectF r, float phaseY) {
+    public void rectToPixelPhase(@NonNull RectF r, float phaseY) {
 
         // multiply the height of the rect with the phase
         r.top *= phaseY;
@@ -301,7 +301,7 @@ public class Transformer {
         mMatrixOffset.mapRect(r);
     }
 
-    public void rectToPixelPhaseHorizontal(RectF r, float phaseY) {
+    public void rectToPixelPhaseHorizontal(@NonNull RectF r, float phaseY) {
 
         // multiply the height of the rect with the phase
         r.left *= phaseY;
@@ -330,7 +330,7 @@ public class Transformer {
      * @param r
      * @param phaseY
      */
-    public void rectValueToPixelHorizontal(RectF r, float phaseY) {
+    public void rectValueToPixelHorizontal(@NonNull RectF r, float phaseY) {
 
         // multiply the height of the rect with the phase
         r.left *= phaseY;
@@ -346,7 +346,7 @@ public class Transformer {
      *
      * @param rects
      */
-    public void rectValuesToPixel(List<RectF> rects) {
+    public void rectValuesToPixel(@NonNull List<RectF> rects) {
 
         Matrix m = getValueToPixelMatrix();
 
@@ -394,6 +394,7 @@ public class Transformer {
      * @param y
      * @return
      */
+    @NonNull
     public MPPointD getValuesByTouchPoint(float x, float y) {
 
         MPPointD result = MPPointD.getInstance(0, 0);
@@ -401,7 +402,7 @@ public class Transformer {
         return result;
     }
 
-    public void getValuesByTouchPoint(float x, float y, MPPointD outputPoint) {
+    public void getValuesByTouchPoint(float x, float y, @NonNull MPPointD outputPoint) {
 
         ptsBuffer[0] = x;
         ptsBuffer[1] = y;
@@ -420,6 +421,7 @@ public class Transformer {
      * @param y
      * @return
      */
+    @NonNull
     public MPPointD getPixelForValues(float x, float y) {
 
         ptsBuffer[0] = x;
@@ -443,6 +445,7 @@ public class Transformer {
 
     private Matrix mMBuffer1 = new Matrix();
 
+    @NonNull
     public Matrix getValueToPixelMatrix() {
         mMBuffer1.set(mMatrixValueToPx);
         mMBuffer1.postConcat(mViewPortHandler.mMatrixTouch);
@@ -452,6 +455,7 @@ public class Transformer {
 
     private Matrix mMBuffer2 = new Matrix();
 
+    @NonNull
     public Matrix getPixelToValueMatrix() {
         getValueToPixelMatrix().invert(mMBuffer2);
         return mMBuffer2;

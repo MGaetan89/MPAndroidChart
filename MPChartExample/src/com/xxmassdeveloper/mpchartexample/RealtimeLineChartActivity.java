@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -26,8 +25,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 public class RealtimeLineChartActivity extends DemoBase implements
         OnChartValueSelectedListener {
@@ -133,12 +132,12 @@ public class RealtimeLineChartActivity extends DemoBase implements
 
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(AxisDependency.LEFT);
-        set.setColor(ColorTemplate.getHoloBlue());
+        set.setColor(ColorUtils.getHoloBlue());
         set.setCircleColor(Color.WHITE);
         set.setLineWidth(2f);
         set.setCircleRadius(4f);
         set.setFillAlpha(65);
-        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setFillColor(ColorUtils.getHoloBlue());
         set.setHighLightColor(Color.rgb(244, 117, 117));
         set.setValueTextColor(Color.WHITE);
         set.setValueTextSize(9f);

@@ -30,8 +30,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -131,22 +131,22 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
 
         ArrayList<Integer> colors = new ArrayList<>();
 
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+        for (int c : ColorUtils.VORDIPLOM_COLORS)
             colors.add(c);
 
-        for (int c : ColorTemplate.JOYFUL_COLORS)
+        for (int c : ColorUtils.JOYFUL_COLORS)
             colors.add(c);
 
-        for (int c : ColorTemplate.COLORFUL_COLORS)
+        for (int c : ColorUtils.COLORFUL_COLORS)
             colors.add(c);
 
-        for (int c : ColorTemplate.LIBERTY_COLORS)
+        for (int c : ColorUtils.LIBERTY_COLORS)
             colors.add(c);
 
-        for (int c : ColorTemplate.PASTEL_COLORS)
+        for (int c : ColorUtils.PASTEL_COLORS)
             colors.add(c);
 
-        colors.add(ColorTemplate.getHoloBlue());
+        colors.add(ColorUtils.getHoloBlue());
 
         dataSet.setColors(colors);
         //dataSet.setSelectionShift(0f);
@@ -272,7 +272,7 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
         s.setSpan(new RelativeSizeSpan(.65f), 14, s.length() - 15, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorUtils.getHoloBlue()), s.length() - 14, s.length(), 0);
         return s;
     }
 

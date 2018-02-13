@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -30,6 +29,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +118,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTypeface(tfLight);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+        leftAxis.setTextColor(ColorUtils.getHoloBlue());
         leftAxis.setAxisMaximum(200f);
         leftAxis.setAxisMinimum(0f);
         leftAxis.setDrawGridLines(true);

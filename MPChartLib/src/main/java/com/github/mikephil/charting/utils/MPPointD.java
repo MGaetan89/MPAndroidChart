@@ -1,5 +1,6 @@
-
 package com.github.mikephil.charting.utils;
+
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class MPPointD extends ObjectPool.Poolable {
         pool.setReplenishPercentage(0.5f);
     }
 
+    @NonNull
     public static MPPointD getInstance(double x, double y){
         MPPointD result = pool.get();
         result.x = x;
@@ -35,6 +37,7 @@ public class MPPointD extends ObjectPool.Poolable {
     public double x;
     public double y;
 
+    @NonNull
     protected ObjectPool.Poolable instantiate(){
         return new MPPointD(0,0);
     }

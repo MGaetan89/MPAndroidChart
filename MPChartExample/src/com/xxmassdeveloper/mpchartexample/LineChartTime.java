@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -26,8 +25,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         leftAxis.setTypeface(tfLight);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+        leftAxis.setTextColor(ColorUtils.getHoloBlue());
         leftAxis.setDrawGridLines(true);
         leftAxis.setGranularityEnabled(true);
         leftAxis.setAxisMinimum(0f);
@@ -141,13 +140,13 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(values, "DataSet 1");
         set1.setAxisDependency(AxisDependency.LEFT);
-        set1.setColor(ColorTemplate.getHoloBlue());
-        set1.setValueTextColor(ColorTemplate.getHoloBlue());
+        set1.setColor(ColorUtils.getHoloBlue());
+        set1.setValueTextColor(ColorUtils.getHoloBlue());
         set1.setLineWidth(1.5f);
         set1.setDrawCircles(false);
         set1.setDrawValues(false);
         set1.setFillAlpha(65);
-        set1.setFillColor(ColorTemplate.getHoloBlue());
+        set1.setFillColor(ColorUtils.getHoloBlue());
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
 

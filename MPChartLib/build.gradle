@@ -69,3 +69,7 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+dependencies {
+    implementation 'com.android.support:support-annotations:27.0.2'
+}

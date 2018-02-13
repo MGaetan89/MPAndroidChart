@@ -1,7 +1,6 @@
-
 package com.github.mikephil.charting.buffer;
 
-import java.util.List;
+import android.support.annotation.NonNull;
 
 /**
  * Buffer class to boost performance while drawing. Concept: Replace instead of
@@ -42,16 +41,12 @@ public abstract class AbstractBuffer<T> {
 
     /** limits the drawing on the x-axis */
     public void limitFrom(int from) {
-        if (from < 0)
-            from = 0;
-        mFrom = from;
+        mFrom = Math.max(from, 0);
     }
 
     /** limits the drawing on the x-axis */
     public void limitTo(int to) {
-        if (to < 0)
-            to = 0;
-        mTo = to;
+        mTo = Math.min(to, 0);
     }
 
     /**
@@ -87,5 +82,5 @@ public abstract class AbstractBuffer<T> {
      * 
      * @param data
      */
-    public abstract void feed(T data);
+    public abstract void feed(@NonNull T data);
 }

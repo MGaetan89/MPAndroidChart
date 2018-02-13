@@ -1,5 +1,7 @@
 package com.github.mikephil.charting.highlight;
 
+import android.support.annotation.Nullable;
+
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.PieRadarChartBase;
 
@@ -23,6 +25,7 @@ public abstract class PieRadarHighlighter<T extends PieRadarChartBase> implement
         this.mChart = chart;
     }
 
+    @Nullable
     @Override
     public Highlight getHighlight(float x, float y) {
 

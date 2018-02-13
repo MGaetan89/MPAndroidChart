@@ -8,6 +8,8 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -182,7 +184,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     private long drawCycles = 0;
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
         if (mData == null)
@@ -385,7 +387,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
                 .RIGHT));
     }
 
-    protected void calculateLegendOffsets(RectF offsets) {
+    protected void calculateLegendOffsets(@NonNull RectF offsets) {
 
         offsets.left = 0.f;
         offsets.right = 0.f;
@@ -455,6 +457,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         }
     }
 
+    @NonNull
     private RectF mOffsetsBuffer = new RectF();
 
     @Override
@@ -529,7 +532,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * draws the grid background
      */
-    protected void drawGridBackground(Canvas c) {
+    protected void drawGridBackground(@NonNull Canvas c) {
 
         if (mDrawGridBackground) {
 
@@ -713,6 +716,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         MPPointD.recycleInstance(origin);
     }
 
+    @NonNull
     protected Matrix mFitScreenMatrixBuffer = new Matrix();
 
     /**
@@ -1023,7 +1027,8 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @param e
      * @return
      */
-    public MPPointF getPosition(Entry e, AxisDependency axis) {
+    @Nullable
+    public MPPointF getPosition(@Nullable Entry e, AxisDependency axis) {
 
         if (e == null)
             return null;
@@ -1282,6 +1287,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @param y
      * @return
      */
+    @NonNull
     public MPPointD getValuesByTouchPoint(float x, float y, AxisDependency axis) {
         MPPointD result = MPPointD.getInstance(0, 0);
         getValuesByTouchPoint(x, y, axis, result);
@@ -1312,6 +1318,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @param y
      * @return
      */
+    @Nullable
     public Entry getEntryByTouchPoint(float x, float y) {
         Highlight h = getHighlightByTouchPoint(x, y);
         if (h != null) {
@@ -1327,6 +1334,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @param y
      * @return
      */
+    @Nullable
     public IBarLineScatterCandleBubbleDataSet getDataSetByTouchPoint(float x, float y) {
         Highlight h = getHighlightByTouchPoint(x, y);
         if (h != null) {
@@ -1592,6 +1600,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     }
 
     @Override
+    @Nullable
     public Paint getPaint(int which) {
         Paint p = super.getPaint(which);
         if (p != null)

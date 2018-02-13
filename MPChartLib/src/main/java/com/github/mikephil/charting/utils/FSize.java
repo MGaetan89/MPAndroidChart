@@ -1,5 +1,6 @@
-
 package com.github.mikephil.charting.utils;
+
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -21,11 +22,12 @@ public final class FSize extends ObjectPool.Poolable{
         pool.setReplenishPercentage(0.5f);
     }
 
-
+    @NonNull
     protected ObjectPool.Poolable instantiate(){
         return new FSize(0,0);
     }
 
+    @NonNull
     public static FSize getInstance(final float width, final float height){
         FSize result = pool.get();
         result.width = width;

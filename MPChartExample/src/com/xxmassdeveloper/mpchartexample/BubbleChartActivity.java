@@ -27,9 +27,9 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -119,17 +119,17 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
         // create a dataset and give it a type
         BubbleDataSet set1 = new BubbleDataSet(values1, "DS 1");
         set1.setDrawIcons(false);
-        set1.setColor(ColorTemplate.COLORFUL_COLORS[0], 130);
+        set1.setColor(ColorUtils.COLORFUL_COLORS[0], 130);
         set1.setDrawValues(true);
 
         BubbleDataSet set2 = new BubbleDataSet(values2, "DS 2");
         set2.setDrawIcons(false);
         set2.setIconsOffset(new MPPointF(0, 15));
-        set2.setColor(ColorTemplate.COLORFUL_COLORS[1], 130);
+        set2.setColor(ColorUtils.COLORFUL_COLORS[1], 130);
         set2.setDrawValues(true);
 
         BubbleDataSet set3 = new BubbleDataSet(values3, "DS 3");
-        set3.setColor(ColorTemplate.COLORFUL_COLORS[2], 130);
+        set3.setColor(ColorUtils.COLORFUL_COLORS[2], 130);
         set3.setDrawValues(true);
 
         ArrayList<IBubbleDataSet> dataSets = new ArrayList<>();

@@ -2,6 +2,8 @@ package com.github.mikephil.charting.charts;
 
 import android.content.Context;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -86,6 +88,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
      * @param y
      * @return
      */
+    @Nullable
     @Override
     public Highlight getHighlightByTouchPoint(float x, float y) {
 
@@ -110,7 +113,8 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
      * @param e
      * @return
      */
-    public RectF getBarBounds(BarEntry e) {
+    @NonNull
+    public RectF getBarBounds(@NonNull BarEntry e) {
 
         RectF bounds = new RectF();
         getBarBounds(e, bounds);
@@ -125,7 +129,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
      * @param e
      * @return
      */
-    public void getBarBounds(BarEntry e, RectF outputRect) {
+    public void getBarBounds(@NonNull BarEntry e, @NonNull RectF outputRect) {
 
         RectF bounds = outputRect;
 
@@ -220,6 +224,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
         highlightValue(new Highlight(x, dataSetIndex, stackIndex), false);
     }
 
+    @Nullable
     @Override
     public BarData getBarData() {
         return mData;

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -22,8 +21,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -105,7 +104,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
             chart.notifyDataSetChanged();
         } else {
             set1 = new BarDataSet(values, "Data Set");
-            set1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+            set1.setColors(ColorUtils.VORDIPLOM_COLORS);
             set1.setDrawValues(false);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();

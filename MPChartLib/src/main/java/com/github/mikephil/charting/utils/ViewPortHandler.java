@@ -1,8 +1,9 @@
-
 package com.github.mikephil.charting.utils;
 
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 /**
@@ -160,6 +161,7 @@ public class ViewPortHandler {
         return mContentRect;
     }
 
+    @NonNull
     public MPPointF getContentCenter() {
         return MPPointF.getInstance(mContentRect.centerX(), mContentRect.centerY());
     }
@@ -193,6 +195,7 @@ public class ViewPortHandler {
      * @param x
      * @param y
      */
+    @NonNull
     public Matrix zoomIn(float x, float y) {
 
         Matrix save = new Matrix();
@@ -200,7 +203,7 @@ public class ViewPortHandler {
         return save;
     }
 
-    public void zoomIn(float x, float y, Matrix outputMatrix) {
+    public void zoomIn(float x, float y, @NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         outputMatrix.postScale(1.4f, 1.4f, x, y);
@@ -210,6 +213,7 @@ public class ViewPortHandler {
      * Zooms out by 0.7f, x and y are the coordinates (in pixels) of the zoom
      * center.
      */
+    @NonNull
     public Matrix zoomOut(float x, float y) {
 
         Matrix save = new Matrix();
@@ -217,7 +221,7 @@ public class ViewPortHandler {
         return save;
     }
 
-    public void zoomOut(float x, float y, Matrix outputMatrix) {
+    public void zoomOut(float x, float y, @NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         outputMatrix.postScale(0.7f, 0.7f, x, y);
@@ -227,7 +231,7 @@ public class ViewPortHandler {
      * Zooms out to original size.
      * @param outputMatrix
      */
-    public void resetZoom(Matrix outputMatrix) {
+    public void resetZoom(@NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         outputMatrix.postScale(1.0f, 1.0f, 0.0f, 0.0f);
@@ -240,6 +244,7 @@ public class ViewPortHandler {
      * @param scaleY
      * @return
      */
+    @NonNull
     public Matrix zoom(float scaleX, float scaleY) {
 
         Matrix save = new Matrix();
@@ -247,7 +252,7 @@ public class ViewPortHandler {
         return save;
     }
 
-    public void zoom(float scaleX, float scaleY, Matrix outputMatrix) {
+    public void zoom(float scaleX, float scaleY, @NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         outputMatrix.postScale(scaleX, scaleY);
@@ -262,6 +267,7 @@ public class ViewPortHandler {
      * @param y
      * @return
      */
+    @NonNull
     public Matrix zoom(float scaleX, float scaleY, float x, float y) {
 
         Matrix save = new Matrix();
@@ -269,7 +275,7 @@ public class ViewPortHandler {
         return save;
     }
 
-    public void zoom(float scaleX, float scaleY, float x, float y, Matrix outputMatrix) {
+    public void zoom(float scaleX, float scaleY, float x, float y, @NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         outputMatrix.postScale(scaleX, scaleY, x, y);
@@ -282,6 +288,7 @@ public class ViewPortHandler {
      * @param scaleY
      * @return
      */
+    @NonNull
     public Matrix setZoom(float scaleX, float scaleY) {
 
         Matrix save = new Matrix();
@@ -289,7 +296,7 @@ public class ViewPortHandler {
         return save;
     }
 
-    public void setZoom(float scaleX, float scaleY, Matrix outputMatrix) {
+    public void setZoom(float scaleX, float scaleY, @NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         outputMatrix.setScale(scaleX, scaleY);
@@ -304,6 +311,7 @@ public class ViewPortHandler {
      * @param y
      * @return
      */
+    @NonNull
     public Matrix setZoom(float scaleX, float scaleY, float x, float y) {
 
         Matrix save = new Matrix();
@@ -320,6 +328,7 @@ public class ViewPortHandler {
      * Resets all zooming and dragging and makes the chart fit exactly it's
      * bounds.
      */
+    @NonNull
     public Matrix fitScreen() {
 
         Matrix save = new Matrix();
@@ -331,7 +340,7 @@ public class ViewPortHandler {
      * Resets all zooming and dragging and makes the chart fit exactly it's
      * bounds.  Output Matrix is available for those who wish to cache the object.
      */
-    public void fitScreen(Matrix outputMatrix) {
+    public void fitScreen(@NonNull Matrix outputMatrix) {
         mMinScaleX = 1f;
         mMinScaleY = 1f;
 
@@ -359,6 +368,7 @@ public class ViewPortHandler {
      * @param transformedPts
      * @return
      */
+    @NonNull
     public Matrix translate(final float[] transformedPts) {
 
         Matrix save = new Matrix();
@@ -372,7 +382,7 @@ public class ViewPortHandler {
      * @param transformedPts
      * @return
      */
-    public void translate(final float[] transformedPts, Matrix outputMatrix) {
+    public void translate(final float[] transformedPts, @NonNull Matrix outputMatrix) {
         outputMatrix.reset();
         outputMatrix.set(mMatrixTouch);
         final float x = transformedPts[0] - offsetLeft();
@@ -417,7 +427,8 @@ public class ViewPortHandler {
      * @param newMatrix
      * @return
      */
-    public Matrix refresh(Matrix newMatrix, View chart, boolean invalidate) {
+    @NonNull
+    public Matrix refresh(@NonNull Matrix newMatrix, @NonNull View chart, boolean invalidate) {
 
         mMatrixTouch.set(newMatrix);
 
@@ -436,7 +447,7 @@ public class ViewPortHandler {
      *
      * @param matrix
      */
-    public void limitTransAndScale(Matrix matrix, RectF content) {
+    public void limitTransAndScale(@NonNull Matrix matrix, @Nullable RectF content) {
 
         matrix.getValues(matrixBuffer);
 

@@ -1,5 +1,6 @@
-
 package com.github.mikephil.charting.buffer;
+
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
@@ -11,7 +12,7 @@ public class HorizontalBarBuffer extends BarBuffer {
     }
 
     @Override
-    public void feed(IBarDataSet data) {
+    public void feed(@NonNull IBarDataSet data) {
 
         float size = data.getEntryCount() * phaseX;
         float barWidthHalf = mBarWidth / 2f;

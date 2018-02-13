@@ -15,8 +15,8 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 public class PieChartItem extends ChartItem {
 
@@ -90,11 +90,11 @@ public class PieChartItem extends ChartItem {
     private SpannableString generateCenterText() {
         SpannableString s = new SpannableString("MPAndroidChart\ncreated by\nPhilipp Jahoda");
         s.setSpan(new RelativeSizeSpan(1.6f), 0, 14, 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.VORDIPLOM_COLORS[0]), 0, 14, 0);
+        s.setSpan(new ForegroundColorSpan(ColorUtils.VORDIPLOM_COLORS[0]), 0, 14, 0);
         s.setSpan(new RelativeSizeSpan(.9f), 14, 25, 0);
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, 25, 0);
         s.setSpan(new RelativeSizeSpan(1.4f), 25, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), 25, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorUtils.getHoloBlue()), 25, s.length(), 0);
         return s;
     }
 

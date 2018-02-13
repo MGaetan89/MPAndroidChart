@@ -1,8 +1,9 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -106,6 +107,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
      * @param y
      * @return
      */
+    @Nullable
     @Override
     public Highlight getHighlightByTouchPoint(float x, float y) {
 
@@ -123,6 +125,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         }
     }
 
+    @Nullable
     @Override
     public LineData getLineData() {
         if (mData == null)
@@ -130,6 +133,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         return mData.getLineData();
     }
 
+    @Nullable
     @Override
     public BarData getBarData() {
         if (mData == null)
@@ -137,6 +141,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         return mData.getBarData();
     }
 
+    @Nullable
     @Override
     public ScatterData getScatterData() {
         if (mData == null)
@@ -144,6 +149,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         return mData.getScatterData();
     }
 
+    @Nullable
     @Override
     public CandleData getCandleData() {
         if (mData == null)
@@ -151,6 +157,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         return mData.getCandleData();
     }
 
+    @Nullable
     @Override
     public BubbleData getBubbleData() {
         if (mData == null)
@@ -224,7 +231,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
      *
      * @param order
      */
-    public void setDrawOrder(DrawOrder[] order) {
+    public void setDrawOrder(@Nullable DrawOrder[] order) {
         if (order == null || order.length <= 0)
             return;
         mDrawOrder = order;
@@ -233,7 +240,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
     /**
      * draws all MarkerViews on the highlighted positions
      */
-    protected void drawMarkers(Canvas canvas) {
+    protected void drawMarkers(@NonNull Canvas canvas) {
 
         // if there is no marker view or drawing marker is disabled
         if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight())

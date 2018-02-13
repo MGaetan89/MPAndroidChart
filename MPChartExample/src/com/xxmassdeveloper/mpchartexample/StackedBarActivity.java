@@ -27,10 +27,10 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.custom.MyAxisValueFormatter;
 import com.xxmassdeveloper.mpchartexample.custom.MyValueFormatter;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -277,7 +277,7 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
         // have as many colors as stack-values per entry
         int[] colors = new int[3];
 
-        System.arraycopy(ColorTemplate.MATERIAL_COLORS, 0, colors, 0, 3);
+        System.arraycopy(ColorUtils.MATERIAL_COLORS, 0, colors, 0, 3);
 
         return colors;
     }

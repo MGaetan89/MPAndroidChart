@@ -25,8 +25,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,8 +128,8 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
         // make the first DataSet dashed
         ((LineDataSet) dataSets.get(0)).enableDashedLine(10, 10, 0);
-        ((LineDataSet) dataSets.get(0)).setColors(ColorTemplate.VORDIPLOM_COLORS);
-        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorTemplate.VORDIPLOM_COLORS);
+        ((LineDataSet) dataSets.get(0)).setColors(ColorUtils.VORDIPLOM_COLORS);
+        ((LineDataSet) dataSets.get(0)).setCircleColors(ColorUtils.VORDIPLOM_COLORS);
 
         LineData data = new LineData(dataSets);
         chart.setData(data);
