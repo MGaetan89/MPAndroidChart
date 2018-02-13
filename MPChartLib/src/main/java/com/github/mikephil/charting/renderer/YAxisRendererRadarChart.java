@@ -2,7 +2,6 @@ package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
-import android.graphics.PointF;
 
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -88,7 +87,7 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
                 first -= interval;
             }
 
-            double last = interval == 0.0 ? 0.0 : Utils.nextUp(Math.floor(yMax / interval) * interval);
+            double last = interval == 0.0 ? 0.0 : Math.nextUp(Math.floor(yMax / interval) * interval);
 
             double f;
             int i;

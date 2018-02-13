@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -209,7 +208,7 @@ public abstract class AxisRenderer extends Renderer {
                 first -= interval;
             }
 
-            double last = interval == 0.0 ? 0.0 : Utils.nextUp(Math.floor(yMax / interval) * interval);
+            double last = interval == 0.0 ? 0.0 : Math.nextUp(Math.floor(yMax / interval) * interval);
 
             double f;
             int i;
