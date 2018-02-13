@@ -5,7 +5,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.realm.implementation.RealmCandleDataSet;

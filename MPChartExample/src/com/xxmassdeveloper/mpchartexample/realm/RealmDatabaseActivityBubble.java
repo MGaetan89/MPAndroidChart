@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BubbleChart;
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.realm.implementation.RealmBubbleDataSet;

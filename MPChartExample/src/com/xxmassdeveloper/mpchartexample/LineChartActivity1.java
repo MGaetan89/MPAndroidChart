@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -9,7 +8,6 @@ import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +16,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
@@ -34,12 +31,13 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.Utils;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Example of a heavily customized {@link LineChart} with limit lines, custom line shapes, etc.

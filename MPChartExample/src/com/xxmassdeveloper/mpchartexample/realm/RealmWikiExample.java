@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;

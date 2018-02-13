@@ -1,8 +1,4 @@
-
 package com.github.mikephil.charting.data.filter;
-
-import android.annotation.TargetApi;
-import android.os.Build;
 
 import java.util.Arrays;
 
@@ -13,8 +9,6 @@ import java.util.Arrays;
  * @author Philipp Baldauf & Phliipp Jahoda
  */
 public class Approximator {
-
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     public float[] reduceWithDouglasPeucker(float[] points, float tolerance) {
 
         int greatestIndex = 0;

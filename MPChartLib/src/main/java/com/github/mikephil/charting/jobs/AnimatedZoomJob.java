@@ -2,7 +2,6 @@ package com.github.mikephil.charting.jobs;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.graphics.Matrix;
 import android.view.View;
 
@@ -15,7 +14,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 /**
  * Created by Philipp Jahoda on 19/02/16.
  */
-@SuppressLint("NewApi")
 public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.AnimatorListener {
 
     private static ObjectPool<AnimatedZoomJob> pool;
@@ -50,7 +48,6 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
 
     protected float xAxisRange;
 
-    @SuppressLint("NewApi")
     public AnimatedZoomJob(ViewPortHandler viewPortHandler, View v, Transformer trans, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) {
         super(viewPortHandler, scaleX, scaleY, trans, v, xOrigin, yOrigin, duration);
 

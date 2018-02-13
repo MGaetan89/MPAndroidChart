@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;

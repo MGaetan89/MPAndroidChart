@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;

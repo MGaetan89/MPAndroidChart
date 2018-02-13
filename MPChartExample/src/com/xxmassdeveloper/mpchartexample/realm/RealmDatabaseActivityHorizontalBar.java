@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.realm.implementation.RealmBarDataSet;
