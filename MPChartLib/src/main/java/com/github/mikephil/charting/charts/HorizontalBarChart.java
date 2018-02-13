@@ -2,6 +2,8 @@ package com.github.mikephil.charting.charts;
 
 import android.content.Context;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -134,12 +136,12 @@ public class HorizontalBarChart extends BarChart {
     }
 
     @Override
-    protected float[] getMarkerPosition(Highlight high) {
+    protected float[] getMarkerPosition(@NonNull Highlight high) {
         return new float[]{high.getDrawY(), high.getDrawX()};
     }
 
     @Override
-    public void getBarBounds(BarEntry e, RectF outputRect) {
+    public void getBarBounds(@NonNull BarEntry e, @NonNull RectF outputRect) {
 
         RectF bounds = outputRect;
         IBarDataSet set = mData.getDataSetForEntry(e);
@@ -174,6 +176,7 @@ public class HorizontalBarChart extends BarChart {
      * @param axis
      * @return
      */
+    @Nullable
     @Override
     public MPPointF getPosition(Entry e, AxisDependency axis) {
 
@@ -197,6 +200,7 @@ public class HorizontalBarChart extends BarChart {
      * @param y
      * @return
      */
+    @Nullable
     @Override
     public Highlight getHighlightByTouchPoint(float x, float y) {
 

@@ -1,10 +1,10 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.components.YAxis;
@@ -120,7 +120,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
         if (mData == null)

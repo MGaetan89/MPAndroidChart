@@ -15,8 +15,8 @@ import com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -99,8 +99,8 @@ public class RealmWikiExample extends RealmBaseActivity {
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineDataSet.setLabel("Result Scores");
         lineDataSet.setDrawCircleHole(false);
-        lineDataSet.setColor(ColorTemplate.rgb("#FF5722"));
-        lineDataSet.setCircleColor(ColorTemplate.rgb("#FF5722"));
+        lineDataSet.setColor(ColorUtils.rgb("#FF5722"));
+        lineDataSet.setCircleColor(ColorUtils.rgb("#FF5722"));
         lineDataSet.setLineWidth(1.8f);
         lineDataSet.setCircleRadius(3.6f);
 
@@ -117,7 +117,7 @@ public class RealmWikiExample extends RealmBaseActivity {
 
         // BAR-CHART
         RealmBarDataSet<Score> barDataSet = new RealmBarDataSet<Score>(results, "scoreNr", "totalScore");
-        barDataSet.setColors(new int[]{ColorTemplate.rgb("#FF5722"), ColorTemplate.rgb("#03A9F4")});
+        barDataSet.setColors(new int[]{ColorUtils.rgb("#FF5722"), ColorUtils.rgb("#03A9F4")});
         barDataSet.setLabel("Realm BarDataSet");
 
         ArrayList<IBarDataSet> barDataSets = new ArrayList<IBarDataSet>();

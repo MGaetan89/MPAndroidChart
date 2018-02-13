@@ -1,9 +1,7 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +18,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,7 +131,7 @@ public class ListViewBarChartActivity extends DemoBase {
         }
 
         BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setColors(ColorUtils.VORDIPLOM_COLORS);
         d.setBarShadowColor(Color.rgb(203, 203, 203));
         
         ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();

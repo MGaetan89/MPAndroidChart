@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -26,6 +25,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +106,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTypeface(mTfLight);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+        leftAxis.setTextColor(ColorUtils.getHoloBlue());
         leftAxis.setAxisMaximum(200f);
         leftAxis.setAxisMinimum(0f);
         leftAxis.setDrawGridLines(true);
@@ -326,12 +326,12 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set1 = new LineDataSet(yVals1, "DataSet 1");
 
             set1.setAxisDependency(AxisDependency.LEFT);
-            set1.setColor(ColorTemplate.getHoloBlue());
+            set1.setColor(ColorUtils.getHoloBlue());
             set1.setCircleColor(Color.WHITE);
             set1.setLineWidth(2f);
             set1.setCircleRadius(3f);
             set1.setFillAlpha(65);
-            set1.setFillColor(ColorTemplate.getHoloBlue());
+            set1.setFillColor(ColorUtils.getHoloBlue());
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
             //set1.setFillFormatter(new MyFillFormatter(0f));

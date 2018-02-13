@@ -2,6 +2,7 @@ package com.github.mikephil.charting.utils;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class MPPointF extends ObjectPool.Poolable {
         this.y = y;
     }
 
+    @NonNull
     public static MPPointF getInstance(float x, float y) {
         MPPointF result = pool.get();
         result.x = x;
@@ -35,10 +37,12 @@ public class MPPointF extends ObjectPool.Poolable {
         return result;
     }
 
+    @NonNull
     public static MPPointF getInstance() {
         return pool.get();
     }
 
+    @NonNull
     public static MPPointF getInstance(MPPointF copy) {
         MPPointF result = pool.get();
         result.x = copy.x;
@@ -92,6 +96,7 @@ public class MPPointF extends ObjectPool.Poolable {
         return this.y;
     }
 
+    @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
         return new MPPointF(0,0);

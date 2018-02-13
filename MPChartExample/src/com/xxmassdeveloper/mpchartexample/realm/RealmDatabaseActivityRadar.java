@@ -8,9 +8,9 @@ import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.realm.implementation.RealmRadarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -59,8 +59,8 @@ public class RealmDatabaseActivityRadar extends RealmBaseActivity {
         RealmRadarDataSet<RealmDemoData> set = new RealmRadarDataSet<RealmDemoData>(result, "yValue"); // stacked entries
         set.setLabel("Realm RadarDataSet");
         set.setDrawFilled(true);
-        set.setColor(ColorTemplate.rgb("#009688"));
-        set.setFillColor(ColorTemplate.rgb("#009688"));
+        set.setColor(ColorUtils.rgb("#009688"));
+        set.setFillColor(ColorUtils.rgb("#009688"));
         set.setFillAlpha(130);
         set.setLineWidth(2f);
 

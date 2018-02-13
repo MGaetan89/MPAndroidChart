@@ -1,14 +1,12 @@
 package com.github.mikephil.charting.components;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.RelativeLayout;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.Entry;
@@ -42,7 +40,7 @@ public class MarkerImage implements IMarker {
      * @param context
      * @param drawableResourceId the drawable resource to render
      */
-    public MarkerImage(Context context, int drawableResourceId) {
+    public MarkerImage(@NonNull Context context, int drawableResourceId) {
         mContext = context;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -55,7 +53,7 @@ public class MarkerImage implements IMarker {
         }
     }
 
-    public void setOffset(MPPointF offset) {
+    public void setOffset(@Nullable MPPointF offset) {
         mOffset = offset;
 
         if (mOffset == null) {
@@ -93,6 +91,7 @@ public class MarkerImage implements IMarker {
         return mWeakChart == null ? null : mWeakChart.get();
     }
 
+    @Nullable
     @Override
     public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
 

@@ -12,9 +12,9 @@ import android.view.WindowManager;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.realm.implementation.RealmPieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import io.realm.RealmResults;
 
@@ -54,7 +54,7 @@ public class RealmDatabaseActivityPie extends RealmBaseActivity {
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
         RealmPieDataSet<RealmDemoData> set = new RealmPieDataSet<RealmDemoData>(result, "yValue", "label");
-        set.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        set.setColors(ColorUtils.VORDIPLOM_COLORS);
         set.setLabel("Example market share");
         set.setSliceSpace(2);
 
@@ -75,7 +75,7 @@ public class RealmDatabaseActivityPie extends RealmBaseActivity {
         s.setSpan(new ForegroundColorSpan(Color.rgb(240, 115, 126)), 0, 8, 0);
         s.setSpan(new RelativeSizeSpan(2.2f), 0, 8, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), 9, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), 9, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorUtils.getHoloBlue()), 9, s.length(), 0);
         s.setSpan(new RelativeSizeSpan(0.85f), 9, s.length(), 0);
         return s;
     }

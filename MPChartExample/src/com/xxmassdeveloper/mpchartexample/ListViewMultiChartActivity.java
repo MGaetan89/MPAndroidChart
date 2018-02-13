@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
@@ -20,12 +19,12 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.listviewitems.BarChartItem;
 import com.xxmassdeveloper.mpchartexample.listviewitems.ChartItem;
 import com.xxmassdeveloper.mpchartexample.listviewitems.LineChartItem;
 import com.xxmassdeveloper.mpchartexample.listviewitems.PieChartItem;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,8 +117,8 @@ public class ListViewMultiChartActivity extends DemoBase {
         d2.setLineWidth(2.5f);
         d2.setCircleRadius(4.5f);
         d2.setHighLightColor(Color.rgb(244, 117, 117));
-        d2.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        d2.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        d2.setColor(ColorUtils.VORDIPLOM_COLORS[0]);
+        d2.setCircleColor(ColorUtils.VORDIPLOM_COLORS[0]);
         d2.setDrawValues(false);
         
         ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
@@ -144,7 +143,7 @@ public class ListViewMultiChartActivity extends DemoBase {
         }
 
         BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setColors(ColorUtils.VORDIPLOM_COLORS);
         d.setHighLightAlpha(255);
         
         BarData cd = new BarData(d);
@@ -169,7 +168,7 @@ public class ListViewMultiChartActivity extends DemoBase {
         
         // space between slices
         d.setSliceSpace(2f);
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setColors(ColorUtils.VORDIPLOM_COLORS);
         
         PieData cd = new PieData(d);
         return cd;

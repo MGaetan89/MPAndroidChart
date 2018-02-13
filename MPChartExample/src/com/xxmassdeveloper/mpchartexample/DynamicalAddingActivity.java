@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -16,8 +15,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -45,7 +44,7 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
         mChart.invalidate();
     }
 
-    int[] mColors = ColorTemplate.VORDIPLOM_COLORS;
+    int[] mColors = ColorUtils.VORDIPLOM_COLORS;
 
     private void addEntry() {
 

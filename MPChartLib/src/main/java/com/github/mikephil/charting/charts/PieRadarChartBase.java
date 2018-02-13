@@ -5,6 +5,8 @@ import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -290,6 +292,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
      * @param angle  in degrees, converted to radians internally
      * @return
      */
+    @Nullable
     public MPPointF getPosition(MPPointF center, float dist, float angle) {
 
         MPPointF p = MPPointF.getInstance(0, 0);
@@ -297,7 +300,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
         return p;
     }
 
-    public void getPosition(MPPointF center, float dist, float angle, MPPointF outputPoint) {
+    public void getPosition(@NonNull MPPointF center, float dist, float angle, @NonNull MPPointF outputPoint) {
         outputPoint.x = (float) (center.x + dist * Math.cos(Math.toRadians(angle)));
         outputPoint.y = (float) (center.y + dist * Math.sin(Math.toRadians(angle)));
     }

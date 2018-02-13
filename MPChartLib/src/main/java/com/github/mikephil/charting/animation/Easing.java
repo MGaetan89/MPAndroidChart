@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.animation;
 
 import android.animation.TimeInterpolator;
+import android.support.annotation.NonNull;
 
 /**
  * Easing options.
@@ -39,7 +40,8 @@ public class Easing {
         EaseInOutBounce,
     }
 
-    public static TimeInterpolator getEasingFunctionFromOption(EasingOption easing) {
+    @NonNull
+    public static TimeInterpolator getEasingFunctionFromOption(@NonNull EasingOption easing) {
         switch (easing) {
             default:
             case Linear:

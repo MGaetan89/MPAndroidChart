@@ -9,9 +9,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -59,8 +59,8 @@ public class RealmDatabaseActivityLine extends RealmBaseActivity {
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         set.setLabel("Realm LineDataSet");
         set.setDrawCircleHole(false);
-        set.setColor(ColorTemplate.rgb("#FF5722"));
-        set.setCircleColor(ColorTemplate.rgb("#FF5722"));
+        set.setColor(ColorUtils.rgb("#FF5722"));
+        set.setCircleColor(ColorUtils.rgb("#FF5722"));
         set.setLineWidth(1.8f);
         set.setCircleRadius(3.6f);
 

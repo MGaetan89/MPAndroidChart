@@ -1,12 +1,9 @@
-
 package com.github.mikephil.charting.formatter;
 
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ViewPortHandler;
+import android.support.annotation.Nullable;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
+import com.github.mikephil.charting.components.AxisBase;
+
 import java.util.Collection;
 
 /**
@@ -29,7 +26,7 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter
      *
      * @param values The values string array
      */
-    public IndexAxisValueFormatter(String[] values) {
+    public IndexAxisValueFormatter(@Nullable String[] values) {
         if (values != null)
             setValues(values);
     }
@@ -39,7 +36,7 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter
      *
      * @param values The values string array
      */
-    public IndexAxisValueFormatter(Collection<String> values) {
+    public IndexAxisValueFormatter(@Nullable Collection<String> values) {
         if (values != null)
             setValues(values.toArray(new String[values.size()]));
     }
@@ -58,7 +55,7 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter
         return mValues;
     }
 
-    public void setValues(String[] values)
+    public void setValues(@Nullable String[] values)
     {
         if (values == null)
             values = new String[] {};

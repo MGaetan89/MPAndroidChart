@@ -8,9 +8,9 @@ import com.github.mikephil.charting.charts.BubbleChart;
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.realm.implementation.RealmBubbleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class RealmDatabaseActivityBubble extends RealmBaseActivity {
 
         RealmBubbleDataSet<RealmDemoData> set = new RealmBubbleDataSet<RealmDemoData>(result, "xValue", "yValue", "bubbleSize");
         set.setLabel("Realm BubbleDataSet");
-        set.setColors(ColorTemplate.COLORFUL_COLORS, 110);
+        set.setColors(ColorUtils.COLORFUL_COLORS, 110);
 
         ArrayList<IBubbleDataSet> dataSets = new ArrayList<IBubbleDataSet>();
         dataSets.add(set); // add the dataset

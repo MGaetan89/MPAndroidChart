@@ -1,5 +1,7 @@
 package com.github.mikephil.charting.highlight;
 
+import android.support.annotation.NonNull;
+
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarLineScatterCandleBubbleData;
 import com.github.mikephil.charting.data.ChartData;
@@ -28,6 +30,7 @@ public class CombinedHighlighter extends ChartHighlighter<CombinedDataProvider> 
         barHighlighter = barChart.getBarData() == null ? null : new BarHighlighter(barChart);
     }
 
+    @NonNull
     @Override
     protected List<Highlight> getHighlightsAtXValue(float xVal, float x, float y) {
 

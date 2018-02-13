@@ -2,6 +2,8 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
@@ -449,6 +451,7 @@ public abstract class AxisBase extends ComponentBase {
      *
      * @return
      */
+    @NonNull
     public String getLongestLabel() {
 
         String longest = "";
@@ -480,7 +483,7 @@ public abstract class AxisBase extends ComponentBase {
      *
      * @param f
      */
-    public void setValueFormatter(IAxisValueFormatter f) {
+    public void setValueFormatter(@Nullable IAxisValueFormatter f) {
 
         if (f == null)
             mAxisValueFormatter = new DefaultAxisValueFormatter(mDecimals);
@@ -493,6 +496,7 @@ public abstract class AxisBase extends ComponentBase {
      *
      * @return
      */
+    @NonNull
     public IAxisValueFormatter getValueFormatter() {
 
         if (mAxisValueFormatter == null ||

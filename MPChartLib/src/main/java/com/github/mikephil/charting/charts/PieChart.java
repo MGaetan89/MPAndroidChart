@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.components.XAxis;
@@ -116,7 +118,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
         if (mData == null)
@@ -169,7 +171,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     @Override
-    protected float[] getMarkerPosition(Highlight highlight) {
+    protected float[] getMarkerPosition(@NonNull Highlight highlight) {
 
         MPPointF center = getCenterCircleBox();
         float r = getRadius();
@@ -406,7 +408,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
      *
      * @param text
      */
-    public void setCenterText(CharSequence text) {
+    public void setCenterText(@Nullable CharSequence text) {
         if (text == null)
             mCenterText = "";
         else
@@ -473,6 +475,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
      *
      * @return
      */
+    @NonNull
     public MPPointF getCenterCircleBox() {
         return MPPointF.getInstance(mCircleBox.centerX(), mCircleBox.centerY());
     }
@@ -521,6 +524,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
      *
      * @return
      */
+    @NonNull
     public MPPointF getCenterTextOffset() {
         return MPPointF.getInstance(mCenterTextOffset.x, mCenterTextOffset.y);
     }

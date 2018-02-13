@@ -19,8 +19,8 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -95,7 +95,7 @@ public class HalfPieChartActivity extends DemoBase {
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        dataSet.setColors(ColorUtils.MATERIAL_COLORS);
         //dataSet.setSelectionShift(0f);
 
         PieData data = new PieData(dataSet);
@@ -116,7 +116,7 @@ public class HalfPieChartActivity extends DemoBase {
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
         s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorUtils.getHoloBlue()), s.length() - 14, s.length(), 0);
         return s;
     }
 

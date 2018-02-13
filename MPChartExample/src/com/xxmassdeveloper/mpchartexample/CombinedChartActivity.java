@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -31,8 +30,8 @@ import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -176,7 +175,7 @@ public class CombinedChartActivity extends DemoBase {
             entries.add(new Entry(index + 0.25f, getRandom(10, 55)));
 
         ScatterDataSet set = new ScatterDataSet(entries, "Scatter DataSet");
-        set.setColors(ColorTemplate.MATERIAL_COLORS);
+        set.setColors(ColorUtils.MATERIAL_COLORS);
         set.setScatterShapeSize(7.5f);
         set.setDrawValues(false);
         set.setValueTextSize(10f);
@@ -218,7 +217,7 @@ public class CombinedChartActivity extends DemoBase {
         }
 
         BubbleDataSet set = new BubbleDataSet(entries, "Bubble DataSet");
-        set.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        set.setColors(ColorUtils.VORDIPLOM_COLORS);
         set.setValueTextSize(10f);
         set.setValueTextColor(Color.WHITE);
         set.setHighlightCircleWidth(1.5f);

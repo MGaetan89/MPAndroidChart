@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -39,7 +41,7 @@ public abstract class Utils {
      *
      * @param context
      */
-    public static void init(Context context) {
+    public static void init(@Nullable Context context) {
 
         if (context == null) {
             mMinimumFlingVelocity = ViewConfiguration.getMinimumFlingVelocity();
@@ -89,7 +91,7 @@ public abstract class Utils {
      * @param demoText
      * @return
      */
-    public static int calcTextWidth(Paint paint, String demoText) {
+    public static int calcTextWidth(@NonNull Paint paint, String demoText) {
         return (int) paint.measureText(demoText);
     }
 
@@ -102,7 +104,7 @@ public abstract class Utils {
      * @param demoText
      * @return
      */
-    public static int calcTextHeight(Paint paint, String demoText) {
+    public static int calcTextHeight(@NonNull Paint paint, @NonNull String demoText) {
 
         Rect r = mCalcTextHeightRect;
         r.set(0,0,0,0);
@@ -112,20 +114,20 @@ public abstract class Utils {
 
     private static Paint.FontMetrics mFontMetrics = new Paint.FontMetrics();
 
-    public static float getLineHeight(Paint paint) {
+    public static float getLineHeight(@NonNull Paint paint) {
         return getLineHeight(paint, mFontMetrics);
     }
 
-    public static float getLineHeight(Paint paint, Paint.FontMetrics fontMetrics){
+    public static float getLineHeight(@NonNull Paint paint, @NonNull Paint.FontMetrics fontMetrics){
         paint.getFontMetrics(fontMetrics);
         return fontMetrics.descent - fontMetrics.ascent;
     }
 
-    public static float getLineSpacing(Paint paint) {
+    public static float getLineSpacing(@NonNull Paint paint) {
         return getLineSpacing(paint, mFontMetrics);
     }
 
-    public static float getLineSpacing(Paint paint, Paint.FontMetrics fontMetrics){
+    public static float getLineSpacing(@NonNull Paint paint, @NonNull Paint.FontMetrics fontMetrics){
         paint.getFontMetrics(fontMetrics);
         return fontMetrics.ascent - fontMetrics.top + fontMetrics.bottom;
     }
@@ -139,7 +141,8 @@ public abstract class Utils {
      * @param demoText
      * @return A Recyclable FSize instance
      */
-    public static FSize calcTextSize(Paint paint, String demoText) {
+    @NonNull
+    public static FSize calcTextSize(@NonNull Paint paint, @NonNull String demoText) {
 
         FSize result = FSize.getInstance(0,0);
         calcTextSize(paint, demoText, result);
@@ -155,7 +158,7 @@ public abstract class Utils {
      * @param demoText
      * @param outputFSize An output variable, modified by the function.
      */
-    private static void calcTextSize(Paint paint, String demoText, FSize outputFSize) {
+    private static void calcTextSize(@NonNull Paint paint, @NonNull String demoText, @NonNull FSize outputFSize) {
 
         Rect r = mCalcTextSizeRect;
         r.set(0,0,0,0);
@@ -176,11 +179,13 @@ public abstract class Utils {
 
     private static IValueFormatter mDefaultValueFormatter = generateDefaultValueFormatter();
 
+    @NonNull
     private static IValueFormatter generateDefaultValueFormatter() {
 		return new DefaultValueFormatter(1);
     }
 
     /// - returns: The default value formatter used for all chart components that needs a default
+    @NonNull
     public static IValueFormatter getDefaultValueFormatter()
     {
         return mDefaultValueFormatter;
@@ -335,20 +340,21 @@ public abstract class Utils {
      * @param angle  in degrees, converted to radians internally
      * @return
      */
-    public static MPPointF getPosition(MPPointF center, float dist, float angle) {
+    @NonNull
+    public static MPPointF getPosition(@NonNull MPPointF center, float dist, float angle) {
 
         MPPointF p = MPPointF.getInstance(0,0);
         getPosition(center, dist, angle, p);
         return p;
     }
 
-    public static void getPosition(MPPointF center, float dist, float angle, MPPointF outputPoint){
+    public static void getPosition(@NonNull MPPointF center, float dist, float angle, @NonNull MPPointF outputPoint){
         outputPoint.x = (float) (center.x + dist * Math.cos(Math.toRadians(angle)));
         outputPoint.y = (float) (center.y + dist * Math.sin(Math.toRadians(angle)));
     }
 
-    public static void velocityTrackerPointerUpCleanUpIfNecessary(MotionEvent ev,
-                                                                  VelocityTracker tracker) {
+    public static void velocityTrackerPointerUpCleanUpIfNecessary(@NonNull MotionEvent ev,
+                                                                  @NonNull VelocityTracker tracker) {
 
         // Check the dot product of current velocities.
         // If the pointer that left was opposing another velocity vector, clear.
@@ -379,7 +385,7 @@ public abstract class Utils {
      *
      * @param view
      */
-    public static void postInvalidateOnAnimation(View view) {
+    public static void postInvalidateOnAnimation(@NonNull View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             view.postInvalidateOnAnimation();
         else
@@ -406,8 +412,8 @@ public abstract class Utils {
 
     private static Rect mDrawableBoundsCache = new Rect();
 
-    public static void drawImage(Canvas canvas,
-                                 Drawable drawable,
+    public static void drawImage(@NonNull Canvas canvas,
+                                 @NonNull Drawable drawable,
                                  int x, int y,
                                  int width, int height) {
 
@@ -432,9 +438,9 @@ public abstract class Utils {
     private static Rect mDrawTextRectBuffer = new Rect();
     private static Paint.FontMetrics mFontMetricsBuffer = new Paint.FontMetrics();
 
-    public static void drawXAxisValue(Canvas c, String text, float x, float y,
-                                      Paint paint,
-                                      MPPointF anchor, float angleDegrees) {
+    public static void drawXAxisValue(@NonNull Canvas c, @NonNull String text, float x, float y,
+                                      @NonNull Paint paint,
+                                      @NonNull MPPointF anchor, float angleDegrees) {
 
         float drawOffsetX = 0.f;
         float drawOffsetY = 0.f;
@@ -507,6 +513,7 @@ public abstract class Utils {
      * @param degrees
      * @return A Recyclable FSize instance
      */
+    @NonNull
     public static FSize getSizeOfRotatedRectangleByDegrees(float rectangleWidth, float
             rectangleHeight, float degrees) {
         final float radians = degrees * FDEG2RAD;
@@ -522,6 +529,7 @@ public abstract class Utils {
      * @param radians
      * @return A Recyclable FSize instance
      */
+    @NonNull
     private static FSize getSizeOfRotatedRectangleByRadians(float rectangleWidth, float
 			rectangleHeight, float radians) {
         return FSize.getInstance(

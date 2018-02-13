@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.os.Bundle;
@@ -10,8 +9,8 @@ import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 
@@ -58,7 +57,7 @@ public class ScrollViewActivity extends DemoBase {
         }
 
         BarDataSet set = new BarDataSet(yVals, "Data Set");
-        set.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        set.setColors(ColorUtils.VORDIPLOM_COLORS);
         set.setDrawValues(false);
 
         BarData data = new BarData(set);

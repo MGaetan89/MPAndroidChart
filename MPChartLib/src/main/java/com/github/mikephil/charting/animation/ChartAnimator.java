@@ -3,6 +3,7 @@ package com.github.mikephil.charting.animation;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.support.annotation.Nullable;
 
 /**
  * Object responsible for all animations in the Chart.
@@ -12,13 +13,14 @@ import android.animation.ValueAnimator.AnimatorUpdateListener;
 public class ChartAnimator {
 
     /** object that is updated upon animation update */
-    private AnimatorUpdateListener mListener;
+    @Nullable
+    private final AnimatorUpdateListener mListener;
 
     public ChartAnimator() {
-
+        mListener = null;
     }
 
-    public ChartAnimator(AnimatorUpdateListener listener) {
+    public ChartAnimator(@Nullable AnimatorUpdateListener listener) {
         mListener = listener;
     }
 
@@ -51,12 +53,11 @@ public class ChartAnimator {
     public void animateXY(int durationMillisX, int durationMillisY, TimeInterpolator easingX, TimeInterpolator easingY) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(easingY);
-        animatorY.setDuration(
-                durationMillisY);
+        animatorY.setDuration(durationMillisY);
+
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setInterpolator(easingX);
-        animatorX.setDuration(
-                durationMillisX);
+        animatorX.setDuration(durationMillisX);
 
         // make sure only one animator produces update-callbacks (which then
         // call invalidate())
@@ -120,12 +121,11 @@ public class ChartAnimator {
     public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX, Easing.EasingOption easingY) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easingY));
-        animatorY.setDuration(
-                durationMillisY);
+        animatorY.setDuration(durationMillisY);
+
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setInterpolator(Easing.getEasingFunctionFromOption(easingX));
-        animatorX.setDuration(
-                durationMillisX);
+        animatorX.setDuration(durationMillisX);
 
         // make sure only one animator produces update-callbacks (which then
         // call invalidate())
@@ -186,11 +186,10 @@ public class ChartAnimator {
      */
     public void animateXY(int durationMillisX, int durationMillisY) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setDuration(
-                durationMillisY);
+        animatorY.setDuration(durationMillisY);
+
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setDuration(
-                durationMillisX);
+        animatorX.setDuration(durationMillisX);
 
         // make sure only one animator produces update-callbacks (which then
         // call invalidate())
@@ -242,7 +241,7 @@ public class ChartAnimator {
     }
 
     /**
-     * This modifys the y-phase that is used to animate the values.
+     * This modifies the y-phase that is used to animate the values.
      *
      * @param phase
      */
@@ -260,7 +259,7 @@ public class ChartAnimator {
     }
 
     /**
-     * This modifys the x-phase that is used to animate the values.
+     * This modifies the x-phase that is used to animate the values.
      *
      * @param phase
      */
