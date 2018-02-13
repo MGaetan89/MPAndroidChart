@@ -3,7 +3,6 @@ package com.github.mikephil.charting.jobs;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.view.View;
 
 import com.github.mikephil.charting.utils.Transformer;
@@ -12,7 +11,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 /**
  * Created by Philipp Jahoda on 19/02/16.
  */
-@SuppressLint("NewApi")
 public abstract class AnimatedViewPortJob extends ViewPortJob implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener {
 
     protected ObjectAnimator animator;
@@ -32,7 +30,6 @@ public abstract class AnimatedViewPortJob extends ViewPortJob implements ValueAn
         animator.addListener(this);
     }
 
-    @SuppressLint("NewApi")
     @Override
     public void run() {
         animator.start();

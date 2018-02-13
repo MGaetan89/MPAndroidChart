@@ -1,7 +1,6 @@
 package com.github.mikephil.charting.jobs;
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.view.View;
 
 import com.github.mikephil.charting.utils.ObjectPool;
@@ -11,7 +10,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 /**
  * Created by Philipp Jahoda on 19/02/16.
  */
-@SuppressLint("NewApi")
 public class AnimatedMoveViewJob extends AnimatedViewPortJob {
 
     private static ObjectPool<AnimatedMoveViewJob> pool;

@@ -1,10 +1,8 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.RectF;
 import android.util.AttributeSet;
@@ -476,12 +474,7 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
      * @param fromangle
      * @param toangle
      */
-    @SuppressLint("NewApi")
     public void spin(int durationmillis, float fromangle, float toangle, Easing.EasingOption easing) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
         setRotationAngle(fromangle);
 
         ObjectAnimator spinAnimator = ObjectAnimator.ofFloat(this, "rotationAngle", fromangle,

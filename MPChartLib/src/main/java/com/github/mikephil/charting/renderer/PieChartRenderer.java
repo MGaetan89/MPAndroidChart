@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Bitmap;
@@ -738,7 +737,7 @@ public class PieChartRenderer extends DataRenderer {
             float layoutHeight = mCenterTextLayout.getHeight();
 
             c.save();
-            if (Build.VERSION.SDK_INT >= 18) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 Path path = mDrawCenterTextPathBuffer;
                 path.reset();
                 path.addOval(holeRect, Path.Direction.CW);

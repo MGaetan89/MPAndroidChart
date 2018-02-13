@@ -1,14 +1,13 @@
-
 package com.xxmassdeveloper.mpchartexample.custom;
 
-import com.github.mikephil.charting.animation.EasingFunction;
+import android.animation.TimeInterpolator;
 
 /**
- * Example of a custom made animation EasingFunction.
+ * Example of a custom made animation TimeInterpolator.
  * 
  * @author Philipp Jahoda
  */
-public class MyEasingFunction implements EasingFunction {
+public class MyEasingFunction implements TimeInterpolator {
 
     @Override
     public float getInterpolation(float input) {

@@ -8,7 +8,7 @@ android {
     buildToolsVersion '26.0.2'
     // resourcePrefix 'mpcht'
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 27
         versionCode 3
         versionName '3.0.3'
@@ -56,7 +56,7 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     options.charSet = 'UTF-8'
-    failOnError  false
+    failOnError false
     source = android.sourceSets.main.java.sourceFiles
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }

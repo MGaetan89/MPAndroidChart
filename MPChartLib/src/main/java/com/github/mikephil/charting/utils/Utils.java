@@ -1,13 +1,10 @@
-
 package com.github.mikephil.charting.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
@@ -15,7 +12,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.SizeF;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -499,9 +495,8 @@ public abstract class Utils {
      *
      * @param view
      */
-    @SuppressLint("NewApi")
     public static void postInvalidateOnAnimation(View view) {
-        if (Build.VERSION.SDK_INT >= 16)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             view.postInvalidateOnAnimation();
         else
             view.postInvalidateDelayed(10);
@@ -771,9 +766,5 @@ public abstract class Utils {
                 Math.abs(rectangleWidth * (float) Math.sin(radians)) + Math.abs(rectangleHeight *
                         (float) Math.cos(radians))
         );
-    }
-
-    public static int getSDKInt() {
-        return android.os.Build.VERSION.SDK_INT;
     }
 }

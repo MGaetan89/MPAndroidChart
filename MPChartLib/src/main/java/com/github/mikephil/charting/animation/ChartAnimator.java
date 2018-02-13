@@ -1,13 +1,11 @@
-
 package com.github.mikephil.charting.animation;
 
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.annotation.SuppressLint;
 
 /**
- * Object responsible for all animations in the Chart. ANIMATIONS ONLY WORK FOR
- * API LEVEL 11 (Android 3.0.x) AND HIGHER.
+ * Object responsible for all animations in the Chart.
  * 
  * @author Philipp Jahoda
  */
@@ -50,12 +48,7 @@ public class ChartAnimator {
      * @param easingX
      * @param easingY
      */
-    public void animateXY(int durationMillisX, int durationMillisY, EasingFunction easingX,
-            EasingFunction easingY) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
+    public void animateXY(int durationMillisX, int durationMillisY, TimeInterpolator easingX, TimeInterpolator easingY) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(easingY);
         animatorY.setDuration(
@@ -85,11 +78,7 @@ public class ChartAnimator {
      * @param durationMillis
      * @param easing
      */
-    public void animateX(int durationMillis, EasingFunction easing) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
+    public void animateX(int durationMillis, TimeInterpolator easing) {
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setInterpolator(easing);
         animatorX.setDuration(durationMillis);
@@ -105,11 +94,7 @@ public class ChartAnimator {
      * @param durationMillis
      * @param easing
      */
-    public void animateY(int durationMillis, EasingFunction easing) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
+    public void animateY(int durationMillis, TimeInterpolator easing) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(easing);
         animatorY.setDuration(durationMillis);
@@ -132,12 +117,7 @@ public class ChartAnimator {
      * @param easingX
      * @param easingY
      */
-    public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX,
-            Easing.EasingOption easingY) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
+    public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX, Easing.EasingOption easingY) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easingY));
         animatorY.setDuration(
@@ -168,10 +148,6 @@ public class ChartAnimator {
      * @param easing
      */
     public void animateX(int durationMillis, Easing.EasingOption easing) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setInterpolator(Easing.getEasingFunctionFromOption(easing));
         animatorX.setDuration(durationMillis);
@@ -188,10 +164,6 @@ public class ChartAnimator {
      * @param easing
      */
     public void animateY(int durationMillis, Easing.EasingOption easing) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easing));
         animatorY.setDuration(durationMillis);
@@ -213,10 +185,6 @@ public class ChartAnimator {
      * @param durationMillisY
      */
     public void animateXY(int durationMillisX, int durationMillisY) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setDuration(
                 durationMillisY);
@@ -244,10 +212,6 @@ public class ChartAnimator {
      * @param durationMillis
      */
     public void animateX(int durationMillis) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
         animatorX.setDuration(durationMillis);
         animatorX.addUpdateListener(mListener);
@@ -262,10 +226,6 @@ public class ChartAnimator {
      * @param durationMillis
      */
     public void animateY(int durationMillis) {
-
-        if (android.os.Build.VERSION.SDK_INT < 11)
-            return;
-
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
         animatorY.setDuration(durationMillis);
         animatorY.addUpdateListener(mListener);
