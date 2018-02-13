@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import android.content.Context;
@@ -187,27 +186,6 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * sets the size (radius) of the circle shpaed value indicators,
-     * default size = 4f
-     * <p/>
-     * This method is deprecated because of unclarity. Use setCircleRadius instead.
-     *
-     * @param size
-     */
-    @Deprecated
-    public void setCircleSize(float size) {
-        setCircleRadius(size);
-    }
-
-    /**
-     * This function is deprecated because of unclarity. Use getCircleRadius instead.
-     */
-    @Deprecated
-    public float getCircleSize() {
-        return getCircleRadius();
-    }
-
-    /**
      * Enables the line to be drawn in dashed mode, e.g. like this
      * "- - - - - -". THIS ONLY WORKS IF HARDWARE-ACCELERATION IS TURNED OFF.
      * Keep in mind that hardware acceleration boosts performance.
@@ -252,18 +230,6 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     @Override
     public boolean isDrawCirclesEnabled() {
         return mDrawCircles;
-    }
-
-    @Deprecated
-    @Override
-    public boolean isDrawCubicEnabled() {
-        return mMode == Mode.CUBIC_BEZIER;
-    }
-
-    @Deprecated
-    @Override
-    public boolean isDrawSteppedEnabled() {
-        return mMode == Mode.STEPPED;
     }
 
     /** ALL CODE BELOW RELATED TO CIRCLE-COLORS */

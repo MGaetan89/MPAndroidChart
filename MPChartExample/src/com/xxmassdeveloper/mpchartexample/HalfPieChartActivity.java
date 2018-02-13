@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -16,7 +15,6 @@ import android.widget.RelativeLayout;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.Legend.LegendPosition;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -125,7 +123,9 @@ public class HalfPieChartActivity extends DemoBase {
     private void moveOffScreen() {
 
         Display display = getWindowManager().getDefaultDisplay();
-        int height = display.getHeight();  // deprecated
+        Point size = new Point();
+        display.getSize(size);
+        int height = size.y;
 
         int offset = (int)(height * 0.65); /* percent to move */
 

@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
@@ -671,16 +670,6 @@ public abstract class AxisBase extends ComponentBase {
     }
 
     /**
-     * Use setAxisMinimum(...) instead.
-     *
-     * @param min
-     */
-    @Deprecated
-    public void setAxisMinValue(float min) {
-        setAxisMinimum(min);
-    }
-
-    /**
      * Set a custom maximum value for this axis. If set, this value will not be calculated
      * automatically depending on
      * the provided data. Use resetAxisMaxValue() to undo this.
@@ -691,16 +680,6 @@ public abstract class AxisBase extends ComponentBase {
         mCustomAxisMax = true;
         mAxisMaximum = max;
         this.mAxisRange = Math.abs(max - mAxisMinimum);
-    }
-
-    /**
-     * Use setAxisMaximum(...) instead.
-     *
-     * @param max
-     */
-    @Deprecated
-    public void setAxisMaxValue(float max) {
-        setAxisMaximum(max);
     }
 
     /**
