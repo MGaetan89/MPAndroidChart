@@ -26,12 +26,6 @@ public interface ILineDataSet extends ILineRadarDataSet<Entry> {
      */
     float getCubicIntensity();
 
-    @Deprecated
-    boolean isDrawCubicEnabled();
-
-    @Deprecated
-    boolean isDrawSteppedEnabled();
-
     /**
      * Returns the size of the drawn circles.
      */

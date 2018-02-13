@@ -224,20 +224,6 @@ public class YAxis extends AxisBase {
     }
 
     /**
-     * This method is deprecated.
-     * Use setAxisMinimum(...) / setAxisMaximum(...) instead.
-     *
-     * @param startAtZero
-     */
-    @Deprecated
-    public void setStartAtZero(boolean startAtZero) {
-        if (startAtZero)
-            setAxisMinimum(0f);
-        else
-            resetAxisMinimum();
-    }
-
-    /**
      * Sets the top axis space in percent of the full range. Default 10f
      *
      * @param percent

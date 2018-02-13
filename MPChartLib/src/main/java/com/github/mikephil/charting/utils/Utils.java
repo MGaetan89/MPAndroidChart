@@ -72,23 +72,6 @@ public abstract class Utils {
     }
 
     /**
-     * initialize method, called inside the Chart.init() method. backwards
-     * compatibility - to not break existing code
-     *
-     * @param res
-     */
-    @Deprecated
-    public static void init(Resources res) {
-
-        mMetrics = res.getDisplayMetrics();
-
-        // noinspection deprecation
-        mMinimumFlingVelocity = ViewConfiguration.getMinimumFlingVelocity();
-        // noinspection deprecation
-        mMaximumFlingVelocity = ViewConfiguration.getMaximumFlingVelocity();
-    }
-
-    /**
      * This method converts dp unit to equivalent pixels, depending on device
      * density. NEEDS UTILS TO BE INITIALIZED BEFORE USAGE.
      *

@@ -1209,16 +1209,6 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         return mMarker;
     }
 
-    @Deprecated
-    public void setMarkerView(IMarker v) {
-        setMarker(v);
-    }
-
-    @Deprecated
-    public IMarker getMarkerView() {
-        return getMarker();
-    }
-
     /**
      * Sets a new Description object for the chart.
      *
@@ -1354,16 +1344,6 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         }
 
         return null;
-    }
-
-    @Deprecated
-    public boolean isDrawMarkerViewsEnabled() {
-        return isDrawMarkersEnabled();
-    }
-
-    @Deprecated
-    public void setDrawMarkerViews(boolean enabled) {
-        setDrawMarkers(enabled);
     }
 
     /**
