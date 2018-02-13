@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import java.util.ArrayList;
@@ -162,7 +161,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         StringBuffer buffer = new StringBuffer();
         buffer.append(toSimpleString());
         for (int i = 0; i < mValues.size(); i++) {
-            buffer.append(mValues.get(i).toString() + " ");
+            buffer.append(mValues.get(i).toString()).append(" ");
         }
         return buffer.toString();
     }
@@ -174,10 +173,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      * @return
      */
     public String toSimpleString() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("DataSet, label: " + (getLabel() == null ? "" : getLabel()) + ", entries: " + mValues.size() +
-                "\n");
-        return buffer.toString();
+        return "DataSet, label: " + (getLabel() == null ? "" : getLabel()) + ", entries: " + mValues.size() + "\n";
     }
 
     @Override
@@ -207,7 +203,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
             return;
 
         if (mValues == null) {
-            mValues = new ArrayList<T>();
+            mValues = new ArrayList<>();
         }
 
         calcMinMax(e);
@@ -234,7 +230,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
         List<T> values = getValues();
         if (values == null) {
-            values = new ArrayList<T>();
+            values = new ArrayList<>();
         }
 
         calcMinMax(e);
@@ -373,8 +369,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
     @Override
     public List<T> getEntriesForXValue(float xValue) {
-
-        List<T> entries = new ArrayList<T>();
+        List<T> entries = new ArrayList<>();
 
         int low = 0;
         int high = mValues.size() - 1;

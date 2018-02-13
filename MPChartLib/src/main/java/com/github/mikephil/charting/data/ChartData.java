@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Typeface;
@@ -10,6 +9,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,7 +58,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * Default constructor.
      */
     public ChartData() {
-        mDataSets = new ArrayList<T>();
+        mDataSets = new ArrayList<>();
     }
 
     /**
@@ -67,25 +67,8 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param dataSets
      */
     public ChartData(T... dataSets) {
-        mDataSets = arrayToList(dataSets);
+        mDataSets = new ArrayList<>(Arrays.asList(dataSets));
         notifyDataChanged();
-    }
-
-    /**
-     * Created because Arrays.asList(...) does not support modification.
-     *
-     * @param array
-     * @return
-     */
-    private List<T> arrayToList(T[] array) {
-
-        List<T> list = new ArrayList<>();
-
-        for (T set : array) {
-            list.add(set);
-        }
-
-        return list;
     }
 
     /**
@@ -660,9 +643,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param f
      */
     public void setValueFormatter(IValueFormatter f) {
-        if (f == null)
-            return;
-        else {
+        if (f != null) {
             for (IDataSet set : mDataSets) {
                 set.setValueFormatter(f);
             }
