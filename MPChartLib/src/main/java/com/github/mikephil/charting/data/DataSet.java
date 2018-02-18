@@ -3,6 +3,9 @@ package com.github.mikephil.charting.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * The DataSet class represents one group or type of entries (Entry) in the
  * Chart that belong together. It is designed to logically separate different
@@ -52,7 +55,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         this.mValues = values;
 
         if (mValues == null)
-            mValues = new ArrayList<T>();
+            mValues = new ArrayList<>();
 
         calcMinMax();
     }
@@ -97,17 +100,14 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      *
      * @param e
      */
-    protected void calcMinMax(T e) {
-
-        if (e == null)
-            return;
+    protected void calcMinMax(@NonNull T e) {
 
         calcMinMaxX(e);
 
         calcMinMaxY(e);
     }
 
-    protected void calcMinMaxX(T e) {
+    protected void calcMinMaxX(@NonNull T e) {
 
         if (e.getX() < mXMin)
             mXMin = e.getX();
@@ -116,7 +116,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
             mXMax = e.getX();
     }
 
-    protected void calcMinMaxY(T e) {
+    protected void calcMinMaxY(@NonNull T e) {
 
         if (e.getY() < mYMin)
             mYMin = e.getY();
@@ -156,14 +156,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      */
     public abstract DataSet<T> copy();
 
-    /**
-     *
-     * @param dataSet
-     */
-    protected void copy(DataSet dataSet) {
-        super.copy(dataSet);
-    }
-
+    @NonNull
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
@@ -180,6 +173,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      *
      * @return
      */
+    @NonNull
     public String toSimpleString() {
         return "DataSet, label: " + (getLabel() == null ? "" : getLabel()) + ", entries: " + mValues.size() + "\n";
     }
@@ -205,7 +199,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     @Override
-    public void addEntryOrdered(T e) {
+    public void addEntryOrdered(@Nullable T e) {
 
         if (e == null)
             return;
@@ -231,7 +225,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     @Override
-    public boolean addEntry(T e) {
+    public boolean addEntry(@Nullable T e) {
 
         if (e == null)
             return false;
@@ -248,7 +242,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     @Override
-    public boolean removeEntry(T e) {
+    public boolean removeEntry(@Nullable T e) {
 
         if (e == null)
             return false;
@@ -375,6 +369,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         return closest;
     }
 
+    @NonNull
     @Override
     public List<T> getEntriesForXValue(float xValue) {
         List<T> entries = new ArrayList<>();

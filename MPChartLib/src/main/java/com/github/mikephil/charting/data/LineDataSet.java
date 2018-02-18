@@ -14,6 +14,9 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet {
 
     /**
@@ -71,7 +74,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         // mLineWidth = Utils.convertDpToPixel(1f);
 
         if (mCircleColors == null) {
-            mCircleColors = new ArrayList<Integer>();
+            mCircleColors = new ArrayList<>();
         }
         mCircleColors.clear();
 
@@ -81,9 +84,10 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         mCircleColors.add(Color.rgb(140, 234, 255));
     }
 
+    @NonNull
     @Override
     public DataSet<Entry> copy() {
-        List<Entry> entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mValues.size(); i++) {
             entries.add(mValues.get(i).copy());
         }
@@ -211,7 +215,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
 
     @Override
     public boolean isDashedLineEnabled() {
-        return mDashPathEffect == null ? false : true;
+        return mDashPathEffect != null;
     }
 
     @Override
@@ -291,7 +295,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      *
      * @param colors
      */
-    public void setCircleColors(int[] colors, Context c) {
+    public void setCircleColors(int[] colors, @NonNull Context c) {
 
         List<Integer> clrs = mCircleColors;
         if (clrs == null) {
@@ -322,7 +326,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      */
     public void resetCircleColors() {
         if (mCircleColors == null) {
-            mCircleColors = new ArrayList<Integer>();
+            mCircleColors = new ArrayList<>();
         }
         mCircleColors.clear();
     }
@@ -361,7 +365,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      *
      * @param formatter
      */
-    public void setFillFormatter(IFillFormatter formatter) {
+    public void setFillFormatter(@Nullable IFillFormatter formatter) {
 
         if (formatter == null)
             mFillFormatter = new DefaultFillFormatter();

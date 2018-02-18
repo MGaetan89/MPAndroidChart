@@ -46,8 +46,8 @@ public class ObjectPool<T extends ObjectPool.Poolable> {
      * @return
      */
     @NonNull
-    public static synchronized ObjectPool create(int withCapacity, Poolable object){
-        ObjectPool result = new ObjectPool(withCapacity, object);
+    public static synchronized <T extends ObjectPool.Poolable> ObjectPool<T> create(int withCapacity, T object){
+        ObjectPool<T> result = new ObjectPool<>(withCapacity, object);
         result.poolId = ids;
         ids++;
 
@@ -184,9 +184,7 @@ public class ObjectPool<T extends ObjectPool.Poolable> {
         final int oldCapacity = this.desiredCapacity;
         this.desiredCapacity *= 2;
         Object[] temp = new Object[this.desiredCapacity];
-        for(int i = 0 ; i < oldCapacity ; i++){
-            temp[i] = this.objects[i];
-        }
+        System.arraycopy(this.objects, 0, temp, 0, oldCapacity);
         this.objects = temp;
     }
 

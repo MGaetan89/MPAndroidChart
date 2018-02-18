@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.jobs;
 
 import android.animation.ValueAnimator;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.github.mikephil.charting.utils.ObjectPool;
@@ -19,6 +20,7 @@ public class AnimatedMoveViewJob extends AnimatedViewPortJob {
         pool.setReplenishPercentage(0.5f);
     }
 
+    @NonNull
     public static AnimatedMoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v, float xOrigin, float yOrigin, long duration){
         AnimatedMoveViewJob result = pool.get();
         result.mViewPortHandler = viewPortHandler;
@@ -56,6 +58,7 @@ public class AnimatedMoveViewJob extends AnimatedViewPortJob {
         recycleInstance(this);
     }
 
+    @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
         return new AnimatedMoveViewJob(null,0,0,null,null,0,0,0);

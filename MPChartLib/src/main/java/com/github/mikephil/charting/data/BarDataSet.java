@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Color;
@@ -7,6 +6,9 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> implements IBarDataSet {
 
@@ -42,7 +44,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
             "Stack"
     };
 
-    public BarDataSet(List<BarEntry> yVals, String label) {
+    public BarDataSet(@NonNull List<BarEntry> yVals, String label) {
         super(yVals, label);
 
         mHighLightColor = Color.rgb(0, 0, 0);
@@ -51,9 +53,10 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
         calcEntryCountIncludingStacks(yVals);
     }
 
+    @Nullable
     @Override
     public DataSet<BarEntry> copy() {
-        List<BarEntry> entries = new ArrayList<BarEntry>();
+        List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < mValues.size(); i++) {
             entries.add(mValues.get(i).copy());
         }
@@ -75,7 +78,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
      * Calculates the total number of entries this DataSet represents, including
      * stacks. All values belonging to a stack are calculated separately.
      */
-    private void calcEntryCountIncludingStacks(List<BarEntry> yVals) {
+    private void calcEntryCountIncludingStacks(@NonNull List<BarEntry> yVals) {
 
         mEntryCountStacks = 0;
 
@@ -94,7 +97,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
      * calculates the maximum stacksize that occurs in the Entries array of this
      * DataSet
      */
-    private void calcStackSize(List<BarEntry> yVals) {
+    private void calcStackSize(@NonNull List<BarEntry> yVals) {
 
         for (int i = 0; i < yVals.size(); i++) {
 
@@ -106,9 +109,9 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     }
 
     @Override
-    protected void calcMinMax(BarEntry e) {
+    protected void calcMinMax(@NonNull BarEntry e) {
 
-        if (e != null && !Float.isNaN(e.getY())) {
+        if (!Float.isNaN(e.getY())) {
 
             if (e.getYVals() == null) {
 
@@ -137,7 +140,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
 
     @Override
     public boolean isStacked() {
-        return mStackSize > 1 ? true : false;
+        return mStackSize > 1;
     }
 
     /**

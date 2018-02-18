@@ -1,8 +1,8 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
@@ -47,7 +47,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
 
     float[] mPixelBuffer = new float[2];
 
-    protected void drawDataSet(Canvas c, IScatterDataSet dataSet) {
+    protected void drawDataSet(Canvas c, @NonNull IScatterDataSet dataSet) {
 
         if (dataSet.getEntryCount() < 1)
             return;
@@ -169,7 +169,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
     }
 
     @Override
-    public void drawHighlighted(Canvas c, Highlight[] indices) {
+    public void drawHighlighted(Canvas c, @NonNull Highlight[] indices) {
 
         ScatterData scatterData = mChart.getScatterData();
 

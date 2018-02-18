@@ -2,6 +2,7 @@ package com.github.mikephil.charting.data;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 /**
@@ -79,8 +80,8 @@ public class PieEntry extends Entry {
         return super.getX();
     }
 
+    @Nullable
     public PieEntry copy() {
-        PieEntry e = new PieEntry(getY(), label, getData());
-        return e;
+        return new PieEntry(getY(), label, getData());
     }
 }

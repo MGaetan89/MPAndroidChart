@@ -1,11 +1,10 @@
-
 package com.github.mikephil.charting.data;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A PieData object can only represent one DataSet. Unlike all other charts, the
@@ -52,19 +51,22 @@ public class PieData extends ChartData<IPieDataSet> {
      * @param index
      * @return
      */
+    @Nullable
     @Override
     public IPieDataSet getDataSetByIndex(int index) {
         return index == 0 ? getDataSet() : null;
     }
 
+    @Nullable
     @Override
-    public IPieDataSet getDataSetByLabel(String label, boolean ignorecase) {
+    public IPieDataSet getDataSetByLabel(@NonNull String label, boolean ignorecase) {
         return ignorecase ? label.equalsIgnoreCase(mDataSets.get(0).getLabel()) ? mDataSets.get(0)
                 : null : label.equals(mDataSets.get(0).getLabel()) ? mDataSets.get(0) : null;
     }
 
+    @Nullable
     @Override
-    public Entry getEntryForHighlight(Highlight highlight) {
+    public Entry getEntryForHighlight(@NonNull Highlight highlight) {
         return getDataSet().getEntryForIndex((int) highlight.getX());
     }
 

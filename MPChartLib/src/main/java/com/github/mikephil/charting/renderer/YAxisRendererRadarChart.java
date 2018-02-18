@@ -2,6 +2,7 @@ package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -142,7 +143,7 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
     }
 
     @Override
-    public void renderAxisLabels(Canvas c) {
+    public void renderAxisLabels(@NonNull Canvas c) {
 
         if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled())
             return;
@@ -174,9 +175,11 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
         MPPointF.recycleInstance(pOut);
     }
 
+    @NonNull
     private Path mRenderLimitLinesPathBuffer = new Path();
+
     @Override
-    public void renderLimitLines(Canvas c) {
+    public void renderLimitLines(@NonNull Canvas c) {
 
         List<LimitLine> limitLines = mYAxis.getLimitLines();
 

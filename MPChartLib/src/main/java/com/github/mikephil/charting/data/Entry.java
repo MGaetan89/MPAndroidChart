@@ -1,10 +1,11 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.ParcelFormatException;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.Utils;
 
@@ -94,9 +95,9 @@ public class Entry extends BaseEntry implements Parcelable {
      * 
      * @return
      */
+    @NonNull
     public Entry copy() {
-        Entry e = new Entry(x, getY(), getData());
-        return e;
+        return new Entry(x, getY(), getData());
     }
 
     /**
@@ -107,7 +108,7 @@ public class Entry extends BaseEntry implements Parcelable {
      * @param e
      * @return
      */
-    public boolean equalTo(Entry e) {
+    public boolean equalTo(@Nullable Entry e) {
 
         if (e == null)
             return false;
@@ -127,6 +128,7 @@ public class Entry extends BaseEntry implements Parcelable {
     /**
      * returns a string representation of the entry containing x-index and value
      */
+    @NonNull
     @Override
     public String toString() {
         return "Entry, x: " + x + " y: " + getY();
@@ -138,7 +140,7 @@ public class Entry extends BaseEntry implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeFloat(this.x);
         dest.writeFloat(this.getY());
         if (getData() != null) {
@@ -153,7 +155,7 @@ public class Entry extends BaseEntry implements Parcelable {
         }
     }
 
-    protected Entry(Parcel in) {
+    protected Entry(@NonNull Parcel in) {
         this.x = in.readFloat();
         this.setY(in.readFloat());
         if (in.readInt() == 1) {

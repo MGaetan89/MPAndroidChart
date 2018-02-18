@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Paint;
@@ -9,6 +8,8 @@ import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * DataSet for the CandleStickChart.
@@ -77,9 +78,10 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
         super(yVals, label);
     }
 
+    @NonNull
     @Override
     public DataSet<CandleEntry> copy() {
-        List<CandleEntry> entries = new ArrayList<CandleEntry>();
+        List<CandleEntry> entries = new ArrayList<>();
         for (int i = 0; i < mValues.size(); i++) {
             entries.add(mValues.get(i).copy());
         }
@@ -104,7 +106,7 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
     }
 
     @Override
-    protected void calcMinMax(CandleEntry e) {
+    protected void calcMinMax(@NonNull CandleEntry e) {
 
         if (e.getLow() < mYMin)
             mYMin = e.getLow();
@@ -116,7 +118,7 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
     }
 
     @Override
-    protected void calcMinMaxY(CandleEntry e) {
+    protected void calcMinMaxY(@NonNull CandleEntry e) {
 
         if (e.getHigh() < mYMin)
             mYMin = e.getHigh();

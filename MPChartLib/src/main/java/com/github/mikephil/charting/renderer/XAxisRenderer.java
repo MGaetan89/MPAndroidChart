@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -7,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -146,7 +146,7 @@ public class XAxisRenderer extends AxisRenderer {
     }
 
     @Override
-    public void renderAxisLine(Canvas c) {
+    public void renderAxisLine(@NonNull Canvas c) {
 
         if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled())
             return;
@@ -230,10 +230,13 @@ public class XAxisRenderer extends AxisRenderer {
     protected void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
         Utils.drawXAxisValue(c, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
     }
+
+    @NonNull
     protected Path mRenderGridLinesPath = new Path();
     protected float[] mRenderGridLinesBuffer = new float[2];
+
     @Override
-    public void renderGridLines(Canvas c) {
+    public void renderGridLines(@NonNull Canvas c) {
 
         if (!mXAxis.isDrawGridLinesEnabled() || !mXAxis.isEnabled())
             return;
@@ -266,8 +269,10 @@ public class XAxisRenderer extends AxisRenderer {
         c.restoreToCount(clipRestoreCount);
     }
 
+    @NonNull
     protected RectF mGridClippingRect = new RectF();
 
+    @NonNull
     public RectF getGridClippingRect() {
         mGridClippingRect.set(mViewPortHandler.getContentRect());
         mGridClippingRect.inset(-mAxis.getGridLineWidth(), 0.f);
@@ -282,7 +287,7 @@ public class XAxisRenderer extends AxisRenderer {
      * @param y
      * @param gridLinePath
      */
-    protected void drawGridLine(Canvas c, float x, float y, Path gridLinePath) {
+    protected void drawGridLine(@NonNull Canvas c, float x, float y, @NonNull Path gridLinePath) {
 
         gridLinePath.moveTo(x, mViewPortHandler.contentBottom());
         gridLinePath.lineTo(x, mViewPortHandler.contentTop());
@@ -294,6 +299,8 @@ public class XAxisRenderer extends AxisRenderer {
     }
 
     protected float[] mRenderLimitLinesBuffer = new float[2];
+
+    @NonNull
     protected RectF mLimitLineClippingRect = new RectF();
 
     /**
@@ -302,7 +309,7 @@ public class XAxisRenderer extends AxisRenderer {
      * @param c
      */
     @Override
-    public void renderLimitLines(Canvas c) {
+    public void renderLimitLines(@NonNull Canvas c) {
 
         List<LimitLine> limitLines = mXAxis.getLimitLines();
 
@@ -338,9 +345,11 @@ public class XAxisRenderer extends AxisRenderer {
     }
 
     float[] mLimitLineSegmentsBuffer = new float[4];
+
+    @NonNull
     private Path mLimitLinePath = new Path();
 
-    public void renderLimitLineLine(Canvas c, LimitLine limitLine, float[] position) {
+    public void renderLimitLineLine(@NonNull Canvas c, @NonNull LimitLine limitLine, float[] position) {
         mLimitLineSegmentsBuffer[0] = position[0];
         mLimitLineSegmentsBuffer[1] = mViewPortHandler.contentTop();
         mLimitLineSegmentsBuffer[2] = position[0];
@@ -358,7 +367,7 @@ public class XAxisRenderer extends AxisRenderer {
         c.drawPath(mLimitLinePath, mLimitLinePaint);
     }
 
-    public void renderLimitLineLabel(Canvas c, LimitLine limitLine, float[] position, float yOffset) {
+    public void renderLimitLineLabel(@NonNull Canvas c, @NonNull LimitLine limitLine, float[] position, float yOffset) {
         String label = limitLine.getLabel();
 
         // if drawing the limit-value label is enabled
