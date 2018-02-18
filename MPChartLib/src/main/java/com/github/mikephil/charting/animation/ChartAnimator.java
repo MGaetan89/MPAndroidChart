@@ -3,21 +3,23 @@ package com.github.mikephil.charting.animation;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 
 /**
  * Object responsible for all animations in the Chart.
- * 
+ *
  * @author Philipp Jahoda
  */
 public class ChartAnimator {
-
-    /** object that is updated upon animation update */
+    /**
+     * Object that is updated upon animation update.
+     */
     @Nullable
     private final AnimatorUpdateListener mListener;
 
     public ChartAnimator() {
-        mListener = null;
+        this(null);
     }
 
     public ChartAnimator(@Nullable AnimatorUpdateListener listener) {
@@ -25,42 +27,41 @@ public class ChartAnimator {
     }
 
     /**
-     * ################ ################ ################ ################
+     * The phase that is animated and influences the drawn values on the y-axis.
      */
-    /** CODE BELOW THIS RELATED TO ANIMATION */
-
-    /** the phase that is animated and influences the drawn values on the y-axis */
+    @FloatRange(from = 0f, to = 1f)
     protected float mPhaseY = 1f;
 
-    /** the phase that is animated and influences the drawn values on the x-axis */
+    /**
+     * The phase that is animated and influences the drawn values on the x-axis.
+     */
+    @FloatRange(from = 0f, to = 1f)
     protected float mPhaseX = 1f;
 
     /**
-     * ################ ################ ################ ################
-     */
-    /** METHODS FOR CUSTOM EASING */
-
-    /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
-     * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart.
+     * Animates the drawing/rendering of the chart on both x- and y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
+     * refresh the chart.
      *
      * @param durationMillisX
      * @param durationMillisY
      * @param easingX
      * @param easingY
      */
-    public void animateXY(int durationMillisX, int durationMillisY, TimeInterpolator easingX, TimeInterpolator easingY) {
+    public void animateXY(int durationMillisX, int durationMillisY, @Nullable TimeInterpolator easingX, @Nullable TimeInterpolator easingY) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setInterpolator(easingY);
         animatorY.setDuration(durationMillisY);
+        if (easingY != null) {
+            animatorY.setInterpolator(easingY);
+        }
 
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setInterpolator(easingX);
         animatorX.setDuration(durationMillisX);
+        if (easingX != null) {
+            animatorX.setInterpolator(easingX);
+        }
 
-        // make sure only one animator produces update-callbacks (which then
-        // call invalidate())
+        // make sure only one animator produces update-callbacks (which then call invalidate())
         if (durationMillisX > durationMillisY) {
             animatorX.addUpdateListener(mListener);
         } else {
@@ -72,46 +73,43 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
-     * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * Animates the rendering of the chart on the x-axis with the specified animation time. If
+     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis
      * @param easing
      */
-    public void animateX(int durationMillis, TimeInterpolator easing) {
+    public void animateX(int durationMillis, @Nullable TimeInterpolator easing) {
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setInterpolator(easing);
         animatorX.setDuration(durationMillis);
+        if (easing != null) {
+            animatorX.setInterpolator(easing);
+        }
         animatorX.addUpdateListener(mListener);
         animatorX.start();
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
-     * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * Animates the rendering of the chart on the y-axis with the specified animation time. If
+     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis
      * @param easing
      */
-    public void animateY(int durationMillis, TimeInterpolator easing) {
+    public void animateY(int durationMillis, @Nullable TimeInterpolator easing) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setInterpolator(easing);
         animatorY.setDuration(durationMillis);
+        if (easing != null) {
+            animatorY.setInterpolator(easing);
+        }
         animatorY.addUpdateListener(mListener);
         animatorY.start();
     }
 
     /**
-     * ################ ################ ################ ################
-     */
-    /** METHODS FOR PREDEFINED EASING */
-
-    /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
-     * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart.
+     * Animates the drawing/rendering of the chart on both x- and y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
+     * refresh the chart.
      *
      * @param durationMillisX
      * @param durationMillisY
@@ -119,116 +117,61 @@ public class ChartAnimator {
      * @param easingY
      */
     public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX, Easing.EasingOption easingY) {
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easingY));
-        animatorY.setDuration(durationMillisY);
-
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setInterpolator(Easing.getEasingFunctionFromOption(easingX));
-        animatorX.setDuration(durationMillisX);
-
-        // make sure only one animator produces update-callbacks (which then
-        // call invalidate())
-        if (durationMillisX > durationMillisY) {
-            animatorX.addUpdateListener(mListener);
-        } else {
-            animatorY.addUpdateListener(mListener);
-        }
-
-        animatorX.start();
-        animatorY.start();
+        animateXY(durationMillisX, durationMillisY, Easing.getEasingFunctionFromOption(easingX), Easing.getEasingFunctionFromOption(easingY));
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
-     * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * Animates the rendering of the chart on the x-axis with the specified animation time. If
+     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis
      * @param easing
      */
     public void animateX(int durationMillis, Easing.EasingOption easing) {
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setInterpolator(Easing.getEasingFunctionFromOption(easing));
-        animatorX.setDuration(durationMillis);
-        animatorX.addUpdateListener(mListener);
-        animatorX.start();
+        animateX(durationMillis, Easing.getEasingFunctionFromOption(easing));
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
-     * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * Animates the rendering of the chart on the y-axis with the specified animation time. If
+     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis
      * @param easing
      */
     public void animateY(int durationMillis, Easing.EasingOption easing) {
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setInterpolator(Easing.getEasingFunctionFromOption(easing));
-        animatorY.setDuration(durationMillis);
-        animatorY.addUpdateListener(mListener);
-        animatorY.start();
+        animateY(durationMillis, Easing.getEasingFunctionFromOption(easing));
     }
 
     /**
-     * ################ ################ ################ ################
-     */
-    /** METHODS FOR ANIMATION WITHOUT EASING */
-
-    /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with
-     * the specified animation time. If animate(...) is called, no further
-     * calling of invalidate() is necessary to refresh the chart.
+     * Animates the drawing/rendering of the chart on both x- and y-axis with the specified
+     * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
+     * refresh the chart.
      *
      * @param durationMillisX
      * @param durationMillisY
      */
     public void animateXY(int durationMillisX, int durationMillisY) {
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setDuration(durationMillisY);
-
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setDuration(durationMillisX);
-
-        // make sure only one animator produces update-callbacks (which then
-        // call invalidate())
-        if (durationMillisX > durationMillisY) {
-            animatorX.addUpdateListener(mListener);
-        } else {
-            animatorY.addUpdateListener(mListener);
-        }
-
-        animatorX.start();
-        animatorY.start();
+        animateXY(durationMillisX, durationMillisY, (TimeInterpolator) null, null);
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified
-     * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * Animates the rendering of the chart on the x-axis with the specified animation time. If
+     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis
      */
     public void animateX(int durationMillis) {
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setDuration(durationMillis);
-        animatorX.addUpdateListener(mListener);
-        animatorX.start();
+        animateX(durationMillis, (TimeInterpolator) null);
     }
 
     /**
-     * Animates the rendering of the chart on the y-axis with the specified
-     * animation time. If animate(...) is called, no further calling of
-     * invalidate() is necessary to refresh the chart.
+     * Animates the rendering of the chart on the y-axis with the specified animation time. If
+     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis
      */
     public void animateY(int durationMillis) {
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setDuration(durationMillis);
-        animatorY.addUpdateListener(mListener);
-        animatorY.start();
+        animateY(durationMillis, (TimeInterpolator) null);
     }
 
     /**
@@ -236,6 +179,7 @@ public class ChartAnimator {
      *
      * @return
      */
+    @FloatRange(from = 0f, to = 1f)
     public float getPhaseY() {
         return mPhaseY;
     }
@@ -245,8 +189,8 @@ public class ChartAnimator {
      *
      * @param phase
      */
-    public void setPhaseY(float phase) {
-        mPhaseY = phase;
+    public void setPhaseY(@FloatRange(from = 0f, to = 1f) float phase) {
+        mPhaseY = Math.max(Math.min(phase, 1f), 0f);
     }
 
     /**
@@ -254,6 +198,7 @@ public class ChartAnimator {
      *
      * @return
      */
+    @FloatRange(from = 0f, to = 1f)
     public float getPhaseX() {
         return mPhaseX;
     }
@@ -263,7 +208,7 @@ public class ChartAnimator {
      *
      * @param phase
      */
-    public void setPhaseX(float phase) {
-        mPhaseX = phase;
+    public void setPhaseX(@FloatRange(from = 0f, to = 1f) float phase) {
+        mPhaseX = Math.max(Math.min(phase, 1f), 0f);
     }
 }
