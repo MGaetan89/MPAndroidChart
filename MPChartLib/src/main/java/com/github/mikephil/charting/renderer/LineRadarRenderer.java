@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.utils.ViewPortHandler;
@@ -25,7 +26,7 @@ public abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
      * @param filledPath
      * @param drawable
      */
-    protected void drawFilledPath(Canvas c, Path filledPath, Drawable drawable) {
+    protected void drawFilledPath(@NonNull Canvas c, Path filledPath, @NonNull Drawable drawable) {
 
         if (clipPathSupported()) {
 
@@ -54,7 +55,7 @@ public abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
      * @param fillColor
      * @param fillAlpha
      */
-    protected void drawFilledPath(Canvas c, Path filledPath, int fillColor, int fillAlpha) {
+    protected void drawFilledPath(@NonNull Canvas c, Path filledPath, int fillColor, int fillAlpha) {
 
         int color = (fillAlpha << 24) | (fillColor & 0xffffff);
 

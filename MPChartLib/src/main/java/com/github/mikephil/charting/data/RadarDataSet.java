@@ -1,7 +1,7 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -113,10 +113,11 @@ public class RadarDataSet extends LineRadarDataSet<RadarEntry> implements IRadar
         mHighlightCircleStrokeWidth = strokeWidth;
     }
 
+    @NonNull
     @Override
     public DataSet<RadarEntry> copy() {
 
-        List<RadarEntry> yVals = new ArrayList<RadarEntry>();
+        List<RadarEntry> yVals = new ArrayList<>();
 
         for (int i = 0; i < mValues.size(); i++) {
             yVals.add(mValues.get(i).copy());

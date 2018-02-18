@@ -3,6 +3,7 @@ package com.github.mikephil.charting.jobs;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Matrix;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
@@ -22,6 +23,7 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
         pool = ObjectPool.create(8, new AnimatedZoomJob(null,null,null,null,0,0,0,0,0,0,0,0,0,0));
     }
 
+    @NonNull
     public static AnimatedZoomJob getInstance(ViewPortHandler viewPortHandler, View v, Transformer trans, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) {
         AnimatedZoomJob result = pool.get();
         result.mViewPortHandler = viewPortHandler;
@@ -58,7 +60,9 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
         this.xAxisRange = xAxisRange;
     }
 
+    @NonNull
     protected Matrix mOnAnimationUpdateMatrixBuffer = new Matrix();
+
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
 
@@ -107,6 +111,7 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
 
     }
 
+    @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
         return new AnimatedZoomJob(null,null,null,null,0,0,0,0,0,0,0,0,0,0);

@@ -1,6 +1,7 @@
-
 package com.github.mikephil.charting.data;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.github.mikephil.charting.highlight.Highlight;
@@ -54,10 +55,6 @@ public class CombinedData extends BarLineScatterCandleBubbleData<IBarLineScatter
 
     @Override
     public void calcMinMax() {
-
-        if(mDataSets == null){
-            mDataSets = new ArrayList<>();
-        }
         mDataSets.clear();
 
         mYMax = -Float.MAX_VALUE;
@@ -131,9 +128,10 @@ public class CombinedData extends BarLineScatterCandleBubbleData<IBarLineScatter
      *
      * @return
      */
+    @NonNull
     public List<BarLineScatterCandleBubbleData> getAllData() {
 
-        List<BarLineScatterCandleBubbleData> data = new ArrayList<BarLineScatterCandleBubbleData>();
+        List<BarLineScatterCandleBubbleData> data = new ArrayList<>();
         if (mLineData != null)
             data.add(mLineData);
         if (mBarData != null)
@@ -174,8 +172,9 @@ public class CombinedData extends BarLineScatterCandleBubbleData<IBarLineScatter
      * @param highlight
      * @return the entry that is highlighted
      */
+    @Nullable
     @Override
-    public Entry getEntryForHighlight(Highlight highlight) {
+    public Entry getEntryForHighlight(@NonNull Highlight highlight) {
 
         if (highlight.getDataIndex() >= getAllData().size())
             return null;
@@ -204,7 +203,8 @@ public class CombinedData extends BarLineScatterCandleBubbleData<IBarLineScatter
      * @param highlight current highlight
      * @return dataset related to highlight
      */
-    public IBarLineScatterCandleBubbleDataSet<? extends Entry> getDataSetByHighlight(Highlight highlight) {
+    @Nullable
+    public IBarLineScatterCandleBubbleDataSet<? extends Entry> getDataSetByHighlight(@NonNull Highlight highlight) {
         if (highlight.getDataIndex() >= getAllData().size())
             return null;
 
@@ -222,7 +222,7 @@ public class CombinedData extends BarLineScatterCandleBubbleData<IBarLineScatter
     }
 
     @Override
-    public boolean removeDataSet(IBarLineScatterCandleBubbleDataSet<? extends Entry> d) {
+    public boolean removeDataSet(@Nullable IBarLineScatterCandleBubbleDataSet<? extends Entry> d) {
 
         List<BarLineScatterCandleBubbleData> datas = getAllData();
 

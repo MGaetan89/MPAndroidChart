@@ -1,5 +1,6 @@
-
 package com.github.mikephil.charting.data;
+
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet;
 import com.github.mikephil.charting.utils.Utils;
@@ -29,7 +30,7 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
     }
 
     @Override
-    protected void calcMinMax(BubbleEntry e) {
+    protected void calcMinMax(@NonNull BubbleEntry e) {
         super.calcMinMax(e);
 
         final float size = e.getSize();
@@ -39,10 +40,11 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
         }
     }
 
+    @NonNull
     @Override
     public DataSet<BubbleEntry> copy() {
 
-        List<BubbleEntry> yVals = new ArrayList<BubbleEntry>();
+        List<BubbleEntry> yVals = new ArrayList<>();
 
         for (int i = 0; i < mValues.size(); i++) {
             yVals.add(mValues.get(i).copy());

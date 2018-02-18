@@ -3,6 +3,8 @@ package com.github.mikephil.charting.data;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.github.mikephil.charting.formatter.DefaultFillFormatter;
@@ -71,7 +73,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         // mLineWidth = Utils.convertDpToPixel(1f);
 
         if (mCircleColors == null) {
-            mCircleColors = new ArrayList<Integer>();
+            mCircleColors = new ArrayList<>();
         }
         mCircleColors.clear();
 
@@ -81,10 +83,11 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         mCircleColors.add(Color.rgb(140, 234, 255));
     }
 
+    @NonNull
     @Override
     public DataSet<Entry> copy() {
 
-        List<Entry> yVals = new ArrayList<Entry>();
+        List<Entry> yVals = new ArrayList<>();
 
         for (int i = 0; i < mValues.size(); i++) {
             yVals.add(mValues.get(i).copy());
@@ -209,7 +212,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
 
     @Override
     public boolean isDashedLineEnabled() {
-        return mDashPathEffect == null ? false : true;
+        return mDashPathEffect != null;
     }
 
     @Override
@@ -289,7 +292,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      *
      * @param colors
      */
-    public void setCircleColors(int[] colors, Context c) {
+    public void setCircleColors(int[] colors, @NonNull Context c) {
 
         List<Integer> clrs = mCircleColors;
         if (clrs == null) {
@@ -320,7 +323,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      */
     public void resetCircleColors() {
         if (mCircleColors == null) {
-            mCircleColors = new ArrayList<Integer>();
+            mCircleColors = new ArrayList<>();
         }
         mCircleColors.clear();
     }
@@ -359,7 +362,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      *
      * @param formatter
      */
-    public void setFillFormatter(IFillFormatter formatter) {
+    public void setFillFormatter(@Nullable IFillFormatter formatter) {
 
         if (formatter == null)
             mFillFormatter = new DefaultFillFormatter();

@@ -1,7 +1,7 @@
-
 package com.github.mikephil.charting.jobs;
 
 import android.graphics.Matrix;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
@@ -22,6 +22,7 @@ public class ZoomJob extends ViewPortJob {
         pool.setReplenishPercentage(0.5f);
     }
 
+    @NonNull
     public static ZoomJob getInstance(ViewPortHandler viewPortHandler, float scaleX, float scaleY, float xValue, float yValue,
                                       Transformer trans, YAxis.AxisDependency axis, View v) {
         ZoomJob result = pool.get();
@@ -54,6 +55,7 @@ public class ZoomJob extends ViewPortJob {
         this.axisDependency = axis;
     }
 
+    @NonNull
     protected Matrix mRunMatrixBuffer = new Matrix();
 
     @Override
@@ -80,6 +82,7 @@ public class ZoomJob extends ViewPortJob {
         recycleInstance(this);
     }
 
+    @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
         return new ZoomJob(null, 0, 0, 0, 0, null, null, null);

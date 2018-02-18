@@ -1,8 +1,8 @@
-
 package com.github.mikephil.charting.data;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 /**
  * Subclass of Entry that holds a value for one entry in a BubbleChart. Bubble
@@ -69,10 +69,9 @@ public class BubbleEntry extends Entry {
         this.mSize = size;
     }
 
+    @NonNull
     public BubbleEntry copy() {
-
-        BubbleEntry c = new BubbleEntry(getX(), getY(), mSize, getData());
-        return c;
+        return new BubbleEntry(getX(), getY(), mSize, getData());
     }
 
     /**
@@ -87,5 +86,4 @@ public class BubbleEntry extends Entry {
     public void setSize(float size) {
         this.mSize = size;
     }
-
 }

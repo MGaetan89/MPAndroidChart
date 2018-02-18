@@ -1,7 +1,7 @@
-
 package com.github.mikephil.charting.data;
 
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -77,10 +77,10 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
         super(yVals, label);
     }
 
+    @NonNull
     @Override
     public DataSet<CandleEntry> copy() {
-
-        List<CandleEntry> yVals = new ArrayList<CandleEntry>();
+        List<CandleEntry> yVals = new ArrayList<>();
         yVals.clear();
 
         for (int i = 0; i < mValues.size(); i++) {
@@ -101,7 +101,7 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
     }
 
     @Override
-    protected void calcMinMax(CandleEntry e) {
+    protected void calcMinMax(@NonNull CandleEntry e) {
 
         if (e.getLow() < mYMin)
             mYMin = e.getLow();
@@ -113,7 +113,7 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
     }
 
     @Override
-    protected void calcMinMaxY(CandleEntry e) {
+    protected void calcMinMaxY(@NonNull CandleEntry e) {
 
         if (e.getHigh() < mYMin)
             mYMin = e.getHigh();

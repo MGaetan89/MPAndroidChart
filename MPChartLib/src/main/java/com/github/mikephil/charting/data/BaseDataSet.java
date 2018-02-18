@@ -4,18 +4,17 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Inherited;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +28,13 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     /**
      * List representing all colors that are used for this DataSet
      */
+    @Nullable
     protected List<Integer> mColors = null;
 
     /**
      * List representing all colors that are used for drawing the actual values for this DataSet
      */
+    @Nullable
     protected List<Integer> mValueColors = null;
 
     /**
@@ -64,6 +65,8 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     private Legend.LegendForm mForm = Legend.LegendForm.DEFAULT;
     private float mFormSize = Float.NaN;
     private float mFormLineWidth = Float.NaN;
+
+    @Nullable
     private DashPathEffect mFormLineDashEffect = null;
 
     /**
@@ -79,6 +82,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     /**
      * the offset for drawing icons (in dp)
      */
+    @NonNull
     protected MPPointF mIconsOffset = new MPPointF();
 
     /**
@@ -95,8 +99,8 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * Default constructor.
      */
     public BaseDataSet() {
-        mColors = new ArrayList<Integer>();
-        mValueColors = new ArrayList<Integer>();
+        mColors = new ArrayList<>();
+        mValueColors = new ArrayList<>();
 
         // default color
         mColors.add(Color.rgb(140, 234, 255));
@@ -184,7 +188,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      *
      * @param colors
      */
-    public void setColors(int[] colors, Context c) {
+    public void setColors(int[] colors, @NonNull Context c) {
 
         if(mColors == null){
             mColors = new ArrayList<>();
@@ -204,7 +208,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      */
     public void addColor(int color) {
         if (mColors == null)
-            mColors = new ArrayList<Integer>();
+            mColors = new ArrayList<>();
         mColors.add(color);
     }
 
@@ -247,7 +251,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      */
     public void resetColors() {
         if(mColors == null) {
-            mColors = new ArrayList<Integer>();
+            mColors = new ArrayList<>();
         }
         mColors.clear();
     }
@@ -277,14 +281,12 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     }
 
     @Override
-    public void setValueFormatter(IValueFormatter f) {
-
-        if (f == null)
-            return;
-        else
+    public void setValueFormatter(@Nullable IValueFormatter f) {
+        if (f != null)
             mValueFormatter = f;
     }
 
+    @NonNull
     @Override
     public IValueFormatter getValueFormatter() {
         if (needsFormatter())
@@ -395,12 +397,12 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     }
 
     @Override
-    public void setIconsOffset(MPPointF offsetDp) {
-
+    public void setIconsOffset(@NonNull MPPointF offsetDp) {
         mIconsOffset.x = offsetDp.x;
         mIconsOffset.y = offsetDp.y;
     }
 
+    @NonNull
     @Override
     public MPPointF getIconsOffset() {
         return mIconsOffset;

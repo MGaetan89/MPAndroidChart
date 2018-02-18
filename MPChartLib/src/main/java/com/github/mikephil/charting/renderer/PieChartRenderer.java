@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -131,7 +132,7 @@ public class PieChartRenderer extends DataRenderer {
 
             if (width > 0 && height > 0) {
 
-                mDrawBitmap = new WeakReference<Bitmap>(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444));
+                mDrawBitmap = new WeakReference<>(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444));
                 mBitmapCanvas = new Canvas(mDrawBitmap.get());
             } else
                 return;
@@ -152,7 +153,7 @@ public class PieChartRenderer extends DataRenderer {
     private RectF mInnerRectBuffer = new RectF();
 
     protected float calculateMinimumRadiusForSpacedSlice(
-            MPPointF center,
+            @NonNull MPPointF center,
             float radius,
             float angle,
             float arcStartPointX,
@@ -197,7 +198,7 @@ public class PieChartRenderer extends DataRenderer {
      * @param dataSet
      * @return
      */
-    protected float getSliceSpace(IPieDataSet dataSet) {
+    protected float getSliceSpace(@NonNull IPieDataSet dataSet) {
 
         if (!dataSet.isAutomaticallyDisableSliceSpacingEnabled())
             return dataSet.getSliceSpace();
@@ -210,7 +211,7 @@ public class PieChartRenderer extends DataRenderer {
         return sliceSpace;
     }
 
-    protected void drawDataSet(Canvas c, IPieDataSet dataSet) {
+    protected void drawDataSet(Canvas c, @NonNull IPieDataSet dataSet) {
 
         float angle = 0;
         float rotationAngle = mChart.getRotationAngle();
@@ -381,7 +382,7 @@ public class PieChartRenderer extends DataRenderer {
     }
 
     @Override
-    public void drawValues(Canvas c) {
+    public void drawValues(@NonNull Canvas c) {
 
         MPPointF center = mChart.getCenterCircleBox();
 
@@ -626,18 +627,19 @@ public class PieChartRenderer extends DataRenderer {
      * @param x
      * @param y
      */
-    protected void drawEntryLabel(Canvas c, String label, float x, float y) {
+    protected void drawEntryLabel(@NonNull Canvas c, String label, float x, float y) {
         c.drawText(label, x, y, mEntryLabelsPaint);
     }
 
     @Override
-    public void drawExtras(Canvas c) {
+    public void drawExtras(@NonNull Canvas c) {
         // drawCircles(c);
         drawHole(c);
         c.drawBitmap(mDrawBitmap.get(), 0, 0, null);
         drawCenterText(c);
     }
 
+    @NonNull
     private Path mHoleCirclePath = new Path();
 
     /**
@@ -681,12 +683,13 @@ public class PieChartRenderer extends DataRenderer {
         }
     }
 
+    @NonNull
     protected Path mDrawCenterTextPathBuffer = new Path();
     /**
      * draws the description text in the center of the pie chart makes most
      * sense when center-hole is enabled
      */
-    protected void drawCenterText(Canvas c) {
+    protected void drawCenterText(@NonNull Canvas c) {
 
         CharSequence centerText = mChart.getCenterText();
 
@@ -754,9 +757,11 @@ public class PieChartRenderer extends DataRenderer {
         }
     }
 
+    @NonNull
     protected RectF mDrawHighlightedRectF = new RectF();
+
     @Override
-    public void drawHighlighted(Canvas c, Highlight[] indices) {
+    public void drawHighlighted(Canvas c, @NonNull Highlight[] indices) {
 
         float phaseX = mAnimator.getPhaseX();
         float phaseY = mAnimator.getPhaseY();

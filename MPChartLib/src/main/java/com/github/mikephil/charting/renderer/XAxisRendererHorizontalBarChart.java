@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -6,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -162,6 +162,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
         }
     }
 
+    @NonNull
     @Override
     public RectF getGridClippingRect() {
         mGridClippingRect.set(mViewPortHandler.getContentRect());
@@ -170,7 +171,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     }
 
     @Override
-    protected void drawGridLine(Canvas c, float x, float y, Path gridLinePath) {
+    protected void drawGridLine(@NonNull Canvas c, float x, float y, @NonNull Path gridLinePath) {
 
         gridLinePath.moveTo(mViewPortHandler.contentRight(), y);
         gridLinePath.lineTo(mViewPortHandler.contentLeft(), y);
@@ -182,7 +183,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     }
 
     @Override
-    public void renderAxisLine(Canvas c) {
+    public void renderAxisLine(@NonNull Canvas c) {
 
         if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled())
             return;
@@ -207,7 +208,9 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
         }
     }
 
+    @NonNull
     protected Path mRenderLimitLinesPathBuffer = new Path();
+
     /**
 	 * Draws the LimitLines associated with this axis to the screen.
 	 * This is the standard YAxis renderer using the XAxis limit lines.
@@ -215,7 +218,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
 	 * @param c
 	 */
 	@Override
-	public void renderLimitLines(Canvas c) {
+	public void renderLimitLines(@NonNull Canvas c) {
 
 		List<LimitLine> limitLines = mXAxis.getLimitLines();
 

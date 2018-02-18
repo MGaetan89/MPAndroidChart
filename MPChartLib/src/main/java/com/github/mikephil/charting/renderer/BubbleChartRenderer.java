@@ -1,10 +1,10 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.data.BubbleData;
@@ -61,11 +61,10 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
     protected float getShapeSize(float entrySize, float maxSize, float reference, boolean normalizeSize) {
         final float factor = normalizeSize ? ((maxSize == 0f) ? 1f : (float) Math.sqrt(entrySize / maxSize)) :
                 entrySize;
-        final float shapeSize = reference * factor;
-        return shapeSize;
+        return reference * factor;
     }
 
-    protected void drawDataSet(Canvas c, IBubbleDataSet dataSet) {
+    protected void drawDataSet(@NonNull Canvas c, @NonNull IBubbleDataSet dataSet) {
 
         Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
 
@@ -199,7 +198,7 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
     private float[] _hsvBuffer = new float[3];
 
     @Override
-    public void drawHighlighted(Canvas c, Highlight[] indices) {
+    public void drawHighlighted(@NonNull Canvas c, @NonNull Highlight[] indices) {
 
         BubbleData bubbleData = mChart.getBubbleData();
 

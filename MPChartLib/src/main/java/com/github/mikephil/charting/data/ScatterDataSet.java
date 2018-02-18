@@ -1,5 +1,7 @@
-
 package com.github.mikephil.charting.data;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
@@ -26,6 +28,7 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
     /**
      * Renderer responsible for rendering this DataSet, default: square
      */
+    @Nullable
     protected IShapeRenderer mShapeRenderer = new SquareShapeRenderer();
 
     /**
@@ -45,10 +48,11 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         super(yVals, label);
     }
 
+    @NonNull
     @Override
     public DataSet<Entry> copy() {
 
-        List<Entry> yVals = new ArrayList<Entry>();
+        List<Entry> yVals = new ArrayList<>();
 
         for (int i = 0; i < mValues.size(); i++) {
             yVals.add(mValues.get(i).copy());
@@ -90,7 +94,7 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
      *
      * @param shape
      */
-    public void setScatterShape(ScatterChart.ScatterShape shape) {
+    public void setScatterShape(@NonNull ScatterChart.ScatterShape shape) {
         mShapeRenderer = getRendererForShape(shape);
     }
 
@@ -138,6 +142,7 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         return mScatterShapeHoleColor;
     }
 
+    @Nullable
     public static IShapeRenderer getRendererForShape(ScatterChart.ScatterShape shape) {
 
         switch (shape) {

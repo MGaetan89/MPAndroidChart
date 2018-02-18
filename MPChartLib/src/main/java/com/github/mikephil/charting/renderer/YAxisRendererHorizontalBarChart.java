@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
@@ -6,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.YAxis;
@@ -105,7 +105,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
     }
 
     @Override
-    public void renderAxisLine(Canvas c) {
+    public void renderAxisLine(@NonNull Canvas c) {
 
         if (!mYAxis.isEnabled() || !mYAxis.isDrawAxisLineEnabled())
             return;
@@ -131,7 +131,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
      * @param positions
      */
     @Override
-    protected void drawYLabels(Canvas c, float fixedPosition, float[] positions, float offset) {
+    protected void drawYLabels(@NonNull Canvas c, float fixedPosition, float[] positions, float offset) {
 
         mAxisLabelPaint.setTypeface(mYAxis.getTypeface());
         mAxisLabelPaint.setTextSize(mYAxis.getTextSize());
@@ -167,6 +167,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
         return positions;
     }
 
+    @NonNull
     @Override
     public RectF getGridClippingRect() {
         mGridClippingRect.set(mViewPortHandler.getContentRect());
@@ -174,8 +175,9 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
         return mGridClippingRect;
     }
 
+    @NonNull
     @Override
-    protected Path linePath(Path p, int i, float[] positions) {
+    protected Path linePath(@NonNull Path p, int i, float[] positions) {
 
         p.moveTo(positions[i], mViewPortHandler.contentTop());
         p.lineTo(positions[i], mViewPortHandler.contentBottom());
@@ -183,10 +185,11 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
         return p;
     }
 
+    @NonNull
     protected Path mDrawZeroLinePathBuffer = new Path();
 
     @Override
-    protected void drawZeroLine(Canvas c) {
+    protected void drawZeroLine(@NonNull Canvas c) {
 
         int clipRestoreCount = c.save();
         mZeroLineClippingRect.set(mViewPortHandler.getContentRect());
@@ -211,6 +214,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
         c.restoreToCount(clipRestoreCount);
     }
 
+    @NonNull
     protected Path mRenderLimitLinesPathBuffer = new Path();
     protected float[] mRenderLimitLinesBuffer = new float[4];
     /**
@@ -220,7 +224,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
      * @param c
      */
     @Override
-    public void renderLimitLines(Canvas c) {
+    public void renderLimitLines(@NonNull Canvas c) {
 
         List<LimitLine> limitLines = mYAxis.getLimitLines();
 

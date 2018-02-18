@@ -1,6 +1,6 @@
-
 package com.github.mikephil.charting.jobs;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.github.mikephil.charting.utils.ObjectPool;
@@ -19,6 +19,7 @@ public class MoveViewJob extends ViewPortJob {
         pool.setReplenishPercentage(0.5f);
     }
 
+    @NonNull
     public static MoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v){
         MoveViewJob result = pool.get();
         result.mViewPortHandler = viewPortHandler;
@@ -46,9 +47,10 @@ public class MoveViewJob extends ViewPortJob {
         mTrans.pointValuesToPixel(pts);
         mViewPortHandler.centerViewPort(pts, view);
 
-        this.recycleInstance(this);
+        recycleInstance(this);
     }
 
+    @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
         return new MoveViewJob(mViewPortHandler, xValue, yValue, mTrans, view);

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.charts.LineChart;
@@ -71,7 +72,7 @@ public class LineChartRenderer extends LineRadarRenderer {
     }
 
     @Override
-    public void drawData(Canvas c) {
+    public void drawData(@NonNull Canvas c) {
 
         int width = (int) mViewPortHandler.getChartWidth();
         int height = (int) mViewPortHandler.getChartHeight();
@@ -82,7 +83,7 @@ public class LineChartRenderer extends LineRadarRenderer {
 
             if (width > 0 && height > 0) {
 
-                mDrawBitmap = new WeakReference<Bitmap>(Bitmap.createBitmap(width, height, mBitmapConfig));
+                mDrawBitmap = new WeakReference<>(Bitmap.createBitmap(width, height, mBitmapConfig));
                 mBitmapCanvas = new Canvas(mDrawBitmap.get());
             } else
                 return;
@@ -101,7 +102,7 @@ public class LineChartRenderer extends LineRadarRenderer {
         c.drawBitmap(mDrawBitmap.get(), 0, 0, mRenderPaint);
     }
 
-    protected void drawDataSet(Canvas c, ILineDataSet dataSet) {
+    protected void drawDataSet(Canvas c, @NonNull ILineDataSet dataSet) {
 
         if (dataSet.getEntryCount() < 1)
             return;
@@ -128,7 +129,7 @@ public class LineChartRenderer extends LineRadarRenderer {
         mRenderPaint.setPathEffect(null);
     }
 
-    protected void drawHorizontalBezier(ILineDataSet dataSet) {
+    protected void drawHorizontalBezier(@NonNull ILineDataSet dataSet) {
 
         float phaseY = mAnimator.getPhaseY();
 
@@ -181,7 +182,7 @@ public class LineChartRenderer extends LineRadarRenderer {
         mRenderPaint.setPathEffect(null);
     }
 
-    protected void drawCubicBezier(ILineDataSet dataSet) {
+    protected void drawCubicBezier(@NonNull ILineDataSet dataSet) {
 
         float phaseX = Math.max(0.f, Math.min(1.f, mAnimator.getPhaseX()));
         float phaseY = mAnimator.getPhaseY();
@@ -260,7 +261,7 @@ public class LineChartRenderer extends LineRadarRenderer {
         mRenderPaint.setPathEffect(null);
     }
 
-    protected void drawCubicFill(Canvas c, ILineDataSet dataSet, Path spline, Transformer trans, XBounds bounds) {
+    protected void drawCubicFill(Canvas c, @NonNull ILineDataSet dataSet, @NonNull Path spline, @NonNull Transformer trans, @NonNull XBounds bounds) {
 
         float fillMin = dataSet.getFillFormatter()
                 .getFillLinePosition(dataSet, mChart);
@@ -289,7 +290,7 @@ public class LineChartRenderer extends LineRadarRenderer {
      * @param c
      * @param dataSet
      */
-    protected void drawLinear(Canvas c, ILineDataSet dataSet) {
+    protected void drawLinear(Canvas c, @NonNull ILineDataSet dataSet) {
 
         int entryCount = dataSet.getEntryCount();
 
@@ -421,6 +422,7 @@ public class LineChartRenderer extends LineRadarRenderer {
         mRenderPaint.setPathEffect(null);
     }
 
+    @NonNull
     protected Path mGenerateFilledPathBuffer = new Path();
 
     /**
@@ -431,7 +433,7 @@ public class LineChartRenderer extends LineRadarRenderer {
      * @param trans
      * @param bounds
      */
-    protected void drawLinearFill(Canvas c, ILineDataSet dataSet, Transformer trans, XBounds bounds) {
+    protected void drawLinearFill(Canvas c, @NonNull ILineDataSet dataSet, @NonNull Transformer trans, @NonNull XBounds bounds) {
 
         final Path filled = mGenerateFilledPathBuffer;
 
@@ -479,7 +481,7 @@ public class LineChartRenderer extends LineRadarRenderer {
      * @param outputPath The path object that will be assigned the chart data.
      * @return
      */
-    private void generateFilledPath(final ILineDataSet dataSet, final int startIndex, final int endIndex, final Path outputPath) {
+    private void generateFilledPath(@NonNull final ILineDataSet dataSet, final int startIndex, final int endIndex, @NonNull final Path outputPath) {
 
         final float fillMin = dataSet.getFillFormatter().getFillLinePosition(dataSet, mChart);
         final float phaseY = mAnimator.getPhaseY();
@@ -596,6 +598,7 @@ public class LineChartRenderer extends LineRadarRenderer {
     /**
      * cache for the circle bitmaps of all datasets
      */
+    @NonNull
     private HashMap<IDataSet, DataSetImageCache> mImageCaches = new HashMap<>();
 
     /**
@@ -603,7 +606,7 @@ public class LineChartRenderer extends LineRadarRenderer {
      */
     private float[] mCirclesBuffer = new float[2];
 
-    protected void drawCircles(Canvas c) {
+    protected void drawCircles(@NonNull Canvas c) {
 
         mRenderPaint.setStyle(Paint.Style.FILL);
 
@@ -682,7 +685,7 @@ public class LineChartRenderer extends LineRadarRenderer {
     }
 
     @Override
-    public void drawHighlighted(Canvas c, Highlight[] indices) {
+    public void drawHighlighted(Canvas c, @NonNull Highlight[] indices) {
 
         LineData lineData = mChart.getLineData();
 
@@ -745,7 +748,7 @@ public class LineChartRenderer extends LineRadarRenderer {
     }
 
     private class DataSetImageCache {
-
+        @NonNull
         private Path mCirclePathBuffer = new Path();
 
         private Bitmap[] circleBitmaps;
@@ -756,7 +759,7 @@ public class LineChartRenderer extends LineRadarRenderer {
          * @param set
          * @return
          */
-        protected boolean init(ILineDataSet set) {
+        protected boolean init(@NonNull ILineDataSet set) {
 
             int size = set.getCircleColorCount();
             boolean changeRequired = false;
@@ -779,7 +782,7 @@ public class LineChartRenderer extends LineRadarRenderer {
          * @param drawCircleHole
          * @param drawTransparentCircleHole
          */
-        protected void fill(ILineDataSet set, boolean drawCircleHole, boolean drawTransparentCircleHole) {
+        protected void fill(@NonNull ILineDataSet set, boolean drawCircleHole, boolean drawTransparentCircleHole) {
 
             int colorCount = set.getCircleColorCount();
             float circleRadius = set.getCircleRadius();

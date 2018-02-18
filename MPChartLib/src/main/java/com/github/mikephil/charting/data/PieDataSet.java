@@ -1,5 +1,6 @@
-
 package com.github.mikephil.charting.data;
+
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.utils.Utils;
@@ -30,6 +31,7 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
 //        mShift = Utils.convertDpToPixel(12f);
     }
 
+    @NonNull
     @Override
     public DataSet<PieEntry> copy() {
 
@@ -47,10 +49,7 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
     }
 
     @Override
-    protected void calcMinMax(PieEntry e) {
-
-        if (e == null)
-            return;
+    protected void calcMinMax(@NonNull PieEntry e) {
 
         calcMinMaxY(e);
     }

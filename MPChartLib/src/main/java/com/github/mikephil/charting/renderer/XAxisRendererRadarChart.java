@@ -1,8 +1,7 @@
-
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
-import android.graphics.PointF;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -65,7 +64,7 @@ public class XAxisRendererRadarChart extends XAxisRenderer {
 	 * @param c
 	 */
 	@Override
-	public void renderLimitLines(Canvas c) {
+	public void renderLimitLines(@NonNull Canvas c) {
 		// this space intentionally left blank
 	}
 }
