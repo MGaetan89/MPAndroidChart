@@ -3,6 +3,7 @@ package com.github.mikephil.charting.data;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.highlight.Range;
 
@@ -13,10 +14,10 @@ import com.github.mikephil.charting.highlight.Range;
  */
 @SuppressLint("ParcelCreator")
 public class BarEntry extends Entry {
-
     /**
      * the values the stacked barchart holds
      */
+    @Nullable
     private float[] mYVals;
 
     /**
@@ -155,6 +156,7 @@ public class BarEntry extends Entry {
      *
      * @return
      */
+    @Nullable
     public float[] getYVals() {
         return mYVals;
     }
