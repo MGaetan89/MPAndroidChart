@@ -1,44 +1,46 @@
 package com.github.mikephil.charting.formatter;
 
+import android.support.annotation.NonNull;
+
 import com.github.mikephil.charting.components.AxisBase;
 
 import java.text.DecimalFormat;
 
 /**
- * Created by philipp on 02/06/16.
+ * @author Philipp Jahoda
  */
-public class DefaultAxisValueFormatter implements IAxisValueFormatter
-{
-
+public class DefaultAxisValueFormatter implements IAxisValueFormatter {
     /**
-     * decimalformat for formatting
+     * DecimalFormat for formatting.
      */
     protected DecimalFormat mFormat;
 
     /**
-     * the number of decimal digits this formatter uses
+     * The number of decimal digits this formatter uses.
      */
-    protected int digits = 0;
+    protected int digits;
 
     /**
-     * Constructor that specifies to how many digits the value should be
-     * formatted.
+     * Constructor that specifies with how many digits the value should be formatted.
      *
      * @param digits
      */
     public DefaultAxisValueFormatter(int digits) {
         this.digits = digits;
 
-        StringBuffer b = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < digits; i++) {
-            if (i == 0)
-                b.append(".");
-            b.append("0");
+            if (i == 0) {
+                buffer.append('.');
+            }
+
+            buffer.append('0');
         }
 
-        mFormat = new DecimalFormat("###,###,###,##0" + b.toString());
+        mFormat = new DecimalFormat("###,###,###,##0" + buffer.toString());
     }
 
+    @NonNull
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         // avoid memory allocations here (for performance)
@@ -47,8 +49,6 @@ public class DefaultAxisValueFormatter implements IAxisValueFormatter
 
     /**
      * Returns the number of decimal digits this formatter uses or -1, if unspecified.
-     *
-     * @return
      */
     public int getDecimalDigits() {
         return digits;

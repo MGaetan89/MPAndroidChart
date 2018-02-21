@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.formatter;
 
 import com.github.mikephil.charting.components.AxisBase;
@@ -6,6 +5,9 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Predefined value-formatter that formats large numbers in a pretty way.
@@ -17,37 +19,39 @@ import java.text.DecimalFormat;
  * @author Philipp Jahoda
  * @author Oleksandr Tyshkovets <olexandr.tyshkovets@gmail.com>
  */
-public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
-{
+public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter {
+    private static final int MAX_LENGTH = 5;
 
-    private String[] mSuffix = new String[]{
-            "", "k", "m", "b", "t"
-    };
-    private int mMaxLength = 5;
-    private DecimalFormat mFormat;
+    @NonNull
+    private final DecimalFormat mFormat;
+    @NonNull
     private String mText = "";
+    @NonNull
+    private String[] mSuffix = {};
 
     public LargeValueFormatter() {
-        mFormat = new DecimalFormat("###E00");
+        this(null);
     }
 
     /**
-     * Creates a formatter that appends a specified text to the result string
+     * Creates a formatter that appends a specified text to the result String.
      *
      * @param appendix a text that will be appended
      */
-    public LargeValueFormatter(String appendix) {
-        this();
-        mText = appendix;
+    public LargeValueFormatter(@Nullable String appendix) {
+        mFormat = new DecimalFormat("###E00");
+
+        this.setAppendix(appendix);
+        this.setSuffix(null);
     }
 
-    // IValueFormatter
+    @NonNull
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
         return makePretty(value) + mText;
     }
 
-    // IAxisValueFormatter
+    @NonNull
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         return makePretty(value) + mText;
@@ -58,8 +62,12 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
      *
      * @param appendix
      */
-    public void setAppendix(String appendix) {
-        this.mText = appendix;
+    public void setAppendix(@Nullable String appendix) {
+        if (appendix == null) {
+            this.mText = "";
+        } else {
+            this.mText = appendix;
+        }
     }
 
     /**
@@ -68,35 +76,39 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
      *
      * @param suffix new suffix
      */
-    public void setSuffix(String[] suffix) {
-        this.mSuffix = suffix;
-    }
-
-    public void setMaxLength(int maxLength) {
-        this.mMaxLength = maxLength;
+    public void setSuffix(@Nullable String[] suffix) {
+        if (suffix == null) {
+            mSuffix = new String[]{"", "k", "m", "b", "t"};
+        } else {
+            mSuffix = suffix;
+        }
     }
 
     /**
      * Formats each number properly. Special thanks to Roman Gromov
      * (https://github.com/romangromov) for this piece of code.
      */
+    @NonNull
     private String makePretty(double number) {
+        String formattedNumber = mFormat.format(number);
 
-        String r = mFormat.format(number);
-
-        int numericValue1 = Character.getNumericValue(r.charAt(r.length() - 1));
-        int numericValue2 = Character.getNumericValue(r.charAt(r.length() - 2));
+        int numericValue1 = Character.getNumericValue(formattedNumber.charAt(formattedNumber.length() - 1));
+        int numericValue2 = Character.getNumericValue(formattedNumber.charAt(formattedNumber.length() - 2));
         int combined = Integer.valueOf(numericValue2 + "" + numericValue1);
 
-        r = r.replaceAll("E[0-9][0-9]", mSuffix[combined / 3]);
+        formattedNumber = formattedNumber.replaceAll("E[0-9][0-9]", mSuffix[combined / 3]);
 
-        while (r.length() > mMaxLength || r.matches("[0-9]+\\.[a-z]")) {
-            r = r.substring(0, r.length() - 2) + r.substring(r.length() - 1);
+        while (formattedNumber.length() > MAX_LENGTH || formattedNumber.matches("[0-9]+\\.[a-z]")) {
+            formattedNumber = formattedNumber.substring(0, formattedNumber.length() - 2) + formattedNumber.substring(formattedNumber.length() - 1);
         }
 
-        return r;
+        return formattedNumber;
     }
 
+    /**
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
+     */
+    @Deprecated
     public int getDecimalDigits() {
         return 0;
     }
