@@ -2,7 +2,6 @@ package com.github.mikephil.charting.listener;
 
 import android.annotation.SuppressLint;
 import android.graphics.Matrix;
-import android.graphics.PointF;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -443,7 +442,7 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
 
         Highlight h = mChart.getHighlightByTouchPoint(e.getX(), e.getY());
 
-        if (h != null && !h.equalTo(mLastHighlighted)) {
+        if (h != null && !h.equals(mLastHighlighted)) {
             mLastHighlighted = h;
             mChart.highlightValue(h, true);
         }

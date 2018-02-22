@@ -10,82 +10,74 @@ import com.github.mikephil.charting.components.YAxis;
  * @author Philipp Jahoda
  */
 public class Highlight {
-
     /**
-     * the x-value of the highlighted value
+     * The x-value of the highlighted value.
      */
-    private float mX = Float.NaN;
+    private final float mX;
 
     /**
-     * the y-value of the highlighted value
+     * The y-value of the highlighted value.
      */
-    private float mY = Float.NaN;
+    private final float mY;
 
     /**
-     * the x-pixel of the highlight
+     * The x-pixel of the highlight.
      */
-    private float mXPx;
+    private final float mXPx;
 
     /**
-     * the y-pixel of the highlight
+     * The y-pixel of the highlight.
      */
-    private float mYPx;
+    private final float mYPx;
 
     /**
-     * the index of the data object - in case it refers to more than one
+     * The index of the data object - in case it refers to more than one.
      */
     private int mDataIndex = -1;
 
     /**
-     * the index of the dataset the highlighted value is in
+     * The index of the data set the highlighted value is in.
      */
-    private int mDataSetIndex;
+    private final int mDataSetIndex;
 
     /**
-     * index which value of a stacked bar entry is highlighted, default -1
+     * The index of the highlighted value in a stacked bar entry, default -1.
      */
-    private int mStackIndex = -1;
+    private final int mStackIndex;
 
     /**
-     * the axis the highlighted value belongs to
+     * The axis the highlighted value belongs to.
      */
-    private YAxis.AxisDependency axis;
+    @Nullable
+    private final YAxis.AxisDependency axis;
 
     /**
-     * the x-position (pixels) on which this highlight object was last drawn
+     * The x-position (pixels) on which this highlight object was last drawn.
      */
     private float mDrawX;
 
     /**
-     * the y-position (pixels) on which this highlight object was last drawn
+     * The y-position (pixels) on which this highlight object was last drawn.
      */
     private float mDrawY;
 
     public Highlight(float x, float y, int dataSetIndex) {
-        this.mX = x;
-        this.mY = y;
-        this.mDataSetIndex = dataSetIndex;
+        this(x, y, 0f, 0f, dataSetIndex, -1, null);
     }
 
     public Highlight(float x, int dataSetIndex, int stackIndex) {
-        this(x, Float.NaN, dataSetIndex);
-        this.mStackIndex = stackIndex;
+        this(x, Float.NaN, 0f, 0f, dataSetIndex, stackIndex, null);
     }
 
     /**
-     * constructor
+     * Constructor.
      *
      * @param x            the x-value of the highlighted value
      * @param y            the y-value of the highlighted value
      * @param dataSetIndex the index of the DataSet the highlighted value belongs to
      */
     public Highlight(float x, float y, float xPx, float yPx, int dataSetIndex, YAxis.AxisDependency axis) {
-        this.mX = x;
-        this.mY = y;
-        this.mXPx = xPx;
-        this.mYPx = yPx;
-        this.mDataSetIndex = dataSetIndex;
-        this.axis = axis;
+        this(x, y, xPx, yPx, dataSetIndex, -1, axis);
     }
 
     /**
@@ -94,50 +86,48 @@ public class Highlight {
      * @param x            the index of the highlighted value on the x-axis
      * @param y            the y-value of the highlighted value
      * @param dataSetIndex the index of the DataSet the highlighted value belongs to
-     * @param stackIndex   references which value of a stacked-bar entry has been
-     *                     selected
+     * @param stackIndex   references which value of a stacked-bar entry has been selected
      */
-    public Highlight(float x, float y, float xPx, float yPx, int dataSetIndex, int stackIndex, YAxis.AxisDependency axis) {
-        this(x, y, xPx, yPx, dataSetIndex, axis);
+    public Highlight(float x, float y, float xPx, float yPx, int dataSetIndex, int stackIndex, @Nullable YAxis.AxisDependency axis) {
+        this.mX = x;
+        this.mY = y;
+        this.mXPx = xPx;
+        this.mYPx = yPx;
+        this.mDataSetIndex = dataSetIndex;
         this.mStackIndex = stackIndex;
+        this.axis = axis;
     }
 
     /**
-     * returns the x-value of the highlighted value
-     *
-     * @return
+     * Returns the x-value of the highlighted value.
      */
     public float getX() {
         return mX;
     }
 
     /**
-     * returns the y-value of the highlighted value
-     *
-     * @return
+     * Returns the y-value of the highlighted value.
      */
     public float getY() {
         return mY;
     }
 
     /**
-     * returns the x-position of the highlight in pixels
+     * Returns the x-position of the highlight in pixels.
      */
     public float getXPx() {
         return mXPx;
     }
 
     /**
-     * returns the y-position of the highlight in pixels
+     * Returns the y-position of the highlight in pixels.
      */
     public float getYPx() {
         return mYPx;
     }
 
     /**
-     * the index of the data object - in case it refers to more than one
-     *
-     * @return
+     * Returns the index of the data object - in case it refers to more than one.
      */
     public int getDataIndex() {
         return mDataIndex;
@@ -148,17 +138,15 @@ public class Highlight {
     }
 
     /**
-     * returns the index of the DataSet the highlighted value is in
-     *
-     * @return
+     * Returns the index of the DataSet the highlighted value is in.
      */
     public int getDataSetIndex() {
         return mDataSetIndex;
     }
 
     /**
-     * Only needed if a stacked-barchart entry was highlighted. References the
-     * selected value within the stacked-entry.
+     * Only needed if a stacked-barchart entry was highlighted.
+     * References the selected value within the stacked-entry.
      *
      * @return
      */
@@ -172,9 +160,8 @@ public class Highlight {
 
     /**
      * Returns the axis the highlighted value belongs to.
-     *
-     * @return
      */
+    @Nullable
     public YAxis.AxisDependency getAxis() {
         return axis;
     }
@@ -192,8 +179,6 @@ public class Highlight {
 
     /**
      * Returns the x-position in pixels where this highlight object was last drawn.
-     *
-     * @return
      */
     public float getDrawX() {
         return mDrawX;
@@ -201,31 +186,31 @@ public class Highlight {
 
     /**
      * Returns the y-position in pixels where this highlight object was last drawn.
-     *
-     * @return
      */
     public float getDrawY() {
         return mDrawY;
     }
 
     /**
-     * Returns true if this highlight object is equal to the other (compares
-     * xIndex and dataSetIndex)
+     * Returns true if this highlight object is equal to the other.
      *
      * @param h
-     * @return
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
      */
+    @Deprecated
     public boolean equalTo(@Nullable Highlight h) {
+        return this.equals(h);
+    }
 
-        if (h == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Highlight)) {
             return false;
-        else {
-            if (this.mDataSetIndex == h.mDataSetIndex && this.mX == h.mX
-                    && this.mStackIndex == h.mStackIndex && this.mDataIndex == h.mDataIndex)
-                return true;
-            else
-                return false;
         }
+
+        Highlight other = (Highlight) obj;
+        return this.mDataSetIndex == other.mDataSetIndex && this.mX == other.mX
+                && this.mStackIndex == other.mStackIndex && this.mDataIndex == other.mDataIndex;
     }
 
     @Override
