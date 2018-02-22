@@ -1,7 +1,5 @@
 package com.github.mikephil.charting.utils;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -10,16 +8,15 @@ import java.util.List;
  * Created by Tony Patino on 6/24/16.
  */
 public class MPPointF extends ObjectPool.Poolable {
-
     private static ObjectPool<MPPointF> pool;
+
+    static {
+        pool = ObjectPool.create(32, new MPPointF(0f, 0f));
+        pool.setReplenishPercentage(0.5f);
+    }
 
     public float x;
     public float y;
-
-    static {
-        pool = ObjectPool.create(32, new MPPointF(0,0));
-        pool.setReplenishPercentage(0.5f);
-    }
 
     public MPPointF() {
     }
@@ -50,55 +47,25 @@ public class MPPointF extends ObjectPool.Poolable {
         return result;
     }
 
-    public static void recycleInstance(MPPointF instance){
+    public static void recycleInstance(MPPointF instance) {
         pool.recycle(instance);
     }
 
-    public static void recycleInstances(List<MPPointF> instances){
+    public static void recycleInstances(List<MPPointF> instances) {
         pool.recycle(instances);
     }
 
-    public static final Parcelable.Creator<MPPointF> CREATOR = new Parcelable.Creator<MPPointF>() {
-        /**
-         * Return a new point from the data in the specified parcel.
-         */
-        public MPPointF createFromParcel(Parcel in) {
-            MPPointF r = new MPPointF(0,0);
-            r.my_readFromParcel(in);
-            return r;
-        }
-
-        /**
-         * Return an array of rectangles of the specified size.
-         */
-        public MPPointF[] newArray(int size) {
-            return new MPPointF[size];
-        }
-    };
-
-    /**
-     * Set the point's coordinates from the data stored in the specified
-     * parcel. To write a point to a parcel, call writeToParcel().
-     * Provided to support older Android devices.
-     *
-     * @param in The parcel to read the point's coordinates from
-     */
-    public void my_readFromParcel(Parcel in) {
-        x = in.readFloat();
-        y = in.readFloat();
-    }
-
-    public float getX(){
+    public float getX() {
         return this.x;
     }
 
-    public float getY(){
+    public float getY() {
         return this.y;
     }
 
     @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
-        return new MPPointF(0,0);
+        return new MPPointF(0f, 0f);
     }
 }

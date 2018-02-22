@@ -1,29 +1,10 @@
-
 package com.github.mikephil.charting.utils;
 
 /**
  * ViewPortHandler for HorizontalBarChart.
+ *
+ * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
  */
+@Deprecated
 public class HorizontalViewPortHandler extends ViewPortHandler {
-
-
-//    @Override
-//    public void setMinimumScaleX(float xScale) {
-//        setMinimumScaleY(xScale);
-//    }
-//
-//    @Override
-//    public void setMinimumScaleY(float yScale) {
-//        setMinimumScaleX(yScale);
-//    }
-//
-//    @Override
-//    public void setMinMaxScaleX(float minScaleX, float maxScaleX) {
-//        setMinMaxScaleY(minScaleX, maxScaleX);
-//    }
-//
-//    @Override
-//    public void setMinMaxScaleY(float minScaleY, float maxScaleY) {
-//        setMinMaxScaleX(minScaleY, maxScaleY);
-//    }
 }

@@ -17,10 +17,10 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.renderer.HorizontalBarChartRenderer;
 import com.github.mikephil.charting.renderer.XAxisRendererHorizontalBarChart;
 import com.github.mikephil.charting.renderer.YAxisRendererHorizontalBarChart;
-import com.github.mikephil.charting.utils.HorizontalViewPortHandler;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.TransformerHorizontalBarChart;
 import com.github.mikephil.charting.utils.Utils;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
  * BarChart with horizontal bar orientation. In this implementation, x- and y-axis are switched, meaning the YAxis class
@@ -45,7 +45,7 @@ public class HorizontalBarChart extends BarChart {
     @Override
     protected void init() {
 
-        mViewPortHandler = new HorizontalViewPortHandler();
+        mViewPortHandler = new ViewPortHandler();
 
         super.init();
 

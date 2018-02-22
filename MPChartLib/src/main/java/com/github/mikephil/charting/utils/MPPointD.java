@@ -10,45 +10,44 @@ import java.util.List;
  * @author Philipp Jahoda
  */
 public class MPPointD extends ObjectPool.Poolable {
-
     private static ObjectPool<MPPointD> pool;
 
     static {
-        pool = ObjectPool.create(64, new MPPointD(0,0));
+        pool = ObjectPool.create(64, new MPPointD(0d, 0d));
         pool.setReplenishPercentage(0.5f);
-    }
-
-    @NonNull
-    public static MPPointD getInstance(double x, double y){
-        MPPointD result = pool.get();
-        result.x = x;
-        result.y = y;
-        return result;
-    }
-
-    public static void recycleInstance(MPPointD instance){
-        pool.recycle(instance);
-    }
-
-    public static void recycleInstances(List<MPPointD> instances){
-        pool.recycle(instances);
     }
 
     public double x;
     public double y;
-
-    @NonNull
-    protected ObjectPool.Poolable instantiate(){
-        return new MPPointD(0,0);
-    }
 
     private MPPointD(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
+    @NonNull
+    public static MPPointD getInstance(double x, double y) {
+        MPPointD result = pool.get();
+        result.x = x;
+        result.y = y;
+        return result;
+    }
+
+    public static void recycleInstance(MPPointD instance) {
+        pool.recycle(instance);
+    }
+
+    public static void recycleInstances(List<MPPointD> instances) {
+        pool.recycle(instances);
+    }
+
+    @NonNull
+    protected ObjectPool.Poolable instantiate() {
+        return new MPPointD(0d, 0d);
+    }
+
     /**
-     * returns a string representation of the object
+     * Returns a string representation of the object.
      */
     public String toString() {
         return "MPPointD, x: " + x + ", y: " + y;
