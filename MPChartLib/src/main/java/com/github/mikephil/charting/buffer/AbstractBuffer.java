@@ -35,12 +35,18 @@ public abstract class AbstractBuffer<T> {
 
     /**
      * Indicates from which x-index the visible data begins.
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
      */
+    @Deprecated
     protected int mFrom = 0;
 
     /**
      * Indicates to which x-index the visible data range ends.
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
      */
+    @Deprecated
     protected int mTo = 0;
 
     /**
@@ -55,16 +61,22 @@ public abstract class AbstractBuffer<T> {
 
     /**
      * Limits the drawing on the x-axis.
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
      */
+    @Deprecated
     public void limitFrom(@IntRange(from = 0) int from) {
         mFrom = Math.max(from, 0);
     }
 
     /**
      * Limits the drawing on the x-axis.
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
      */
+    @Deprecated
     public void limitTo(@IntRange(from = 0) int to) {
-        mTo = Math.min(to, 0);
+        mTo = Math.max(to, 0);
     }
 
     /**
