@@ -39,6 +39,22 @@ class HorizontalBarBufferTest {
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
 
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
+
 		// addBar()
 		try {
 			buffer.addBar(1f, 2f, 3f, 4f)
@@ -94,6 +110,22 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
+
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -151,6 +183,22 @@ class HorizontalBarBufferTest {
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
 
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
+
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
 		assertThat(buffer.index).isEqualTo(4)
@@ -206,6 +254,22 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
+
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -263,6 +327,22 @@ class HorizontalBarBufferTest {
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
 
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
+
 		// addBar()
 		try {
 			buffer.addBar(1f, 2f, 3f, 4f)
@@ -318,6 +398,22 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
+
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -375,6 +471,22 @@ class HorizontalBarBufferTest {
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
 
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
+
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
 		assertThat(buffer.index).isEqualTo(4)
@@ -430,6 +542,22 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
+
+		// limitFrom
+		buffer.limitFrom(-1)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(0)
+		assertThat(buffer.mFrom).isEqualTo(0)
+		buffer.limitFrom(1)
+		assertThat(buffer.mFrom).isEqualTo(1)
+
+		// limitTo
+		buffer.limitTo(-1)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(0)
+		assertThat(buffer.mTo).isEqualTo(0)
+		buffer.limitTo(1)
+		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
