@@ -28,9 +28,7 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter {
      * @param values The values string array
      */
     public IndexAxisValueFormatter(@Nullable String[] values) {
-        if (values != null && values.length > 0) {
-            setValues(values);
-        }
+        setValues(values);
     }
 
     /**

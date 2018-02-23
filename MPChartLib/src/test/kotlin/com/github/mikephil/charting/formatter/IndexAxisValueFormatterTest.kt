@@ -48,6 +48,28 @@ class IndexAxisValueFormatterTest {
 	}
 
 	@Test
+	fun getFormattedValue_emptyArray() {
+		val formatter = IndexAxisValueFormatter(emptyArray())
+
+		assertThat(formatter.values).isEmpty()
+
+		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+	}
+
+	@Test
+	fun getFormattedValue_emptyCollection() {
+		val formatter = IndexAxisValueFormatter(emptyList())
+
+		assertThat(formatter.values).isEmpty()
+
+		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+	}
+
+	@Test
 	fun getFormattedValue_nullArray() {
 		val formatter = IndexAxisValueFormatter(null as Array<String>?)
 
