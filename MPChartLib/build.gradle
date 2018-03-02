@@ -7,12 +7,14 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 3
-        versionName '3.0.3'
-    }
+	defaultConfig {
+		minSdkVersion 14
+		targetSdkVersion 28
+		versionCode 3
+		versionName '3.0.3'
+
+		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+	}
 
 	buildTypes {
 		debug {
@@ -30,6 +32,7 @@ android {
 	}
 
 	sourceSets {
+		androidTest.java.srcDirs = ['src/androidTest/kotlin']
 		test.java.srcDirs += ['src/test/kotlin']
 	}
 
@@ -44,6 +47,9 @@ dependencies {
 	testImplementation 'com.google.truth:truth:0.39'
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.30'
+
+	androidTestImplementation 'com.android.support.test:runner:1.0.1'
+	androidTestImplementation 'com.google.truth:truth:0.39'
 }
 
 android.libraryVariants.all { variant ->
