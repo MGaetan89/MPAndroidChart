@@ -1,21 +1,30 @@
 package com.github.mikephil.charting.utils
 
 import android.graphics.Paint
-import android.support.test.InstrumentationRegistry
+import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import com.github.mikephil.charting.TestActivity
 import com.google.common.truth.Truth.assertThat
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class UtilsTest {
+	@JvmField
+	@Rule
+	val activityRule = ActivityTestRule<TestActivity>(TestActivity::class.java)
+
 	@Test
 	fun init() {
-		Utils.init(InstrumentationRegistry.getTargetContext())
+		val context = this.activityRule.activity
+		val density = context.resources.displayMetrics.density
 
-		assertThat(Utils.convertDpToPixel(0f)).isEqualTo(0f)
-		assertThat(Utils.convertDpToPixel(5.5f)).isEqualTo(19.25f)
-		assertThat(Utils.convertDpToPixel(10f)).isEqualTo(35f)
+		Utils.init(context)
+
+		assertThat(Utils.convertDpToPixel(0f)).isEqualTo(0f * density)
+		assertThat(Utils.convertDpToPixel(5.5f)).isEqualTo(5.5f * density)
+		assertThat(Utils.convertDpToPixel(10f)).isEqualTo(10f * density)
 		assertThat(Utils.getMinimumFlingVelocity()).isEqualTo(175)
 		assertThat(Utils.getMaximumFlingVelocity()).isEqualTo(28000)
 

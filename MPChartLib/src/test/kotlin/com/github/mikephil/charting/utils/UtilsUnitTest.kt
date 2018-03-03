@@ -9,6 +9,7 @@ class UtilsUnitTest {
 	fun getDefaultValueFormatter() {
 		val formatter = Utils.getDefaultValueFormatter()
 
+		assertThat(formatter).isInstanceOf(DefaultValueFormatter::class.java)
 		assertThat((formatter as DefaultValueFormatter).decimalDigits).isEqualTo(1)
 	}
 
