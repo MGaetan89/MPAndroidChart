@@ -230,9 +230,10 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {}
-
+    public void onStopTrackingTouch(SeekBar seekBar) {
+    }
 }

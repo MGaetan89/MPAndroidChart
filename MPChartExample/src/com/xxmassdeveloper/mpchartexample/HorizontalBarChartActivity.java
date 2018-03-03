@@ -261,10 +261,12 @@ public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarCha
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {}
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {}
+    public void onStopTrackingTouch(SeekBar seekBar) {
+    }
 
     private RectF mOnValueSelectedRectF = new RectF();
 
@@ -287,5 +289,6 @@ public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarCha
     }
 
     @Override
-    public void onNothingSelected() {}
+    public void onNothingSelected() {
+    }
 }

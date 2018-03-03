@@ -343,7 +343,8 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
     }
 
     @Override
-    public void onNothingSelected() {}
+    public void onNothingSelected() {
+    }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {}

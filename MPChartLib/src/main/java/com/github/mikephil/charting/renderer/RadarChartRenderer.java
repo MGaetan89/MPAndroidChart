@@ -50,8 +50,6 @@ public class RadarChartRenderer extends LineRadarRenderer {
 
     @Override
     public void initBuffers() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
