@@ -68,4 +68,19 @@ public class MPPointF extends ObjectPool.Poolable {
     protected ObjectPool.Poolable instantiate() {
         return new MPPointF(0f, 0f);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof MPPointF)) {
+            return false;
+        }
+
+        MPPointF other = (MPPointF) obj;
+        return this.x == other.x && this.y == other.y;
+    }
+
+    @Override
+    public String toString() {
+        return "MPPointF, x: " + x + ", y: " + y;
+    }
 }

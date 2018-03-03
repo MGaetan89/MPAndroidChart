@@ -5,6 +5,17 @@ import org.junit.Test
 
 class MPPointFTest {
 	@Test
+	fun equals() {
+		assertThat(MPPointF(0f, 0f)).isEqualTo(MPPointF(0f, 0f))
+		assertThat(MPPointF(1f, 0f)).isNotEqualTo(MPPointF(0f, 0f))
+		assertThat(MPPointF(1f, 0f)).isEqualTo(MPPointF(1f, 0f))
+		assertThat(MPPointF(0f, 1f)).isNotEqualTo(MPPointF(0f, 0f))
+		assertThat(MPPointF(0f, 1f)).isEqualTo(MPPointF(0f, 1f))
+		assertThat(MPPointF(1f, 1f)).isNotEqualTo(MPPointF(0f, 0f))
+		assertThat(MPPointF(1f, 1f)).isEqualTo(MPPointF(1f, 1f))
+	}
+
+	@Test
 	fun getInstance_copy() {
 		val point = MPPointF.getInstance(MPPointF(1f, 2f))
 		assertThat(point.getX()).isEqualTo(1f)
@@ -45,5 +56,13 @@ class MPPointFTest {
 		val point = MPPointF()
 		assertThat(point.getX()).isEqualTo(0f)
 		assertThat(point.getY()).isEqualTo(0f)
+	}
+
+	@Test
+	fun testToString() {
+		assertThat(MPPointF(0f, 0f).toString()).isEqualTo("MPPointF, x: 0.0, y: 0.0")
+		assertThat(MPPointF(1f, 0f).toString()).isEqualTo("MPPointF, x: 1.0, y: 0.0")
+		assertThat(MPPointF(0f, 1f).toString()).isEqualTo("MPPointF, x: 0.0, y: 1.0")
+		assertThat(MPPointF(1f, 1f).toString()).isEqualTo("MPPointF, x: 1.0, y: 1.0")
 	}
 }
