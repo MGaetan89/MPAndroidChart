@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Philipp Jahoda
  */
-public class ColorTemplate {
+public abstract class ColorTemplate {
     /**
      * An "invalid" color that indicates that no color is set.
      */
