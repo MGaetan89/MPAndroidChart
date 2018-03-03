@@ -37,16 +37,16 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
         
         mChart.setDrawGridBackground(false);
@@ -189,11 +189,11 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
         tvX.setText("" + (mSeekBarX.getProgress()));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
         for (int z = 0; z < 3; z++) {
 
-            ArrayList<Entry> values = new ArrayList<Entry>();
+            ArrayList<Entry> values = new ArrayList<>();
 
             for (int i = 0; i < mSeekBarX.getProgress(); i++) {
                 double val = (Math.random() * mSeekBarY.getProgress()) + 3;
@@ -229,8 +229,6 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
     @Override
     public void onNothingSelected() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

@@ -52,13 +52,13 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarX = findViewById(R.id.seekBar1);
+        mSeekBarY = findViewById(R.id.seekBar2);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
 
         mChart.setDrawBarShadow(false);
@@ -224,19 +224,17 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
     }
 
     private void setData(int count, float range) {
 
         float start = 1f;
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
         for (int i = (int) start; i < start + count + 1; i++) {
             float mult = (range + 1);
@@ -264,7 +262,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
             set1.setColors(ColorUtils.MATERIAL_COLORS);
 
-            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
 
             BarData data = new BarData(dataSets);

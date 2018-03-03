@@ -35,7 +35,7 @@ public class RealtimeLineChartActivity extends DemoBase implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_realtime_linechart);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
 
         // enable description text
@@ -192,7 +192,6 @@ public class RealtimeLineChartActivity extends DemoBase implements
                     try {
                         Thread.sleep(25);
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }

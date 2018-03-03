@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -30,15 +29,15 @@ public class PerformanceLineChart extends DemoBase implements OnSeekBarChangeLis
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_performance_linechart);
 
-        mTvCount = (TextView) findViewById(R.id.tvValueCount);
-        mSeekBarValues = (SeekBar) findViewById(R.id.seekbarValues);
+        mTvCount = findViewById(R.id.tvValueCount);
+        mSeekBarValues = findViewById(R.id.seekbarValues);
         mTvCount.setText("500");
 
         mSeekBarValues.setProgress(500);
         
         mSeekBarValues.setOnSeekBarChangeListener(this);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setDrawGridBackground(false);
 
         // no description text
@@ -79,19 +78,15 @@ public class PerformanceLineChart extends DemoBase implements OnSeekBarChangeLis
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     private void setData(int count, float range) {
 
-        ArrayList<Entry> yVals = new ArrayList<Entry>();
+        ArrayList<Entry> yVals = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             float mult = (range + 1);

@@ -40,16 +40,16 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_scatterchart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (ScatterChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.getDescription().setEnabled(false);
         mChart.setOnChartValueSelectedListener(this);
 
@@ -158,9 +158,9 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
         tvX.setText("" + (mSeekBarX.getProgress() + 1));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-        ArrayList<Entry> yVals3 = new ArrayList<Entry>();
+        ArrayList<Entry> yVals1 = new ArrayList<>();
+        ArrayList<Entry> yVals2 = new ArrayList<>();
+        ArrayList<Entry> yVals3 = new ArrayList<>();
 
         for (int i = 0; i < mSeekBarX.getProgress(); i++) {
             float val = (float) (Math.random() * mSeekBarY.getProgress()) + 3;
@@ -194,7 +194,7 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
         set2.setScatterShapeSize(8f);
         set3.setScatterShapeSize(8f);
 
-        ArrayList<IScatterDataSet> dataSets = new ArrayList<IScatterDataSet>();
+        ArrayList<IScatterDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1); // add the datasets
         dataSets.add(set2);
         dataSets.add(set3);
@@ -216,19 +216,13 @@ public class ScatterChartActivity extends DemoBase implements OnSeekBarChangeLis
 
     @Override
     public void onNothingSelected() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

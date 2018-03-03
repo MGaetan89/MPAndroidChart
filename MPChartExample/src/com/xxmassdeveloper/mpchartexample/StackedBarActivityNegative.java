@@ -44,7 +44,7 @@ public class StackedBarActivityNegative extends DemoBase implements
 
         setTitle("Age Distribution Austria");
 
-        mChart = (HorizontalBarChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
         mChart.setDrawGridBackground(false);
         mChart.getDescription().setEnabled(false);
@@ -95,7 +95,7 @@ public class StackedBarActivityNegative extends DemoBase implements
         l.setXEntrySpace(6f);
 
         // IMPORTANT: When using negative values in stacked bars, always make sure the negative values are in the array first
-        ArrayList<BarEntry> yValues = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yValues = new ArrayList<>();
         yValues.add(new BarEntry(5, new float[]{ -10, 10 }));
         yValues.add(new BarEntry(15, new float[]{ -12, 13 }));
         yValues.add(new BarEntry(25, new float[]{ -15, 15 }));
@@ -114,12 +114,10 @@ public class StackedBarActivityNegative extends DemoBase implements
         set.setValueFormatter(new CustomFormatter());
         set.setValueTextSize(7f);
         set.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        set.setColors(new int[] {Color.rgb(67,67,72), Color.rgb(124,181,236)});
+        set.setColors(Color.rgb(67,67,72), Color.rgb(124,181,236));
         set.setStackLabels(new String[]{
                 "Men", "Women"
         });
-
-        String []xLabels = new String[]{"0-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80-90", "90-100", "100+"};
 
         BarData data = new BarData(set);
         data.setBarWidth(8.5f);
@@ -227,7 +225,6 @@ public class StackedBarActivityNegative extends DemoBase implements
 
     @Override
     public void onNothingSelected() {
-        // TODO Auto-generated method stub
         Log.i("NOTING SELECTED", "");
     }
 

@@ -35,16 +35,16 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
 
         mChart.getDescription().setEnabled(false);
 
@@ -153,7 +153,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
         tvX.setText("" + (mSeekBarX.getProgress() + 1));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
         for (int i = 0; i < mSeekBarX.getProgress() + 1; i++) {
             float mult = (mSeekBarY.getProgress() + 1);
@@ -174,7 +174,7 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
             set1.setColors(ColorUtils.VORDIPLOM_COLORS);
             set1.setDrawValues(false);
 
-            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
 
             BarData data = new BarData(dataSets);
@@ -187,13 +187,9 @@ public class AnotherBarActivity extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

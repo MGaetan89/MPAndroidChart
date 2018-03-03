@@ -43,14 +43,14 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart_time);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        tvX = findViewById(R.id.tvXMax);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setProgress(100);
         tvX.setText("100");
 
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
 
         // no description text
         mChart.getDescription().setEnabled(false);
@@ -264,15 +264,13 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         // now in hours
         long now = TimeUnit.MILLISECONDS.toHours(System.currentTimeMillis());
 
-        ArrayList<Entry> values = new ArrayList<Entry>();
-
-        float from = now;
+        ArrayList<Entry> values = new ArrayList<>();
 
         // count = hours
         float to = now + count;
 
         // increment by 1 hour
-        for (float x = from; x < to; x++) {
+        for (float x = (float) now; x < to; x++) {
 
             float y = getRandom(range, 50);
             values.add(new Entry(x, y)); // add one entry per hour
@@ -302,13 +300,9 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

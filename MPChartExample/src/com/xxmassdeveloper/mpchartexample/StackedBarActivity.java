@@ -43,16 +43,16 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
 
         mChart.getDescription().setEnabled(false);
@@ -192,7 +192,7 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
         tvX.setText("" + (mSeekBarX.getProgress() + 1));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
         for (int i = 0; i < mSeekBarX.getProgress() + 1; i++) {
             float mult = (mSeekBarY.getProgress() + 1);
@@ -220,7 +220,7 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
             set1.setColors(getColors());
             set1.setStackLabels(new String[]{"Births", "Divorces", "Marriages"});
 
-            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
 
             BarData data = new BarData(dataSets);
@@ -236,14 +236,10 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -259,8 +255,6 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onNothingSelected() {
-        // TODO Auto-generated method stub
-
     }
 
     private int[] getColors() {
@@ -270,9 +264,7 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
         // have as many colors as stack-values per entry
         int[] colors = new int[stacksize];
 
-        for (int i = 0; i < colors.length; i++) {
-            colors[i] = ColorUtils.MATERIAL_COLORS[i];
-        }
+        System.arraycopy(ColorUtils.MATERIAL_COLORS, 0, colors, 0, colors.length);
 
         return colors;
     }

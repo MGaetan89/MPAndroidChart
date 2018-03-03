@@ -47,18 +47,18 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_piechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarX = findViewById(R.id.seekBar1);
+        mSeekBarY = findViewById(R.id.seekBar2);
 
         mSeekBarY.setProgress(10);
 
         mSeekBarX.setOnSeekBarChangeListener(this);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (PieChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
         mChart.getDescription().setEnabled(false);
         mChart.setExtraOffsets(5, 10, 5, 5);
@@ -182,14 +182,12 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
 
     private void setData(int count, float range) {
 
-        float mult = range;
-
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        ArrayList<PieEntry> entries = new ArrayList<>();
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
         for (int i = 0; i < count; i++) {
-            entries.add(new PieEntry((float) (Math.random() * mult) + mult / 5, mParties[i % mParties.length]));
+            entries.add(new PieEntry((float) (Math.random() * range) + range / 5, mParties[i % mParties.length]));
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Election Results");
@@ -198,7 +196,7 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
 
         // add a lot of colors
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+        ArrayList<Integer> colors = new ArrayList<>();
 
         for (int c : ColorUtils.VORDIPLOM_COLORS)
             colors.add(c);
@@ -269,13 +267,9 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

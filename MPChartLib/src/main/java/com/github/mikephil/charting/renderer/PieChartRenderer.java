@@ -52,7 +52,7 @@ public class PieChartRenderer extends DataRenderer {
     private TextPaint mCenterTextPaint;
 
     /**
-     * paint object used for drwing the slice-text
+     * paint object used for drawing the slice-text
      */
     private Paint mEntryLabelsPaint;
 
@@ -117,7 +117,6 @@ public class PieChartRenderer extends DataRenderer {
 
     @Override
     public void initBuffers() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -206,9 +205,7 @@ public class PieChartRenderer extends DataRenderer {
         float spaceSizeRatio = dataSet.getSliceSpace() / mViewPortHandler.getSmallestContentExtension();
         float minValueRatio = dataSet.getYMin() / mChart.getData().getYValueSum() * 2;
 
-        float sliceSpace = spaceSizeRatio > minValueRatio ? 0f : dataSet.getSliceSpace();
-
-        return sliceSpace;
+        return spaceSizeRatio > minValueRatio ? 0f : dataSet.getSliceSpace();
     }
 
     protected void drawDataSet(Canvas c, @NonNull IPieDataSet dataSet) {

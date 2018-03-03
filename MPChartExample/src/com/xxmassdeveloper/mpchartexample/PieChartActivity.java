@@ -46,15 +46,15 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_piechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarX = findViewById(R.id.seekBar1);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarX.setProgress(4);
         mSeekBarY.setProgress(10);
 
-        mChart = (PieChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
         mChart.getDescription().setEnabled(false);
         mChart.setExtraOffsets(5, 10, 5, 5);
@@ -196,14 +196,12 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
     private void setData(int count, float range) {
 
-        float mult = range;
-
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        ArrayList<PieEntry> entries = new ArrayList<>();
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
         for (int i = 0; i < count ; i++) {
-            entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5),
+            entries.add(new PieEntry((float) ((Math.random() * range) + range / 5),
                     mParties[i % mParties.length],
                     getResources().getDrawable(R.drawable.star)));
         }
@@ -218,7 +216,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         // add a lot of colors
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+        ArrayList<Integer> colors = new ArrayList<>();
 
         for (int c : ColorUtils.VORDIPLOM_COLORS)
             colors.add(c);
@@ -282,13 +280,9 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

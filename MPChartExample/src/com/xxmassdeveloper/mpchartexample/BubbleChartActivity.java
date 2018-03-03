@@ -42,16 +42,16 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_bubblechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (BubbleChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.getDescription().setEnabled(false);
 
         mChart.setOnChartValueSelectedListener(this);
@@ -165,9 +165,9 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
         tvX.setText("" + count);
         tvY.setText("" + range);
 
-        ArrayList<BubbleEntry> yVals1 = new ArrayList<BubbleEntry>();
-        ArrayList<BubbleEntry> yVals2 = new ArrayList<BubbleEntry>();
-        ArrayList<BubbleEntry> yVals3 = new ArrayList<BubbleEntry>();
+        ArrayList<BubbleEntry> yVals1 = new ArrayList<>();
+        ArrayList<BubbleEntry> yVals2 = new ArrayList<>();
+        ArrayList<BubbleEntry> yVals3 = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range);
@@ -206,7 +206,7 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
         set3.setColor(ColorUtils.COLORFUL_COLORS[2], 130);
         set3.setDrawValues(true);
 
-        ArrayList<IBubbleDataSet> dataSets = new ArrayList<IBubbleDataSet>();
+        ArrayList<IBubbleDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1); // add the datasets
         dataSets.add(set2);
         dataSets.add(set3);
@@ -232,19 +232,13 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
 
     @Override
     public void onNothingSelected() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

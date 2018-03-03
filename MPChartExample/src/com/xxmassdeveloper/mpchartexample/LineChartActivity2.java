@@ -44,10 +44,10 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
+        mSeekBarX = findViewById(R.id.seekBar1);
+        mSeekBarY = findViewById(R.id.seekBar2);
 
         mSeekBarX.setProgress(45);
         mSeekBarY.setProgress(100);
@@ -55,7 +55,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         mSeekBarY.setOnSeekBarChangeListener(this);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
 
         // no description text
@@ -282,7 +282,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
     private void setData(int count, float range) {
 
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+        ArrayList<Entry> yVals1 = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             float mult = range / 2f;
@@ -290,22 +290,20 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             yVals1.add(new Entry(i, val));
         }
 
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+        ArrayList<Entry> yVals2 = new ArrayList<>();
 
         for (int i = 0; i < count-1; i++) {
-            float mult = range;
-            float val = (float) (Math.random() * mult) + 450;
+            float val = (float) (Math.random() * range) + 450;
             yVals2.add(new Entry(i, val));
 //            if(i == 10) {
 //                yVals2.add(new Entry(i, val + 50));
 //            }
         }
 
-        ArrayList<Entry> yVals3 = new ArrayList<Entry>();
+        ArrayList<Entry> yVals3 = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            float mult = range;
-            float val = (float) (Math.random() * mult) + 500;
+            float val = (float) (Math.random() * range) + 500;
             yVals3.add(new Entry(i, val));
         }
 
@@ -392,13 +390,9 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

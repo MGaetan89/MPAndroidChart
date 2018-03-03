@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -20,7 +19,6 @@ import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
-import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
@@ -39,16 +37,16 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_candlechart);
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
+        tvX = findViewById(R.id.tvXMax);
+        tvY = findViewById(R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
+        mSeekBarX = findViewById(R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener(this);
 
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
+        mSeekBarY = findViewById(R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener(this);
 
-        mChart = (CandleStickChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.WHITE);
 
         mChart.getDescription().setEnabled(false);
@@ -129,9 +127,9 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
                 break;
             }
             case R.id.actionToggleMakeShadowSameColorAsCandle: {
-                for (ICandleDataSet set : mChart.getData().getDataSets()) {
-                   //TODO: set.setShadowColorSameAsCandle(!set.getShadowColorSameAsCandle());
-                }
+                //for (ICandleDataSet set : mChart.getData().getDataSets()) {
+                //    set.setShadowColorSameAsCandle(!set.getShadowColorSameAsCandle());
+                //}
 
                 mChart.invalidate();
                 break;
@@ -172,7 +170,7 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
         
         mChart.resetTracking();
 
-        ArrayList<CandleEntry> yVals1 = new ArrayList<CandleEntry>();
+        ArrayList<CandleEntry> yVals1 = new ArrayList<>();
 
         for (int i = 0; i < prog; i++) {
             float mult = (mSeekBarY.getProgress() + 1);
@@ -217,13 +215,9 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

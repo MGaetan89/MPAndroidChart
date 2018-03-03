@@ -42,11 +42,11 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
 
         mSinusData = FileUtils.loadBarEntriesFromAssets(getAssets(), "othersine.txt");
 
-        tvX = (TextView) findViewById(R.id.tvValueCount);
+        tvX = findViewById(R.id.tvValueCount);
 
-        mSeekBarX = (SeekBar) findViewById(R.id.seekbarValues);
+        mSeekBarX = findViewById(R.id.seekbarValues);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
 
         mChart.setDrawBarShadow(false);
         mChart.setDrawValueAboveBar(true);
@@ -185,19 +185,15 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     private void setData(int count) {
 
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             entries.add(mSinusData.get(i));
