@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.annotation.SuppressLint;
@@ -13,6 +12,8 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.xxmassdeveloper.mpchartexample.R;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
 
 /**
  * Custom implementation of the MarkerView.
@@ -38,13 +39,14 @@ public class XYMarkerView extends MarkerView {
     // runs every time the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(Entry e, Highlight highlight) {
+    public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
 
-        tvContent.setText(String.format("x: %s, y: %s", xAxisValueFormatter.getFormattedValue(e.getX(), null), format.format(e.getY())));
+        tvContent.setText("x: " + xAxisValueFormatter.getFormattedValue(entry.getX(), null) + ", y: " + format.format(entry.getY()));
 
-        super.refreshContent(e, highlight);
+        super.refreshContent(entry, highlight);
     }
 
+    @NonNull
     @Override
     public MPPointF getOffset() {
         return new MPPointF(-(getWidth() / 2), -getHeight());

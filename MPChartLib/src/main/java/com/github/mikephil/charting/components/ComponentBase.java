@@ -2,58 +2,56 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.annotation.ColorInt;
+import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.Utils;
 
 /**
- * This class encapsulates everything both Axis, Legend and LimitLines have in common.
+ * Base class for every chart components (Axis, Legend, LimitLine, ...).
  *
  * @author Philipp Jahoda
  */
 public abstract class ComponentBase {
-
     /**
-     * flag that indicates if this axis / legend is enabled or not
+     * Flag that indicates if this component is enabled or not.
      */
     protected boolean mEnabled = true;
 
     /**
-     * the offset in pixels this component has on the x-axis
+     * The offset in pixels this component has on the x-axis.
      */
     protected float mXOffset = 5f;
 
     /**
-     * the offset in pixels this component has on the Y-axis
+     * The offset in pixels this component has on the Y-axis.
      */
     protected float mYOffset = 5f;
 
     /**
-     * the typeface used for the labels
+     * The typeface used for the labels
      */
     @Nullable
-    protected Typeface mTypeface = null;
+    protected Typeface mTypeface;
 
     /**
-     * the text size of the labels
+     * The text size of the labels.
      */
     protected float mTextSize = Utils.convertDpToPixel(10f);
 
     /**
-     * the text color to use for the labels
+     * The text color to use for the labels.
      */
+    @ColorInt
     protected int mTextColor = Color.BLACK;
 
-
     public ComponentBase() {
-
     }
 
     /**
-     * Returns the used offset on the x-axis for drawing the axis or legend
-     * labels. This offset is applied before and after the label.
-     *
-     * @return
+     * Returns the used offset on the x-axis for drawing the axis or legend labels. This offset is
+     * applied before and after the label.
      */
     public float getXOffset() {
         return mXOffset;
@@ -69,8 +67,8 @@ public abstract class ComponentBase {
     }
 
     /**
-     * Returns the used offset on the x-axis for drawing the axis labels. This
-     * offset is applied before and after the label.
+     * Returns the used offset on the x-axis for drawing the axis labels. This offset is applied
+     * before and after the label.
      *
      * @return
      */
@@ -79,9 +77,8 @@ public abstract class ComponentBase {
     }
 
     /**
-     * Sets the used y-axis offset for the labels on this axis. For the legend,
-     * higher offset means the legend as a whole will be placed further away
-     * from the top.
+     * Sets the used y-axis offset for the labels on this axis. For the legend, higher offset means
+     * the legend as a whole will be placed further away from the top.
      *
      * @param yOffset
      */
@@ -90,9 +87,7 @@ public abstract class ComponentBase {
     }
 
     /**
-     * returns the Typeface used for the labels, returns null if none is set
-     *
-     * @return
+     * Returns the Typeface used for the labels, returns null if none is set.
      */
     @Nullable
     public Typeface getTypeface() {
@@ -100,63 +95,52 @@ public abstract class ComponentBase {
     }
 
     /**
-     * sets a specific Typeface for the labels
+     * Sets a specific Typeface for the labels.
      *
-     * @param tf
+     * @param typeface
      */
-    public void setTypeface(@Nullable Typeface tf) {
-        mTypeface = tf;
+    public void setTypeface(@Nullable Typeface typeface) {
+        mTypeface = typeface;
     }
 
     /**
-     * sets the size of the label text in density pixels min = 6f, max = 24f, default
-     * 10f
+     * Sets the size of the label text in density pixels, between 6f and 24f included.
      *
      * @param size the text size, in DP
      */
-    public void setTextSize(float size) {
+    public void setTextSize(@FloatRange(from = 6f, to = 24f) float size) {
+        float adjustedSize = Math.max(6f, Math.min(size, 24f));
 
-        if (size > 24f)
-            size = 24f;
-        if (size < 6f)
-            size = 6f;
-
-        mTextSize = Utils.convertDpToPixel(size);
+        mTextSize = Utils.convertDpToPixel(adjustedSize);
     }
 
     /**
-     * returns the text size that is currently set for the labels, in pixels
-     *
-     * @return
+     * Returns the text size that is currently set for the labels, in pixels.
      */
     public float getTextSize() {
         return mTextSize;
     }
 
-
     /**
-     * Sets the text color to use for the labels. Make sure to use
-     * getResources().getColor(...) when using a color from the resources.
+     * Sets the text color to use for the labels.
      *
      * @param color
      */
-    public void setTextColor(int color) {
+    public void setTextColor(@ColorInt int color) {
         mTextColor = color;
     }
 
     /**
      * Returns the text color that is set for the labels.
-     *
-     * @return
      */
+    @ColorInt
     public int getTextColor() {
         return mTextColor;
     }
 
     /**
-     * Set this to true if this component should be enabled (should be drawn),
-     * false if not. If disabled, nothing of this component will be drawn.
-     * Default: true
+     * Set this to true if this component should be enabled (should be drawn), false if not. If
+     * disabled, nothing of this component will be drawn.
      *
      * @param enabled
      */
@@ -165,9 +149,7 @@ public abstract class ComponentBase {
     }
 
     /**
-     * Returns true if this comonent is enabled (should be drawn), false if not.
-     *
-     * @return
+     * Returns true if this component is enabled (should be drawn), false if not.
      */
     public boolean isEnabled() {
         return mEnabled;
