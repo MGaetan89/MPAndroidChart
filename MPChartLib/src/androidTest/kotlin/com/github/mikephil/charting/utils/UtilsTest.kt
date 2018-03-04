@@ -3,6 +3,7 @@ package com.github.mikephil.charting.utils
 import android.graphics.Paint
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import android.view.ViewConfiguration
 import com.github.mikephil.charting.TestActivity
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
@@ -19,14 +20,15 @@ class UtilsTest {
 	fun init() {
 		val context = this.activityRule.activity
 		val density = context.resources.displayMetrics.density
+		val viewConfiguration = ViewConfiguration.get(context)
 
 		Utils.init(context)
 
 		assertThat(Utils.convertDpToPixel(0f)).isEqualTo(0f * density)
 		assertThat(Utils.convertDpToPixel(5.5f)).isEqualTo(5.5f * density)
 		assertThat(Utils.convertDpToPixel(10f)).isEqualTo(10f * density)
-		assertThat(Utils.getMinimumFlingVelocity()).isEqualTo(175)
-		assertThat(Utils.getMaximumFlingVelocity()).isEqualTo(28000)
+		assertThat(Utils.getMinimumFlingVelocity()).isEqualTo(viewConfiguration.scaledMinimumFlingVelocity)
+		assertThat(Utils.getMaximumFlingVelocity()).isEqualTo(viewConfiguration.scaledMaximumFlingVelocity)
 
 		Utils.init(null)
 
