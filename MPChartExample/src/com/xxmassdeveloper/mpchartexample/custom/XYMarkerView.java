@@ -1,7 +1,7 @@
-
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
@@ -29,20 +29,21 @@ public class XYMarkerView extends MarkerView {
         super(context, R.layout.custom_marker_view);
 
         this.xAxisValueFormatter = xAxisValueFormatter;
-        tvContent = (TextView) findViewById(R.id.tvContent);
+        tvContent = findViewById(R.id.tvContent);
         format = new DecimalFormat("###.0");
     }
 
     // callbacks everytime the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(Entry e, Highlight highlight) {
+    public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
 
-        tvContent.setText("x: " + xAxisValueFormatter.getFormattedValue(e.getX(), null) + ", y: " + format.format(e.getY()));
+        tvContent.setText("x: " + xAxisValueFormatter.getFormattedValue(entry.getX(), null) + ", y: " + format.format(entry.getY()));
 
-        super.refreshContent(e, highlight);
+        super.refreshContent(entry, highlight);
     }
 
+    @NonNull
     @Override
     public MPPointF getOffset() {
         return new MPPointF(-(getWidth() / 2), -getHeight());

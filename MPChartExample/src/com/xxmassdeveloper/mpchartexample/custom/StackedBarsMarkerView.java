@@ -1,7 +1,7 @@
-
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
@@ -24,33 +24,34 @@ public class StackedBarsMarkerView extends MarkerView {
     public StackedBarsMarkerView(Context context, int layoutResource) {
         super(context, layoutResource);
 
-        tvContent = (TextView) findViewById(R.id.tvContent);
+        tvContent = findViewById(R.id.tvContent);
     }
 
     // callbacks everytime the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(Entry e, Highlight highlight) {
+    public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
 
-        if (e instanceof BarEntry) {
+        if (entry instanceof BarEntry) {
 
-            BarEntry be = (BarEntry) e;
+            BarEntry be = (BarEntry) entry;
 
             if(be.getYVals() != null) {
 
                 // draw the stack value
-                tvContent.setText("" + Utils.formatNumber(be.getYVals()[highlight.getStackIndex()], 0, true));
+                tvContent.setText(Utils.formatNumber(be.getYVals()[highlight.getStackIndex()], 0, true));
             } else {
-                tvContent.setText("" + Utils.formatNumber(be.getY(), 0, true));
+                tvContent.setText(Utils.formatNumber(be.getY(), 0, true));
             }
         } else {
 
-            tvContent.setText("" + Utils.formatNumber(e.getY(), 0, true));
+            tvContent.setText(Utils.formatNumber(entry.getY(), 0, true));
         }
 
-        super.refreshContent(e, highlight);
+        super.refreshContent(entry, highlight);
     }
 
+    @NonNull
     @Override
     public MPPointF getOffset() {
         return new MPPointF(-(getWidth() / 2), -getHeight());
