@@ -6,6 +6,8 @@ import org.junit.Test
 class MPPointFTest {
 	@Test
 	fun equals() {
+		assertThat(MPPointF(0f, 0f)).isNotEqualTo(null)
+		assertThat(MPPointF(0f, 0f)).isNotEqualTo(42)
 		assertThat(MPPointF(0f, 0f)).isEqualTo(MPPointF(0f, 0f))
 		assertThat(MPPointF(1f, 0f)).isNotEqualTo(MPPointF(0f, 0f))
 		assertThat(MPPointF(1f, 0f)).isEqualTo(MPPointF(1f, 0f))
