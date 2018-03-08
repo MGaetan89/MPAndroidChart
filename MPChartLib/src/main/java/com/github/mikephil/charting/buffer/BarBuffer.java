@@ -7,6 +7,10 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 public class BarBuffer extends AbstractBuffer<IBarDataSet> {
+    /**
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
+     */
+    @Deprecated
     protected int mDataSetIndex = 0;
 
     /**
@@ -40,9 +44,13 @@ public class BarBuffer extends AbstractBuffer<IBarDataSet> {
     }
 
     public void setBarWidth(float barWidth) {
-        this.mBarWidth = barWidth;
+        this.mBarWidth = Math.max(barWidth, 1f);
     }
 
+    /**
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
+     */
+    @Deprecated
     public void setDataSet(int index) {
         this.mDataSetIndex = index;
     }

@@ -9,7 +9,7 @@ import org.junit.Test
 class BarBufferTest {
 	@Test
 	fun barBuffer_empty_noStacks_notInverted() {
-		val buffer = BarBuffer(0, false)
+		val buffer = BarBuffer(0, 0, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -68,6 +68,33 @@ class BarBufferTest {
 		assertThat(buffer.index).isEqualTo(0)
 
 		// feed()
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
 		buffer.feed(BarDataSet(emptyList(), ""))
 		assertThat(buffer.index).isEqualTo(0)
 
@@ -81,7 +108,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_notInverted() {
-		val buffer = BarBuffer(0, true)
+		val buffer = BarBuffer(0, 0, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -149,11 +176,38 @@ class BarBufferTest {
 		} catch (exception: IndexOutOfBoundsException) {
 			assertThat(buffer.index).isEqualTo(1)
 		}
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
 	}
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_notInverted() {
-		val buffer = BarBuffer(12, false)
+		val buffer = BarBuffer(12, 0, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -221,11 +275,38 @@ class BarBufferTest {
 		assertThat(buffer.buffer[1]).isEqualTo(5.25f)
 		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
 		assertThat(buffer.buffer[3]).isEqualTo(0f)
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(4.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(5.25f)
+		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(0f)
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(2.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(5.25f)
+		assertThat(buffer.buffer[2]).isEqualTo(7.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(0f)
 	}
 
 	@Test
 	fun barBuffer_notEmpty_stacks_notInverted() {
-		val buffer = BarBuffer(12, true)
+		val buffer = BarBuffer(12, 0, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -293,11 +374,38 @@ class BarBufferTest {
 		assertThat(buffer.buffer[1]).isEqualTo(1.5f)
 		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
 		assertThat(buffer.buffer[3]).isEqualTo(0f)
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(4.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(1.5f)
+		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(0f)
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(2.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(1.5f)
+		assertThat(buffer.buffer[2]).isEqualTo(7.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(0f)
 	}
 
 	@Test
 	fun barBuffer_empty_noStacks_inverted() {
-		val buffer = BarBuffer(0, false)
+		val buffer = BarBuffer(0, 0, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -356,6 +464,33 @@ class BarBufferTest {
 		assertThat(buffer.index).isEqualTo(0)
 
 		// feed()
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
 		buffer.feed(BarDataSet(emptyList(), ""))
 		assertThat(buffer.index).isEqualTo(0)
 
@@ -369,7 +504,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_inverted() {
-		val buffer = BarBuffer(0, true)
+		val buffer = BarBuffer(0, 0, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -437,11 +572,38 @@ class BarBufferTest {
 		} catch (exception: IndexOutOfBoundsException) {
 			assertThat(buffer.index).isEqualTo(1)
 		}
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		try {
+			buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+			fail()
+		} catch (exception: IndexOutOfBoundsException) {
+			assertThat(buffer.index).isEqualTo(1)
+		}
 	}
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_inverted() {
-		val buffer = BarBuffer(12, false)
+		val buffer = BarBuffer(12, 0, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -509,11 +671,38 @@ class BarBufferTest {
 		assertThat(buffer.buffer[1]).isEqualTo(0f)
 		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
 		assertThat(buffer.buffer[3]).isEqualTo(5.25f)
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(4.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(0f)
+		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(5.25f)
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(2.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(0f)
+		assertThat(buffer.buffer[2]).isEqualTo(7.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(5.25f)
 	}
 
 	@Test
 	fun barBuffer_notEmpty_stacks_inverted() {
-		val buffer = BarBuffer(12, true)
+		val buffer = BarBuffer(12, 0, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -581,5 +770,48 @@ class BarBufferTest {
 		assertThat(buffer.buffer[1]).isEqualTo(0f)
 		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
 		assertThat(buffer.buffer[3]).isEqualTo(1.5f)
+
+		// setBarWidth()
+		buffer.setBarWidth(-5f)
+		assertThat(buffer.mBarWidth).isEqualTo(1f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(4.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(0f)
+		assertThat(buffer.buffer[2]).isEqualTo(5.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(1.5f)
+
+		buffer.setBarWidth(5f)
+		assertThat(buffer.mBarWidth).isEqualTo(5f)
+
+		buffer.feed(BarDataSet(emptyList(), ""))
+		assertThat(buffer.index).isEqualTo(0)
+
+		buffer.feed(BarDataSet(listOf(BarEntry(5f, floatArrayOf(6f, 7f, 8f))), "Foo"))
+		assertThat(buffer.index).isEqualTo(0)
+		assertThat(buffer.buffer[0]).isEqualTo(2.5f)
+		assertThat(buffer.buffer[1]).isEqualTo(0f)
+		assertThat(buffer.buffer[2]).isEqualTo(7.5f)
+		assertThat(buffer.buffer[3]).isEqualTo(1.5f)
+	}
+
+	@Test
+	fun setDataSet() {
+		val buffer = BarBuffer(0, 0, false)
+
+		assertThat(buffer.mDataSetIndex).isEqualTo(0)
+
+		buffer.setDataSet(-5)
+		assertThat(buffer.mDataSetIndex).isEqualTo(-5)
+
+		buffer.setDataSet(0)
+		assertThat(buffer.mDataSetIndex).isEqualTo(0)
+
+		buffer.setDataSet(5)
+		assertThat(buffer.mDataSetIndex).isEqualTo(5)
 	}
 }
