@@ -9,7 +9,7 @@ import org.junit.Test
 class HorizontalBarBufferTest {
 	@Test
 	fun barBuffer_empty_noStacks_notInverted() {
-		val buffer = HorizontalBarBuffer(0, false)
+		val buffer = HorizontalBarBuffer(0, 0, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -81,7 +81,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_notInverted() {
-		val buffer = HorizontalBarBuffer(0, true)
+		val buffer = HorizontalBarBuffer(0, 0, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -153,7 +153,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_notInverted() {
-		val buffer = HorizontalBarBuffer(12, false)
+		val buffer = HorizontalBarBuffer(12, 0, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -225,7 +225,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_stacks_notInverted() {
-		val buffer = HorizontalBarBuffer(12, true)
+		val buffer = HorizontalBarBuffer(12, 0, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -297,7 +297,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_empty_noStacks_inverted() {
-		val buffer = HorizontalBarBuffer(0, false)
+		val buffer = HorizontalBarBuffer(0, 0, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -369,7 +369,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_inverted() {
-		val buffer = HorizontalBarBuffer(0, true)
+		val buffer = HorizontalBarBuffer(0, 0, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -441,7 +441,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_inverted() {
-		val buffer = HorizontalBarBuffer(12, false)
+		val buffer = HorizontalBarBuffer(12, 0, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -513,7 +513,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_stacks_inverted() {
-		val buffer = HorizontalBarBuffer(12, true)
+		val buffer = HorizontalBarBuffer(12, 0, true)
 		buffer.setInverted(true)
 
 		// size()
