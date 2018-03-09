@@ -40,7 +40,10 @@ public class MarkerView extends RelativeLayout implements IMarker {
      */
     public MarkerView(Context context, @LayoutRes int layoutResource) {
         super(context);
-        setupLayoutResource(layoutResource);
+
+        if (layoutResource != 0) {
+            setupLayoutResource(layoutResource);
+        }
     }
 
     /**
@@ -75,8 +78,15 @@ public class MarkerView extends RelativeLayout implements IMarker {
         return mOffset;
     }
 
-    public void setChartView(Chart chart) {
-        mWeakChart = new WeakReference<>(chart);
+    public void setChartView(@Nullable Chart chart) {
+        if (chart == null) {
+            if (mWeakChart != null) {
+                mWeakChart.clear();
+                mWeakChart = null;
+            }
+        } else {
+            mWeakChart = new WeakReference<>(chart);
+        }
     }
 
     @Nullable

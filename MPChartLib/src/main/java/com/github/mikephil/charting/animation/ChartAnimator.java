@@ -18,14 +18,6 @@ public class ChartAnimator {
     @Nullable
     private final AnimatorUpdateListener mListener;
 
-    public ChartAnimator() {
-        this(null);
-    }
-
-    public ChartAnimator(@Nullable AnimatorUpdateListener listener) {
-        mListener = listener;
-    }
-
     /**
      * The phase that is animated and influences the drawn values on the y-axis.
      */
@@ -37,6 +29,14 @@ public class ChartAnimator {
      */
     @FloatRange(from = 0f, to = 1f)
     protected float mPhaseX = 1f;
+
+    public ChartAnimator() {
+        this(null);
+    }
+
+    public ChartAnimator(@Nullable AnimatorUpdateListener listener) {
+        mListener = listener;
+    }
 
     /**
      * Animates the drawing/rendering of the chart on both x- and y-axis with the specified
@@ -61,11 +61,13 @@ public class ChartAnimator {
             animatorX.setInterpolator(easingX);
         }
 
-        // make sure only one animator produces update-callbacks (which then call invalidate())
-        if (durationMillisX > durationMillisY) {
-            animatorX.addUpdateListener(mListener);
-        } else {
-            animatorY.addUpdateListener(mListener);
+        // Make sure only one animator produces update-callbacks (which then call invalidate())
+        if (mListener != null) {
+            if (durationMillisX > durationMillisY) {
+                animatorX.addUpdateListener(mListener);
+            } else {
+                animatorY.addUpdateListener(mListener);
+            }
         }
 
         animatorX.start();
@@ -85,7 +87,9 @@ public class ChartAnimator {
         if (easing != null) {
             animatorX.setInterpolator(easing);
         }
-        animatorX.addUpdateListener(mListener);
+        if (mListener != null) {
+            animatorX.addUpdateListener(mListener);
+        }
         animatorX.start();
     }
 
@@ -102,7 +106,9 @@ public class ChartAnimator {
         if (easing != null) {
             animatorY.setInterpolator(easing);
         }
-        animatorY.addUpdateListener(mListener);
+        if (mListener != null) {
+            animatorY.addUpdateListener(mListener);
+        }
         animatorY.start();
     }
 
@@ -175,9 +181,7 @@ public class ChartAnimator {
     }
 
     /**
-     * This gets the y-phase that is used to animate the values.
-     *
-     * @return
+     * Returns the y-phase that is used to animate the values.
      */
     @FloatRange(from = 0f, to = 1f)
     public float getPhaseY() {
@@ -194,9 +198,7 @@ public class ChartAnimator {
     }
 
     /**
-     * This gets the x-phase that is used to animate the values.
-     *
-     * @return
+     * Returns the x-phase that is used to animate the values.
      */
     @FloatRange(from = 0f, to = 1f)
     public float getPhaseX() {
