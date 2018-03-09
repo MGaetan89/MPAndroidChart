@@ -30,6 +30,7 @@ public class MarkerImage implements IMarker {
     @NonNull
     private MPPointF mOffset = MPPointF.getInstance();
 
+    @NonNull
     private final MPPointF mOffset2 = MPPointF.getInstance();
 
     @Nullable
@@ -48,10 +49,14 @@ public class MarkerImage implements IMarker {
      * @param drawableResourceId the drawable resource to render
      */
     public MarkerImage(@NonNull Context context, @DrawableRes int drawableResourceId) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mDrawable = context.getResources().getDrawable(drawableResourceId, null);
+        if (drawableResourceId != 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mDrawable = context.getResources().getDrawable(drawableResourceId, null);
+            } else {
+                mDrawable = context.getResources().getDrawable(drawableResourceId);
+            }
         } else {
-            mDrawable = context.getResources().getDrawable(drawableResourceId);
+            mDrawable = null;
         }
     }
 
@@ -87,8 +92,15 @@ public class MarkerImage implements IMarker {
         return mSize;
     }
 
-    public void setChartView(Chart chart) {
-        mWeakChart = new WeakReference<>(chart);
+    public void setChartView(@Nullable Chart chart) {
+        if (chart == null) {
+            if (mWeakChart != null) {
+                mWeakChart.clear();
+                mWeakChart = null;
+            }
+        } else {
+            mWeakChart = new WeakReference<>(chart);
+        }
     }
 
     @Nullable
@@ -99,7 +111,7 @@ public class MarkerImage implements IMarker {
     @NonNull
     @Override
     public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
-        MPPointF offset = getOffset();
+        MPPointF offset = mOffset;
         mOffset2.x = offset.x;
         mOffset2.y = offset.y;
 
