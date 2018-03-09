@@ -29,8 +29,9 @@ class ObjectPoolTest {
 
 	@Test
 	fun objectPool() {
-		assertThat(TestPoolable.pool.poolId).isEqualTo(3)
-		assertThat(TestPoolable.pool2.poolId).isEqualTo(4)
+		val poolId = TestPoolable.pool.poolId
+		val poolId2 = TestPoolable.pool2.poolId
+		assertThat(poolId).isNotEqualTo(poolId2)
 
 		assertThat(TestPoolable.pool.poolCapacity).isEqualTo(4)
 		assertThat(TestPoolable.pool.poolCount).isEqualTo(4)
@@ -164,7 +165,7 @@ class ObjectPoolTest {
 			fail("Should have failed")
 		} catch (exception: IllegalArgumentException) {
 			assertThat(exception).hasMessageThat()
-				.isEqualTo("The object to recycle already belongs to poolId '3'. Object cannot belong to different pools instances simultaneously.")
+				.isEqualTo("The object to recycle already belongs to poolId '$poolId'. Object cannot belong to different pools instances simultaneously.")
 		}
 
 		TestPoolable.pool.replenishPercentage = -0.5f
