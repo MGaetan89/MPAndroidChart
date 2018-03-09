@@ -102,7 +102,7 @@ public class ObjectPool<T extends ObjectPool.Poolable> {
      */
     @NonNull
     public synchronized T get() {
-        if (this.objectsPointer == -1 && this.replenishPercentage > 0f) {
+        if (this.objectsPointer == -1) {
             this.refillPool();
         }
 
@@ -120,13 +120,7 @@ public class ObjectPool<T extends ObjectPool.Poolable> {
      * @param object An object of type T to recycle
      */
     public synchronized void recycle(@NonNull T object) {
-        if (object.currentOwnerId != Poolable.NO_OWNER) {
-            if (object.currentOwnerId == this.poolId) {
-                throw new IllegalArgumentException("The object passed is already stored in this pool.");
-            } else {
-                throw new IllegalArgumentException("The object to recycle already belongs to poolId '" + object.currentOwnerId + "'. Object cannot belong to different pools instances simultaneously.");
-            }
-        }
+        checkObjectOwnership(object);
 
         this.objectsPointer++;
         if (this.objectsPointer >= objects.length) {
@@ -153,19 +147,23 @@ public class ObjectPool<T extends ObjectPool.Poolable> {
         // Not relying on recycle(T object) because this is more efficient.
         for (int i = 0; i < objectsListSize; i++) {
             T object = objects.get(i);
-            if (object.currentOwnerId != Poolable.NO_OWNER) {
-                if (object.currentOwnerId == this.poolId) {
-                    throw new IllegalArgumentException("The object passed is already stored in this pool.");
-                } else {
-                    throw new IllegalArgumentException("The object to recycle already belongs to poolId '" + object.currentOwnerId + "'. Object cannot belong to different pools instances simultaneously.");
-                }
-            }
+            checkObjectOwnership(object);
 
             object.currentOwnerId = this.poolId;
             this.objects[this.objectsPointer + 1 + i] = object;
         }
 
         this.objectsPointer += objectsListSize;
+    }
+
+    private void checkObjectOwnership(@NonNull T object) {
+        if (object.currentOwnerId != Poolable.NO_OWNER) {
+            if (object.currentOwnerId == this.poolId) {
+                throw new IllegalArgumentException("The object passed is already stored in this pool.");
+            } else {
+                throw new IllegalArgumentException("The object to recycle already belongs to poolId '" + object.currentOwnerId + "'. Object cannot belong to different pools instances simultaneously.");
+            }
+        }
     }
 
     private void resizePool() {
