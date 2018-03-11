@@ -146,6 +146,18 @@ class ChartAnimatorTest {
 
 	@Test
 	@UiThreadTest
+	fun animateXY_noListener_noInterpolator_withDifferentDuration() {
+		val animator = ChartAnimator()
+		assertThat(animator.phaseX).isEqualTo(1f)
+		assertThat(animator.phaseY).isEqualTo(1f)
+
+		animator.animateXY(200, 100)
+		assertThat(animator.phaseX).isEqualTo(0f)
+		assertThat(animator.phaseY).isEqualTo(0f)
+	}
+
+	@Test
+	@UiThreadTest
 	fun animateXY_noListener_noInterpolator_withDuration() {
 		val animator = ChartAnimator()
 		assertThat(animator.phaseX).isEqualTo(1f)
@@ -166,6 +178,18 @@ class ChartAnimatorTest {
 		animator.animateXY(0, 0, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
+	}
+
+	@Test
+	@UiThreadTest
+	fun animateXY_noListener_withInterpolator_withDifferentDuration() {
+		val animator = ChartAnimator()
+		assertThat(animator.phaseX).isEqualTo(1f)
+		assertThat(animator.phaseY).isEqualTo(1f)
+
+		animator.animateXY(200, 100, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		assertThat(animator.phaseX).isEqualTo(0f)
+		assertThat(animator.phaseY).isEqualTo(0f)
 	}
 
 	@Test
@@ -193,6 +217,23 @@ class ChartAnimatorTest {
 		animator.animateXY(0, 0)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
+
+		assertThat(called).isTrue()
+	}
+
+	@Test
+	@UiThreadTest
+	fun animateXY_withListener_noInterpolator_withDifferentDuration() {
+		var called = false
+		val animator = ChartAnimator(ValueAnimator.AnimatorUpdateListener {
+			called = true
+		})
+		assertThat(animator.phaseX).isEqualTo(1f)
+		assertThat(animator.phaseY).isEqualTo(1f)
+
+		animator.animateXY(200, 100)
+		assertThat(animator.phaseX).isEqualTo(0f)
+		assertThat(animator.phaseY).isEqualTo(0f)
 
 		assertThat(called).isTrue()
 	}
@@ -227,6 +268,23 @@ class ChartAnimatorTest {
 		animator.animateXY(0, 0, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
+
+		assertThat(called).isTrue()
+	}
+
+	@Test
+	@UiThreadTest
+	fun animateXY_withListener_withInterpolator_withDifferentDuration() {
+		var called = false
+		val animator = ChartAnimator(ValueAnimator.AnimatorUpdateListener {
+			called = true
+		})
+		assertThat(animator.phaseX).isEqualTo(1f)
+		assertThat(animator.phaseY).isEqualTo(1f)
+
+		animator.animateXY(200, 100, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		assertThat(animator.phaseX).isEqualTo(0f)
+		assertThat(animator.phaseY).isEqualTo(0f)
 
 		assertThat(called).isTrue()
 	}
