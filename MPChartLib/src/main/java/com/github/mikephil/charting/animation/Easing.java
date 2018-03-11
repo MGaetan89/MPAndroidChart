@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
  *
  * @author Daniel Cohen Gindi
  */
-public abstract class Easing {
+public final class Easing {
     public enum EasingOption {
         Linear,
         EaseInQuad,
@@ -38,6 +38,9 @@ public abstract class Easing {
         EaseInBounce,
         EaseOutBounce,
         EaseInOutBounce,
+    }
+
+    private Easing() {
     }
 
     @NonNull
