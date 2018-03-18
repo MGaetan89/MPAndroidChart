@@ -17,7 +17,7 @@ abstract class ComponentBaseTest<T : ComponentBase> {
 	}
 
 	@Test
-	fun yOffset() {
+	open fun yOffset() {
 		assertThat(this.component.yOffset).isEqualTo(5f)
 
 		this.component.yOffset = 10f

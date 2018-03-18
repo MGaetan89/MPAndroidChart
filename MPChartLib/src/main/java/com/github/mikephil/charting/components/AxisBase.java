@@ -464,7 +464,7 @@ public abstract class AxisBase extends ComponentBase {
         if (mAxisValueFormatter == null ||
                 (mAxisValueFormatter instanceof DefaultAxisValueFormatter &&
                         ((DefaultAxisValueFormatter) mAxisValueFormatter).getDecimalDigits() != mDecimals)) {
-            mAxisValueFormatter = new DefaultAxisValueFormatter(mDecimals);
+            setValueFormatter(null);
         }
 
         return mAxisValueFormatter;
