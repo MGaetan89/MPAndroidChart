@@ -281,22 +281,22 @@ class LegendTest : ComponentBaseTest<Legend>() {
 
 	@Test
 	fun setYEntrySpace() {
-		assertThat(this.component.xEntrySpace).isEqualTo(6f)
+		assertThat(this.component.yEntrySpace).isEqualTo(0f)
 
-		this.component.xEntrySpace = -5f
-		assertThat(this.component.xEntrySpace).isEqualTo(-5f)
+		this.component.yEntrySpace = -5f
+		assertThat(this.component.yEntrySpace).isEqualTo(-5f)
 
-		this.component.xEntrySpace = -2.5f
-		assertThat(this.component.xEntrySpace).isEqualTo(-2.5f)
+		this.component.yEntrySpace = -2.5f
+		assertThat(this.component.yEntrySpace).isEqualTo(-2.5f)
 
-		this.component.xEntrySpace = 0f
-		assertThat(this.component.xEntrySpace).isEqualTo(0f)
+		this.component.yEntrySpace = 0f
+		assertThat(this.component.yEntrySpace).isEqualTo(0f)
 
-		this.component.xEntrySpace = 2.5f
-		assertThat(this.component.xEntrySpace).isEqualTo(2.5f)
+		this.component.yEntrySpace = 2.5f
+		assertThat(this.component.yEntrySpace).isEqualTo(2.5f)
 
-		this.component.xEntrySpace = 5f
-		assertThat(this.component.xEntrySpace).isEqualTo(5f)
+		this.component.yEntrySpace = 5f
+		assertThat(this.component.yEntrySpace).isEqualTo(5f)
 	}
 
 	@Test
