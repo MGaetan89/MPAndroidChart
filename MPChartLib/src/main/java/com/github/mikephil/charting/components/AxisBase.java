@@ -452,10 +452,11 @@ public abstract class AxisBase extends ComponentBase {
     }
 
     public String getFormattedLabel(int index) {
-        if (index < 0 || index >= mEntries.length)
+        if (index < 0 || index >= mEntries.length) {
             return "";
-        else
+        } else {
             return getValueFormatter().getFormattedValue(mEntries[index], this);
+        }
     }
 
     /**

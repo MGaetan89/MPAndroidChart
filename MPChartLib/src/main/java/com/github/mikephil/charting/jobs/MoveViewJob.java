@@ -8,39 +8,37 @@ import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
- * Created by Philipp Jahoda on 19/02/16.
+ * @author Philipp Jahoda
  */
 public class MoveViewJob extends ViewPortJob {
-
     private static ObjectPool<MoveViewJob> pool;
 
     static {
-        pool = ObjectPool.create(2, new MoveViewJob(null,0,0,null,null));
+        pool = ObjectPool.create(2, new MoveViewJob(null, 0f, 0f, null, null));
         pool.setReplenishPercentage(0.5f);
     }
 
     @NonNull
-    public static MoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v){
+    public static MoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer transformer, View view) {
         MoveViewJob result = pool.get();
         result.mViewPortHandler = viewPortHandler;
         result.xValue = xValue;
         result.yValue = yValue;
-        result.mTrans = trans;
-        result.view = v;
+        result.mTrans = transformer;
+        result.view = view;
         return result;
     }
 
-    public static void recycleInstance(MoveViewJob instance){
+    public static void recycleInstance(MoveViewJob instance) {
         pool.recycle(instance);
     }
 
-    public MoveViewJob(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v) {
-        super(viewPortHandler, xValue, yValue, trans, v);
+    public MoveViewJob(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer transformer, View view) {
+        super(viewPortHandler, xValue, yValue, transformer, view);
     }
 
     @Override
     public void run() {
-
         pts[0] = xValue;
         pts[1] = yValue;
 

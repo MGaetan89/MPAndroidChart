@@ -18,22 +18,19 @@ public class DefaultFillFormatter implements IFillFormatter {
             return 0f;
         } else {
             LineData data = dataProvider.getLineData();
-            float max;
-            float min;
-
-            if (data.getYMax() > 0) {
-                max = 0f;
+            if (dataSet.getYMin() >= 0) {
+                if (data.getYMin() < 0) {
+                    return 0f;
+                } else {
+                    return dataProvider.getYChartMin();
+                }
             } else {
-                max = dataProvider.getYChartMax();
+                if (data.getYMax() > 0) {
+                    return 0f;
+                } else {
+                    return dataProvider.getYChartMax();
+                }
             }
-
-            if (data.getYMin() < 0) {
-                min = 0f;
-            } else {
-                min = dataProvider.getYChartMin();
-            }
-
-            return dataSet.getYMin() >= 0 ? min : max;
         }
     }
 }
