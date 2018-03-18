@@ -2,6 +2,7 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -262,11 +263,7 @@ public class Legend extends ComponentBase {
     }
 
     public void setExtra(@Nullable LegendEntry[] entries) {
-        if (entries == null) {
-            mExtraEntries = new LegendEntry[0];
-        } else {
-            mExtraEntries = entries;
-        }
+        mExtraEntries = entries;
     }
 
     /**
@@ -274,7 +271,7 @@ public class Legend extends ComponentBase {
      * legend (if the legend has already been calculated, you will need to call
      * notifyDataSetChanged() to let the changes take effect).
      */
-    public void setExtra(int[] colors, @NonNull String[] labels) {
+    public void setExtra(@ColorInt int[] colors, @NonNull String[] labels) {
         int count = Math.min(colors.length, labels.length);
         LegendEntry[] entries = new LegendEntry[count];
         for (int i = 0; i < count; i++) {
