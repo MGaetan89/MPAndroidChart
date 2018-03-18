@@ -192,6 +192,22 @@ class YAxisTest : AxisBaseTest<YAxis>() {
 		val paint = Paint()
 
 		assertThat(this.component.getRequiredWidthSpace(paint)).isEqualTo(10f)
+
+		this.component.minWidth = -2.5f
+		this.component.maxWidth = -5f
+		assertThat(this.component.getRequiredWidthSpace(paint)).isEqualTo(10f)
+
+		this.component.minWidth = 0f
+		this.component.maxWidth = 0f
+		assertThat(this.component.getRequiredWidthSpace(paint)).isEqualTo(10f)
+
+		this.component.minWidth = 2.5f
+		this.component.maxWidth = 5f
+		assertThat(this.component.getRequiredWidthSpace(paint)).isEqualTo(5f)
+
+		this.component.minWidth = 2.5f
+		this.component.maxWidth = Float.POSITIVE_INFINITY
+		assertThat(this.component.getRequiredWidthSpace(paint)).isEqualTo(10f)
 	}
 
 	@Test
