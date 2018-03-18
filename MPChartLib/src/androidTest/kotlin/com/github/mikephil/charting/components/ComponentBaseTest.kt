@@ -2,11 +2,18 @@ package com.github.mikephil.charting.components
 
 import android.graphics.Color
 import android.graphics.Typeface
+import com.github.mikephil.charting.utils.Utils
 import com.google.common.truth.Truth.assertThat
+import org.junit.Before
 import org.junit.Test
 
 abstract class ComponentBaseTest<T : ComponentBase> {
 	protected lateinit var component: T
+
+	@Before
+	fun init() {
+		Utils.init(null)
+	}
 
 	@Test
 	fun xOffset() {
