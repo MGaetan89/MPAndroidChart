@@ -35,7 +35,7 @@ class MoveViewJobTest : ViewPortJobTest<MoveViewJob>() {
 	fun getInstance() {
 		with(MoveViewJob.getInstance(null, 0f, 0f, null, null)) {
 			assertThat(this.mViewPortHandler).isNull()
-			assertThat(this.getYValue()).isEqualTo(0f)
+			assertThat(this.getXValue()).isEqualTo(0f)
 			assertThat(this.getYValue()).isEqualTo(0f)
 			assertThat(this.mTrans).isNull()
 			assertThat(this.view).isNull()
@@ -61,5 +61,16 @@ class MoveViewJobTest : ViewPortJobTest<MoveViewJob>() {
 		assertThat(this.job.pts).isEqualTo(floatArrayOf(2.5f, 10f))
 
 		// TODO Add more checks
+	}
+
+	@Test
+	fun instantiate() {
+		with(this.job.instantiate() as MoveViewJob) {
+			assertThat(this.getXValue()).isEqualTo(2.5f)
+			assertThat(this.getYValue()).isEqualTo(10f)
+			assertThat(this.mViewPortHandler).isEqualTo(this@MoveViewJobTest.job.mViewPortHandler)
+			assertThat(this.mTrans).isEqualTo(this@MoveViewJobTest.job.mTrans)
+			assertThat(this.view).isEqualTo(this@MoveViewJobTest.job.view)
+		}
 	}
 }

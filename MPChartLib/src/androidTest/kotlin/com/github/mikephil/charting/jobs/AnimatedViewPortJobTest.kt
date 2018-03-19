@@ -12,19 +12,19 @@ abstract class AnimatedViewPortJobTest<T : AnimatedViewPortJob> : ViewPortJobTes
 	fun setPhase() {
 		assertThat(this.job.getPhase()).isEqualTo(0f)
 
-		this.job.phase = -5f
+		this.job.setPhase(-5f)
 		assertThat(this.job.getPhase()).isEqualTo(-5f)
 
-		this.job.phase = -2.5f
+		this.job.setPhase(-2.5f)
 		assertThat(this.job.getPhase()).isEqualTo(-2.5f)
 
-		this.job.phase = 0f
+		this.job.setPhase(0f)
 		assertThat(this.job.getPhase()).isEqualTo(0f)
 
-		this.job.phase = 2.5f
+		this.job.setPhase(2.5f)
 		assertThat(this.job.getPhase()).isEqualTo(2.5f)
 
-		this.job.phase = 5f
+		this.job.setPhase(5f)
 		assertThat(this.job.getPhase()).isEqualTo(5f)
 	}
 }
