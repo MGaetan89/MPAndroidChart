@@ -40,9 +40,6 @@ public final class Easing {
         EaseInOutBounce,
     }
 
-    private Easing() {
-    }
-
     @NonNull
     public static TimeInterpolator getEasingFunctionFromOption(@NonNull EasingOption easing) {
         switch (easing) {

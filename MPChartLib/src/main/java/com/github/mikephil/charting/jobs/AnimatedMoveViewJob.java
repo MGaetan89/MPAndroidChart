@@ -57,6 +57,6 @@ public class AnimatedMoveViewJob extends AnimatedViewPortJob {
     @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
-        return new AnimatedMoveViewJob(null, 0, 0, null, null, 0, 0, 0);
+        return new AnimatedMoveViewJob(null, 0f, 0f, null, null, 0f, 0f, 0L);
     }
 }

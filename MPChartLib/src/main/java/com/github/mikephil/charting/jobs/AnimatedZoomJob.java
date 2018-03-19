@@ -13,43 +13,46 @@ import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
- * Created by Philipp Jahoda on 19/02/16.
+ * @author Philipp Jahoda
  */
 public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.AnimatorListener {
-
     private static ObjectPool<AnimatedZoomJob> pool;
 
+    protected float zoomOriginX;
+    protected float zoomOriginY;
+    protected float zoomCenterX;
+    protected float zoomCenterY;
+    protected YAxis yAxis;
+    protected float xAxisRange;
+    @NonNull
+    protected Matrix mOnAnimationUpdateMatrixBuffer = new Matrix();
+
     static {
-        pool = ObjectPool.create(8, new AnimatedZoomJob(null,null,null,null,0,0,0,0,0,0,0,0,0,0));
+        pool = ObjectPool.create(8, new AnimatedZoomJob(null, null, null, null, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0L));
     }
 
     @NonNull
-    public static AnimatedZoomJob getInstance(ViewPortHandler viewPortHandler, View v, Transformer trans, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) {
+    public static AnimatedZoomJob getInstance(ViewPortHandler viewPortHandler, View view, Transformer transformer, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) {
         AnimatedZoomJob result = pool.get();
         result.mViewPortHandler = viewPortHandler;
         result.xValue = scaleX;
         result.yValue = scaleY;
-        result.mTrans = trans;
-        result.view = v;
+        result.mTrans = transformer;
+        result.yAxis = axis;
+        result.xAxisRange = xAxisRange;
+        result.view = view;
         result.xOrigin = xOrigin;
         result.yOrigin = yOrigin;
-        result.resetAnimator();
+        result.zoomCenterX = zoomCenterX;
+        result.zoomCenterY = zoomCenterY;
+        result.zoomOriginX = zoomOriginX;
+        result.zoomOriginY = zoomOriginY;
         result.animator.setDuration(duration);
         return result;
     }
 
-    protected float zoomOriginX;
-    protected float zoomOriginY;
-
-    protected float zoomCenterX;
-    protected float zoomCenterY;
-
-    protected YAxis yAxis;
-
-    protected float xAxisRange;
-
-    public AnimatedZoomJob(ViewPortHandler viewPortHandler, View v, Transformer trans, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) {
-        super(viewPortHandler, scaleX, scaleY, trans, v, xOrigin, yOrigin, duration);
+    public AnimatedZoomJob(ViewPortHandler viewPortHandler, View view, Transformer transformer, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) {
+        super(viewPortHandler, scaleX, scaleY, transformer, view, xOrigin, yOrigin, duration);
 
         this.zoomCenterX = zoomCenterX;
         this.zoomCenterY = zoomCenterY;
@@ -60,12 +63,8 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
         this.xAxisRange = xAxisRange;
     }
 
-    @NonNull
-    protected Matrix mOnAnimationUpdateMatrixBuffer = new Matrix();
-
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
-
         float scaleX = xOrigin + (xValue - xOrigin) * phase;
         float scaleY = yOrigin + (yValue - yOrigin) * phase;
 
@@ -74,7 +73,7 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
         mViewPortHandler.refresh(save, view, false);
 
         float valsInView = yAxis.mAxisRange / mViewPortHandler.getScaleY();
-        float xsInView =  xAxisRange / mViewPortHandler.getScaleX();
+        float xsInView = xAxisRange / mViewPortHandler.getScaleX();
 
         pts[0] = zoomOriginX + ((zoomCenterX - xsInView / 2f) - zoomOriginX) * phase;
         pts[1] = zoomOriginY + ((zoomCenterY + valsInView / 2f) - zoomOriginY) * phase;
@@ -93,27 +92,23 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
 
     @Override
     public void onAnimationCancel(Animator animation) {
-
     }
 
     @Override
     public void onAnimationRepeat(Animator animation) {
-
     }
 
     @Override
     public void recycleSelf() {
-
     }
 
     @Override
     public void onAnimationStart(Animator animation) {
-
     }
 
     @NonNull
     @Override
     protected ObjectPool.Poolable instantiate() {
-        return new AnimatedZoomJob(null,null,null,null,0,0,0,0,0,0,0,0,0,0);
+        return new AnimatedZoomJob(null, null, null, null, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0L);
     }
 }
