@@ -21,36 +21,32 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.renderer.CombinedChartRenderer;
 
 /**
- * This chart class allows the combination of lines, bars, scatter and candle
- * data all displayed in one chart area.
+ * This chart class allows the combination of lines, bars, scatter and candle data all displayed in
+ * one chart area.
  *
  * @author Philipp Jahoda
  */
 public class CombinedChart extends BarLineChartBase<CombinedData> implements CombinedDataProvider {
-
     /**
-     * if set to true, all values are drawn above their bars, instead of below
-     * their top
+     * If set to true, all values are drawn above their bars, instead of below their top.
      */
     private boolean mDrawValueAboveBar = true;
 
-
     /**
-     * flag that indicates whether the highlight should be full-bar oriented, or single-value?
+     * Flag that indicates whether the highlight should be full-bar oriented, or single-value.
      */
     protected boolean mHighlightFullBarEnabled = false;
 
     /**
-     * if set to true, a grey area is drawn behind each bar that indicates the
-     * maximum value
+     * If set to true, a grey area is drawn behind each bar that indicates the maximum value.
      */
     private boolean mDrawBarShadow = false;
 
     protected DrawOrder[] mDrawOrder;
 
     /**
-     * enum that allows to specify the order in which the different data objects
-     * for the combined-chart are drawn
+     * Enum that allows to specify the order in which the different data objects for the
+     * combined-chart are drawn.
      */
     public enum DrawOrder {
         BAR, BUBBLE, LINE, CANDLE, SCATTER
@@ -93,75 +89,86 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
     @Override
     public void setData(CombinedData data) {
         super.setData(data);
+
         setHighlighter(new CombinedHighlighter(this, this));
-        ((CombinedChartRenderer)mRenderer).createRenderers();
+        ((CombinedChartRenderer) mRenderer).createRenderers();
         mRenderer.initBuffers();
     }
 
     /**
-     * Returns the Highlight object (contains x-index and DataSet index) of the selected value at the given touch
-     * point
-     * inside the CombinedChart.
+     * Returns the Highlight object (contains x-index and DataSet index) of the selected value at
+     * the given touch point inside the CombinedChart.
      *
      * @param x
      * @param y
-     * @return
      */
     @Nullable
     @Override
     public Highlight getHighlightByTouchPoint(float x, float y) {
-
         if (mData == null) {
             Log.e(LOG_TAG, "Can't select by touch. No data set.");
             return null;
         } else {
-            Highlight h = getHighlighter().getHighlight(x, y);
-            if (h == null || !isHighlightFullBarEnabled()) return h;
+            Highlight highlight = getHighlighter().getHighlight(x, y);
+            if (highlight == null || !isHighlightFullBarEnabled()) {
+                return highlight;
+            }
 
             // For isHighlightFullBarEnabled, remove stackIndex
-            return new Highlight(h.getX(), h.getY(),
-                    h.getXPx(), h.getYPx(),
-                    h.getDataSetIndex(), -1, h.getAxis());
+            return new Highlight(
+                    highlight.getX(), highlight.getY(), highlight.getXPx(), highlight.getYPx(),
+                    highlight.getDataSetIndex(), -1, highlight.getAxis()
+            );
         }
     }
 
     @Nullable
     @Override
     public LineData getLineData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
+
         return mData.getLineData();
     }
 
     @Nullable
     @Override
     public BarData getBarData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
+
         return mData.getBarData();
     }
 
     @Nullable
     @Override
     public ScatterData getScatterData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
+
         return mData.getScatterData();
     }
 
     @Nullable
     @Override
     public CandleData getCandleData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
+
         return mData.getCandleData();
     }
 
     @Nullable
     @Override
     public BubbleData getBubbleData() {
-        if (mData == null)
+        if (mData == null) {
             return null;
+        }
+
         return mData.getBubbleData();
     }
 
@@ -176,8 +183,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
     }
 
     /**
-     * If set to true, all values are drawn above their bars, instead of below
-     * their top.
+     * If set to true, all values are drawn above their bars, instead of below their top.
      *
      * @param enabled
      */
@@ -185,10 +191,9 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         mDrawValueAboveBar = enabled;
     }
 
-
     /**
-     * If set to true, a grey area is drawn behind each bar that indicates the
-     * maximum value. Enabling his will reduce performance by about 50%.
+     * If set to true, a grey area is drawn behind each bar that indicates the maximum value.
+     * Enabling his will reduce performance by about 50%.
      *
      * @param enabled
      */
@@ -197,8 +202,8 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
     }
 
     /**
-     * Set this to true to make the highlight operation full-bar oriented,
-     * false to make it highlight single values (relevant only for stacked).
+     * Set this to true to make the highlight operation full-bar oriented, false to make it
+     * highlight single values (relevant only for stacked).
      *
      * @param enabled
      */
@@ -207,7 +212,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
     }
 
     /**
-     * @return true the highlight operation is be full-bar oriented, false if single-value
+     * Returns true the highlight operation is be full-bar oriented, false if single-value.
      */
     @Override
     public boolean isHighlightFullBarEnabled() {
@@ -216,64 +221,61 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
 
     /**
      * Returns the currently set draw order.
-     *
-     * @return
      */
     public DrawOrder[] getDrawOrder() {
         return mDrawOrder;
     }
 
     /**
-     * Sets the order in which the provided data objects should be drawn. The
-     * earlier you place them in the provided array, the further they will be in
-     * the background. e.g. if you provide new DrawOrer[] { DrawOrder.BAR,
-     * DrawOrder.LINE }, the bars will be drawn behind the lines.
+     * Sets the order in which the provided data objects should be drawn. The earlier you place them
+     * in the provided array, the further they will be in the background. e.g. if you provide
+     * new DrawOrer[] { DrawOrder.BAR, DrawOrder.LINE }, the bars will be drawn behind the lines.
      *
      * @param order
      */
     public void setDrawOrder(@Nullable DrawOrder[] order) {
-        if (order == null || order.length <= 0)
+        if (order == null || order.length <= 0) {
             return;
+        }
+
         mDrawOrder = order;
     }
 
     /**
-     * draws all MarkerViews on the highlighted positions
+     * Draws all MarkerViews on the highlighted positions.
      */
     protected void drawMarkers(@NonNull Canvas canvas) {
-
-        // if there is no marker view or drawing marker is disabled
-        if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight())
+        // If there is no marker view or drawing marker is disabled
+        if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight()) {
             return;
+        }
 
-        for (int i = 0; i < mIndicesToHighlight.length; i++) {
-
-            Highlight highlight = mIndicesToHighlight[i];
-
+        for (Highlight highlight : mIndicesToHighlight) {
             IDataSet set = mData.getDataSetByHighlight(highlight);
-
-            Entry e = mData.getEntryForHighlight(highlight);
-            if (e == null)
+            Entry entry = mData.getEntryForHighlight(highlight);
+            if (entry == null || set == null) {
                 continue;
+            }
 
-            int entryIndex = set.getEntryIndex(e);
+            int entryIndex = set.getEntryIndex(entry);
 
-            // make sure entry not null
-            if (entryIndex > set.getEntryCount() * mAnimator.getPhaseX())
+            // Make sure entry not null
+            if (entryIndex > set.getEntryCount() * mAnimator.getPhaseX()) {
                 continue;
+            }
 
-            float[] pos = getMarkerPosition(highlight);
+            float[] position = getMarkerPosition(highlight);
 
-            // check bounds
-            if (!mViewPortHandler.isInBounds(pos[0], pos[1]))
+            // Check bounds
+            if (!mViewPortHandler.isInBounds(position[0], position[1])) {
                 continue;
+            }
 
-            // callbacks to update the content
-            mMarker.refreshContent(e, highlight);
+            // Callbacks to update the content
+            mMarker.refreshContent(entry, highlight);
 
-            // draw the marker
-            mMarker.draw(canvas, pos[0], pos[1]);
+            // Draw the marker
+            mMarker.draw(canvas, position[0], position[1]);
         }
     }
-
 }

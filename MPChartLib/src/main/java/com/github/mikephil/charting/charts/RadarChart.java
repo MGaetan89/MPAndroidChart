@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
@@ -17,50 +18,51 @@ import com.github.mikephil.charting.renderer.YAxisRendererRadarChart;
 import com.github.mikephil.charting.utils.Utils;
 
 /**
- * Implementation of the RadarChart, a "spidernet"-like chart. It works best
- * when displaying 5-10 entries per DataSet.
+ * Implementation of the RadarChart, a "spidernet"-like chart. It works best when displaying 5-10
+ * entries per DataSet.
  *
  * @author Philipp Jahoda
  */
 public class RadarChart extends PieRadarChartBase<RadarData> {
-
     /**
-     * width of the main web lines
+     * Width of the main web lines.
      */
     private float mWebLineWidth = 2.5f;
 
     /**
-     * width of the inner web lines
+     * Width of the inner web lines.
      */
     private float mInnerWebLineWidth = 1.5f;
 
     /**
-     * color for the main web lines
+     * Color for the main web lines.
      */
+    @ColorInt
     private int mWebColor = Color.rgb(122, 122, 122);
 
     /**
-     * color for the inner web
+     * Color for the inner web.
      */
+    @ColorInt
     private int mWebColorInner = Color.rgb(122, 122, 122);
 
     /**
-     * transparency the grid is drawn with (0-255)
+     * Transparency the grid is drawn with (0-255).
      */
     private int mWebAlpha = 150;
 
     /**
-     * flag indicating if the web lines should be drawn or not
+     * Flag indicating if the web lines should be drawn or not.
      */
     private boolean mDrawWeb = true;
 
     /**
-     * modulus that determines how many labels and web-lines are skipped before the next is drawn
+     * Modulus that determines how many labels and web-lines are skipped before the next is drawn.
      */
     private int mSkipWebLineCount = 0;
 
     /**
-     * the object reprsenting the y-axis labels
+     * The object representing the y-axis labels.
      */
     private YAxis mYAxis;
 
@@ -97,24 +99,24 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     @Override
     protected void calcMinMax() {
-        super.calcMinMax();
-
         mYAxis.calculate(mData.getYMin(AxisDependency.LEFT), mData.getYMax(AxisDependency.LEFT));
         mXAxis.calculate(0, mData.getMaxEntryCountSet().getEntryCount());
     }
 
     @Override
     public void notifyDataSetChanged() {
-        if (mData == null)
+        if (mData == null) {
             return;
+        }
 
         calcMinMax();
 
         mYAxisRenderer.computeAxis(mYAxis.mAxisMinimum, mYAxis.mAxisMaximum, mYAxis.isInverted());
         mXAxisRenderer.computeAxis(mXAxis.mAxisMinimum, mXAxis.mAxisMaximum, false);
 
-        if (mLegend != null && !mLegend.isLegendCustom())
+        if (mLegend != null && !mLegend.isLegendCustom()) {
             mLegendRenderer.computeLegend(mData);
+        }
 
         calculateOffsets();
     }
@@ -123,46 +125,44 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
-        if (mData == null)
+        if (mData == null) {
             return;
+        }
 
-//        if (mYAxis.isEnabled())
-//            mYAxisRenderer.computeAxis(mYAxis.mAxisMinimum, mYAxis.mAxisMaximum, mYAxis.isInverted());
-
-        if (mXAxis.isEnabled())
+        if (mXAxis.isEnabled()) {
             mXAxisRenderer.computeAxis(mXAxis.mAxisMinimum, mXAxis.mAxisMaximum, false);
+        }
 
         mXAxisRenderer.renderAxisLabels(canvas);
 
-        if (mDrawWeb)
+        if (mDrawWeb) {
             mRenderer.drawExtras(canvas);
+        }
 
-        if (mYAxis.isEnabled() && mYAxis.isDrawLimitLinesBehindDataEnabled())
+        if (mYAxis.isEnabled() && mYAxis.isDrawLimitLinesBehindDataEnabled()) {
             mYAxisRenderer.renderLimitLines(canvas);
+        }
 
         mRenderer.drawData(canvas);
 
-        if (valuesToHighlight())
+        if (valuesToHighlight()) {
             mRenderer.drawHighlighted(canvas, mIndicesToHighlight);
+        }
 
-        if (mYAxis.isEnabled() && !mYAxis.isDrawLimitLinesBehindDataEnabled())
+        if (mYAxis.isEnabled() && !mYAxis.isDrawLimitLinesBehindDataEnabled()) {
             mYAxisRenderer.renderLimitLines(canvas);
+        }
 
         mYAxisRenderer.renderAxisLabels(canvas);
-
         mRenderer.drawValues(canvas);
-
         mLegendRenderer.renderLegend(canvas);
 
         drawDescription(canvas);
-
         drawMarkers(canvas);
     }
 
     /**
      * Returns the factor that is needed to transform values into pixels.
-     *
-     * @return
      */
     public float getFactor() {
         RectF content = mViewPortHandler.getContentRect();
@@ -171,8 +171,6 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     /**
      * Returns the angle that each slice in the radar chart occupies.
-     *
-     * @return
      */
     public float getSliceAngle() {
         return 360f / (float) mData.getMaxEntryCountSet().getEntryCount();
@@ -180,20 +178,15 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     @Override
     public int getIndexForAngle(float angle) {
-
-        // take the current angle of the chart into consideration
+        // Take the current angle of the chart into consideration
         float a = Utils.getNormalizedAngle(angle - getRotationAngle());
-
-        float sliceangle = getSliceAngle();
+        float sliceAngle = getSliceAngle();
 
         int max = mData.getMaxEntryCountSet().getEntryCount();
-
         int index = 0;
 
         for (int i = 0; i < max; i++) {
-
-            float referenceAngle = sliceangle * (i + 1) - sliceangle / 2f;
-
+            float referenceAngle = sliceAngle * (i + 1) - sliceAngle / 2f;
             if (referenceAngle > a) {
                 index = i;
                 break;
@@ -205,8 +198,6 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     /**
      * Returns the object that represents all y-labels of the RadarChart.
-     *
-     * @return
      */
     public YAxis getYAxis() {
         return mYAxis;
@@ -214,8 +205,6 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     /**
      * Sets the width of the web lines that come from the center.
-     *
-     * @param width
      */
     public void setWebLineWidth(float width) {
         mWebLineWidth = Utils.convertDpToPixel(width);
@@ -226,8 +215,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     /**
-     * Sets the width of the web lines that are in between the lines coming from
-     * the center.
+     * Sets the width of the web lines that are in between the lines coming from the center.
      *
      * @param width
      */
@@ -240,8 +228,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     /**
-     * Sets the transparency (alpha) value for all web lines, default: 150, 255
-     * = 100% opaque, 0 = 100% transparent
+     * Sets the transparency (alpha) value for all web lines, 255 = 100% opaque, 0 = 100% transparent
      *
      * @param alpha
      */
@@ -251,46 +238,42 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     /**
      * Returns the alpha value for all web lines.
-     *
-     * @return
      */
     public int getWebAlpha() {
         return mWebAlpha;
     }
 
     /**
-     * Sets the color for the web lines that come from the center. Don't forget
-     * to use getResources().getColor(...) when loading a color from the
-     * resources. Default: Color.rgb(122, 122, 122)
+     * Sets the color for the web lines that come from the center.
      *
      * @param color
      */
-    public void setWebColor(int color) {
+    public void setWebColor(@ColorInt int color) {
         mWebColor = color;
     }
 
+    @ColorInt
     public int getWebColor() {
         return mWebColor;
     }
 
     /**
-     * Sets the color for the web lines in between the lines that come from the
-     * center. Don't forget to use getResources().getColor(...) when loading a
-     * color from the resources. Default: Color.rgb(122, 122, 122)
+     * Sets the color for the web lines in between the lines that come from the center.
      *
      * @param color
      */
-    public void setWebColorInner(int color) {
+    public void setWebColorInner(@ColorInt int color) {
         mWebColorInner = color;
     }
 
+    @ColorInt
     public int getWebColorInner() {
         return mWebColorInner;
     }
 
     /**
-     * If set to true, drawing the web is enabled, if set to false, drawing the
-     * whole web is disabled. Default: true
+     * If set to true, drawing the web is enabled, if set to false, drawing the whole web is
+     * disabled.
      *
      * @param enabled
      */
@@ -299,20 +282,17 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     }
 
     /**
-     * Sets the number of web-lines that should be skipped on chart web before the
-     * next one is drawn. This targets the lines that come from the center of the RadarChart.
+     * Sets the number of web-lines that should be skipped on chart web before the next one is
+     * drawn. This targets the lines that come from the center of the RadarChart.
      *
      * @param count if count = 1 -> 1 line is skipped in between
      */
     public void setSkipWebLineCount(int count) {
-
         mSkipWebLineCount = Math.max(0, count);
     }
 
     /**
      * Returns the modulus that is used for skipping web-lines.
-     *
-     * @return
      */
     public int getSkipWebLineCount() {
         return mSkipWebLineCount;
@@ -320,14 +300,12 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     @Override
     protected float getRequiredLegendOffset() {
-        return mLegendRenderer.getLabelPaint().getTextSize() * 4.f;
+        return mLegendRenderer.getLabelPaint().getTextSize() * 4f;
     }
 
     @Override
     protected float getRequiredBaseOffset() {
-        return mXAxis.isEnabled() && mXAxis.isDrawLabelsEnabled() ?
-                mXAxis.mLabelRotatedWidth :
-                Utils.convertDpToPixel(10f);
+        return mXAxis.isEnabled() && mXAxis.isDrawLabelsEnabled() ? mXAxis.mLabelRotatedWidth : Utils.convertDpToPixel(10f);
     }
 
     @Override
@@ -352,8 +330,6 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
 
     /**
      * Returns the range of y-values this chart can display.
-     *
-     * @return
      */
     public float getYRange() {
         return mYAxis.mAxisRange;

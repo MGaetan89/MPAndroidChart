@@ -25,7 +25,7 @@ import com.github.mikephil.charting.formatter.IValueFormatter;
  *
  * @author Philipp Jahoda
  */
-public abstract class Utils {
+public final class Utils {
     public final static double DEG2RAD = Math.PI / 180.0;
     public final static float FDEG2RAD = (float) Math.PI / 180f;
     public final static float FLOAT_EPSILON = Float.intBitsToFloat(1);
