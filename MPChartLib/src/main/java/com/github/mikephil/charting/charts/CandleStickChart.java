@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
@@ -14,7 +13,6 @@ import com.github.mikephil.charting.renderer.CandleStickChartRenderer;
  * @author Philipp Jahoda
  */
 public class CandleStickChart extends BarLineChartBase<CandleData> implements CandleDataProvider {
-
     public CandleStickChart(Context context) {
         super(context);
     }

@@ -22,19 +22,18 @@ import com.github.mikephil.charting.renderer.BarChartRenderer;
  * @author Philipp Jahoda
  */
 public class BarChart extends BarLineChartBase<BarData> implements BarDataProvider {
-
     /**
-     * flag that indicates whether the highlight should be full-bar oriented, or single-value?
+     * Flag that indicates whether the highlight should be full-bar oriented, or single-value.
      */
     protected boolean mHighlightFullBarEnabled = false;
 
     /**
-     * if set to true, all values are drawn above their bars, instead of below their top
+     * If set to true, all values are drawn above their bars, instead of below their top.
      */
     private boolean mDrawValueAboveBar = true;
 
     /**
-     * if set to true, a grey area is drawn behind each bar that indicates the maximum value
+     * If set to true, a grey area is drawn behind each bar that indicates the maximum value.
      */
     private boolean mDrawBarShadow = false;
 
@@ -66,93 +65,83 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
 
     @Override
     protected void calcMinMax() {
-
         if (mFitBars) {
             mXAxis.calculate(mData.getXMin() - mData.getBarWidth() / 2f, mData.getXMax() + mData.getBarWidth() / 2f);
         } else {
             mXAxis.calculate(mData.getXMin(), mData.getXMax());
         }
 
-        // calculate axis range (min / max) according to provided data
+        // Calculate axis range (min / max) according to provided data
         mAxisLeft.calculate(mData.getYMin(YAxis.AxisDependency.LEFT), mData.getYMax(YAxis.AxisDependency.LEFT));
-        mAxisRight.calculate(mData.getYMin(YAxis.AxisDependency.RIGHT), mData.getYMax(YAxis.AxisDependency
-                .RIGHT));
+        mAxisRight.calculate(mData.getYMin(YAxis.AxisDependency.RIGHT), mData.getYMax(YAxis.AxisDependency.RIGHT));
     }
 
     /**
-     * Returns the Highlight object (contains x-index and DataSet index) of the selected value at the given touch
-     * point
-     * inside the BarChart.
+     * Returns the Highlight object (contains x-index and DataSet index) of the selected value at
+     * the given touch point inside the BarChart.
      *
      * @param x
      * @param y
-     * @return
      */
     @Nullable
     @Override
     public Highlight getHighlightByTouchPoint(float x, float y) {
-
         if (mData == null) {
             Log.e(LOG_TAG, "Can't select by touch. No data set.");
             return null;
         } else {
-            Highlight h = getHighlighter().getHighlight(x, y);
-            if (h == null || !isHighlightFullBarEnabled()) return h;
+            Highlight highlight = getHighlighter().getHighlight(x, y);
+            if (highlight == null || !isHighlightFullBarEnabled()) {
+                return highlight;
+            }
 
             // For isHighlightFullBarEnabled, remove stackIndex
-            return new Highlight(h.getX(), h.getY(),
-                    h.getXPx(), h.getYPx(),
-                    h.getDataSetIndex(), -1, h.getAxis());
+            return new Highlight(
+                    highlight.getX(), highlight.getY(), highlight.getXPx(), highlight.getYPx(),
+                    highlight.getDataSetIndex(), -1, highlight.getAxis()
+            );
         }
     }
 
     /**
-     * Returns the bounding box of the specified Entry in the specified DataSet. Returns null if the Entry could not be
-     * found in the charts data.  Performance-intensive code should use void getBarBounds(BarEntry, RectF) instead.
+     * Returns the bounding box of the specified Entry in the specified DataSet.
+     * Performance-intensive code should use void getBarBounds(BarEntry, RectF) instead.
      *
      * @param e
-     * @return
      */
     @NonNull
     public RectF getBarBounds(@NonNull BarEntry e) {
-
         RectF bounds = new RectF();
         getBarBounds(e, bounds);
-
         return bounds;
     }
 
     /**
-     * The passed outputRect will be assigned the values of the bounding box of the specified Entry in the specified DataSet.
-     * The rect will be assigned Float.MIN_VALUE in all locations if the Entry could not be found in the charts data.
+     * The passed outputRect will be assigned the values of the bounding box of the specified Entry
+     * in the specified DataSet. The rect will be assigned Float.MIN_VALUE in all locations if the
+     * Entry could not be found in the charts data.
      *
      * @param e
-     * @return
      */
     public void getBarBounds(@NonNull BarEntry e, @NonNull RectF outputRect) {
-
-        RectF bounds = outputRect;
-
         IBarDataSet set = mData.getDataSetForEntry(e);
-
         if (set == null) {
-            bounds.set(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE);
-            return;
+            outputRect.set(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE);
+        } else {
+            float y = e.getY();
+            float x = e.getX();
+
+            float barWidth = mData.getBarWidth();
+
+            float left = x - barWidth / 2f;
+            float right = x + barWidth / 2f;
+            float top = y >= 0 ? y : 0;
+            float bottom = y <= 0 ? y : 0;
+
+            outputRect.set(left, top, right, bottom);
+
+            getTransformer(set.getAxisDependency()).rectValueToPixel(outputRect);
         }
-
-        float y = e.getY();
-        float x = e.getX();
-
-        float barWidth = mData.getBarWidth();
-
-        float left = x - barWidth / 2f;
-        float right = x + barWidth / 2f;
-        float top = y >= 0 ? y : 0;
-        float bottom = y <= 0 ? y : 0;
-
-        bounds.set(left, top, right, bottom);
-
-        getTransformer(set.getAxisDependency()).rectValueToPixel(outputRect);
     }
 
     /**
@@ -165,17 +154,15 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     }
 
     /**
-     * returns true if drawing values above bars is enabled, false if not
-     *
-     * @return
+     * Returns true if drawing values above bars is enabled, false if not.
      */
     public boolean isDrawValueAboveBarEnabled() {
         return mDrawValueAboveBar;
     }
 
     /**
-     * If set to true, a grey area is drawn behind each bar that indicates the maximum value. Enabling his will reduce
-     * performance by about 50%.
+     * If set to true, a grey area is drawn behind each bar that indicates the maximum value.
+     * Enabling his will reduce performance by about 50%.
      *
      * @param enabled
      */
@@ -184,19 +171,16 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     }
 
     /**
-     * returns true if drawing shadows (maxvalue) for each bar is enabled, false if not
-     *
-     * @return
+     * Returns true if drawing shadows (maxvalue) for each bar is enabled, false if not.
      */
     public boolean isDrawBarShadowEnabled() {
         return mDrawBarShadow;
     }
 
     /**
-     * Set this to true to make the highlight operation full-bar oriented, false to make it highlight single values (relevant
-     * only for stacked). If enabled, highlighting operations will highlight the whole bar, even if only a single stack entry
-     * was tapped.
-     * Default: false
+     * Set this to true to make the highlight operation full-bar oriented, false to make it
+     * highlight single values (relevant only for stacked). If enabled, highlighting operations will
+     * highlight the whole bar, even if only a single stack entry was tapped.
      *
      * @param enabled
      */
@@ -205,7 +189,7 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     }
 
     /**
-     * @return true the highlight operation is be full-bar oriented, false if single-value
+     * Returns true the highlight operation is be full-bar oriented, false if single-value.
      */
     @Override
     public boolean isHighlightFullBarEnabled() {
@@ -213,8 +197,8 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     }
 
     /**
-     * Highlights the value at the given x-value in the given DataSet. Provide
-     * -1 as the dataSetIndex to undo all highlighting.
+     * Highlights the value at the given x-value in the given DataSet. Provide -1 as the
+     * dataSetIndex to undo all highlighting.
      *
      * @param x
      * @param dataSetIndex
@@ -231,9 +215,8 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     }
 
     /**
-     * Adds half of the bar width to each side of the x-axis range in order to allow the bars of the barchart to be
-     * fully displayed.
-     * Default: false
+     * Adds half of the bar width to each side of the x-axis range in order to allow the bars of the
+     * barchart to be fully displayed.
      *
      * @param enabled
      */
@@ -242,17 +225,15 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
     }
 
     /**
-     * Groups all BarDataSet objects this data object holds together by modifying the x-value of their entries.
-     * Previously set x-values of entries will be overwritten. Leaves space between bars and groups as specified
-     * by the parameters.
-     * Calls notifyDataSetChanged() afterwards.
+     * Groups all BarDataSet objects this data object holds together by modifying the x-value of
+     * their entries. Previously set x-values of entries will be overwritten. Leaves space between
+     * bars and groups as specified by the parameters. Calls notifyDataSetChanged() afterwards.
      *
      * @param fromX      the starting point on the x-axis where the grouping should begin
      * @param groupSpace the space between groups of bars in values (not pixels) e.g. 0.8f for bar width 1f
      * @param barSpace   the space between individual bars in values (not pixels) e.g. 0.1f for bar width 1f
      */
     public void groupBars(float fromX, float groupSpace, float barSpace) {
-
         if (getBarData() == null) {
             throw new RuntimeException("You need to set data for the chart before grouping bars.");
         } else {
