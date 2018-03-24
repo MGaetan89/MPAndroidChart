@@ -1,4 +1,5 @@
 package com.xxmassdeveloper.mpchartexample.fragments;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -18,7 +19,6 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
-
 
 public class BarChartFrag extends SimpleFragment implements OnChartGestureListener {
 
@@ -69,43 +69,43 @@ public class BarChartFrag extends SimpleFragment implements OnChartGestureListen
     }
 
     @Override
-    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    public void onChartGestureStart(MotionEvent event, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i("Gesture", "START");
     }
 
     @Override
-    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    public void onChartGestureEnd(MotionEvent event, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i("Gesture", "END");
         chart.highlightValues(null);
     }
 
     @Override
-    public void onChartLongPressed(MotionEvent me) {
+    public void onChartLongPressed(MotionEvent event) {
         Log.i("LongPress", "Chart long pressed.");
     }
 
     @Override
-    public void onChartDoubleTapped(MotionEvent me) {
+    public void onChartDoubleTapped(MotionEvent event) {
         Log.i("DoubleTap", "Chart double-tapped.");
     }
 
     @Override
-    public void onChartSingleTapped(MotionEvent me) {
+    public void onChartSingleTapped(MotionEvent event) {
         Log.i("SingleTap", "Chart single-tapped.");
     }
 
     @Override
-    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+    public void onChartFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
         Log.i("Fling", "Chart fling. VelocityX: " + velocityX + ", VelocityY: " + velocityY);
     }
 
     @Override
-    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+    public void onChartScale(MotionEvent event, float scaleX, float scaleY) {
         Log.i("Scale / Zoom", "ScaleX: " + scaleX + ", ScaleY: " + scaleY);
     }
 
 	@Override
-	public void onChartTranslate(MotionEvent me, float dX, float dY) {
+	public void onChartTranslate(MotionEvent event, float dX, float dY) {
 		Log.i("Translate / Move", "dX: " + dX + ", dY: " + dY);
 	}
 

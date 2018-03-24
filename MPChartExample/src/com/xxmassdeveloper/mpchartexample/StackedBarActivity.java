@@ -261,12 +261,12 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry e, Highlight highlight) {
 
         BarEntry entry = (BarEntry) e;
 
         if (entry.getYVals() != null)
-            Log.i("VAL SELECTED", "Value: " + entry.getYVals()[h.getStackIndex()]);
+            Log.i("VAL SELECTED", "Value: " + entry.getYVals()[highlight.getStackIndex()]);
         else
             Log.i("VAL SELECTED", "Value: " + entry.getY());
     }

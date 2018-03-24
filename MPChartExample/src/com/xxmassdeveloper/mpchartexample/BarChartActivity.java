@@ -310,14 +310,14 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
     private RectF onValueSelectedRectF = new RectF();
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry entry, Highlight highlight) {
 
-        if (e == null)
+        if (entry == null)
             return;
 
         RectF bounds = onValueSelectedRectF;
-        chart.getBarBounds((BarEntry) e, bounds);
-        MPPointF position = chart.getPosition(e, AxisDependency.LEFT);
+        chart.getBarBounds((BarEntry) entry, bounds);
+        MPPointF position = chart.getPosition(entry, AxisDependency.LEFT);
 
         Log.i("bounds", bounds.toString());
         Log.i("position", position.toString());

@@ -271,15 +271,15 @@ public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarCha
     private RectF mOnValueSelectedRectF = new RectF();
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry entry, Highlight highlight) {
 
-        if (e == null)
+        if (entry == null)
             return;
 
         RectF bounds = mOnValueSelectedRectF;
-        chart.getBarBounds((BarEntry) e, bounds);
+        chart.getBarBounds((BarEntry) entry, bounds);
 
-        MPPointF position = chart.getPosition(e, chart.getData().getDataSetByIndex(h.getDataSetIndex())
+        MPPointF position = chart.getPosition(entry, chart.getData().getDataSetByIndex(highlight.getDataSetIndex())
                 .getAxisDependency());
 
         Log.i("bounds", bounds.toString());

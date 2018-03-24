@@ -282,13 +282,13 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry entry, Highlight highlight) {
 
-        if (e == null)
+        if (entry == null)
             return;
         Log.i("VAL SELECTED",
-                "Value: " + e.getY() + ", index: " + h.getX()
-                        + ", DataSet index: " + h.getDataSetIndex());
+                "Value: " + entry.getY() + ", index: " + highlight.getX()
+                        + ", DataSet index: " + highlight.getDataSetIndex());
     }
 
     @Override

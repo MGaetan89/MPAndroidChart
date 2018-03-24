@@ -440,8 +440,8 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
-        Log.i("Entry selected", e.toString());
+    public void onValueSelected(Entry entry, Highlight highlight) {
+        Log.i("Entry selected", entry.toString());
         Log.i("LOW HIGH", "low: " + chart.getLowestVisibleX() + ", high: " + chart.getHighestVisibleX());
         Log.i("MIN MAX", "xMin: " + chart.getXChartMin() + ", xMax: " + chart.getXChartMax() + ", yMin: " + chart.getYChartMin() + ", yMax: " + chart.getYChartMax());
     }

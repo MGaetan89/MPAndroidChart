@@ -229,11 +229,10 @@ public class StackedBarActivityNegative extends DemoBase implements
         saveToGallery(chart, "StackedBarActivityNegative");
     }
 
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry e, Highlight highlight) {
         BarEntry entry = (BarEntry) e;
         Log.i("VAL SELECTED",
-                "Value: " + Math.abs(entry.getYVals()[h.getStackIndex()]));
+                "Value: " + Math.abs(entry.getYVals()[highlight.getStackIndex()]));
     }
 
     @Override
