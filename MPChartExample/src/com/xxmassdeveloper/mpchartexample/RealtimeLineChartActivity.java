@@ -202,8 +202,8 @@ public class RealtimeLineChartActivity extends DemoBase implements
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
-        Log.i("Entry selected", e.toString());
+    public void onValueSelected(Entry entry, Highlight highlight) {
+        Log.i("Entry selected", entry.toString());
     }
 
     @Override

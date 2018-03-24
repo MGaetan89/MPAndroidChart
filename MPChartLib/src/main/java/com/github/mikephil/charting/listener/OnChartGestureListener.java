@@ -8,69 +8,68 @@ import android.view.MotionEvent;
  * @author Philipp Jahoda
  */
 public interface OnChartGestureListener {
-
     /**
-     * Callbacks when a touch-gesture has started on the chart (ACTION_DOWN)
+     * Callbacks when a touch-gesture has started on the chart (ACTION_DOWN).
      *
-     * @param me
+     * @param event
      * @param lastPerformedGesture
      */
-    void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture);
+    void onChartGestureStart(MotionEvent event, ChartTouchListener.ChartGesture lastPerformedGesture);
 
     /**
-     * Callbacks when a touch-gesture has ended on the chart (ACTION_UP, ACTION_CANCEL)
+     * Callbacks when a touch-gesture has ended on the chart (ACTION_UP, ACTION_CANCEL).
      *
-     * @param me
+     * @param event
      * @param lastPerformedGesture
      */
-    void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture);
+    void onChartGestureEnd(MotionEvent event, ChartTouchListener.ChartGesture lastPerformedGesture);
 
     /**
-     * Callbacks when the chart is longpressed.
+     * Callbacks when the chart is long pressed.
      *
-     * @param me
+     * @param event
      */
-    void onChartLongPressed(MotionEvent me);
+    void onChartLongPressed(MotionEvent event);
 
     /**
      * Callbacks when the chart is double-tapped.
      *
-     * @param me
+     * @param event
      */
-    void onChartDoubleTapped(MotionEvent me);
+    void onChartDoubleTapped(MotionEvent event);
 
     /**
      * Callbacks when the chart is single-tapped.
      *
-     * @param me
+     * @param event
      */
-    void onChartSingleTapped(MotionEvent me);
+    void onChartSingleTapped(MotionEvent event);
 
     /**
      * Callbacks then a fling gesture is made on the chart.
      *
-     * @param me1
-     * @param me2
+     * @param event1
+     * @param event2
      * @param velocityX
      * @param velocityY
      */
-    void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY);
+    void onChartFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY);
 
     /**
-     * Callbacks when the chart is scaled / zoomed via pinch zoom gesture.
+     * Callbacks when the chart is scaled/zoomed via pinch zoom gesture.
      *
-     * @param me
-     * @param scaleX scalefactor on the x-axis
-     * @param scaleY scalefactor on the y-axis
+     * @param event
+     * @param scaleX scale factor on the x-axis
+     * @param scaleY scale factor on the y-axis
      */
-    void onChartScale(MotionEvent me, float scaleX, float scaleY);
+    void onChartScale(MotionEvent event, float scaleX, float scaleY);
 
     /**
-     * Callbacks when the chart is moved / translated via drag gesture.
+     * Callbacks when the chart is moved/translated via drag gesture.
      *
-     * @param me
-     * @param dX translation distance on the x-axis
-     * @param dY translation distance on the y-axis
+     * @param event
+     * @param dX    translation distance on the x-axis
+     * @param dY    translation distance on the y-axis
      */
-    void onChartTranslate(MotionEvent me, float dX, float dY);
+    void onChartTranslate(MotionEvent event, float dX, float dY);
 }

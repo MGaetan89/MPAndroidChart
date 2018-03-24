@@ -278,14 +278,14 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
     @SuppressLint("NewApi")
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry entry, Highlight highlight) {
 
-        if (e == null)
+        if (entry == null)
             return;
 
         RectF bounds = mOnValueSelectedRectF;
-        mChart.getBarBounds((BarEntry) e, bounds);
-        MPPointF position = mChart.getPosition(e, AxisDependency.LEFT);
+        mChart.getBarBounds((BarEntry) entry, bounds);
+        MPPointF position = mChart.getPosition(entry, AxisDependency.LEFT);
 
         Log.i("bounds", bounds.toString());
         Log.i("position", position.toString());

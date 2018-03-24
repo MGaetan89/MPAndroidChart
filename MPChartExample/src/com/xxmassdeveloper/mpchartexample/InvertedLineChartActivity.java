@@ -227,10 +227,10 @@ public class InvertedLineChartActivity extends DemoBase implements OnSeekBarChan
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry entry, Highlight highlight) {
         Log.i("VAL SELECTED",
-                "Value: " + e.getY() + ", xIndex: " + e.getX()
-                        + ", DataSet index: " + h.getDataSetIndex());
+                "Value: " + entry.getY() + ", xIndex: " + entry.getX()
+                        + ", DataSet index: " + highlight.getDataSetIndex());
     }
 
     @Override
