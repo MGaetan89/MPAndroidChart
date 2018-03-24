@@ -15,12 +15,12 @@ public class CustomScatterShapeRenderer implements IShapeRenderer
 {
 
     @Override
-    public void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+    public void renderShape(Canvas canvas, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
                             float posX, float posY, Paint renderPaint) {
 
         final float shapeHalf = dataSet.getScatterShapeSize() / 2f;
 
-        c.drawLine(
+        canvas.drawLine(
                 posX - shapeHalf,
                 posY - shapeHalf,
                 posX + shapeHalf,
