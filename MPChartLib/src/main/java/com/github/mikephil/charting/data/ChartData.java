@@ -388,7 +388,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param entry
      * @param dataSetIndex
      */
-    public void addEntry(Entry entry, int dataSetIndex) {
+    public void addEntry(@NonNull Entry entry, int dataSetIndex) {
         if (mDataSets.size() > dataSetIndex && dataSetIndex >= 0) {
             IDataSet set = mDataSets.get(dataSetIndex);
             // Add the entry to the data set

@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.data.CandleData;
@@ -35,6 +36,7 @@ public class CandleStickChart extends BarLineChartBase<CandleData> implements Ca
         getXAxis().setSpaceMax(0.5f);
     }
 
+    @Nullable
     @Override
     public CandleData getCandleData() {
         return mData;

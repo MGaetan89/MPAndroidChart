@@ -5,21 +5,26 @@ import android.support.annotation.ColorInt;
 import com.github.mikephil.charting.data.RadarEntry;
 
 /**
- * Created by Philipp Jahoda on 03/11/15.
+ * @author Philipp Jahoda
  */
 public interface IRadarDataSet extends ILineRadarDataSet<RadarEntry> {
-
-    /// flag indicating whether highlight circle should be drawn or not
+    /**
+     * Flag indicating whether highlight circle should be drawn or not.
+     */
     boolean isDrawHighlightCircleEnabled();
 
-    /// Sets whether highlight circle should be drawn or not
+    /**
+     * Sets whether highlight circle should be drawn or not.
+     */
     void setDrawHighlightCircleEnabled(boolean enabled);
 
     @ColorInt
     int getHighlightCircleFillColor();
 
-    /// The stroke color for highlight circle.
-    /// If Utils.COLOR_NONE, the color of the dataset is taken.
+    /**
+     * The stroke color for highlight circle. If Utils.COLOR_NONE, the color of the data set is
+     * taken.
+     */
     @ColorInt
     int getHighlightCircleStrokeColor();
 
@@ -30,5 +35,4 @@ public interface IRadarDataSet extends ILineRadarDataSet<RadarEntry> {
     float getHighlightCircleOuterRadius();
 
     float getHighlightCircleStrokeWidth();
-
 }

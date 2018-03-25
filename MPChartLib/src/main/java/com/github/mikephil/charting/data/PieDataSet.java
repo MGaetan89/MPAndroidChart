@@ -21,7 +21,9 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
      */
     private float mShift = 18f;
 
+    @NonNull
     private ValuePosition mXValuePosition = ValuePosition.INSIDE_SLICE;
+    @NonNull
     private ValuePosition mYValuePosition = ValuePosition.INSIDE_SLICE;
     @ColorInt
     private int mValueLineColor = 0xff000000;
@@ -114,21 +116,23 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
         return mShift;
     }
 
+    @NonNull
     @Override
     public ValuePosition getXValuePosition() {
         return mXValuePosition;
     }
 
-    public void setXValuePosition(ValuePosition xValuePosition) {
+    public void setXValuePosition(@NonNull ValuePosition xValuePosition) {
         this.mXValuePosition = xValuePosition;
     }
 
+    @NonNull
     @Override
     public ValuePosition getYValuePosition() {
         return mYValuePosition;
     }
 
-    public void setYValuePosition(ValuePosition yValuePosition) {
+    public void setYValuePosition(@NonNull ValuePosition yValuePosition) {
         this.mYValuePosition = yValuePosition;
     }
 

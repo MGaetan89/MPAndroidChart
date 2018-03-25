@@ -815,6 +815,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * Returns the default IValueFormatter that has been determined by the chart considering the
      * provided minimum and maximum values.
      */
+    @NonNull
     public IValueFormatter getDefaultValueFormatter() {
         return mDefaultValueFormatter;
     }
@@ -1070,6 +1071,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * Returns the rectangle that defines the borders of the chart-value surface (into which the
      * actual values are drawn).
      */
+    @NonNull
     @Override
     public RectF getContentRect() {
         return mViewPortHandler.getContentRect();
@@ -1180,6 +1182,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /**
      * Returns the ChartData object that has been set for the chart.
      */
+    @Nullable
     public T getData() {
         return mData;
     }

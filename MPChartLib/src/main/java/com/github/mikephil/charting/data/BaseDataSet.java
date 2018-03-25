@@ -45,11 +45,13 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     /**
      * Label that describes the DataSet or the data the DataSet represents.
      */
+    @NonNull
     private String mLabel = "DataSet";
 
     /**
      * This specifies which axis this DataSet should be plotted against.
      */
+    @NonNull
     protected YAxis.AxisDependency mAxisDependency = YAxis.AxisDependency.LEFT;
 
     /**
@@ -60,13 +62,15 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     /**
      * Custom formatter that is used instead of the auto-formatter if set.
      */
-    protected transient IValueFormatter mValueFormatter;
+    @NonNull
+    protected transient IValueFormatter mValueFormatter = Utils.getDefaultValueFormatter();
 
     /**
      * The typeface used for the value text.
      */
     protected Typeface mValueTypeface;
 
+    @NonNull
     private Legend.LegendForm mForm = Legend.LegendForm.DEFAULT;
     private float mFormSize = Float.NaN;
     private float mFormLineWidth = Float.NaN;
@@ -117,7 +121,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      *
      * @param label
      */
-    public BaseDataSet(String label) {
+    public BaseDataSet(@NonNull String label) {
         this();
         this.mLabel = label;
     }
@@ -241,10 +245,11 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     }
 
     @Override
-    public void setLabel(String label) {
+    public void setLabel(@NonNull String label) {
         mLabel = label;
     }
 
+    @NonNull
     @Override
     public String getLabel() {
         return mLabel;
@@ -261,25 +266,19 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     }
 
     @Override
-    public void setValueFormatter(@Nullable IValueFormatter formatter) {
-        if (formatter != null) {
-            mValueFormatter = formatter;
-        }
+    public void setValueFormatter(@NonNull IValueFormatter formatter) {
+        mValueFormatter = formatter;
     }
 
     @NonNull
     @Override
     public IValueFormatter getValueFormatter() {
-        if (needsFormatter()) {
-            return Utils.getDefaultValueFormatter();
-        }
-
         return mValueFormatter;
     }
 
     @Override
     public boolean needsFormatter() {
-        return mValueFormatter == null;
+        return false;
     }
 
     @Override
@@ -325,10 +324,11 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         return mValueTextSize;
     }
 
-    public void setForm(Legend.LegendForm form) {
+    public void setForm(@NonNull Legend.LegendForm form) {
         mForm = form;
     }
 
+    @NonNull
     @Override
     public Legend.LegendForm getForm() {
         return mForm;
@@ -352,10 +352,11 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         return mFormLineWidth;
     }
 
-    public void setFormLineDashEffect(DashPathEffect dashPathEffect) {
+    public void setFormLineDashEffect(@Nullable DashPathEffect dashPathEffect) {
         mFormLineDashEffect = dashPathEffect;
     }
 
+    @Nullable
     @Override
     public DashPathEffect getFormLineDashEffect() {
         return mFormLineDashEffect;
@@ -403,13 +404,14 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         return mVisible;
     }
 
+    @NonNull
     @Override
     public YAxis.AxisDependency getAxisDependency() {
         return mAxisDependency;
     }
 
     @Override
-    public void setAxisDependency(YAxis.AxisDependency dependency) {
+    public void setAxisDependency(@NonNull YAxis.AxisDependency dependency) {
         mAxisDependency = dependency;
     }
 

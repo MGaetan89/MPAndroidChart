@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.data.BubbleData;
@@ -36,6 +37,7 @@ public class BubbleChart extends BarLineChartBase<BubbleData> implements BubbleD
         mRenderer = new BubbleChartRenderer(this, mAnimator, mViewPortHandler);
     }
 
+    @Nullable
     public BubbleData getBubbleData() {
         return mData;
     }
