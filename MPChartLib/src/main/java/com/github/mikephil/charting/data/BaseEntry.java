@@ -4,23 +4,27 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Philipp Jahoda on 02/06/16.
+ * @author Philipp Jahoda
  */
 public abstract class BaseEntry {
-
-    /** the y value */
+    /**
+     * The y value.
+     */
     private float y = 0f;
 
-    /** optional spot for additional data this Entry represents */
+    /**
+     * Optional spot for additional data this Entry represents.
+     */
     @Nullable
     private Object mData = null;
 
-    /** optional icon image */
+    /**
+     * Optional icon image.
+     */
     @Nullable
     private Drawable mIcon = null;
 
     public BaseEntry() {
-
     }
 
     public BaseEntry(float y) {
@@ -45,15 +49,13 @@ public abstract class BaseEntry {
 
     /**
      * Returns the y value of this Entry.
-     *
-     * @return
      */
     public float getY() {
         return y;
     }
 
     /**
-     * Sets the icon drawable
+     * Sets the icon drawable.
      *
      * @param icon
      */
@@ -63,8 +65,6 @@ public abstract class BaseEntry {
 
     /**
      * Returns the icon of this Entry.
-     *
-     * @return
      */
     @Nullable
     public Drawable getIcon() {
@@ -81,10 +81,8 @@ public abstract class BaseEntry {
     }
 
     /**
-     * Returns the data, additional information that this Entry represents, or
-     * null, if no data has been specified.
-     *
-     * @return
+     * Returns the data, additional information that this Entry represents, or null, if no data has
+     * been specified.
      */
     @Nullable
     public Object getData() {

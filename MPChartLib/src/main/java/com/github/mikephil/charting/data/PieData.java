@@ -7,15 +7,14 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 
 /**
- * A PieData object can only represent one DataSet. Unlike all other charts, the
- * legend labels of the PieChart are created from the x-values array, and not
- * from the DataSet labels. Each PieData object can only represent one
- * PieDataSet (multiple PieDataSets inside a single PieChart are not possible).
+ * A PieData object can only represent one DataSet. Unlike all other charts, the legend labels of
+ * the PieChart are created from the x-values array, and not from the DataSet labels. Each PieData
+ * object can only represent one PieDataSet (multiple PieDataSets inside a single PieChart are not
+ * possible).
  *
  * @author Philipp Jahoda
  */
 public class PieData extends ChartData<IPieDataSet> {
-
     public PieData() {
         super();
     }
@@ -36,10 +35,8 @@ public class PieData extends ChartData<IPieDataSet> {
     }
 
     /**
-     * Returns the DataSet this PieData object represents. A PieData object can
-     * only contain one DataSet.
-     *
-     * @return
+     * Returns the DataSet this PieData object represents. A PieData object can only contain one
+     * DataSet.
      */
     public IPieDataSet getDataSet() {
         return mDataSets.get(0);
@@ -59,9 +56,11 @@ public class PieData extends ChartData<IPieDataSet> {
 
     @Nullable
     @Override
-    public IPieDataSet getDataSetByLabel(@NonNull String label, boolean ignorecase) {
-        return ignorecase ? label.equalsIgnoreCase(mDataSets.get(0).getLabel()) ? mDataSets.get(0)
-                : null : label.equals(mDataSets.get(0).getLabel()) ? mDataSets.get(0) : null;
+    public IPieDataSet getDataSetByLabel(@NonNull String label, boolean ignoreCase) {
+        IPieDataSet firstDataSet = mDataSets.get(0);
+        String firstLabel = firstDataSet.getLabel();
+        boolean labelMatch = ignoreCase ? label.equalsIgnoreCase(firstLabel) : label.equals(firstLabel);
+        return labelMatch ? firstDataSet : null;
     }
 
     @Nullable
@@ -72,16 +71,12 @@ public class PieData extends ChartData<IPieDataSet> {
 
     /**
      * Returns the sum of all values in this PieData object.
-     *
-     * @return
      */
     public float getYValueSum() {
-
         float sum = 0;
-
-        for (int i = 0; i < getDataSet().getEntryCount(); i++)
+        for (int i = 0; i < getDataSet().getEntryCount(); i++) {
             sum += getDataSet().getEntryForIndex(i).getY();
-
+        }
 
         return sum;
     }

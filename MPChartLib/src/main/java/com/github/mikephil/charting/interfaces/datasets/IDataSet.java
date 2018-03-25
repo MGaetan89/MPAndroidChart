@@ -1,8 +1,10 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
 import android.graphics.DashPathEffect;
-import android.graphics.PointF;
 import android.graphics.Typeface;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
@@ -86,6 +88,7 @@ public interface IDataSet<T extends Entry> {
      *
      *
      */
+    @Nullable
     T getEntryForXValue(float xValue, float closestToY, DataSet.Rounding rounding);
 
     /**
@@ -275,6 +278,8 @@ public interface IDataSet<T extends Entry> {
      *
      * @return
      */
+    @ColorInt
+    @NonNull
     List<Integer> getColors();
 
     /**
@@ -367,6 +372,7 @@ public interface IDataSet<T extends Entry> {
      *
      * @return
      */
+    @ColorInt
     int getValueTextColor();
 
     /**
@@ -376,6 +382,7 @@ public interface IDataSet<T extends Entry> {
      * @param index
      * @return
      */
+    @ColorInt
     int getValueTextColor(int index);
 
     /**

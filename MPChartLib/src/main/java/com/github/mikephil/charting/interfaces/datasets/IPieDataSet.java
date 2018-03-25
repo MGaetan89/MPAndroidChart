@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
-import com.github.mikephil.charting.data.Entry;
+import android.support.annotation.ColorInt;
+
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
@@ -39,6 +40,7 @@ public interface IPieDataSet extends IDataSet<PieEntry> {
     /**
      * When valuePosition is OutsideSlice, indicates line color
      * */
+    @ColorInt
     int getValueLineColor();
 
     /**

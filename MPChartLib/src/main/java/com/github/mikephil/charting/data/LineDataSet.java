@@ -3,6 +3,8 @@ package com.github.mikephil.charting.data;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,86 +16,78 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet {
-
     /**
-     * Drawing mode for this line dataset
+     * Drawing mode for this line data set.
      **/
     private LineDataSet.Mode mMode = Mode.LINEAR;
 
     /**
-     * List representing all colors that are used for the circles
+     * List representing all colors that are used for the circles.
      */
-    private List<Integer> mCircleColors = null;
+    @ColorInt
+    @NonNull
+    private List<Integer> mCircleColors = Collections.emptyList();
 
     /**
-     * the color of the inner circles
+     * The color of the inner circles.
      */
+    @ColorInt
     private int mCircleColorHole = Color.WHITE;
 
     /**
-     * the radius of the circle-shaped value indicators
+     * The radius of the circle-shaped value indicators.
      */
     private float mCircleRadius = 8f;
 
     /**
-     * the hole radius of the circle-shaped value indicators
+     * The hole radius of the circle-shaped value indicators.
      */
     private float mCircleHoleRadius = 4f;
 
     /**
-     * sets the intensity of the cubic lines
+     * sets the intensity of the cubic lines.
      */
     private float mCubicIntensity = 0.2f;
 
     /**
-     * the path effect of this DataSet that makes dashed lines possible
+     * The path effect of this DataSet that makes dashed lines possible.
      */
+    @Nullable
     private DashPathEffect mDashPathEffect = null;
 
     /**
-     * formatter for customizing the position of the fill-line
+     * Formatter for customizing the position of the fill-line.
      */
+    @NonNull
     private IFillFormatter mFillFormatter = new DefaultFillFormatter();
 
     /**
-     * if true, drawing circles is enabled
+     * If true, drawing circles is enabled.
      */
     private boolean mDrawCircles = true;
 
     private boolean mDrawCircleHole = true;
 
+    public LineDataSet(List<Entry> yValues, String label) {
+        super(yValues, label);
 
-    public LineDataSet(List<Entry> yVals, String label) {
-        super(yVals, label);
-
-        // mCircleRadius = Utils.convertDpToPixel(4f);
-        // mLineWidth = Utils.convertDpToPixel(1f);
-
-        if (mCircleColors == null) {
-            mCircleColors = new ArrayList<>();
-        }
-        mCircleColors.clear();
-
-        // default colors
-        // mColors.add(Color.rgb(192, 255, 140));
-        // mColors.add(Color.rgb(255, 247, 140));
+        // Default colors
         mCircleColors.add(Color.rgb(140, 234, 255));
     }
 
     @NonNull
     @Override
     public DataSet<Entry> copy() {
-
-        List<Entry> yVals = new ArrayList<>();
-
+        List<Entry> yValues = new ArrayList<>();
         for (int i = 0; i < mValues.size(); i++) {
-            yVals.add(mValues.get(i).copy());
+            yValues.add(mValues.get(i).copy());
         }
 
-        LineDataSet copied = new LineDataSet(yVals, getLabel());
+        LineDataSet copied = new LineDataSet(yValues, getLabel());
         copied.mMode = mMode;
         copied.mColors = mColors;
         copied.mCircleRadius = mCircleRadius;
@@ -103,14 +97,11 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         copied.mDrawCircles = mDrawCircles;
         copied.mDrawCircleHole = mDrawCircleHole;
         copied.mHighLightColor = mHighLightColor;
-
         return copied;
     }
 
     /**
-     * Returns the drawing mode for this line dataset
-     *
-     * @return
+     * Returns the drawing mode for this line data set.
      */
     @Override
     public LineDataSet.Mode getMode() {
@@ -118,26 +109,26 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * Returns the drawing mode for this LineDataSet
-     *
-     * @return
+     * Returns the drawing mode for this LineDataSet.
      */
     public void setMode(LineDataSet.Mode mode) {
         mMode = mode;
     }
 
     /**
-     * Sets the intensity for cubic lines (if enabled). Max = 1f = very cubic,
-     * Min = 0.05f = low cubic effect, Default: 0.2f
+     * Sets the intensity for cubic lines (if enabled). Max 1f = very cubic, Min 0.05f = low cubic
+     * effect.
      *
      * @param intensity
      */
     public void setCubicIntensity(float intensity) {
-
-        if (intensity > 1f)
+        if (intensity > 1f) {
             intensity = 1f;
-        if (intensity < 0.05f)
+        }
+
+        if (intensity < 0.05f) {
             intensity = 0.05f;
+        }
 
         mCubicIntensity = intensity;
     }
@@ -147,15 +138,12 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         return mCubicIntensity;
     }
 
-
     /**
-     * Sets the radius of the drawn circles.
-     * Default radius = 4f, Min = 1f
+     * Sets the radius of the drawn circles, min = 1f.
      *
      * @param radius
      */
     public void setCircleRadius(float radius) {
-
         if (radius >= 1f) {
             mCircleRadius = Utils.convertDpToPixel(radius);
         } else {
@@ -169,13 +157,11 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * Sets the hole radius of the drawn circles.
-     * Default radius = 2f, Min = 0.5f
+     * Sets the hole radius of the drawn circles, min = 0.5f.
      *
      * @param holeRadius
      */
     public void setCircleHoleRadius(float holeRadius) {
-
         if (holeRadius >= 0.5f) {
             mCircleHoleRadius = Utils.convertDpToPixel(holeRadius);
         } else {
@@ -189,18 +175,16 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * Enables the line to be drawn in dashed mode, e.g. like this
-     * "- - - - - -". THIS ONLY WORKS IF HARDWARE-ACCELERATION IS TURNED OFF.
-     * Keep in mind that hardware acceleration boosts performance.
+     * Enables the line to be drawn in dashed mode, e.g. like this "- - - - - -". THIS ONLY WORKS IF
+     * HARDWARE-ACCELERATION IS TURNED OFF. Keep in mind that hardware acceleration boosts
+     * performance.
      *
      * @param lineLength  the length of the line pieces
      * @param spaceLength the length of space in between the pieces
      * @param phase       offset, in degrees (normally, use 0)
      */
     public void enableDashedLine(float lineLength, float spaceLength, float phase) {
-        mDashPathEffect = new DashPathEffect(new float[]{
-                lineLength, spaceLength
-        }, phase);
+        mDashPathEffect = new DashPathEffect(new float[]{lineLength, spaceLength}, phase);
     }
 
     /**
@@ -215,14 +199,14 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         return mDashPathEffect != null;
     }
 
+    @Nullable
     @Override
     public DashPathEffect getDashPathEffect() {
         return mDashPathEffect;
     }
 
     /**
-     * set this to true to enable the drawing of circle indicators for this
-     * DataSet, default true
+     * Set this to true to enable the drawing of circle indicators for this DataSet.
      *
      * @param enabled
      */
@@ -235,17 +219,14 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         return mDrawCircles;
     }
 
-    /** ALL CODE BELOW RELATED TO CIRCLE-COLORS */
-
     /**
-     * returns all colors specified for the circles
-     *
-     * @return
+     * Returns all colors specified for the circles.
      */
     public List<Integer> getCircleColors() {
         return mCircleColors;
     }
 
+    @ColorInt
     @Override
     public int getCircleColor(int index) {
         return mCircleColors.get(index);
@@ -257,59 +238,47 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * Sets the colors that should be used for the circles of this DataSet.
-     * Colors are reused as soon as the number of Entries the DataSet represents
-     * is higher than the size of the colors array. Make sure that the colors
-     * are already prepared (by calling getResources().getColor(...)) before
-     * adding them to the DataSet.
+     * Sets the colors that should be used for the circles of this DataSet. Colors are reused as
+     * soon as the number of Entries the DataSet represents is higher than the size of the colors
+     * array.
      *
      * @param colors
      */
-    public void setCircleColors(List<Integer> colors) {
+    public void setCircleColors(@ColorInt @NonNull List<Integer> colors) {
         mCircleColors = colors;
     }
 
     /**
-     * Sets the colors that should be used for the circles of this DataSet.
-     * Colors are reused as soon as the number of Entries the DataSet represents
-     * is higher than the size of the colors array. Make sure that the colors
-     * are already prepared (by calling getResources().getColor(...)) before
-     * adding them to the DataSet.
+     * Sets the colors that should be used for the circles of this DataSet. Colors are reused as
+     * soon as the number of Entries the DataSet represents is higher than the size of the colors
+     * array.
      *
      * @param colors
      */
-    public void setCircleColors(int... colors) {
+    public void setCircleColors(@ColorInt @NonNull int... colors) {
         this.mCircleColors = ColorTemplate.createColors(colors);
     }
 
     /**
-     * ets the colors that should be used for the circles of this DataSet.
-     * Colors are reused as soon as the number of Entries the DataSet represents
-     * is higher than the size of the colors array. You can use
-     * "new String[] { R.color.red, R.color.green, ... }" to provide colors for
-     * this method. Internally, the colors are resolved using
-     * getResources().getColor(...)
+     * Sets the colors that should be used for the circles of this DataSet. Colors are reused as
+     * soon as the number of Entries the DataSet represents is higher than the size of the colors
+     * array. You can use "new String[] { R.color.red, R.color.green, ... }" to provide colors for
+     * this method. Internally, the colors are resolved using getResources().getColor(...).
      *
      * @param colors
      */
-    public void setCircleColors(int[] colors, @NonNull Context c) {
-
-        List<Integer> clrs = mCircleColors;
-        if (clrs == null) {
-            clrs = new ArrayList<>();
-        }
-        clrs.clear();
-
+    public void setCircleColors(@ColorRes int[] colors, @NonNull Context context) {
+        List<Integer> newColors = new ArrayList<>();
         for (int color : colors) {
-            clrs.add(c.getResources().getColor(color));
+            newColors.add(context.getResources().getColor(color));
         }
 
-        mCircleColors = clrs;
+        mCircleColors = newColors;
     }
 
     /**
-     * Sets the one and ONLY color that should be used for this DataSet.
-     * Internally, this recreates the colors array and adds the specified color.
+     * Sets the one and ONLY color that should be used for this DataSet. Internally, this recreates
+     * the colors array and adds the specified color.
      *
      * @param color
      */
@@ -319,12 +288,9 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * resets the circle-colors array and creates a new one
+     * Resets the circle-colors array and creates a new one.
      */
     public void resetCircleColors() {
-        if (mCircleColors == null) {
-            mCircleColors = new ArrayList<>();
-        }
         mCircleColors.clear();
     }
 
@@ -357,17 +323,17 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
-     * Sets a custom IFillFormatter to the chart that handles the position of the
-     * filled-line for each DataSet. Set this to null to use the default logic.
+     * Sets a custom IFillFormatter to the chart that handles the position of the filled-line for
+     * each DataSet. Set this to null to use the default logic.
      *
      * @param formatter
      */
     public void setFillFormatter(@Nullable IFillFormatter formatter) {
-
-        if (formatter == null)
+        if (formatter == null) {
             mFillFormatter = new DefaultFillFormatter();
-        else
+        } else {
             mFillFormatter = formatter;
+        }
     }
 
     @Override

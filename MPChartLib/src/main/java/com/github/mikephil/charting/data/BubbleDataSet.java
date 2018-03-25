@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry> implements IBubbleDataSet {
-
     protected float mMaxSize;
     protected boolean mNormalizeSize = true;
 
     private float mHighlightCircleWidth = 2.5f;
 
-    public BubbleDataSet(List<BubbleEntry> yVals, String label) {
-        super(yVals, label);
+    public BubbleDataSet(List<BubbleEntry> yValues, String label) {
+        super(yValues, label);
     }
 
     @Override
@@ -30,10 +29,10 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
     }
 
     @Override
-    protected void calcMinMax(@NonNull BubbleEntry e) {
-        super.calcMinMax(e);
+    protected void calcMinMax(@NonNull BubbleEntry entry) {
+        super.calcMinMax(entry);
 
-        final float size = e.getSize();
+        final float size = entry.getSize();
 
         if (size > mMaxSize) {
             mMaxSize = size;
@@ -43,14 +42,12 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
     @NonNull
     @Override
     public DataSet<BubbleEntry> copy() {
-
-        List<BubbleEntry> yVals = new ArrayList<>();
-
+        List<BubbleEntry> yValues = new ArrayList<>();
         for (int i = 0; i < mValues.size(); i++) {
-            yVals.add(mValues.get(i).copy());
+            yValues.add(mValues.get(i).copy());
         }
 
-        BubbleDataSet copied = new BubbleDataSet(yVals, getLabel());
+        BubbleDataSet copied = new BubbleDataSet(yValues, getLabel());
         copied.mColors = mColors;
         copied.mHighLightColor = mHighLightColor;
 

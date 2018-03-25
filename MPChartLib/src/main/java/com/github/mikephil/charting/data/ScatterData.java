@@ -5,7 +5,6 @@ import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 import java.util.List;
 
 public class ScatterData extends BarLineScatterCandleBubbleData<IScatterDataSet> {
-
     public ScatterData() {
         super();
     }
@@ -20,18 +19,14 @@ public class ScatterData extends BarLineScatterCandleBubbleData<IScatterDataSet>
 
     /**
      * Returns the maximum shape-size across all DataSets.
-     *
-     * @return
      */
     public float getGreatestShapeSize() {
-
         float max = 0f;
-
         for (IScatterDataSet set : mDataSets) {
             float size = set.getScatterShapeSize();
-
-            if (size > max)
+            if (size > max) {
                 max = size;
+            }
         }
 
         return max;
