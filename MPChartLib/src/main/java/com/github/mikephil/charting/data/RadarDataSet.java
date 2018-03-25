@@ -8,59 +8,75 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 public class RadarDataSet extends LineRadarDataSet<RadarEntry> implements IRadarDataSet {
-
-    /// flag indicating whether highlight circle should be drawn or not
+    /**
+     * Flag indicating whether highlight circle should be drawn or not.
+     */
     protected boolean mDrawHighlightCircleEnabled = false;
 
+    @ColorInt
     protected int mHighlightCircleFillColor = Color.WHITE;
 
-    /// The stroke color for highlight circle.
-    /// If Utils.COLOR_NONE, the color of the dataset is taken.
+    /**
+     * The stroke color for highlight circle. If Utils.COLOR_NONE, the color of the data set is
+     * taken.
+     */
+    @ColorInt
     protected int mHighlightCircleStrokeColor = ColorTemplate.COLOR_NONE;
 
-    protected int mHighlightCircleStrokeAlpha = (int) (0.3 * 255);
-    protected float mHighlightCircleInnerRadius = 3.0f;
-    protected float mHighlightCircleOuterRadius = 4.0f;
-    protected float mHighlightCircleStrokeWidth = 2.0f;
+    protected int mHighlightCircleStrokeAlpha = (int) (0.3f * 255f);
+    protected float mHighlightCircleInnerRadius = 3f;
+    protected float mHighlightCircleOuterRadius = 4f;
+    protected float mHighlightCircleStrokeWidth = 2f;
 
-    public RadarDataSet(List<RadarEntry> yVals, String label) {
-        super(yVals, label);
+    public RadarDataSet(List<RadarEntry> yValues, String label) {
+        super(yValues, label);
     }
 
-    /// Returns true if highlight circle should be drawn, false if not
+    /**
+     * Returns true if highlight circle should be drawn, false if not.
+     */
     @Override
     public boolean isDrawHighlightCircleEnabled() {
         return mDrawHighlightCircleEnabled;
     }
 
-    /// Sets whether highlight circle should be drawn or not
+    /**
+     * Sets whether highlight circle should be drawn or not.
+     */
     @Override
     public void setDrawHighlightCircleEnabled(boolean enabled) {
         mDrawHighlightCircleEnabled = enabled;
     }
 
+    @ColorInt
     @Override
     public int getHighlightCircleFillColor() {
         return mHighlightCircleFillColor;
     }
 
-    public void setHighlightCircleFillColor(int color) {
+    public void setHighlightCircleFillColor(@ColorInt int color) {
         mHighlightCircleFillColor = color;
     }
 
-    /// Returns the stroke color for highlight circle.
-    /// If Utils.COLOR_NONE, the color of the dataset is taken.
+    /**
+     * Returns the stroke color for highlight circle.  If Utils.COLOR_NONE, the color of the data
+     * set is taken.
+     */
+    @ColorInt
     @Override
     public int getHighlightCircleStrokeColor() {
         return mHighlightCircleStrokeColor;
     }
 
-    /// Sets the stroke color for highlight circle.
-    /// Set to Utils.COLOR_NONE in order to use the color of the dataset;
-    public void setHighlightCircleStrokeColor(int color) {
+    /**
+     * Sets the stroke color for highlight circle. Set to Utils.COLOR_NONE in order to use the color
+     * of the data set.
+     */
+    public void setHighlightCircleStrokeColor(@ColorInt int color) {
         mHighlightCircleStrokeColor = color;
     }
 

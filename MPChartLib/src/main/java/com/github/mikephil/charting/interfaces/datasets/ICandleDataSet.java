@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
 
 import com.github.mikephil.charting.data.CandleEntry;
 
@@ -39,6 +40,7 @@ public interface ICandleDataSet extends ILineScatterCandleRadarDataSet<CandleEnt
      *
      * @return
      */
+    @ColorInt
     int getShadowColor();
 
     /**
@@ -46,6 +48,7 @@ public interface ICandleDataSet extends ILineScatterCandleRadarDataSet<CandleEnt
      *
      * @return
      */
+    @ColorInt
     int getNeutralColor();
 
     /**
@@ -53,6 +56,7 @@ public interface ICandleDataSet extends ILineScatterCandleRadarDataSet<CandleEnt
      *
      * @return
      */
+    @ColorInt
     int getIncreasingColor();
 
     /**
@@ -60,6 +64,7 @@ public interface ICandleDataSet extends ILineScatterCandleRadarDataSet<CandleEnt
      *
      * @return
      */
+    @ColorInt
     int getDecreasingColor();
 
     /**

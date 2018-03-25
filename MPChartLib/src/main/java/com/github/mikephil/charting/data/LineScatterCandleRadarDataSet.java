@@ -8,27 +8,33 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.List;
 
 /**
- * Created by Philipp Jahoda on 11/07/15.
+ * @author Philipp Jahoda
  */
-public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends BarLineScatterCandleBubbleDataSet<T> implements ILineScatterCandleRadarDataSet<T> {
-
+public abstract class LineScatterCandleRadarDataSet<T extends Entry>
+        extends BarLineScatterCandleBubbleDataSet<T>
+        implements ILineScatterCandleRadarDataSet<T> {
     protected boolean mDrawVerticalHighlightIndicator = true;
     protected boolean mDrawHorizontalHighlightIndicator = true;
 
-    /** the width of the highlight indicator lines */
-    protected float mHighlightLineWidth = 0.5f;
+    /**
+     * The width of the highlight indicator lines.
+     */
+    protected float mHighlightLineWidth;
 
-    /** the path effect for dashed highlight-lines */
+    /**
+     * The path effect for dashed highlight-lines.
+     */
     protected DashPathEffect mHighlightDashPathEffect = null;
 
 
-    public LineScatterCandleRadarDataSet(List<T> yVals, String label) {
-        super(yVals, label);
+    public LineScatterCandleRadarDataSet(List<T> yValues, String label) {
+        super(yValues, label);
         mHighlightLineWidth = Utils.convertDpToPixel(0.5f);
     }
 
     /**
-     * Enables / disables the horizontal highlight-indicator. If disabled, the indicator is not drawn.
+     * Enables/disables the horizontal highlight-indicator. If disabled, the indicator is not drawn.
+     *
      * @param enabled
      */
     public void setDrawHorizontalHighlightIndicator(boolean enabled) {
@@ -36,7 +42,8 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
     }
 
     /**
-     * Enables / disables the vertical highlight-indicator. If disabled, the indicator is not drawn.
+     * Enables/disables the vertical highlight-indicator. If disabled, the indicator is not drawn.
+     *
      * @param enabled
      */
     public void setDrawVerticalHighlightIndicator(boolean enabled) {
@@ -44,7 +51,8 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
     }
 
     /**
-     * Enables / disables both vertical and horizontal highlight-indicators.
+     * Enables/disables both vertical and horizontal highlight-indicators.
+     *
      * @param enabled
      */
     public void setDrawHighlightIndicators(boolean enabled) {
@@ -64,6 +72,7 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
 
     /**
      * Sets the width of the highlight line in dp.
+     *
      * @param width
      */
     public void setHighlightLineWidth(float width) {
@@ -76,16 +85,14 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
     }
 
     /**
-     * Enables the highlight-line to be drawn in dashed mode, e.g. like this "- - - - - -"
+     * Enables the highlight-line to be drawn in dashed mode, e.g. like this "- - - - - -".
      *
-     * @param lineLength the length of the line pieces
-     * @param spaceLength the length of space inbetween the line-pieces
-     * @param phase offset, in degrees (normally, use 0)
+     * @param lineLength  the length of the line pieces
+     * @param spaceLength the length of space in between the line-pieces
+     * @param phase       offset, in degrees (normally, use 0)
      */
     public void enableDashedHighlightLine(float lineLength, float spaceLength, float phase) {
-        mHighlightDashPathEffect = new DashPathEffect(new float[] {
-                lineLength, spaceLength
-        }, phase);
+        mHighlightDashPathEffect = new DashPathEffect(new float[]{lineLength, spaceLength}, phase);
     }
 
     /**
@@ -97,9 +104,6 @@ public abstract class LineScatterCandleRadarDataSet<T extends Entry> extends Bar
 
     /**
      * Returns true if the dashed-line effect is enabled for highlight lines, false if not.
-     * Default: disabled
-     *
-     * @return
      */
     public boolean isDashedHighlightLineEnabled() {
         return mHighlightDashPathEffect != null;

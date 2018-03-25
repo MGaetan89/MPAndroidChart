@@ -1,6 +1,5 @@
 package com.github.mikephil.charting.data;
 
-import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
@@ -11,17 +10,17 @@ import android.support.annotation.NonNull;
  *
  * @author Philipp Jahoda
  */
-@SuppressLint("ParcelCreator")
 public class BubbleEntry extends Entry {
-
-    /** size value */
-    private float mSize = 0f;
+    /**
+     * size value
+     */
+    private float mSize;
 
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      */
     public BubbleEntry(float x, float y, float size) {
@@ -32,8 +31,8 @@ public class BubbleEntry extends Entry {
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      * @param data Spot for additional data this Entry represents.
      */
@@ -45,8 +44,8 @@ public class BubbleEntry extends Entry {
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      * @param icon Icon image
      */
@@ -58,8 +57,8 @@ public class BubbleEntry extends Entry {
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      * @param icon Icon image
      * @param data Spot for additional data this Entry represents.
@@ -76,8 +75,6 @@ public class BubbleEntry extends Entry {
 
     /**
      * Returns the size of this entry (the size of the bubble).
-     *
-     * @return
      */
     public float getSize() {
         return mSize;

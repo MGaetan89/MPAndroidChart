@@ -9,14 +9,13 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry> implements IBubbleDataSet {
-
     protected float mMaxSize;
     protected boolean mNormalizeSize = true;
 
     private float mHighlightCircleWidth = 2.5f;
 
-    public BubbleDataSet(List<BubbleEntry> yVals, String label) {
-        super(yVals, label);
+    public BubbleDataSet(List<BubbleEntry> yValues, String label) {
+        super(yValues, label);
     }
 
     @Override
@@ -30,10 +29,10 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
     }
 
     @Override
-    protected void calcMinMax(@NonNull BubbleEntry e) {
-        super.calcMinMax(e);
+    protected void calcMinMax(@NonNull BubbleEntry entry) {
+        super.calcMinMax(entry);
 
-        final float size = e.getSize();
+        final float size = entry.getSize();
 
         if (size > mMaxSize) {
             mMaxSize = size;

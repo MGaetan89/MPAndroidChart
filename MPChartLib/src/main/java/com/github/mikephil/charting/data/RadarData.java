@@ -15,7 +15,6 @@ import java.util.List;
  * @author Philipp Jahoda
  */
 public class RadarData extends ChartData<IRadarDataSet> {
-
     private List<String> mLabels;
 
     public RadarData() {
@@ -55,6 +54,11 @@ public class RadarData extends ChartData<IRadarDataSet> {
     @Nullable
     @Override
     public Entry getEntryForHighlight(@NonNull Highlight highlight) {
-        return getDataSetByIndex(highlight.getDataSetIndex()).getEntryForIndex((int) highlight.getX());
+        IRadarDataSet dataSet = getDataSetByIndex(highlight.getDataSetIndex());
+        if (dataSet == null) {
+            return null;
+        }
+
+        return dataSet.getEntryForIndex((int) highlight.getX());
     }
 }

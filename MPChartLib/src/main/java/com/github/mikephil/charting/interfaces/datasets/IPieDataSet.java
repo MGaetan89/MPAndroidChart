@@ -3,6 +3,8 @@ package com.github.mikephil.charting.interfaces.datasets;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import androidx.annotation.ColorInt;
+
 /**
  * Created by Philipp Jahoda on 03/11/15.
  */
@@ -43,6 +45,7 @@ public interface IPieDataSet extends IDataSet<PieEntry> {
     /**
      * When valuePosition is OutsideSlice, indicates line color
      * */
+    @ColorInt
     int getValueLineColor();
 
     /**

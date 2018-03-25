@@ -16,36 +16,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> implements IScatterDataSet {
-
     /**
-     * the size the scattershape will have, in density pixels
+     * The size the scatter shape will have, in density pixels.
      */
     private float mShapeSize = 15f;
 
     /**
-     * Renderer responsible for rendering this DataSet, default: square
+     * Renderer responsible for rendering this DataSet.
      */
-    @Nullable
+    @NonNull
     protected IShapeRenderer mShapeRenderer = new SquareShapeRenderer();
 
     /**
-     * The radius of the hole in the shape (applies to Square, Circle and Triangle)
-     * - default: 0.0
+     * The radius of the hole in the shape (applies to Square, Circle and Triangle).
      */
     private float mScatterShapeHoleRadius = 0f;
 
     /**
-     * Color for the hole in the shape.
-     * Setting to `ColorTemplate.COLOR_NONE` will behave as transparent.
-     * - default: ColorTemplate.COLOR_NONE
+     * Color for the hole in the shape. Setting to `ColorTemplate.COLOR_NONE` will behave as
+     * transparent.
      */
     private int mScatterShapeHoleColor = ColorTemplate.COLOR_NONE;
 
-    public ScatterDataSet(List<Entry> yVals, String label) {
-        super(yVals, label);
+    public ScatterDataSet(List<Entry> yValues, String label) {
+        super(yValues, label);
     }
 
     @NonNull
@@ -69,8 +65,8 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
     }
 
     /**
-     * Sets the size in density pixels the drawn scattershape will have. This
-     * only applies for non custom shapes.
+     * Sets the size in density pixels the drawn scatter shape will have. This only applies for non
+     * custom shapes.
      *
      * @param size
      */
@@ -84,8 +80,8 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
     }
 
     /**
-     * Sets the ScatterShape this DataSet should be drawn with. This will search for an available IShapeRenderer and set this
-     * renderer for the DataSet.
+     * Sets the ScatterShape this DataSet should be drawn with. This will search for an available
+     * IShapeRenderer and set this renderer for the DataSet.
      *
      * @param shape
      */
@@ -94,23 +90,24 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
     }
 
     /**
-     * Sets a new IShapeRenderer responsible for drawing this DataSet.
-     * This can also be used to set a custom IShapeRenderer aside from the default ones.
+     * Sets a new IShapeRenderer responsible for drawing this DataSet. This can also be used to set
+     * a custom IShapeRenderer aside from the default ones.
      *
      * @param shapeRenderer
      */
-    public void setShapeRenderer(IShapeRenderer shapeRenderer) {
+    public void setShapeRenderer(@NonNull IShapeRenderer shapeRenderer) {
         mShapeRenderer = shapeRenderer;
     }
 
+    @NonNull
     @Override
     public IShapeRenderer getShapeRenderer() {
         return mShapeRenderer;
     }
 
     /**
-     * Sets the radius of the hole in the shape (applies to Square, Circle and Triangle)
-     * Set this to <= 0 to remove holes.
+     * Sets the radius of the hole in the shape (applies to Square, Circle and Triangle). Set this
+     * to a negative value to remove holes.
      *
      * @param holeRadius
      */
@@ -137,9 +134,8 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
         return mScatterShapeHoleColor;
     }
 
-    @Nullable
-    public static IShapeRenderer getRendererForShape(ScatterChart.ScatterShape shape) {
-
+    @NonNull
+    public static IShapeRenderer getRendererForShape(@NonNull ScatterChart.ScatterShape shape) {
         switch (shape) {
             case SQUARE:
                 return new SquareShapeRenderer();
@@ -155,8 +151,8 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
                 return new ChevronUpShapeRenderer();
             case CHEVRON_DOWN:
                 return new ChevronDownShapeRenderer();
+            default:
+                throw new IllegalArgumentException("Unknown shape '" + shape + "'");
         }
-
-        return null;
     }
 }

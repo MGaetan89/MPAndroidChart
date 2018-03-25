@@ -1,5 +1,7 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
+import android.support.annotation.ColorInt;
+
 import com.github.mikephil.charting.data.BarEntry;
 
 /**
@@ -28,6 +30,7 @@ public interface IBarDataSet extends IBarLineScatterCandleBubbleDataSet<BarEntry
      *
      * @return
      */
+    @ColorInt
     int getBarShadowColor();
 
     /**
@@ -43,6 +46,7 @@ public interface IBarDataSet extends IBarLineScatterCandleBubbleDataSet<BarEntry
      *
      * @return
      */
+    @ColorInt
     int getBarBorderColor();
 
     /**

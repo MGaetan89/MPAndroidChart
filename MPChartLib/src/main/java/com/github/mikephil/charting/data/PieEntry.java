@@ -1,6 +1,5 @@
 package com.github.mikephil.charting.data;
 
-import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -8,9 +7,7 @@ import android.util.Log;
 /**
  * @author Philipp Jahoda
  */
-@SuppressLint("ParcelCreator")
 public class PieEntry extends Entry {
-
     private String label;
 
     public PieEntry(float value) {
@@ -51,8 +48,6 @@ public class PieEntry extends Entry {
 
     /**
      * This is the same as getY(). Returns the value of the PieEntry.
-     *
-     * @return
      */
     public float getValue() {
         return getY();

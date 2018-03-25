@@ -1,6 +1,8 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
 import android.graphics.DashPathEffect;
+import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -43,6 +45,7 @@ public interface ILineDataSet extends ILineRadarDataSet<Entry> {
      * @param index
      * @return
      */
+    @ColorInt
     int getCircleColor(int index);
 
     /**
@@ -78,6 +81,7 @@ public interface ILineDataSet extends ILineRadarDataSet<Entry> {
      *
      * @return
      */
+    @Nullable
     DashPathEffect getDashPathEffect();
 
     /**

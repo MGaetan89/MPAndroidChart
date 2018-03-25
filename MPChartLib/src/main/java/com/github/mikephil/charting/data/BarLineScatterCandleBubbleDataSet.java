@@ -6,35 +6,34 @@ import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBub
 
 import java.util.List;
 
+import androidx.annotation.ColorInt;
+
 /**
- * Baseclass of all DataSets for Bar-, Line-, Scatter- and CandleStickChart.
+ * Base class of all DataSets for Bar-, Line-, Scatter- and CandleStickChart.
  *
  * @author Philipp Jahoda
  */
-public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry>
-        extends DataSet<T>
-        implements IBarLineScatterCandleBubbleDataSet<T> {
-
+public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry> extends DataSet<T> implements IBarLineScatterCandleBubbleDataSet<T> {
     /**
-     * default highlight color
+     * Default highlight color.
      */
+    @ColorInt
     protected int mHighLightColor = Color.rgb(255, 187, 115);
 
-    public BarLineScatterCandleBubbleDataSet(List<T> yVals, String label) {
-        super(yVals, label);
+    public BarLineScatterCandleBubbleDataSet(List<T> yValues, String label) {
+        super(yValues, label);
     }
 
     /**
-     * Sets the color that is used for drawing the highlight indicators. Dont
-     * forget to resolve the color using getResources().getColor(...) or
-     * Color.rgb(...).
+     * Sets the color that is used for drawing the highlight indicators.
      *
      * @param color
      */
-    public void setHighLightColor(int color) {
+    public void setHighLightColor(@ColorInt int color) {
         mHighLightColor = color;
     }
 
+    @ColorInt
     @Override
     public int getHighLightColor() {
         return mHighLightColor;
