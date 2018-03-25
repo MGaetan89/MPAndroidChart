@@ -16,7 +16,6 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet {
@@ -30,7 +29,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
      */
     @ColorInt
     @NonNull
-    private List<Integer> mCircleColors = Collections.emptyList();
+    private List<Integer> mCircleColors = new ArrayList<>();
 
     /**
      * The color of the inner circles.
