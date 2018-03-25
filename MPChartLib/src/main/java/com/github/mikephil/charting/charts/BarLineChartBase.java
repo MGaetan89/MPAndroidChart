@@ -522,8 +522,8 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * Returns the Transformer class that contains all matrices and is responsible for transforming
      * values into pixels on the screen and backwards.
      */
-    public Transformer getTransformer(AxisDependency which) {
-        if (which == AxisDependency.LEFT) {
+    public Transformer getTransformer(AxisDependency axis) {
+        if (axis == AxisDependency.LEFT) {
             return mLeftAxisTransformer;
         } else {
             return mRightAxisTransformer;

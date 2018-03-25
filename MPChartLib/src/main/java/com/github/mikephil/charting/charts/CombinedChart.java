@@ -81,6 +81,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
         mRenderer = new CombinedChartRenderer(this, mAnimator, mViewPortHandler);
     }
 
+    @Nullable
     @Override
     public CombinedData getCombinedData() {
         return mData;

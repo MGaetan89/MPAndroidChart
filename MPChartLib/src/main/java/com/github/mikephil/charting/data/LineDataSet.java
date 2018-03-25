@@ -342,6 +342,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         }
     }
 
+    @NonNull
     @Override
     public IFillFormatter getFillFormatter() {
         return mFillFormatter;

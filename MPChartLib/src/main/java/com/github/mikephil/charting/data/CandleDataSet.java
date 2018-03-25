@@ -41,11 +41,13 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
     /**
      * Paint style when open < close. Increasing candlesticks are traditionally hollow.
      */
+    @NonNull
     protected Paint.Style mIncreasingPaintStyle = Paint.Style.STROKE;
 
     /**
      * Paint style when open > close. Decreasing candlesticks are traditionally filled.
      */
+    @NonNull
     protected Paint.Style mDecreasingPaintStyle = Paint.Style.FILL;
 
     /**
@@ -239,6 +241,7 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
         return mDecreasingColor;
     }
 
+    @NonNull
     @Override
     public Paint.Style getIncreasingPaintStyle() {
         return mIncreasingPaintStyle;
@@ -249,10 +252,11 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
      *
      * @param paintStyle
      */
-    public void setIncreasingPaintStyle(Paint.Style paintStyle) {
+    public void setIncreasingPaintStyle(@NonNull Paint.Style paintStyle) {
         this.mIncreasingPaintStyle = paintStyle;
     }
 
+    @NonNull
     @Override
     public Paint.Style getDecreasingPaintStyle() {
         return mDecreasingPaintStyle;
@@ -263,7 +267,7 @@ public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> im
      *
      * @param decreasingPaintStyle
      */
-    public void setDecreasingPaintStyle(Paint.Style decreasingPaintStyle) {
+    public void setDecreasingPaintStyle(@NonNull Paint.Style decreasingPaintStyle) {
         this.mDecreasingPaintStyle = decreasingPaintStyle;
     }
 

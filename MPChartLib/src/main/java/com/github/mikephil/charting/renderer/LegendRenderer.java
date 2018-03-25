@@ -112,7 +112,7 @@ public class LegendRenderer extends Renderer {
                         ));
                     }
 
-                    if (bds.getLabel() != null) {
+                    if (!bds.getLabel().isEmpty()) {
                         // add the legend description label
                         computedEntries.add(new LegendEntry(
                                 dataSet.getLabel(),
@@ -140,7 +140,7 @@ public class LegendRenderer extends Renderer {
                         ));
                     }
 
-                    if (pds.getLabel() != null) {
+                    if (!pds.getLabel().isEmpty()) {
                         // add the legend description label
                         computedEntries.add(new LegendEntry(
                                 dataSet.getLabel(),

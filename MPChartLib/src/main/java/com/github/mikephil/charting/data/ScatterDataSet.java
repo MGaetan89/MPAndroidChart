@@ -15,6 +15,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> implements IScatterDataSet {
@@ -38,6 +39,7 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
      * Color for the hole in the shape. Setting to `ColorTemplate.COLOR_NONE` will behave as
      * transparent.
      */
+    @ColorInt
     private int mScatterShapeHoleColor = ColorTemplate.COLOR_NONE;
 
     public ScatterDataSet(List<Entry> yValues, String label) {
@@ -125,10 +127,11 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
      *
      * @param holeColor
      */
-    public void setScatterShapeHoleColor(int holeColor) {
+    public void setScatterShapeHoleColor(@ColorInt int holeColor) {
         mScatterShapeHoleColor = holeColor;
     }
 
+    @ColorInt
     @Override
     public int getScatterShapeHoleColor() {
         return mScatterShapeHoleColor;

@@ -42,6 +42,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     /**
      * Array of labels used to describe the different values of the stacked bars.
      */
+    @NonNull
     private String[] mStackLabels = new String[]{
             "Stack"
     };
@@ -219,10 +220,11 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
      *
      * @param labels
      */
-    public void setStackLabels(String[] labels) {
+    public void setStackLabels(@NonNull String[] labels) {
         mStackLabels = labels;
     }
 
+    @NonNull
     @Override
     public String[] getStackLabels() {
         return mStackLabels;

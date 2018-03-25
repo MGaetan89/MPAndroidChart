@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.data.LineData;
@@ -32,6 +33,7 @@ public class LineChart extends BarLineChartBase<LineData> implements LineDataPro
         mRenderer = new LineChartRenderer(this, mAnimator, mViewPortHandler);
     }
 
+    @Nullable
     @Override
     public LineData getLineData() {
         return mData;

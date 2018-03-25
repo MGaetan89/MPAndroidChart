@@ -157,6 +157,7 @@ public class ViewPortHandler {
         return mContentRect.height();
     }
 
+    @NonNull
     public RectF getContentRect() {
         return mContentRect;
     }
