@@ -4,22 +4,22 @@ import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.PieRadarChartBase;
+import com.github.mikephil.charting.data.ChartData;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by philipp on 12/06/16.
+ * @author Philipp Jahoda
  */
-public abstract class PieRadarHighlighter<T extends PieRadarChartBase> implements IHighlighter
-{
-
+public abstract class PieRadarHighlighter<T extends PieRadarChartBase> implements IHighlighter {
     protected T mChart;
 
     /**
-     * buffer for storing previously highlighted values
+     * Buffer for storing previously highlighted values.
      */
-    protected List<Highlight> mHighlightBuffer = new ArrayList<Highlight>();
+    protected List<Highlight> mHighlightBuffer = new ArrayList<>();
 
     public PieRadarHighlighter(T chart) {
         this.mChart = chart;
@@ -28,29 +28,32 @@ public abstract class PieRadarHighlighter<T extends PieRadarChartBase> implement
     @Nullable
     @Override
     public Highlight getHighlight(float x, float y) {
-
         float touchDistanceToCenter = mChart.distanceToCenter(x, y);
 
-        // check if a slice was touched
+        // Check if a slice was touched
         if (touchDistanceToCenter > mChart.getRadius()) {
-
-            // if no slice was touched, highlight nothing
+            // If no slice was touched, highlight nothing
             return null;
-
         } else {
-
             float angle = mChart.getAngleForPoint(x, y);
-
             if (mChart instanceof PieChart) {
                 angle /= mChart.getAnimator().getPhaseY();
             }
 
             int index = mChart.getIndexForAngle(angle);
-
-            // check if the index could be found
-            if (index < 0 || index >= mChart.getData().getMaxEntryCountSet().getEntryCount()) {
+            ChartData data = mChart.getData();
+            if (data == null) {
                 return null;
+            }
 
+            IDataSet maxEntryCountSet = data.getMaxEntryCountSet();
+            if (maxEntryCountSet == null) {
+                return null;
+            }
+
+            // Check if the index could be found
+            if (index < 0 || index >= maxEntryCountSet.getEntryCount()) {
+                return null;
             } else {
                 return getClosestHighlight(index, x, y);
             }
@@ -58,12 +61,12 @@ public abstract class PieRadarHighlighter<T extends PieRadarChartBase> implement
     }
 
     /**
-     * Returns the closest Highlight object of the given objects based on the touch position inside the chart.
+     * Returns the closest Highlight object of the given objects based on the touch position inside
+     * the chart.
      *
      * @param index
      * @param x
      * @param y
-     * @return
      */
     protected abstract Highlight getClosestHighlight(int index, float x, float y);
 }

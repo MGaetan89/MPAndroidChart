@@ -145,8 +145,8 @@ public class Highlight {
     }
 
     /**
-     * Only needed if a stacked-barchart entry was highlighted.
-     * References the selected value within the stacked-entry.
+     * Only needed if a stacked-barchart entry was highlighted. References the selected value within
+     * the stacked-entry.
      *
      * @return
      */
