@@ -16,10 +16,10 @@ public final class Range {
     }
 
     /**
-     * Returns true if {@code value} is greater than {@code from} and smaller or equal to {@code to}, false if not.
+     * Returns true if {@code value} is greater than {@code from} and smaller or equal to
+     * {@code to}, false if not.
      *
      * @param value
-     * @return
      */
     public boolean contains(float value) {
         return value > from && value <= to;
