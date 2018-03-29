@@ -21,8 +21,24 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.util.List;
 
 public class XAxisRenderer extends AxisRenderer {
-
     protected XAxis mXAxis;
+
+    @NonNull
+    protected Path mRenderGridLinesPath = new Path();
+    protected float[] mRenderGridLinesBuffer = new float[2];
+
+    @NonNull
+    protected RectF mGridClippingRect = new RectF();
+
+    protected float[] mRenderLimitLinesBuffer = new float[2];
+
+    @NonNull
+    protected RectF mLimitLineClippingRect = new RectF();
+
+    float[] mLimitLineSegmentsBuffer = new float[4];
+
+    @NonNull
+    private final Path mLimitLinePath = new Path();
 
     public XAxisRenderer(ViewPortHandler viewPortHandler, XAxis xAxis, Transformer trans) {
         super(viewPortHandler, trans, xAxis);
@@ -42,20 +58,15 @@ public class XAxisRenderer extends AxisRenderer {
 
     @Override
     public void computeAxis(float min, float max, boolean inverted) {
-
-        // calculate the starting and entry point of the y-labels (depending on
-        // zoom / contentrect bounds)
+        // Calculate the starting and entry point of the y-labels (depending on zoom/contentrect bounds)
         if (mViewPortHandler.contentWidth() > 10 && !mViewPortHandler.isFullyZoomedOutX()) {
-
             MPPointD p1 = mTrans.getValuesByTouchPoint(mViewPortHandler.contentLeft(), mViewPortHandler.contentTop());
             MPPointD p2 = mTrans.getValuesByTouchPoint(mViewPortHandler.contentRight(), mViewPortHandler.contentTop());
 
             if (inverted) {
-
                 min = (float) p2.x;
                 max = (float) p1.x;
             } else {
-
                 min = (float) p1.x;
                 max = (float) p2.x;
             }
@@ -75,7 +86,6 @@ public class XAxisRenderer extends AxisRenderer {
     }
 
     protected void computeSize() {
-
         String longest = mXAxis.getLongestLabel();
 
         mAxisLabelPaint.setTypeface(mXAxis.getTypeface());
@@ -86,11 +96,7 @@ public class XAxisRenderer extends AxisRenderer {
         final float labelWidth = labelSize.width;
         final float labelHeight = Utils.calcTextHeight(mAxisLabelPaint, "Q");
 
-        final FSize labelRotatedSize = Utils.getSizeOfRotatedRectangleByDegrees(
-                labelWidth,
-                labelHeight,
-                mXAxis.getLabelRotationAngle());
-
+        final FSize labelRotatedSize = Utils.getSizeOfRotatedRectangleByDegrees(labelWidth, labelHeight, mXAxis.getLabelRotationAngle());
 
         mXAxis.mLabelWidth = Math.round(labelWidth);
         mXAxis.mLabelHeight = Math.round(labelHeight);
@@ -102,91 +108,84 @@ public class XAxisRenderer extends AxisRenderer {
     }
 
     @Override
-    public void renderAxisLabels(Canvas c) {
-
-        if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled())
+    public void renderAxisLabels(Canvas canvas) {
+        if (!mXAxis.isEnabled() || !mXAxis.isDrawLabelsEnabled()) {
             return;
+        }
 
-        float yoffset = mXAxis.getYOffset();
+        float yOffset = mXAxis.getYOffset();
 
         mAxisLabelPaint.setTypeface(mXAxis.getTypeface());
         mAxisLabelPaint.setTextSize(mXAxis.getTextSize());
         mAxisLabelPaint.setColor(mXAxis.getTextColor());
 
-        MPPointF pointF = MPPointF.getInstance(0,0);
+        MPPointF pointF = MPPointF.getInstance(0f, 0f);
         if (mXAxis.getPosition() == XAxisPosition.TOP) {
             pointF.x = 0.5f;
-            pointF.y = 1.0f;
-            drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
-
+            pointF.y = 1f;
+            drawLabels(canvas, mViewPortHandler.contentTop() - yOffset, pointF);
         } else if (mXAxis.getPosition() == XAxisPosition.TOP_INSIDE) {
             pointF.x = 0.5f;
-            pointF.y = 1.0f;
-            drawLabels(c, mViewPortHandler.contentTop() + yoffset + mXAxis.mLabelRotatedHeight, pointF);
-
+            pointF.y = 1f;
+            drawLabels(canvas, mViewPortHandler.contentTop() + yOffset + mXAxis.mLabelRotatedHeight, pointF);
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM) {
             pointF.x = 0.5f;
-            pointF.y = 0.0f;
-            drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
-
+            pointF.y = 0f;
+            drawLabels(canvas, mViewPortHandler.contentBottom() + yOffset, pointF);
         } else if (mXAxis.getPosition() == XAxisPosition.BOTTOM_INSIDE) {
             pointF.x = 0.5f;
-            pointF.y = 0.0f;
-            drawLabels(c, mViewPortHandler.contentBottom() - yoffset - mXAxis.mLabelRotatedHeight, pointF);
-
-        } else { // BOTH SIDED
+            pointF.y = 0f;
+            drawLabels(canvas, mViewPortHandler.contentBottom() - yOffset - mXAxis.mLabelRotatedHeight, pointF);
+        } else { // Both sided
             pointF.x = 0.5f;
-            pointF.y = 1.0f;
-            drawLabels(c, mViewPortHandler.contentTop() - yoffset, pointF);
+            pointF.y = 1f;
+            drawLabels(canvas, mViewPortHandler.contentTop() - yOffset, pointF);
             pointF.x = 0.5f;
-            pointF.y = 0.0f;
-            drawLabels(c, mViewPortHandler.contentBottom() + yoffset, pointF);
+            pointF.y = 0f;
+            drawLabels(canvas, mViewPortHandler.contentBottom() + yOffset, pointF);
         }
+
         MPPointF.recycleInstance(pointF);
     }
 
     @Override
-    public void renderAxisLine(@NonNull Canvas c) {
-
-        if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled())
+    public void renderAxisLine(@NonNull Canvas canvas) {
+        if (!mXAxis.isDrawAxisLineEnabled() || !mXAxis.isEnabled()) {
             return;
+        }
 
         mAxisLinePaint.setColor(mXAxis.getAxisLineColor());
         mAxisLinePaint.setStrokeWidth(mXAxis.getAxisLineWidth());
         mAxisLinePaint.setPathEffect(mXAxis.getAxisLineDashPathEffect());
 
-        if (mXAxis.getPosition() == XAxisPosition.TOP
-                || mXAxis.getPosition() == XAxisPosition.TOP_INSIDE
-                || mXAxis.getPosition() == XAxisPosition.BOTH_SIDED) {
-            c.drawLine(mViewPortHandler.contentLeft(),
-                    mViewPortHandler.contentTop(), mViewPortHandler.contentRight(),
-                    mViewPortHandler.contentTop(), mAxisLinePaint);
+        if (mXAxis.getPosition() == XAxisPosition.TOP || mXAxis.getPosition() == XAxisPosition.TOP_INSIDE || mXAxis.getPosition() == XAxisPosition.BOTH_SIDED) {
+            canvas.drawLine(
+                    mViewPortHandler.contentLeft(), mViewPortHandler.contentTop(),
+                    mViewPortHandler.contentRight(), mViewPortHandler.contentTop(), mAxisLinePaint
+            );
         }
 
-        if (mXAxis.getPosition() == XAxisPosition.BOTTOM
-                || mXAxis.getPosition() == XAxisPosition.BOTTOM_INSIDE
-                || mXAxis.getPosition() == XAxisPosition.BOTH_SIDED) {
-            c.drawLine(mViewPortHandler.contentLeft(),
-                    mViewPortHandler.contentBottom(), mViewPortHandler.contentRight(),
-                    mViewPortHandler.contentBottom(), mAxisLinePaint);
+        if (mXAxis.getPosition() == XAxisPosition.BOTTOM || mXAxis.getPosition() == XAxisPosition.BOTTOM_INSIDE || mXAxis.getPosition() == XAxisPosition.BOTH_SIDED) {
+            canvas.drawLine(
+                    mViewPortHandler.contentLeft(), mViewPortHandler.contentBottom(),
+                    mViewPortHandler.contentRight(), mViewPortHandler.contentBottom(), mAxisLinePaint
+            );
         }
     }
 
     /**
-     * draws the x-labels on the specified y-position
+     * Draws the x-labels on the specified y-position.
      *
      * @param pos
      */
-    protected void drawLabels(Canvas c, float pos, MPPointF anchor) {
-
+    protected void drawLabels(Canvas canvas, float pos, MPPointF anchor) {
         final float labelRotationAngleDegrees = mXAxis.getLabelRotationAngle();
         boolean centeringEnabled = mXAxis.isCenterAxisLabelsEnabled();
 
         float[] positions = new float[mXAxis.mEntryCount * 2];
 
         for (int i = 0; i < positions.length; i += 2) {
-
-            // only fill x values
+            // Only fill x values
             if (centeringEnabled) {
                 positions[i] = mXAxis.mCenteredEntries[i / 2];
             } else {
@@ -197,58 +196,48 @@ public class XAxisRenderer extends AxisRenderer {
         mTrans.pointValuesToPixel(positions);
 
         for (int i = 0; i < positions.length; i += 2) {
-
             float x = positions[i];
-
             if (mViewPortHandler.isInBoundsX(x)) {
-
                 String label = mXAxis.getValueFormatter().getFormattedValue(mXAxis.mEntries[i / 2], mXAxis);
-
                 if (mXAxis.isAvoidFirstLastClippingEnabled()) {
-
-                    // avoid clipping of the last
+                    // Avoid clipping of the last
                     if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
                         float width = Utils.calcTextWidth(mAxisLabelPaint, label);
 
-                        if (width > mViewPortHandler.offsetRight() * 2
-                                && x + width > mViewPortHandler.getChartWidth())
+                        if (width > mViewPortHandler.offsetRight() * 2 && x + width > mViewPortHandler.getChartWidth()) {
                             x -= width / 2;
+                        }
 
-                        // avoid clipping of the first
+                        // Avoid clipping of the first
                     } else if (i == 0) {
-
                         float width = Utils.calcTextWidth(mAxisLabelPaint, label);
                         x += width / 2;
                     }
                 }
 
-                drawLabel(c, label, x, pos, anchor, labelRotationAngleDegrees);
+                drawLabel(canvas, label, x, pos, anchor, labelRotationAngleDegrees);
             }
         }
     }
 
-    protected void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
-        Utils.drawXAxisValue(c, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
+    protected void drawLabel(Canvas canvas, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
+        Utils.drawXAxisValue(canvas, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
     }
 
-    @NonNull
-    protected Path mRenderGridLinesPath = new Path();
-    protected float[] mRenderGridLinesBuffer = new float[2];
-
     @Override
-    public void renderGridLines(@NonNull Canvas c) {
-
-        if (!mXAxis.isDrawGridLinesEnabled() || !mXAxis.isEnabled())
+    public void renderGridLines(@NonNull Canvas canvas) {
+        if (!mXAxis.isDrawGridLinesEnabled() || !mXAxis.isEnabled()) {
             return;
+        }
 
-        int clipRestoreCount = c.save();
-        c.clipRect(getGridClippingRect());
+        int clipRestoreCount = canvas.save();
+        canvas.clipRect(getGridClippingRect());
 
-        if(mRenderGridLinesBuffer.length != mAxis.mEntryCount * 2){
+        if (mRenderGridLinesBuffer.length != mAxis.mEntryCount * 2) {
             mRenderGridLinesBuffer = new float[mXAxis.mEntryCount * 2];
         }
-        float[] positions = mRenderGridLinesBuffer;
 
+        float[] positions = mRenderGridLinesBuffer;
         for (int i = 0; i < positions.length; i += 2) {
             positions[i] = mXAxis.mEntries[i / 2];
             positions[i + 1] = mXAxis.mEntries[i / 2];
@@ -262,15 +251,11 @@ public class XAxisRenderer extends AxisRenderer {
         gridLinePath.reset();
 
         for (int i = 0; i < positions.length; i += 2) {
-
-            drawGridLine(c, positions[i], positions[i + 1], gridLinePath);
+            drawGridLine(canvas, positions[i], positions[i + 1], gridLinePath);
         }
 
-        c.restoreToCount(clipRestoreCount);
+        canvas.restoreToCount(clipRestoreCount);
     }
-
-    @NonNull
-    protected RectF mGridClippingRect = new RectF();
 
     @NonNull
     public RectF getGridClippingRect() {
@@ -282,74 +267,61 @@ public class XAxisRenderer extends AxisRenderer {
     /**
      * Draws the grid line at the specified position using the provided path.
      *
-     * @param c
+     * @param canvas
      * @param x
      * @param y
      * @param gridLinePath
      */
-    protected void drawGridLine(@NonNull Canvas c, float x, float y, @NonNull Path gridLinePath) {
-
+    protected void drawGridLine(@NonNull Canvas canvas, float x, float y, @NonNull Path gridLinePath) {
         gridLinePath.moveTo(x, mViewPortHandler.contentBottom());
         gridLinePath.lineTo(x, mViewPortHandler.contentTop());
 
-        // draw a path because lines don't support dashing on lower android versions
-        c.drawPath(gridLinePath, mGridPaint);
+        // Draw a path because lines don't support dashing on lower android versions
+        canvas.drawPath(gridLinePath, mGridPaint);
 
         gridLinePath.reset();
     }
 
-    protected float[] mRenderLimitLinesBuffer = new float[2];
-
-    @NonNull
-    protected RectF mLimitLineClippingRect = new RectF();
-
     /**
      * Draws the LimitLines associated with this axis to the screen.
      *
-     * @param c
+     * @param canvas
      */
     @Override
-    public void renderLimitLines(@NonNull Canvas c) {
-
+    public void renderLimitLines(@NonNull Canvas canvas) {
         List<LimitLine> limitLines = mXAxis.getLimitLines();
-
-        if (limitLines == null || limitLines.size() <= 0)
+        if (limitLines.isEmpty()) {
             return;
+        }
 
         float[] position = mRenderLimitLinesBuffer;
         position[0] = 0;
         position[1] = 0;
 
         for (int i = 0; i < limitLines.size(); i++) {
-
-            LimitLine l = limitLines.get(i);
-
-            if (!l.isEnabled())
+            LimitLine limitLine = limitLines.get(i);
+            if (!limitLine.isEnabled()) {
                 continue;
+            }
 
-            int clipRestoreCount = c.save();
+            int clipRestoreCount = canvas.save();
             mLimitLineClippingRect.set(mViewPortHandler.getContentRect());
-            mLimitLineClippingRect.inset(-l.getLineWidth(), 0.f);
-            c.clipRect(mLimitLineClippingRect);
+            mLimitLineClippingRect.inset(-limitLine.getLineWidth(), 0.f);
+            canvas.clipRect(mLimitLineClippingRect);
 
-            position[0] = l.getLimit();
-            position[1] = 0.f;
+            position[0] = limitLine.getLimit();
+            position[1] = 0f;
 
             mTrans.pointValuesToPixel(position);
 
-            renderLimitLineLine(c, l, position);
-            renderLimitLineLabel(c, l, position, 2.f + l.getYOffset());
+            renderLimitLineLine(canvas, limitLine, position);
+            renderLimitLineLabel(canvas, limitLine, position, 2.f + limitLine.getYOffset());
 
-            c.restoreToCount(clipRestoreCount);
+            canvas.restoreToCount(clipRestoreCount);
         }
     }
 
-    float[] mLimitLineSegmentsBuffer = new float[4];
-
-    @NonNull
-    private Path mLimitLinePath = new Path();
-
-    public void renderLimitLineLine(@NonNull Canvas c, @NonNull LimitLine limitLine, float[] position) {
+    public void renderLimitLineLine(@NonNull Canvas canvas, @NonNull LimitLine limitLine, float[] position) {
         mLimitLineSegmentsBuffer[0] = position[0];
         mLimitLineSegmentsBuffer[1] = mViewPortHandler.contentTop();
         mLimitLineSegmentsBuffer[2] = position[0];
@@ -364,46 +336,38 @@ public class XAxisRenderer extends AxisRenderer {
         mLimitLinePaint.setStrokeWidth(limitLine.getLineWidth());
         mLimitLinePaint.setPathEffect(limitLine.getDashPathEffect());
 
-        c.drawPath(mLimitLinePath, mLimitLinePaint);
+        canvas.drawPath(mLimitLinePath, mLimitLinePaint);
     }
 
-    public void renderLimitLineLabel(@NonNull Canvas c, @NonNull LimitLine limitLine, float[] position, float yOffset) {
+    public void renderLimitLineLabel(@NonNull Canvas canvas, @NonNull LimitLine limitLine, float[] position, float yOffset) {
         String label = limitLine.getLabel();
 
-        // if drawing the limit-value label is enabled
-        if (label != null && !label.equals("")) {
-
+        // If drawing the limit-value label is enabled
+        if (!label.isEmpty()) {
             mLimitLinePaint.setStyle(limitLine.getTextStyle());
             mLimitLinePaint.setPathEffect(null);
             mLimitLinePaint.setColor(limitLine.getTextColor());
             mLimitLinePaint.setStrokeWidth(0.5f);
             mLimitLinePaint.setTextSize(limitLine.getTextSize());
 
-
             float xOffset = limitLine.getLineWidth() + limitLine.getXOffset();
 
             final LimitLine.LimitLabelPosition labelPosition = limitLine.getLabelPosition();
 
             if (labelPosition == LimitLine.LimitLabelPosition.RIGHT_TOP) {
-
                 final float labelLineHeight = Utils.calcTextHeight(mLimitLinePaint, label);
                 mLimitLinePaint.setTextAlign(Align.LEFT);
-                c.drawText(label, position[0] + xOffset, mViewPortHandler.contentTop() + yOffset + labelLineHeight,
-                        mLimitLinePaint);
+                canvas.drawText(label, position[0] + xOffset, mViewPortHandler.contentTop() + yOffset + labelLineHeight, mLimitLinePaint);
             } else if (labelPosition == LimitLine.LimitLabelPosition.RIGHT_BOTTOM) {
-
                 mLimitLinePaint.setTextAlign(Align.LEFT);
-                c.drawText(label, position[0] + xOffset, mViewPortHandler.contentBottom() - yOffset, mLimitLinePaint);
+                canvas.drawText(label, position[0] + xOffset, mViewPortHandler.contentBottom() - yOffset, mLimitLinePaint);
             } else if (labelPosition == LimitLine.LimitLabelPosition.LEFT_TOP) {
-
                 mLimitLinePaint.setTextAlign(Align.RIGHT);
                 final float labelLineHeight = Utils.calcTextHeight(mLimitLinePaint, label);
-                c.drawText(label, position[0] - xOffset, mViewPortHandler.contentTop() + yOffset + labelLineHeight,
-                        mLimitLinePaint);
+                canvas.drawText(label, position[0] - xOffset, mViewPortHandler.contentTop() + yOffset + labelLineHeight, mLimitLinePaint);
             } else {
-
                 mLimitLinePaint.setTextAlign(Align.RIGHT);
-                c.drawText(label, position[0] - xOffset, mViewPortHandler.contentBottom() - yOffset, mLimitLinePaint);
+                canvas.drawText(label, position[0] - xOffset, mViewPortHandler.contentBottom() - yOffset, mLimitLinePaint);
             }
         }
     }

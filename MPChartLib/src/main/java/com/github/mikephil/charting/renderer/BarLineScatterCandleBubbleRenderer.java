@@ -12,12 +12,11 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
- * Created by Philipp Jahoda on 09/06/16.
+ * @author Philipp Jahoda
  */
 public abstract class BarLineScatterCandleBubbleRenderer extends DataRenderer {
-
     /**
-     * buffer for storing the current minimum and maximum visible x
+     * Buffer for storing the current minimum and maximum visible x.
      */
     protected XBounds mXBounds = new XBounds();
 
@@ -29,46 +28,45 @@ public abstract class BarLineScatterCandleBubbleRenderer extends DataRenderer {
      * Returns true if the DataSet values should be drawn, false if not.
      *
      * @param set
-     * @return
      */
     protected boolean shouldDrawValues(@NonNull IDataSet set) {
         return set.isVisible() && (set.isDrawValuesEnabled() || set.isDrawIconsEnabled());
     }
 
     /**
-     * Checks if the provided entry object is in bounds for drawing considering the current animation phase.
+     * Checks if the provided entry object is in bounds for drawing considering the current
+     * animation phase.
      *
-     * @param e
+     * @param entry
      * @param set
-     * @return
      */
-    protected boolean isInBoundsX(@Nullable Entry e, @NonNull IBarLineScatterCandleBubbleDataSet set) {
-
-        if (e == null)
+    protected boolean isInBoundsX(@Nullable Entry entry, @NonNull IBarLineScatterCandleBubbleDataSet set) {
+        if (entry == null) {
             return false;
+        }
 
-        float entryIndex = set.getEntryIndex(e);
+        float entryIndex = set.getEntryIndex(entry);
 
         return entryIndex < set.getEntryCount() * mAnimator.getPhaseX();
     }
 
     /**
-     * Class representing the bounds of the current viewport in terms of indices in the values array of a DataSet.
+     * Class representing the bounds of the current viewport in terms of indices in the values array
+     * of a DataSet.
      */
     protected class XBounds {
-
         /**
-         * minimum visible entry index
+         * Minimum visible entry index.
          */
         public int min;
 
         /**
-         * maximum visible entry index
+         * Maximum visible entry index.
          */
         public int max;
 
         /**
-         * range of visible entry indices
+         * Range of visible entry indices.
          */
         public int range;
 
@@ -79,7 +77,7 @@ public abstract class BarLineScatterCandleBubbleRenderer extends DataRenderer {
          * @param dataSet
          */
         public void set(@NonNull BarLineScatterCandleBubbleDataProvider chart, @NonNull IBarLineScatterCandleBubbleDataSet dataSet) {
-            float phaseX = Math.max(0.f, Math.min(1.f, mAnimator.getPhaseX()));
+            float phaseX = Math.max(0f, Math.min(1f, mAnimator.getPhaseX()));
 
             float low = chart.getLowestVisibleX();
             float high = chart.getHighestVisibleX();

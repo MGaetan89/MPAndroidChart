@@ -21,7 +21,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.util.List;
 
 public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
-
     protected CandleDataProvider mChart;
 
     private float[] mShadowBuffers = new float[8];
@@ -30,32 +29,30 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
     private float[] mOpenBuffers = new float[4];
     private float[] mCloseBuffers = new float[4];
 
-    public CandleStickChartRenderer(CandleDataProvider chart, ChartAnimator animator,
-                                    ViewPortHandler viewPortHandler) {
+    public CandleStickChartRenderer(CandleDataProvider chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         mChart = chart;
     }
 
     @Override
     public void initBuffers() {
-
     }
 
     @Override
-    public void drawData(@NonNull Canvas c) {
-
+    public void drawData(@NonNull Canvas canvas) {
         CandleData candleData = mChart.getCandleData();
+        if (candleData == null) {
+            return;
+        }
 
         for (ICandleDataSet set : candleData.getDataSets()) {
-
-            if (set.isVisible())
-                drawDataSet(c, set);
+            if (set.isVisible()) {
+                drawDataSet(canvas, set);
+            }
         }
     }
 
-    @SuppressWarnings("ResourceAsColor")
-    protected void drawDataSet(@NonNull Canvas c, @NonNull ICandleDataSet dataSet) {
-
+    protected void drawDataSet(@NonNull Canvas canvas, @NonNull ICandleDataSet dataSet) {
         Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
 
         float phaseY = mAnimator.getPhaseY();
@@ -66,25 +63,22 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
         mRenderPaint.setStrokeWidth(dataSet.getShadowWidth());
 
-        // draw the body
+        // Draw the body
         for (int j = mXBounds.min; j <= mXBounds.range + mXBounds.min; j++) {
-
-            // get the entry
-            CandleEntry e = dataSet.getEntryForIndex(j);
-
-            if (e == null)
+            // Get the entry
+            CandleEntry entry = dataSet.getEntryForIndex(j);
+            if (entry == null) {
                 continue;
+            }
 
-            final float xPos = e.getX();
-
-            final float open = e.getOpen();
-            final float close = e.getClose();
-            final float high = e.getHigh();
-            final float low = e.getLow();
+            final float xPos = entry.getX();
+            final float open = entry.getOpen();
+            final float close = entry.getClose();
+            final float high = entry.getHigh();
+            final float low = entry.getLow();
 
             if (showCandleBar) {
-                // calculate the shadow
-
+                // Calculate the shadow
                 mShadowBuffers[0] = xPos;
                 mShadowBuffers[2] = xPos;
                 mShadowBuffers[4] = xPos;
@@ -109,31 +103,27 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                 trans.pointValuesToPixel(mShadowBuffers);
 
-                // draw the shadows
-
+                // Draw the shadows
                 if (dataSet.getShadowColorSameAsCandle()) {
-
-                    if (open > close)
+                    if (open > close) {
                         mRenderPaint.setColor(
                                 dataSet.getDecreasingColor() == ColorTemplate.COLOR_NONE ?
                                         dataSet.getColor(j) :
                                         dataSet.getDecreasingColor()
                         );
-
-                    else if (open < close)
+                    } else if (open < close) {
                         mRenderPaint.setColor(
                                 dataSet.getIncreasingColor() == ColorTemplate.COLOR_NONE ?
                                         dataSet.getColor(j) :
                                         dataSet.getIncreasingColor()
                         );
-
-                    else
+                    } else {
                         mRenderPaint.setColor(
                                 dataSet.getNeutralColor() == ColorTemplate.COLOR_NONE ?
                                         dataSet.getColor(j) :
                                         dataSet.getNeutralColor()
                         );
-
+                    }
                 } else {
                     mRenderPaint.setColor(
                             dataSet.getShadowColor() == ColorTemplate.COLOR_NONE ?
@@ -144,10 +134,9 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                 mRenderPaint.setStyle(Paint.Style.STROKE);
 
-                c.drawLines(mShadowBuffers, mRenderPaint);
+                canvas.drawLines(mShadowBuffers, mRenderPaint);
 
-                // calculate the body
-
+                // Calculate the body
                 mBodyBuffers[0] = xPos - 0.5f + barSpace;
                 mBodyBuffers[1] = close * phaseY;
                 mBodyBuffers[2] = (xPos + 0.5f - barSpace);
@@ -155,9 +144,8 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                 trans.pointValuesToPixel(mBodyBuffers);
 
-                // draw body differently for increasing and decreasing entry
-                if (open > close) { // decreasing
-
+                // Draw body differently for increasing and decreasing entry
+                if (open > close) { // Decreasing
                     if (dataSet.getDecreasingColor() == ColorTemplate.COLOR_NONE) {
                         mRenderPaint.setColor(dataSet.getColor(j));
                     } else {
@@ -166,13 +154,8 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                     mRenderPaint.setStyle(dataSet.getDecreasingPaintStyle());
 
-                    c.drawRect(
-                            mBodyBuffers[0], mBodyBuffers[3],
-                            mBodyBuffers[2], mBodyBuffers[1],
-                            mRenderPaint);
-
+                    canvas.drawRect(mBodyBuffers[0], mBodyBuffers[3], mBodyBuffers[2], mBodyBuffers[1], mRenderPaint);
                 } else if (open < close) {
-
                     if (dataSet.getIncreasingColor() == ColorTemplate.COLOR_NONE) {
                         mRenderPaint.setColor(dataSet.getColor(j));
                     } else {
@@ -181,25 +164,17 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                     mRenderPaint.setStyle(dataSet.getIncreasingPaintStyle());
 
-                    c.drawRect(
-                            mBodyBuffers[0], mBodyBuffers[1],
-                            mBodyBuffers[2], mBodyBuffers[3],
-                            mRenderPaint);
-                } else { // equal values
-
+                    canvas.drawRect(mBodyBuffers[0], mBodyBuffers[1], mBodyBuffers[2], mBodyBuffers[3], mRenderPaint);
+                } else { // Equal values
                     if (dataSet.getNeutralColor() == ColorTemplate.COLOR_NONE) {
                         mRenderPaint.setColor(dataSet.getColor(j));
                     } else {
                         mRenderPaint.setColor(dataSet.getNeutralColor());
                     }
 
-                    c.drawLine(
-                            mBodyBuffers[0], mBodyBuffers[1],
-                            mBodyBuffers[2], mBodyBuffers[3],
-                            mRenderPaint);
+                    canvas.drawLine(mBodyBuffers[0], mBodyBuffers[1], mBodyBuffers[2], mBodyBuffers[3], mRenderPaint);
                 }
             } else {
-
                 mRangeBuffers[0] = xPos;
                 mRangeBuffers[1] = high * phaseY;
                 mRangeBuffers[2] = xPos;
@@ -219,63 +194,55 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
                 trans.pointValuesToPixel(mOpenBuffers);
                 trans.pointValuesToPixel(mCloseBuffers);
 
-                // draw the ranges
+                // Draw the ranges
                 int barColor;
 
-                if (open > close)
+                if (open > close) {
                     barColor = dataSet.getDecreasingColor() == ColorTemplate.COLOR_NONE
                             ? dataSet.getColor(j)
                             : dataSet.getDecreasingColor();
-                else if (open < close)
+                } else if (open < close) {
                     barColor = dataSet.getIncreasingColor() == ColorTemplate.COLOR_NONE
                             ? dataSet.getColor(j)
                             : dataSet.getIncreasingColor();
-                else
+                } else {
                     barColor = dataSet.getNeutralColor() == ColorTemplate.COLOR_NONE
                             ? dataSet.getColor(j)
                             : dataSet.getNeutralColor();
+                }
 
                 mRenderPaint.setColor(barColor);
-                c.drawLine(
-                        mRangeBuffers[0], mRangeBuffers[1],
-                        mRangeBuffers[2], mRangeBuffers[3],
-                        mRenderPaint);
-                c.drawLine(
-                        mOpenBuffers[0], mOpenBuffers[1],
-                        mOpenBuffers[2], mOpenBuffers[3],
-                        mRenderPaint);
-                c.drawLine(
-                        mCloseBuffers[0], mCloseBuffers[1],
-                        mCloseBuffers[2], mCloseBuffers[3],
-                        mRenderPaint);
+                canvas.drawLine(mRangeBuffers[0], mRangeBuffers[1], mRangeBuffers[2], mRangeBuffers[3], mRenderPaint);
+                canvas.drawLine(mOpenBuffers[0], mOpenBuffers[1], mOpenBuffers[2], mOpenBuffers[3], mRenderPaint);
+                canvas.drawLine(mCloseBuffers[0], mCloseBuffers[1], mCloseBuffers[2], mCloseBuffers[3], mRenderPaint);
             }
         }
     }
 
     @Override
-    public void drawValues(Canvas c) {
-
-        // if values are drawn
+    public void drawValues(Canvas canvas) {
+        // If values are drawn
         if (isDrawingValuesAllowed(mChart)) {
+            CandleData candleData = mChart.getCandleData();
+            if (candleData == null) {
+                return;
+            }
 
-            List<ICandleDataSet> dataSets = mChart.getCandleData().getDataSets();
-
+            List<ICandleDataSet> dataSets = candleData.getDataSets();
             for (int i = 0; i < dataSets.size(); i++) {
-
                 ICandleDataSet dataSet = dataSets.get(i);
-
-                if (!shouldDrawValues(dataSet))
+                if (!shouldDrawValues(dataSet)) {
                     continue;
+                }
 
-                // apply the text-styling defined by the DataSet
+                // Apply the text-styling defined by the DataSet
                 applyValueTextStyle(dataSet);
 
                 Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
 
                 mXBounds.set(mChart, dataSet);
 
-                float[] positions = trans.generateTransformedValuesCandle(
-                        dataSet, mAnimator.getPhaseX(), mAnimator.getPhaseY(), mXBounds.min, mXBounds.max);
+                float[] positions = trans.generateTransformedValuesCandle(dataSet, mAnimator.getPhaseX(), mAnimator.getPhaseY(), mXBounds.min, mXBounds.max);
 
                 float yOffset = Utils.convertDpToPixel(5f);
 
@@ -284,41 +251,33 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
                 iconsOffset.y = Utils.convertDpToPixel(iconsOffset.y);
 
                 for (int j = 0; j < positions.length; j += 2) {
-
                     float x = positions[j];
                     float y = positions[j + 1];
 
-                    if (!mViewPortHandler.isInBoundsRight(x))
+                    if (!mViewPortHandler.isInBoundsRight(x)) {
                         break;
+                    }
 
-                    if (!mViewPortHandler.isInBoundsLeft(x) || !mViewPortHandler.isInBoundsY(y))
+                    if (!mViewPortHandler.isInBoundsLeft(x) || !mViewPortHandler.isInBoundsY(y)) {
                         continue;
+                    }
 
                     CandleEntry entry = dataSet.getEntryForIndex(j / 2 + mXBounds.min);
 
                     if (dataSet.isDrawValuesEnabled()) {
-                        drawValue(c,
-                                dataSet.getValueFormatter(),
-                                entry.getHigh(),
-                                entry,
-                                i,
-                                x,
-                                y - yOffset,
-                                dataSet
-                                        .getValueTextColor(j / 2));
+                        drawValue(
+                                canvas, dataSet.getValueFormatter(), entry.getHigh(), entry,
+                                i, x, y - yOffset, dataSet.getValueTextColor(j / 2)
+                        );
                     }
 
                     if (entry.getIcon() != null && dataSet.isDrawIconsEnabled()) {
-
                         Drawable icon = entry.getIcon();
 
                         Utils.drawImage(
-                                c,
-                                icon,
-                                (int)(x + iconsOffset.x),
-                                (int)(y + iconsOffset.y),
-                                icon.getIntrinsicWidth(),
-                                icon.getIntrinsicHeight());
+                                canvas, icon, (int) (x + iconsOffset.x), (int) (y + iconsOffset.y),
+                                icon.getIntrinsicWidth(), icon.getIntrinsicHeight()
+                        );
                     }
                 }
 
@@ -328,36 +287,37 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
     }
 
     @Override
-    public void drawExtras(Canvas c) {
+    public void drawExtras(Canvas canvas) {
     }
 
     @Override
-    public void drawHighlighted(Canvas c, @NonNull Highlight[] indices) {
-
+    public void drawHighlighted(Canvas canvas, @NonNull Highlight[] highlights) {
         CandleData candleData = mChart.getCandleData();
+        if (candleData == null) {
+            return;
+        }
 
-        for (Highlight high : indices) {
-
-            ICandleDataSet set = candleData.getDataSetByIndex(high.getDataSetIndex());
-
-            if (set == null || !set.isHighlightEnabled())
+        for (Highlight highlight : highlights) {
+            ICandleDataSet set = candleData.getDataSetByIndex(highlight.getDataSetIndex());
+            if (set == null || !set.isHighlightEnabled()) {
                 continue;
+            }
 
-            CandleEntry e = set.getEntryForXValue(high.getX(), high.getY());
-
-            if (!isInBoundsX(e, set))
+            CandleEntry entry = set.getEntryForXValue(highlight.getX(), highlight.getY());
+            if (!isInBoundsX(entry, set)) {
                 continue;
+            }
 
-            float lowValue = e.getLow() * mAnimator.getPhaseY();
-            float highValue = e.getHigh() * mAnimator.getPhaseY();
+            float lowValue = entry.getLow() * mAnimator.getPhaseY();
+            float highValue = entry.getHigh() * mAnimator.getPhaseY();
             float y = (lowValue + highValue) / 2f;
 
-            MPPointD pix = mChart.getTransformer(set.getAxisDependency()).getPixelForValues(e.getX(), y);
+            MPPointD pix = mChart.getTransformer(set.getAxisDependency()).getPixelForValues(entry.getX(), y);
 
-            high.setDraw((float) pix.x, (float) pix.y);
+            highlight.setDraw((float) pix.x, (float) pix.y);
 
-            // draw the lines
-            drawHighlightLines(c, (float) pix.x, (float) pix.y, set);
+            // Draw the lines
+            drawHighlightLines(canvas, (float) pix.x, (float) pix.y, set);
         }
     }
 }

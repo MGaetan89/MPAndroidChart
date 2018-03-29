@@ -9,15 +9,14 @@ import com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarD
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
- * Created by Philipp Jahoda on 11/07/15.
+ * @author Philipp Jahoda
  */
 public abstract class LineScatterCandleRadarRenderer extends BarLineScatterCandleBubbleRenderer {
-
     /**
-     * path that is used for drawing highlight-lines (drawLines(...) cannot be used because of dashes)
+     * Path that is used for drawing highlight-lines (drawLines(...) cannot be used because of dashes).
      */
     @NonNull
-    private Path mHighlightLinePath = new Path();
+    private final Path mHighlightLinePath = new Path();
 
     public LineScatterCandleRadarRenderer(ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
@@ -26,40 +25,37 @@ public abstract class LineScatterCandleRadarRenderer extends BarLineScatterCandl
     /**
      * Draws vertical & horizontal highlight-lines if enabled.
      *
-     * @param c
-     * @param x x-position of the highlight line intersection
-     * @param y y-position of the highlight line intersection
-     * @param set the currently drawn dataset
+     * @param canvas
+     * @param x      x-position of the highlight line intersection
+     * @param y      y-position of the highlight line intersection
+     * @param set    the currently drawn dataset
      */
-    protected void drawHighlightLines(@NonNull Canvas c, float x, float y, @NonNull ILineScatterCandleRadarDataSet set) {
-
-        // set color and stroke-width
+    protected void drawHighlightLines(@NonNull Canvas canvas, float x, float y, @NonNull ILineScatterCandleRadarDataSet set) {
+        // Set color and stroke-width
         mHighlightPaint.setColor(set.getHighLightColor());
         mHighlightPaint.setStrokeWidth(set.getHighlightLineWidth());
 
-        // draw highlighted lines (if enabled)
+        // Draw highlighted lines (if enabled)
         mHighlightPaint.setPathEffect(set.getDashPathEffectHighlight());
 
-        // draw vertical highlight lines
+        // Draw vertical highlight lines
         if (set.isVerticalHighlightIndicatorEnabled()) {
-
-            // create vertical path
+            // Create vertical path
             mHighlightLinePath.reset();
             mHighlightLinePath.moveTo(x, mViewPortHandler.contentTop());
             mHighlightLinePath.lineTo(x, mViewPortHandler.contentBottom());
 
-            c.drawPath(mHighlightLinePath, mHighlightPaint);
+            canvas.drawPath(mHighlightLinePath, mHighlightPaint);
         }
 
-        // draw horizontal highlight lines
+        // Draw horizontal highlight lines
         if (set.isHorizontalHighlightIndicatorEnabled()) {
-
-            // create horizontal path
+            // Create horizontal path
             mHighlightLinePath.reset();
             mHighlightLinePath.moveTo(mViewPortHandler.contentLeft(), y);
             mHighlightLinePath.lineTo(mViewPortHandler.contentRight(), y);
 
-            c.drawPath(mHighlightLinePath, mHighlightPaint);
+            canvas.drawPath(mHighlightLinePath, mHighlightPaint);
         }
     }
 }

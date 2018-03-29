@@ -8,6 +8,7 @@ import android.graphics.Paint.Style;
 import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
+import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
@@ -22,32 +23,31 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
  * @author Philipp Jahoda
  */
 public abstract class DataRenderer extends Renderer {
-
     /**
-     * the animator object used to perform animations on the chart data
+     * The animator object used to perform animations on the chart data.
      */
     protected ChartAnimator mAnimator;
 
     /**
-     * main paint object used for rendering
+     * Main paint object used for rendering.
      */
     protected Paint mRenderPaint;
 
     /**
-     * paint used for highlighting values
+     * Paint used for highlighting values.
      */
     protected Paint mHighlightPaint;
 
     protected Paint mDrawPaint;
 
     /**
-     * paint object for drawing values (text representing values of chart
-     * entries)
+     * Paint object for drawing values (text representing values of chart entries).
      */
     protected Paint mValuePaint;
 
     public DataRenderer(ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(viewPortHandler);
+
         this.mAnimator = animator;
 
         mRenderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -67,25 +67,19 @@ public abstract class DataRenderer extends Renderer {
     }
 
     protected boolean isDrawingValuesAllowed(@NonNull ChartInterface chart) {
-        return chart.getData().getEntryCount() < chart.getMaxVisibleCount()
-                * mViewPortHandler.getScaleX();
+        ChartData data = chart.getData();
+        return data != null && data.getEntryCount() < chart.getMaxVisibleCount() * mViewPortHandler.getScaleX();
     }
 
     /**
-     * Returns the Paint object this renderer uses for drawing the values
-     * (value-text).
-     *
-     * @return
+     * Returns the Paint object this renderer uses for drawing the values (value-text).
      */
     public Paint getPaintValues() {
         return mValuePaint;
     }
 
     /**
-     * Returns the Paint object this renderer uses for drawing highlight
-     * indicators.
-     *
-     * @return
+     * Returns the Paint object this renderer uses for drawing highlight indicators.
      */
     public Paint getPaintHighlight() {
         return mHighlightPaint;
@@ -93,50 +87,45 @@ public abstract class DataRenderer extends Renderer {
 
     /**
      * Returns the Paint object used for rendering.
-     *
-     * @return
      */
     public Paint getPaintRender() {
         return mRenderPaint;
     }
 
     /**
-     * Applies the required styling (provided by the DataSet) to the value-paint
-     * object.
+     * Applies the required styling (provided by the DataSet) to the value-paint object.
      *
      * @param set
      */
     protected void applyValueTextStyle(@NonNull IDataSet set) {
-
         mValuePaint.setTypeface(set.getValueTypeface());
         mValuePaint.setTextSize(set.getValueTextSize());
     }
 
     /**
-     * Initializes the buffers used for rendering with a new size. Since this
-     * method performs memory allocations, it should only be called if
-     * necessary.
+     * Initializes the buffers used for rendering with a new size. Since this method performs memory
+     * allocations, it should only be called if necessary.
      */
     public abstract void initBuffers();
 
     /**
      * Draws the actual data in form of lines, bars, ... depending on Renderer subclass.
      *
-     * @param c
+     * @param canvas
      */
-    public abstract void drawData(Canvas c);
+    public abstract void drawData(Canvas canvas);
 
     /**
      * Loops over all Entrys and draws their values.
      *
-     * @param c
+     * @param canvas
      */
-    public abstract void drawValues(Canvas c);
+    public abstract void drawValues(Canvas canvas);
 
     /**
      * Draws the value of the given entry by using the provided IValueFormatter.
      *
-     * @param c            canvas
+     * @param canvas       canvas
      * @param formatter    formatter for custom value-formatting
      * @param value        the value to be drawn
      * @param entry        the entry the value belongs to
@@ -145,23 +134,23 @@ public abstract class DataRenderer extends Renderer {
      * @param y            position
      * @param color
      */
-    public void drawValue(@NonNull Canvas c, @NonNull IValueFormatter formatter, float value, Entry entry, int dataSetIndex, float x, float y, int color) {
+    public void drawValue(@NonNull Canvas canvas, @NonNull IValueFormatter formatter, float value, Entry entry, int dataSetIndex, float x, float y, int color) {
         mValuePaint.setColor(color);
-        c.drawText(formatter.getFormattedValue(value, entry, dataSetIndex, mViewPortHandler), x, y, mValuePaint);
+        canvas.drawText(formatter.getFormattedValue(value, entry, dataSetIndex, mViewPortHandler), x, y, mValuePaint);
     }
 
     /**
      * Draws any kind of additional information (e.g. line-circles).
      *
-     * @param c
+     * @param canvas
      */
-    public abstract void drawExtras(Canvas c);
+    public abstract void drawExtras(Canvas canvas);
 
     /**
      * Draws all highlight indicators for the values that are currently highlighted.
      *
-     * @param c
-     * @param indices the highlighted values
+     * @param canvas
+     * @param highlights the highlighted values
      */
-    public abstract void drawHighlighted(Canvas c, Highlight[] indices);
+    public abstract void drawHighlighted(Canvas canvas, Highlight[] highlights);
 }
