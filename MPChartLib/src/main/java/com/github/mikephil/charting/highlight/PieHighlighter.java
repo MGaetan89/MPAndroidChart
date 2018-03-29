@@ -1,6 +1,6 @@
 package com.github.mikephil.charting.highlight;
 
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -15,7 +15,7 @@ public class PieHighlighter extends PieRadarHighlighter<PieChart> {
         super(chart);
     }
 
-    @NonNull
+    @Nullable
     @Override
     protected Highlight getClosestHighlight(int index, float x, float y) {
         PieData data = mChart.getData();
