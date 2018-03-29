@@ -21,13 +21,15 @@ import java.util.List;
  * Renderer class that is responsible for rendering multiple different data-types.
  */
 public class CombinedChartRenderer extends DataRenderer {
-
     /**
-     * all rederers for the different kinds of data this combined-renderer can draw
+     * All renderers for the different kinds of data this combined-renderer can draw.
      */
     protected List<DataRenderer> mRenderers = new ArrayList<>(5);
 
     protected WeakReference<Chart> mChart;
+
+    @NonNull
+    protected List<Highlight> mHighlightBuffer = new ArrayList<>();
 
     public CombinedChartRenderer(CombinedChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
@@ -36,41 +38,44 @@ public class CombinedChartRenderer extends DataRenderer {
     }
 
     /**
-     * Creates the renderers needed for this combined-renderer in the required order. Also takes the DrawOrder into
-     * consideration.
+     * Creates the renderers needed for this combined-renderer in the required order. Also takes the
+     * DrawOrder into consideration.
      */
     public void createRenderers() {
-
         mRenderers.clear();
 
-        CombinedChart chart = (CombinedChart)mChart.get();
-        if (chart == null)
+        CombinedChart chart = (CombinedChart) mChart.get();
+        if (chart == null) {
             return;
+        }
 
         DrawOrder[] orders = chart.getDrawOrder();
-
         for (DrawOrder order : orders) {
-
             switch (order) {
                 case BAR:
-                    if (chart.getBarData() != null)
+                    if (chart.getBarData() != null) {
                         mRenderers.add(new BarChartRenderer(chart, mAnimator, mViewPortHandler));
+                    }
                     break;
                 case BUBBLE:
-                    if (chart.getBubbleData() != null)
+                    if (chart.getBubbleData() != null) {
                         mRenderers.add(new BubbleChartRenderer(chart, mAnimator, mViewPortHandler));
+                    }
                     break;
                 case LINE:
-                    if (chart.getLineData() != null)
+                    if (chart.getLineData() != null) {
                         mRenderers.add(new LineChartRenderer(chart, mAnimator, mViewPortHandler));
+                    }
                     break;
                 case CANDLE:
-                    if (chart.getCandleData() != null)
+                    if (chart.getCandleData() != null) {
                         mRenderers.add(new CandleStickChartRenderer(chart, mAnimator, mViewPortHandler));
+                    }
                     break;
                 case SCATTER:
-                    if (chart.getScatterData() != null)
+                    if (chart.getScatterData() != null) {
                         mRenderers.add(new ScatterChartRenderer(chart, mAnimator, mViewPortHandler));
+                    }
                     break;
             }
         }
@@ -78,66 +83,64 @@ public class CombinedChartRenderer extends DataRenderer {
 
     @Override
     public void initBuffers() {
-
-        for (DataRenderer renderer : mRenderers)
+        for (DataRenderer renderer : mRenderers) {
             renderer.initBuffers();
+        }
     }
 
     @Override
-    public void drawData(Canvas c) {
-
-        for (DataRenderer renderer : mRenderers)
-            renderer.drawData(c);
+    public void drawData(Canvas canvas) {
+        for (DataRenderer renderer : mRenderers) {
+            renderer.drawData(canvas);
+        }
     }
 
     @Override
-    public void drawValues(Canvas c) {
-
-        for (DataRenderer renderer : mRenderers)
-            renderer.drawValues(c);
+    public void drawValues(Canvas canvas) {
+        for (DataRenderer renderer : mRenderers) {
+            renderer.drawValues(canvas);
+        }
     }
 
     @Override
-    public void drawExtras(Canvas c) {
-
-        for (DataRenderer renderer : mRenderers)
-            renderer.drawExtras(c);
+    public void drawExtras(Canvas canvas) {
+        for (DataRenderer renderer : mRenderers) {
+            renderer.drawExtras(canvas);
+        }
     }
 
-    @NonNull
-    protected List<Highlight> mHighlightBuffer = new ArrayList<>();
-
     @Override
-    public void drawHighlighted(Canvas c, @NonNull Highlight[] indices) {
-
+    public void drawHighlighted(Canvas canvas, @NonNull Highlight[] highlights) {
         Chart chart = mChart.get();
-        if (chart == null) return;
+        if (chart == null) {
+            return;
+        }
 
         for (DataRenderer renderer : mRenderers) {
             ChartData data = null;
+            if (renderer instanceof BarChartRenderer) {
+                data = ((BarChartRenderer) renderer).mChart.getBarData();
+            } else if (renderer instanceof LineChartRenderer) {
+                data = ((LineChartRenderer) renderer).mChart.getLineData();
+            } else if (renderer instanceof CandleStickChartRenderer) {
+                data = ((CandleStickChartRenderer) renderer).mChart.getCandleData();
+            } else if (renderer instanceof ScatterChartRenderer) {
+                data = ((ScatterChartRenderer) renderer).mChart.getScatterData();
+            } else if (renderer instanceof BubbleChartRenderer) {
+                data = ((BubbleChartRenderer) renderer).mChart.getBubbleData();
+            }
 
-            if (renderer instanceof BarChartRenderer)
-                data = ((BarChartRenderer)renderer).mChart.getBarData();
-            else if (renderer instanceof LineChartRenderer)
-                data = ((LineChartRenderer)renderer).mChart.getLineData();
-            else if (renderer instanceof CandleStickChartRenderer)
-                data = ((CandleStickChartRenderer)renderer).mChart.getCandleData();
-            else if (renderer instanceof ScatterChartRenderer)
-                data = ((ScatterChartRenderer)renderer).mChart.getScatterData();
-            else if (renderer instanceof BubbleChartRenderer)
-                data = ((BubbleChartRenderer)renderer).mChart.getBubbleData();
-
-            int dataIndex = data == null ? -1
-                    : ((CombinedData)chart.getData()).getAllData().indexOf(data);
+            int dataIndex = data == null ? -1 : ((CombinedData) chart.getData()).getAllData().indexOf(data);
 
             mHighlightBuffer.clear();
 
-            for (Highlight h : indices) {
-                if (h.getDataIndex() == dataIndex || h.getDataIndex() == -1)
-                    mHighlightBuffer.add(h);
+            for (Highlight highlight : highlights) {
+                if (highlight.getDataIndex() == dataIndex || highlight.getDataIndex() == -1) {
+                    mHighlightBuffer.add(highlight);
+                }
             }
 
-            renderer.drawHighlighted(c, mHighlightBuffer.toArray(new Highlight[mHighlightBuffer.size()]));
+            renderer.drawHighlighted(canvas, mHighlightBuffer.toArray(new Highlight[mHighlightBuffer.size()]));
         }
     }
 
@@ -145,20 +148,18 @@ public class CombinedChartRenderer extends DataRenderer {
      * Returns the sub-renderer object at the specified index.
      *
      * @param index
-     * @return
      */
     @Nullable
     public DataRenderer getSubRenderer(int index) {
-        if (index >= mRenderers.size() || index < 0)
+        if (index >= mRenderers.size() || index < 0) {
             return null;
-        else
+        } else {
             return mRenderers.get(index);
+        }
     }
 
     /**
      * Returns all sub-renderers.
-     *
-     * @return
      */
     public List<DataRenderer> getSubRenderers() {
         return mRenderers;

@@ -11,10 +11,9 @@ import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
- * Created by Philipp Jahoda on 25/01/16.
+ * @author Philipp Jahoda
  */
 public abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
-
     public LineRadarRenderer(ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
     }
@@ -22,64 +21,57 @@ public abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
     /**
      * Draws the provided path in filled mode with the provided drawable.
      *
-     * @param c
+     * @param canvas
      * @param filledPath
      * @param drawable
      */
-    protected void drawFilledPath(@NonNull Canvas c, Path filledPath, @NonNull Drawable drawable) {
-
+    protected void drawFilledPath(@NonNull Canvas canvas, Path filledPath, @NonNull Drawable drawable) {
         if (clipPathSupported()) {
+            int save = canvas.save();
+            canvas.clipPath(filledPath);
 
-            int save = c.save();
-            c.clipPath(filledPath);
-
-            drawable.setBounds((int) mViewPortHandler.contentLeft(),
+            drawable.setBounds(
+                    (int) mViewPortHandler.contentLeft(),
                     (int) mViewPortHandler.contentTop(),
                     (int) mViewPortHandler.contentRight(),
-                    (int) mViewPortHandler.contentBottom());
-            drawable.draw(c);
+                    (int) mViewPortHandler.contentBottom()
+            );
+            drawable.draw(canvas);
 
-            c.restoreToCount(save);
+            canvas.restoreToCount(save);
         } else {
-            throw new RuntimeException("Fill-drawables not (yet) supported below API level 18, " +
-                    "this code was run on API level " + Build.VERSION.SDK_INT + ".");
+            throw new RuntimeException("Fill-drawables not (yet) supported below API level 18.");
         }
     }
 
     /**
-     * Draws the provided path in filled mode with the provided color and alpha.
-     * Special thanks to Angelo Suzuki (https://github.com/tinsukE) for this.
+     * Draws the provided path in filled mode with the provided color and alpha. Special thanks to
+     * Angelo Suzuki (https://github.com/tinsukE) for this.
      *
-     * @param c
+     * @param canvas
      * @param filledPath
      * @param fillColor
      * @param fillAlpha
      */
-    protected void drawFilledPath(@NonNull Canvas c, Path filledPath, int fillColor, int fillAlpha) {
-
+    protected void drawFilledPath(@NonNull Canvas canvas, Path filledPath, int fillColor, int fillAlpha) {
         int color = (fillAlpha << 24) | (fillColor & 0xffffff);
-
         if (clipPathSupported()) {
-
-            int save = c.save();
-
-            c.clipPath(filledPath);
-
-            c.drawColor(color);
-            c.restoreToCount(save);
+            int save = canvas.save();
+            canvas.clipPath(filledPath);
+            canvas.drawColor(color);
+            canvas.restoreToCount(save);
         } else {
-
-            // save
+            // Save
             Paint.Style previous = mRenderPaint.getStyle();
             int previousColor = mRenderPaint.getColor();
 
-            // set
+            // Set
             mRenderPaint.setStyle(Paint.Style.FILL);
             mRenderPaint.setColor(color);
 
-            c.drawPath(filledPath, mRenderPaint);
+            canvas.drawPath(filledPath, mRenderPaint);
 
-            // restore
+            // Restore
             mRenderPaint.setColor(previousColor);
             mRenderPaint.setStyle(previous);
         }
@@ -87,8 +79,6 @@ public abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
 
     /**
      * Clip path with hardware acceleration only working properly on API level 18 and above.
-     *
-     * @return
      */
     private boolean clipPathSupported() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2;
