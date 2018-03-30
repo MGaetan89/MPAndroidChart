@@ -84,11 +84,7 @@ public class BarEntry extends Entry {
      * @param values - the stack values, use at least 2
      */
     public BarEntry(float x, @Nullable float[] values) {
-        super(x, calcSum(values));
-
-        this.mYValues = values;
-        calcPosNegSum();
-        calcRanges();
+        this(x, values, null, null);
     }
 
     /**
@@ -99,11 +95,7 @@ public class BarEntry extends Entry {
      * @param data   - Spot for additional data this Entry represents.
      */
     public BarEntry(float x, @Nullable float[] values, @Nullable Object data) {
-        super(x, calcSum(values), data);
-
-        this.mYValues = values;
-        calcPosNegSum();
-        calcRanges();
+        this(x, values, null, data);
     }
 
     /**
@@ -114,11 +106,7 @@ public class BarEntry extends Entry {
      * @param icon   - icon image
      */
     public BarEntry(float x, @Nullable float[] values, @Nullable Drawable icon) {
-        super(x, calcSum(values), icon);
-
-        this.mYValues = values;
-        calcPosNegSum();
-        calcRanges();
+        this(x, values, icon, null);
     }
 
     /**
@@ -142,8 +130,10 @@ public class BarEntry extends Entry {
      */
     @NonNull
     public BarEntry copy() {
-        BarEntry copied = new BarEntry(getX(), getY(), getData());
-        copied.setVals(mYValues);
+        BarEntry copied = new BarEntry(getX(), getY(), getIcon(), getData());
+        if (mYValues != null) {
+            copied.setVals(mYValues);
+        }
         return copied;
     }
 
@@ -169,15 +159,6 @@ public class BarEntry extends Entry {
     }
 
     /**
-     * Returns the value of this BarEntry. If the entry is stacked, it returns the positive sum of
-     * all values.
-     */
-    @Override
-    public float getY() {
-        return super.getY();
-    }
-
-    /**
      * Returns the ranges of the individual stack-entries. Will return null if this entry is not
      * stacked.
      */
@@ -189,18 +170,18 @@ public class BarEntry extends Entry {
      * Returns true if this BarEntry is stacked (has a values array), false if not.
      */
     public boolean isStacked() {
-        return mYValues != null;
+        return mYValues != null && mYValues.length > 0;
     }
 
     public float getSumBelow(int stackIndex) {
-        if (mYValues == null) {
-            return 0;
+        if (mYValues == null || mYValues.length == 0) {
+            return 0f;
         }
 
         float remainder = 0f;
         int index = mYValues.length - 1;
 
-        while (index > stackIndex && index >= 0) {
+        while (index >= 0 && stackIndex < index) {
             remainder += mYValues[index];
             index--;
         }
@@ -224,7 +205,8 @@ public class BarEntry extends Entry {
     }
 
     private void calcPosNegSum() {
-        if (mYValues == null) {
+        float[] values = getYVals();
+        if (values == null || values.length == 0) {
             mNegativeSum = 0f;
             mPositiveSum = 0f;
             return;
@@ -233,11 +215,11 @@ public class BarEntry extends Entry {
         float sumNeg = 0f;
         float sumPos = 0f;
 
-        for (float f : mYValues) {
-            if (f <= 0f) {
-                sumNeg += Math.abs(f);
+        for (float value : values) {
+            if (value <= 0f) {
+                sumNeg += Math.abs(value);
             } else {
-                sumPos += f;
+                sumPos += value;
             }
         }
 
@@ -252,14 +234,13 @@ public class BarEntry extends Entry {
      * @return
      */
     private static float calcSum(float[] values) {
-        if (values == null) {
+        if (values == null || values.length == 0) {
             return 0f;
         }
 
         float sum = 0f;
-
-        for (float f : values) {
-            sum += f;
+        for (float value : values) {
+            sum += value;
         }
 
         return sum;
@@ -268,6 +249,7 @@ public class BarEntry extends Entry {
     protected void calcRanges() {
         float[] values = getYVals();
         if (values == null || values.length == 0) {
+            mRanges = null;
             return;
         }
 
@@ -278,7 +260,6 @@ public class BarEntry extends Entry {
 
         for (int i = 0; i < mRanges.length; i++) {
             float value = values[i];
-
             if (value < 0) {
                 mRanges[i] = new Range(negRemain, negRemain - value);
                 negRemain -= value;
