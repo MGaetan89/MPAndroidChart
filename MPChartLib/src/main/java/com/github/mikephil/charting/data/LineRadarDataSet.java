@@ -1,6 +1,5 @@
 package com.github.mikephil.charting.data;
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
@@ -20,7 +19,7 @@ public abstract class LineRadarDataSet<T extends Entry> extends LineScatterCandl
      * The color that is used for filling the line surface.
      */
     @ColorInt
-    private int mFillColor = Color.rgb(140, 234, 255);
+    private int mFillColor = 0x8CEAFF;
 
     /**
      * The drawable to be used for filling the line surface.

@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.core.content.ContextCompat;
@@ -22,8 +21,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -34,9 +33,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StackedBarActivityNegative extends DemoBase implements
-        OnChartValueSelectedListener {
-
+public class StackedBarActivityNegative extends DemoBase implements OnChartValueSelectedListener {
     private HorizontalBarChart chart;
 
     @Override
@@ -80,7 +77,6 @@ public class StackedBarActivityNegative extends DemoBase implements
         xAxis.setLabelCount(12);
         xAxis.setGranularity(10f);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
-
             private DecimalFormat format = new DecimalFormat("###");
 
             @Override
@@ -118,7 +114,7 @@ public class StackedBarActivityNegative extends DemoBase implements
         set.setValueFormatter(new CustomFormatter());
         set.setValueTextSize(7f);
         set.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        set.setColors(Color.rgb(67,67,72), Color.rgb(124,181,236));
+        set.setColors(0x434348, 0x7CB5EC);
         set.setStackLabels(new String[]{
                 "Men", "Women"
         });
@@ -137,7 +133,6 @@ public class StackedBarActivityNegative extends DemoBase implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -146,11 +141,8 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionToggleValues: {
-                List<IBarDataSet> sets = chart.getData()
-                        .getDataSets();
-
+                List<IBarDataSet> sets = chart.getData().getDataSets();
                 for (IBarDataSet iSet : sets) {
-
                     BarDataSet set = (BarDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
@@ -159,11 +151,8 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionToggleIcons: {
-                List<IBarDataSet> sets = chart.getData()
-                        .getDataSets();
-
+                List<IBarDataSet> sets = chart.getData().getDataSets();
                 for (IBarDataSet iSet : sets) {
-
                     BarDataSet set = (BarDataSet) iSet;
                     set.setDrawIcons(!set.isDrawIconsEnabled());
                 }
@@ -179,11 +168,7 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (chart.isPinchZoomEnabled())
-                    chart.setPinchZoom(false);
-                else
-                    chart.setPinchZoom(true);
-
+                chart.setPinchZoom(!chart.isPinchZoomEnabled());
                 chart.invalidate();
                 break;
             }
@@ -193,8 +178,9 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionToggleBarBorders: {
-                for (IBarDataSet set : chart.getData().getDataSets())
-                    ((BarDataSet)set).setBarBorderWidth(set.getBarBorderWidth() == 1.f ? 0.f : 1.f);
+                for (IBarDataSet set : chart.getData().getDataSets()) {
+                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
+                }
 
                 chart.invalidate();
                 break;
@@ -208,7 +194,6 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.animateXY: {
-
                 chart.animateXY(3000, 3000);
                 break;
             }
@@ -231,8 +216,7 @@ public class StackedBarActivityNegative extends DemoBase implements
 
     public void onValueSelected(Entry e, Highlight highlight) {
         BarEntry entry = (BarEntry) e;
-        Log.i("VAL SELECTED",
-                "Value: " + Math.abs(entry.getYVals()[highlight.getStackIndex()]));
+        Log.i("VAL SELECTED", "Value: " + Math.abs(entry.getYVals()[highlight.getStackIndex()]));
     }
 
     @Override
@@ -241,7 +225,6 @@ public class StackedBarActivityNegative extends DemoBase implements
     }
 
     private class CustomFormatter implements IValueFormatter, IAxisValueFormatter {
-
         private DecimalFormat mFormat;
 
         CustomFormatter() {

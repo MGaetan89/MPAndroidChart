@@ -20,7 +20,6 @@ import io.realm.RealmResults;
  * Created by Philipp Jahoda on 21/10/15.
  */
 public class RealmDatabaseActivityCandle extends RealmBaseActivity {
-
     private CandleStickChart mChart;
 
     @Override
@@ -49,7 +48,6 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
     }
 
     private void setData() {
-
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
         RealmCandleDataSet<RealmDemoData> set = new RealmCandleDataSet<>(result, "xValue", "high", "low", "open", "close");
@@ -58,7 +56,7 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
         set.setShadowWidth(0.7f);
         set.setDecreasingColor(Color.RED);
         set.setDecreasingPaintStyle(Paint.Style.FILL);
-        set.setIncreasingColor(Color.rgb(122, 242, 84));
+        set.setIncreasingColor(0x7AF254);
         set.setIncreasingPaintStyle(Paint.Style.STROKE);
         set.setNeutralColor(Color.BLUE);
 

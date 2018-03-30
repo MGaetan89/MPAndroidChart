@@ -118,7 +118,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         mValueColors = new ArrayList<>();
 
         // Default color
-        mColors.add(Color.rgb(140, 234, 255));
+        mColors.add(0x8CEAFF);
         mValueColors.add(Color.BLACK);
     }
 

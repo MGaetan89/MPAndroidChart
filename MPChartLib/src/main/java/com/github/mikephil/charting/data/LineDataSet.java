@@ -76,7 +76,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
         super(yValues, label);
 
         // Default colors
-        mCircleColors.add(Color.rgb(140, 234, 255));
+        mCircleColors.add(0x8CEAFF);
     }
 
     @NonNull

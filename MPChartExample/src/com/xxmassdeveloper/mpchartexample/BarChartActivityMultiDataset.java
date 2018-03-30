@@ -66,7 +66,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         chart.getDescription().setEnabled(false);
 
 //        chart.setDrawBorders(true);
-
         // scaling can now only be done on x- and y-axis separately
         chart.setPinchZoom(false);
 
@@ -74,8 +73,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
         chart.setDrawGridBackground(false);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout
-        // to use for it
+        // create a custom MarkerView (extend MarkerView) and specify the layout to use for it
         MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
         mv.setChartView(chart); // For bounds control
         chart.setMarker(mv); // Set the marker to the chart
@@ -197,7 +195,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -206,8 +203,9 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
                 break;
             }
             case R.id.actionToggleValues: {
-                for (IBarDataSet set : chart.getData().getDataSets())
+                for (IBarDataSet set : chart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 chart.invalidate();
                 break;

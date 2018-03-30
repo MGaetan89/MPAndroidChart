@@ -7,6 +7,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.utils.Transformer
 import com.github.mikephil.charting.utils.ViewPortHandler
 import com.google.common.truth.Truth.assertThat
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -78,5 +79,10 @@ class ZoomJobTest : ViewPortJobTest<ZoomJob>() {
 			assertThat(this.axisDependency).isNull()
 			assertThat(this.view).isNull()
 		}
+	}
+
+	@After
+	fun after() {
+		ZoomJob.recycleInstance(this.job)
 	}
 }

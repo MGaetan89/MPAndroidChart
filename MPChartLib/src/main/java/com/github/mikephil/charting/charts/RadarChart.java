@@ -2,7 +2,6 @@ package com.github.mikephil.charting.charts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.RectF;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -38,13 +37,13 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
      * Color for the main web lines.
      */
     @ColorInt
-    private int mWebColor = Color.rgb(122, 122, 122);
+    private int mWebColor = 0x7A7A7A;
 
     /**
      * Color for the inner web.
      */
     @ColorInt
-    private int mWebColorInner = Color.rgb(122, 122, 122);
+    private int mWebColorInner = 0x7A7A7A;
 
     /**
      * Transparency the grid is drawn with (0-255).

@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeListener {
-
     private LineChart chart;
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
@@ -161,7 +160,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -170,8 +168,9 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                 break;
             }
             case R.id.actionToggleValues: {
-                for (IDataSet set : chart.getData().getDataSets())
+                for (IDataSet set : chart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 chart.invalidate();
                 break;
@@ -184,76 +183,57 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                 break;
             }
             case R.id.actionToggleFilled: {
-
-                List<ILineDataSet> sets = chart.getData()
-                        .getDataSets();
+                List<ILineDataSet> sets = chart.getData().getDataSets();
 
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-
-                    if (set.isDrawFilledEnabled())
-                        set.setDrawFilled(false);
-                    else
-                        set.setDrawFilled(true);
+                    set.setDrawFilled(!set.isDrawFilledEnabled());
                 }
+
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleCircles: {
-                List<ILineDataSet> sets = chart.getData()
-                        .getDataSets();
+                List<ILineDataSet> sets = chart.getData().getDataSets();
 
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.isDrawCirclesEnabled())
-                        set.setDrawCircles(false);
-                    else
-                        set.setDrawCircles(true);
+                    set.setDrawCircles(!set.isDrawCirclesEnabled());
                 }
+
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleCubic: {
-                List<ILineDataSet> sets = chart.getData()
-                        .getDataSets();
+                List<ILineDataSet> sets = chart.getData().getDataSets();
 
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER
-                            ? LineDataSet.Mode.LINEAR
-                            :  LineDataSet.Mode.CUBIC_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER ? LineDataSet.Mode.LINEAR :  LineDataSet.Mode.CUBIC_BEZIER);
                 }
+
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleStepped: {
-                List<ILineDataSet> sets = chart.getData()
-                        .getDataSets();
+                List<ILineDataSet> sets = chart.getData().getDataSets();
 
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED
-                            ? LineDataSet.Mode.LINEAR
-                            :  LineDataSet.Mode.STEPPED);
+                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED ? LineDataSet.Mode.LINEAR :  LineDataSet.Mode.STEPPED);
                 }
+
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleHorizontalCubic: {
-                List<ILineDataSet> sets = chart.getData()
-                        .getDataSets();
+                List<ILineDataSet> sets = chart.getData().getDataSets();
 
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER
-                            ? LineDataSet.Mode.LINEAR
-                            :  LineDataSet.Mode.HORIZONTAL_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER ? LineDataSet.Mode.LINEAR :  LineDataSet.Mode.HORIZONTAL_BEZIER);
                 }
+
                 chart.invalidate();
                 break;
             }
@@ -297,7 +277,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
         tvX.setText(String.valueOf(seekBarX.getProgress()));
         tvY.setText(String.valueOf(seekBarY.getProgress()));
 

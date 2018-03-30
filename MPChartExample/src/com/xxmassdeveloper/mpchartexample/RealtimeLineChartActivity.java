@@ -28,9 +28,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
-public class RealtimeLineChartActivity extends DemoBase implements
-        OnChartValueSelectedListener {
-
+public class RealtimeLineChartActivity extends DemoBase implements OnChartValueSelectedListener {
     private LineChart chart;
 
     @Override
@@ -92,15 +90,36 @@ public class RealtimeLineChartActivity extends DemoBase implements
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.realtime, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionAdd: {
+                addEntry();
+                break;
+            }
+            case R.id.actionClear: {
+                mChart.clearValues();
+                Toast.makeText(this, "Chart cleared!", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.actionFeedMultiple: {
+                feedMultiple();
+                break;
+            }
+        }
+        return true;
     }
 
     private void addEntry() {
-
-        LineData data = chart.getData();
-
         if (data != null) {
-
             ILineDataSet set = data.getDataSetByIndex(0);
             // set.addEntry(...); // can be called as well
 
@@ -129,7 +148,6 @@ public class RealtimeLineChartActivity extends DemoBase implements
     }
 
     private LineDataSet createSet() {
-
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(AxisDependency.LEFT);
         set.setColor(ColorUtils.getHoloBlue());
@@ -138,7 +156,7 @@ public class RealtimeLineChartActivity extends DemoBase implements
         set.setCircleRadius(4f);
         set.setFillAlpha(65);
         set.setFillColor(ColorUtils.getHoloBlue());
-        set.setHighLightColor(Color.rgb(244, 117, 117));
+        set.setHighLightColor(0xF47575);
         set.setValueTextColor(Color.WHITE);
         set.setValueTextSize(9f);
         set.setDrawValues(false);
@@ -148,12 +166,11 @@ public class RealtimeLineChartActivity extends DemoBase implements
     private Thread thread;
 
     private void feedMultiple() {
-
-        if (thread != null)
+        if (thread != null) {
             thread.interrupt();
+        }
 
         final Runnable runnable = new Runnable() {
-
             @Override
             public void run() {
                 addEntry();
@@ -161,11 +178,9 @@ public class RealtimeLineChartActivity extends DemoBase implements
         };
 
         thread = new Thread(new Runnable() {
-
             @Override
             public void run() {
                 for (int i = 0; i < 1000; i++) {
-
                     // Don't generate garbage runnables inside the loop.
                     runOnUiThread(runnable);
 

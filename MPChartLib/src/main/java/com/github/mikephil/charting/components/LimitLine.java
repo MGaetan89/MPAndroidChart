@@ -1,6 +1,5 @@
 package com.github.mikephil.charting.components;
 
-import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
@@ -32,7 +31,7 @@ public class LimitLine extends ComponentBase {
      * The color of the limit line.
      */
     @ColorInt
-    private int mLineColor = Color.rgb(237, 91, 91);
+    private int mLineColor = 0xED5B5B;
 
     /**
      * The style of the label text.

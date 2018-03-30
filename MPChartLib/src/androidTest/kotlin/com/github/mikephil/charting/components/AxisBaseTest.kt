@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.DashPathEffect
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter
 import com.github.mikephil.charting.formatter.LargeValueFormatter
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -241,7 +242,12 @@ abstract class AxisBaseTest<T : AxisBase> : ComponentBaseTest<T>() {
 		assertThat(this.component.longestLabel).isEmpty()
 
 		this.component.mEntries = floatArrayOf(-5f, -2.5f, 0f, 2.5f, 5f)
+
+		this.component.setValueFormatter(DefaultAxisValueFormatter(2))
 		assertThat(this.component.longestLabel).isEqualTo("-5")
+
+		this.component.setValueFormatter(PercentFormatter())
+		assertThat(this.component.longestLabel).isEqualTo("-5.0 %")
 	}
 
 	@Test

@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import androidx.core.content.ContextCompat;
 
 public class CandleStickChartActivity extends DemoBase implements OnSeekBarChangeListener {
-
     private CandleStickChart chart;
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
@@ -80,7 +79,6 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
-//        rightAxis.setStartAtZero(false);
 
         // setting data
         seekBarX.setProgress(40);
@@ -150,7 +148,6 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -159,15 +156,17 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
                 break;
             }
             case R.id.actionToggleValues: {
-                for (IDataSet set : chart.getData().getDataSets())
+                for (IDataSet set : chart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleIcons: {
-                for (IDataSet set : chart.getData().getDataSets())
+                for (IDataSet set : chart.getData().getDataSets()) {
                     set.setDrawIcons(!set.isDrawIconsEnabled());
+                }
 
                 chart.invalidate();
                 break;

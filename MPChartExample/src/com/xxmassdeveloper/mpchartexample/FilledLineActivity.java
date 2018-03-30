@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Intent;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("SameParameterValue")
 public class FilledLineActivity extends DemoBase {
-
     private LineChart chart;
     private final int fillColor = Color.argb(150, 51, 181, 229);
 
@@ -81,16 +79,13 @@ public class FilledLineActivity extends DemoBase {
     }
 
     private void setData(int count, float range) {
-
         ArrayList<Entry> values1 = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range) + 50;
             values1.add(new Entry(i, val));
         }
 
         ArrayList<Entry> values2 = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range) + 450;
             values2.add(new Entry(i, val));
@@ -111,14 +106,14 @@ public class FilledLineActivity extends DemoBase {
             set1 = new LineDataSet(values1, "DataSet 1");
 
             set1.setAxisDependency(YAxis.AxisDependency.LEFT);
-            set1.setColor(Color.rgb(255, 241, 46));
+            set1.setColor(0xFFF12E);
             set1.setDrawCircles(false);
             set1.setLineWidth(2f);
             set1.setCircleRadius(3f);
             set1.setFillAlpha(255);
             set1.setDrawFilled(true);
             set1.setFillColor(Color.WHITE);
-            set1.setHighLightColor(Color.rgb(244, 117, 117));
+            set1.setHighLightColor(0xF47575);
             set1.setDrawCircleHole(false);
             set1.setFillFormatter(new IFillFormatter() {
                 @Override
@@ -132,7 +127,7 @@ public class FilledLineActivity extends DemoBase {
             // create a dataset and give it a type
             set2 = new LineDataSet(values2, "DataSet 2");
             set2.setAxisDependency(YAxis.AxisDependency.LEFT);
-            set2.setColor(Color.rgb(255, 241, 46));
+            set2.setColor(0xFFF12E);
             set2.setDrawCircles(false);
             set2.setLineWidth(2f);
             set2.setCircleRadius(3f);
@@ -140,7 +135,7 @@ public class FilledLineActivity extends DemoBase {
             set2.setDrawFilled(true);
             set2.setFillColor(Color.WHITE);
             set2.setDrawCircleHole(false);
-            set2.setHighLightColor(Color.rgb(244, 117, 117));
+            set2.setHighLightColor(0xF47575);
             set2.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
