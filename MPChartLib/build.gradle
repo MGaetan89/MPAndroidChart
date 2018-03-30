@@ -1,6 +1,3 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 apply plugin: 'com.android.library'
 apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
@@ -45,16 +42,16 @@ android {
 }
 
 dependencies {
-	implementation 'com.android.support:support-annotations:27.0.2'
+	implementation 'com.android.support:support-annotations:27.1.0'
 
-	testImplementation 'com.google.truth:truth:0.39'
+	testImplementation 'com.google.truth:truth:0.40'
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.30'
+	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.31'
 
 	androidTestImplementation 'com.android.support.test:rules:1.0.1'
 	androidTestImplementation 'com.android.support.test:runner:1.0.1'
-	androidTestImplementation 'com.google.truth:truth:0.39'
-	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.30'
+	androidTestImplementation 'com.google.truth:truth:0.40'
+	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.31'
 }
 
 android.libraryVariants.all { variant ->
@@ -85,41 +82,4 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
 	archives sourcesJar
 	archives javadocJar
-}
-
-// From https://stackoverflow.com/a/36130467/1914223
-tasks.withType(Test) {
-	testLogging {
-		// set options for log level LIFECYCLE
-		events TestLogEvent.FAILED,
-				TestLogEvent.PASSED,
-				TestLogEvent.SKIPPED,
-				TestLogEvent.STANDARD_OUT
-		exceptionFormat TestExceptionFormat.FULL
-		showExceptions true
-		showCauses true
-		showStackTraces true
-
-		// set options for log level DEBUG and INFO
-		debug {
-			events TestLogEvent.STARTED,
-					TestLogEvent.FAILED,
-					TestLogEvent.PASSED,
-					TestLogEvent.SKIPPED,
-					TestLogEvent.STANDARD_ERROR,
-					TestLogEvent.STANDARD_OUT
-			exceptionFormat TestExceptionFormat.FULL
-		}
-		info.events = debug.events
-		info.exceptionFormat = debug.exceptionFormat
-
-		afterSuite { desc, result ->
-			if (!desc.parent) { // will match the outermost suite
-				def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
-				def startItem = '|  ', endItem = '  |'
-				def repeatLength = startItem.length() + output.length() + endItem.length()
-				println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
-			}
-		}
-	}
 }

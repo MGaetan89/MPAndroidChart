@@ -3,7 +3,7 @@ apply plugin: 'realm-android'
 
 android {
 	compileSdkVersion 27
-	buildToolsVersion '26.0.2'
+	buildToolsVersion '27.0.3'
 
 	defaultConfig {
 		minSdkVersion 16
@@ -36,6 +36,6 @@ android {
 
 dependencies {
 	implementation project(':MPChartLib')
-	implementation 'com.android.support:appcompat-v7:27.0.2'
+	implementation 'com.android.support:appcompat-v7:27.1.0'
 	implementation 'com.github.PhilJay:MPAndroidChart-Realm:v2.0.2@aar'
 }
