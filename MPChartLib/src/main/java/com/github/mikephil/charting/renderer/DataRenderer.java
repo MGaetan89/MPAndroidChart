@@ -1,7 +1,6 @@
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
@@ -56,14 +55,14 @@ public abstract class DataRenderer extends Renderer {
         mDrawPaint = new Paint(Paint.DITHER_FLAG);
 
         mValuePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mValuePaint.setColor(Color.rgb(63, 63, 63));
+        mValuePaint.setColor(0x3F3F3F);
         mValuePaint.setTextAlign(Align.CENTER);
         mValuePaint.setTextSize(Utils.convertDpToPixel(9f));
 
         mHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mHighlightPaint.setStyle(Paint.Style.STROKE);
         mHighlightPaint.setStrokeWidth(2f);
-        mHighlightPaint.setColor(Color.rgb(255, 187, 115));
+        mHighlightPaint.setColor(0xFFBB73);
     }
 
     protected boolean isDrawingValuesAllowed(@NonNull ChartInterface chart) {

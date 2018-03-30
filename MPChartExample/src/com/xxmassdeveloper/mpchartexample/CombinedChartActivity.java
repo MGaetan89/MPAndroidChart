@@ -36,7 +36,6 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import java.util.ArrayList;
 
 public class CombinedChartActivity extends DemoBase {
-
     private CombinedChart mChart;
     private final int itemcount = 12;
 
@@ -47,7 +46,7 @@ public class CombinedChartActivity extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_combined);
 
-        mChart = (CombinedChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.getDescription().setEnabled(false);
         mChart.setBackgroundColor(Color.WHITE);
         mChart.setDrawGridBackground(false);
@@ -101,24 +100,23 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     private LineData generateLineData() {
-
         LineData d = new LineData();
+        ArrayList<Entry> entries = new ArrayList<>();
 
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (int index = 0; index < itemcount; index++)
+        for (int index = 0; index < itemcount; index++) {
             entries.add(new Entry(index + 0.5f, getRandom(15, 5)));
+        }
 
         LineDataSet set = new LineDataSet(entries, "Line DataSet");
-        set.setColor(Color.rgb(240, 238, 70));
+        set.setColor(0xF0EE46);
         set.setLineWidth(2.5f);
-        set.setCircleColor(Color.rgb(240, 238, 70));
+        set.setCircleColor(0xF0EE46);
         set.setCircleRadius(5f);
-        set.setFillColor(Color.rgb(240, 238, 70));
+        set.setFillColor(0xF0EE46);
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         set.setDrawValues(true);
         set.setValueTextSize(10f);
-        set.setValueTextColor(Color.rgb(240, 238, 70));
+        set.setValueTextColor(0xF0EE46);
 
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         d.addDataSet(set);
@@ -127,9 +125,8 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     private BarData generateBarData() {
-
-        ArrayList<BarEntry> entries1 = new ArrayList<BarEntry>();
-        ArrayList<BarEntry> entries2 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries1 = new ArrayList<>();
+        ArrayList<BarEntry> entries2 = new ArrayList<>();
 
         for (int index = 0; index < itemcount; index++) {
             entries1.add(new BarEntry(0, getRandom(25, 25)));
@@ -139,15 +136,15 @@ public class CombinedChartActivity extends DemoBase {
         }
 
         BarDataSet set1 = new BarDataSet(entries1, "Bar 1");
-        set1.setColor(Color.rgb(60, 220, 78));
-        set1.setValueTextColor(Color.rgb(60, 220, 78));
+        set1.setColor(0x3CDC4E);
+        set1.setValueTextColor(0x3CDC4E);
         set1.setValueTextSize(10f);
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         BarDataSet set2 = new BarDataSet(entries2, "");
         set2.setStackLabels(new String[]{"Stack 1", "Stack 2"});
-        set2.setColors(new int[]{Color.rgb(61, 165, 255), Color.rgb(23, 197, 255)});
-        set2.setValueTextColor(Color.rgb(61, 165, 255));
+        set2.setColors(0x3DA5FF, 0x17C5FF);
+        set2.setValueTextColor(0x3DA5FF);
         set2.setValueTextSize(10f);
         set2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
@@ -166,13 +163,12 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     protected ScatterData generateScatterData() {
-
         ScatterData d = new ScatterData();
+        ArrayList<Entry> entries = new ArrayList<>();
 
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (float index = 0; index < itemcount; index += 0.5f)
+        for (float index = 0; index < itemcount; index += 0.5f) {
             entries.add(new Entry(index + 0.25f, getRandom(10, 55)));
+        }
 
         ScatterDataSet set = new ScatterDataSet(entries, "Scatter DataSet");
         set.setColors(ColorUtils.MATERIAL_COLORS);
@@ -185,16 +181,15 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     protected CandleData generateCandleData() {
-
         CandleData d = new CandleData();
+        ArrayList<CandleEntry> entries = new ArrayList<>();
 
-        ArrayList<CandleEntry> entries = new ArrayList<CandleEntry>();
-
-        for (int index = 0; index < itemcount; index += 2)
+        for (int index = 0; index < itemcount; index += 2) {
             entries.add(new CandleEntry(index + 1f, 90, 70, 85, 75f));
+        }
 
         CandleDataSet set = new CandleDataSet(entries, "Candle DataSet");
-        set.setDecreasingColor(Color.rgb(142, 150, 175));
+        set.setDecreasingColor(0x8E96AF);
         set.setShadowColor(Color.DKGRAY);
         set.setBarSpace(0.3f);
         set.setValueTextSize(10f);
@@ -205,10 +200,8 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     protected BubbleData generateBubbleData() {
-
         BubbleData bd = new BubbleData();
-
-        ArrayList<BubbleEntry> entries = new ArrayList<BubbleEntry>();
+        ArrayList<BubbleEntry> entries = new ArrayList<>();
 
         for (int index = 0; index < itemcount; index++) {
             float y = getRandom(10, 105);
@@ -238,8 +231,9 @@ public class CombinedChartActivity extends DemoBase {
         switch (item.getItemId()) {
             case R.id.actionToggleLineValues: {
                 for (IDataSet set : mChart.getData().getDataSets()) {
-                    if (set instanceof LineDataSet)
+                    if (set instanceof LineDataSet) {
                         set.setDrawValues(!set.isDrawValuesEnabled());
+                    }
                 }
 
                 mChart.invalidate();
@@ -247,15 +241,15 @@ public class CombinedChartActivity extends DemoBase {
             }
             case R.id.actionToggleBarValues: {
                 for (IDataSet set : mChart.getData().getDataSets()) {
-                    if (set instanceof BarDataSet)
+                    if (set instanceof BarDataSet) {
                         set.setDrawValues(!set.isDrawValuesEnabled());
+                    }
                 }
 
                 mChart.invalidate();
                 break;
             }
             case R.id.actionRemoveDataSet: {
-
                 int rnd = (int) getRandom(mChart.getData().getDataSetCount(), 0);
                 mChart.getData().removeDataSet(mChart.getData().getDataSetByIndex(rnd));
                 mChart.getData().notifyDataChanged();

@@ -1,8 +1,8 @@
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -36,7 +36,6 @@ import java.util.List;
  * @author Philipp Jahoda
  */
 public class ListViewMultiChartActivity extends DemoBase {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +43,11 @@ public class ListViewMultiChartActivity extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_listview_chart);
         
-        ListView lv = (ListView) findViewById(R.id.listView1);
-
-        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
+        ListView lv = findViewById(R.id.listView1);
 
         // 30 items
+        ArrayList<ChartItem> list = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
-            
             if(i % 3 == 0) {
                 list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
             } else if(i % 3 == 1) {
@@ -66,13 +63,13 @@ public class ListViewMultiChartActivity extends DemoBase {
 
     /** adapter that supports 3 different item types */
     private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
-        
         public ChartDataAdapter(Context context, List<ChartItem> objects) {
             super(context, 0, objects);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             return getItem(position).getView(position, convertView, getContext());
         }
         
@@ -94,9 +91,7 @@ public class ListViewMultiChartActivity extends DemoBase {
      * @return
      */
     private LineData generateDataLine(int cnt) {
-
-        ArrayList<Entry> e1 = new ArrayList<Entry>();
-
+        ArrayList<Entry> e1 = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             e1.add(new Entry(i, (int) (Math.random() * 65) + 40));
         }
@@ -104,11 +99,10 @@ public class ListViewMultiChartActivity extends DemoBase {
         LineDataSet d1 = new LineDataSet(e1, "New DataSet " + cnt + ", (1)");
         d1.setLineWidth(2.5f);
         d1.setCircleRadius(4.5f);
-        d1.setHighLightColor(Color.rgb(244, 117, 117));
+        d1.setHighLightColor(0xF47575);
         d1.setDrawValues(false);
         
-        ArrayList<Entry> e2 = new ArrayList<Entry>();
-
+        ArrayList<Entry> e2 = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             e2.add(new Entry(i, e1.get(i).getY() - 30));
         }
@@ -116,17 +110,16 @@ public class ListViewMultiChartActivity extends DemoBase {
         LineDataSet d2 = new LineDataSet(e2, "New DataSet " + cnt + ", (2)");
         d2.setLineWidth(2.5f);
         d2.setCircleRadius(4.5f);
-        d2.setHighLightColor(Color.rgb(244, 117, 117));
+        d2.setHighLightColor(0xF47575);
         d2.setColor(ColorUtils.VORDIPLOM_COLORS[0]);
         d2.setCircleColor(ColorUtils.VORDIPLOM_COLORS[0]);
         d2.setDrawValues(false);
         
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> sets = new ArrayList<>();
         sets.add(d1);
         sets.add(d2);
-        
-        LineData cd = new LineData(sets);
-        return cd;
+
+        return new LineData(sets);
     }
     
     /**
@@ -135,9 +128,7 @@ public class ListViewMultiChartActivity extends DemoBase {
      * @return
      */
     private BarData generateDataBar(int cnt) {
-
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
+        ArrayList<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
         }
@@ -157,9 +148,7 @@ public class ListViewMultiChartActivity extends DemoBase {
      * @return
      */
     private PieData generateDataPie(int cnt) {
-
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-
+        ArrayList<PieEntry> entries = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             entries.add(new PieEntry((float) ((Math.random() * 70) + 30), "Quarter " + (i+1)));
         }
@@ -169,8 +158,7 @@ public class ListViewMultiChartActivity extends DemoBase {
         // space between slices
         d.setSliceSpace(2f);
         d.setColors(ColorUtils.VORDIPLOM_COLORS);
-        
-        PieData cd = new PieData(d);
-        return cd;
+
+        return new PieData(d);
     }
 }

@@ -1,6 +1,5 @@
 package com.xxmassdeveloper.mpchartexample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +20,6 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import java.util.ArrayList;
 
 public class DynamicalAddingActivity extends DemoBase implements OnChartValueSelectedListener {
-
     private LineChart mChart;
 
     @Override
@@ -31,25 +29,20 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart_noseekbar);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
         mChart.setDrawGridBackground(false);
         mChart.getDescription().setEnabled(false);
 
         // add an empty data object
         mChart.setData(new LineData());
-//        mChart.getXAxis().setDrawLabels(false);
-//        mChart.getXAxis().setDrawGridLines(false);
-
         mChart.invalidate();
     }
 
     int[] mColors = ColorUtils.VORDIPLOM_COLORS;
 
     private void addEntry() {
-
         LineData data = mChart.getData();
-
         ILineDataSet set = data.getDataSetByIndex(0);
         // set.addEntry(...); // can be called as well
 
@@ -67,27 +60,17 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
 
         // let the chart know it's data has changed
         mChart.notifyDataSetChanged();
-
         mChart.setVisibleXRangeMaximum(6);
-        //mChart.setVisibleYRangeMaximum(15, AxisDependency.LEFT);
-//            
-//            // this automatically refreshes the chart (calls invalidate())
         mChart.moveViewTo(data.getEntryCount() - 7, 50f, AxisDependency.LEFT);
 
     }
 
     private void removeLastEntry() {
-
         LineData data = mChart.getData();
-
         if (data != null) {
-
             ILineDataSet set = data.getDataSetByIndex(0);
-
             if (set != null) {
-
                 Entry e = set.getEntryForXValue(set.getEntryCount() - 1, Float.NaN);
-
                 data.removeEntry(e, 0);
                 // or remove by index
                 // mData.removeEntryByXValue(xIndex, dataSetIndex);
@@ -99,15 +82,10 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
     }
 
     private void addDataSet() {
-
         LineData data = mChart.getData();
-
         if (data != null) {
-
             int count = (data.getDataSetCount() + 1);
-
-            ArrayList<Entry> yVals = new ArrayList<Entry>();
-
+            ArrayList<Entry> yVals = new ArrayList<>();
             for (int i = 0; i < data.getEntryCount(); i++) {
                 yVals.add(new Entry(i, (float) (Math.random() * 50f) + 50f * count));
             }
@@ -132,11 +110,8 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
     }
 
     private void removeDataSet() {
-
         LineData data = mChart.getData();
-
         if (data != null) {
-
             data.removeDataSet(data.getDataSetByIndex(data.getDataSetCount() - 1));
 
             mChart.notifyDataSetChanged();
@@ -151,7 +126,6 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
 
     @Override
     public void onNothingSelected() {
-
     }
 
     @Override
@@ -162,7 +136,6 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionAddEntry:
                 addEntry();
@@ -195,13 +168,12 @@ public class DynamicalAddingActivity extends DemoBase implements OnChartValueSel
     }
 
     private LineDataSet createSet() {
-
         LineDataSet set = new LineDataSet(null, "DataSet 1");
         set.setLineWidth(2.5f);
         set.setCircleRadius(4.5f);
-        set.setColor(Color.rgb(240, 99, 99));
-        set.setCircleColor(Color.rgb(240, 99, 99));
-        set.setHighLightColor(Color.rgb(190, 190, 190));
+        set.setColor(0xF06363);
+        set.setCircleColor(0xF06363);
+        set.setHighLightColor(0xBEBEBE);
         set.setAxisDependency(AxisDependency.LEFT);
         set.setValueTextSize(10f);
 

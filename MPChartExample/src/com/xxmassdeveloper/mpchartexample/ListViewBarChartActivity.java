@@ -3,6 +3,7 @@ package com.xxmassdeveloper.mpchartexample;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ import java.util.List;
  * @author Philipp Jahoda
  */
 public class ListViewBarChartActivity extends DemoBase {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +39,10 @@ public class ListViewBarChartActivity extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_listview_chart);
         
-        ListView lv = (ListView) findViewById(R.id.listView1);
-
-        ArrayList<BarData> list = new ArrayList<BarData>();
+        ListView lv = findViewById(R.id.listView1);
 
         // 20 items
+        ArrayList<BarData> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             list.add(generateData(i + 1));
         }
@@ -53,28 +52,22 @@ public class ListViewBarChartActivity extends DemoBase {
     }
 
     private class ChartDataAdapter extends ArrayAdapter<BarData> {
-
         public ChartDataAdapter(Context context, List<BarData> objects) {
             super(context, 0, objects);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             BarData data = getItem(position);
-
-            ViewHolder holder = null;
-
+            ViewHolder holder;
             if (convertView == null) {
-
                 holder = new ViewHolder();
 
-                convertView = LayoutInflater.from(getContext()).inflate(
-                        R.layout.list_item_barchart, null);
-                holder.chart = (BarChart) convertView.findViewById(R.id.chart);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_barchart, parent, false);
+                holder.chart = convertView.findViewById(R.id.chart);
 
                 convertView.setTag(holder);
-
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
@@ -103,16 +96,12 @@ public class ListViewBarChartActivity extends DemoBase {
             // set data
             holder.chart.setData(data);
             holder.chart.setFitBars(true);
-            
-            // do not forget to refresh the chart
-//            holder.chart.invalidate();
             holder.chart.animateY(700);
 
             return convertView;
         }
 
         private class ViewHolder {
-
             BarChart chart;
         }
     }
@@ -123,18 +112,16 @@ public class ListViewBarChartActivity extends DemoBase {
      * @return
      */
     private BarData generateData(int cnt) {
-
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
+        ArrayList<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
             entries.add(new BarEntry(i, (float) (Math.random() * 70) + 30));
         }
 
         BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
         d.setColors(ColorUtils.VORDIPLOM_COLORS);
-        d.setBarShadowColor(Color.rgb(203, 203, 203));
+        d.setBarShadowColor(0xCBCBCB);
         
-        ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
+        ArrayList<IBarDataSet> sets = new ArrayList<>();
         sets.add(d);
         
         BarData cd = new BarData(sets);

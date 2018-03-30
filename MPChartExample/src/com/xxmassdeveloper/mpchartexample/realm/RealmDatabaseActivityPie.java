@@ -32,7 +32,7 @@ public class RealmDatabaseActivityPie extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_piechart_noseekbar);
 
-        mChart = (PieChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         setup(mChart);
 
         mChart.setCenterText(generateCenterSpannableText());
@@ -50,10 +50,8 @@ public class RealmDatabaseActivityPie extends RealmBaseActivity {
     }
 
     private void setData() {
-
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
-
-        RealmPieDataSet<RealmDemoData> set = new RealmPieDataSet<RealmDemoData>(result, "yValue", "label");
+        RealmPieDataSet<RealmDemoData> set = new RealmPieDataSet<>(result, "yValue", "label");
         set.setColors(ColorUtils.VORDIPLOM_COLORS);
         set.setLabel("Example market share");
         set.setSliceSpace(2);
@@ -70,9 +68,8 @@ public class RealmDatabaseActivityPie extends RealmBaseActivity {
     }
 
     private SpannableString generateCenterSpannableText() {
-
         SpannableString s = new SpannableString("Realm.io\nmobile database");
-        s.setSpan(new ForegroundColorSpan(Color.rgb(240, 115, 126)), 0, 8, 0);
+        s.setSpan(new ForegroundColorSpan(0xF0737E), 0, 8, 0);
         s.setSpan(new RelativeSizeSpan(2.2f), 0, 8, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), 9, s.length(), 0);
         s.setSpan(new ForegroundColorSpan(ColorUtils.getHoloBlue()), 9, s.length(), 0);

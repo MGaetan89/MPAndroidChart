@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeListener {
-
     private LineChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
@@ -52,7 +51,7 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
         mChart = findViewById(R.id.chart1);
         mChart.setViewPortOffsets(0, 0, 0, 0);
-        mChart.setBackgroundColor(Color.rgb(104, 241, 175));
+        mChart.setBackgroundColor(0x68F1AF);
 
         // no description text
         mChart.getDescription().setEnabled(false);
@@ -66,7 +65,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
         mChart.setDrawGridBackground(false);
         mChart.setMaxHighlightDistance(300);
         
@@ -87,10 +85,9 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
         setData(45, 100);
         
         mChart.getLegend().setEnabled(false);
-        
         mChart.animateXY(2000, 2000);
 
-        // dont forget to refresh the drawing
+        // don't forget to refresh the drawing
         mChart.invalidate();
     }
 
@@ -102,11 +99,11 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                for (IDataSet set : mChart.getData().getDataSets())
+                for (IDataSet set : mChart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 mChart.invalidate();
                 break;
@@ -119,85 +116,57 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                 break;
             }
             case R.id.actionToggleFilled: {
-
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-
-                    if (set.isDrawFilledEnabled())
-                        set.setDrawFilled(false);
-                    else
-                        set.setDrawFilled(true);
+                    set.setDrawFilled(!set.isDrawFilledEnabled());
                 }
+
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleCircles: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.isDrawCirclesEnabled())
-                        set.setDrawCircles(false);
-                    else
-                        set.setDrawCircles(true);
+                    set.setDrawCircles(!set.isDrawCirclesEnabled());
                 }
+
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleCubic: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER
-                            ? LineDataSet.Mode.LINEAR
-                            :  LineDataSet.Mode.CUBIC_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER ? LineDataSet.Mode.LINEAR :  LineDataSet.Mode.CUBIC_BEZIER);
                 }
+
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleStepped: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED
-                            ? LineDataSet.Mode.LINEAR
-                            :  LineDataSet.Mode.STEPPED);
+                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED ? LineDataSet.Mode.LINEAR :  LineDataSet.Mode.STEPPED);
                 }
+
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleHorizontalCubic: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER
-                            ? LineDataSet.Mode.LINEAR
-                            :  LineDataSet.Mode.HORIZONTAL_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER ? LineDataSet.Mode.LINEAR :  LineDataSet.Mode.HORIZONTAL_BEZIER);
                 }
+
                 mChart.invalidate();
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -220,13 +189,10 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
             }
             case R.id.actionSave: {
                 if (mChart.saveToPath("title" + System.currentTimeMillis(), "")) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
-
-                // mChart.saveToGallery("title"+System.currentTimeMillis())
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
@@ -235,9 +201,8 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
         tvX.setText("" + (mSeekBarX.getProgress() + 1));
-        tvY.setText("" + (mSeekBarY.getProgress()));
+        tvY.setText("" + mSeekBarY.getProgress());
 
         setData(mSeekBarX.getProgress() + 1, mSeekBarY.getProgress());
 
@@ -254,21 +219,16 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
     }
 
     private void setData(int count, float range) {
-
         ArrayList<Entry> yVals = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             float mult = (range + 1);
-            float val = (float) (Math.random() * mult) + 20;// + (float)
-                                                           // ((mult *
-                                                           // 0.1) / 10);
+            float val = (float) (Math.random() * mult) + 20;
+
             yVals.add(new Entry(i, val));
         }
 
         LineDataSet set1;
-
-        if (mChart.getData() != null &&
-                mChart.getData().getDataSetCount() > 0) {
+        if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet)mChart.getData().getDataSetByIndex(0);
             set1.setValues(yVals);
             mChart.getData().notifyDataChanged();
@@ -279,12 +239,11 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
 
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set1.setCubicIntensity(0.2f);
-            //set1.setDrawFilled(true);
             set1.setDrawCircles(false);
             set1.setLineWidth(1.8f);
             set1.setCircleRadius(4f);
             set1.setCircleColor(Color.WHITE);
-            set1.setHighLightColor(Color.rgb(244, 117, 117));
+            set1.setHighLightColor(0xF47575);
             set1.setColor(Color.WHITE);
             set1.setFillColor(Color.WHITE);
             set1.setFillAlpha(100);

@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -16,9 +15,7 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import java.util.ArrayList;
 
 public class LineChartActivityColored extends DemoBase {
-
     private LineChart[] mCharts = new LineChart[4];
-    private Typeface mTf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,42 +24,32 @@ public class LineChartActivityColored extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_colored_lines);
 
-        mCharts[0] = (LineChart) findViewById(R.id.chart1);
-        mCharts[1] = (LineChart) findViewById(R.id.chart2);
-        mCharts[2] = (LineChart) findViewById(R.id.chart3);
-        mCharts[3] = (LineChart) findViewById(R.id.chart4);
+        mCharts[0] = findViewById(R.id.chart1);
+        mCharts[1] = findViewById(R.id.chart2);
+        mCharts[2] = findViewById(R.id.chart3);
+        mCharts[3] = findViewById(R.id.chart4);
 
-        mTf = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
 
         for (int i = 0; i < mCharts.length; i++) {
-
             LineData data = getData(36, 100);
-            data.setValueTypeface(mTf);
+            data.setValueTypeface(typeface);
 
             // add some transparency to the color with "& 0x90FFFFFF"
             setupChart(mCharts[i], data, mColors[i % mColors.length]);
         }
     }
 
-    private int[] mColors = new int[] {
-            Color.rgb(137, 230, 81), 
-            Color.rgb(240, 240, 30), 
-            Color.rgb(89, 199, 250),
-            Color.rgb(250, 104, 104)
-    };
+    private int[] mColors = new int[] {0x89E651, 0XF0F01E, 0X59C7FA, 0xFA6868};
 
     private void setupChart(LineChart chart, LineData data, int color) {
-
         ((LineDataSet) data.getDataSetByIndex(0)).setCircleColorHole(color);
 
         // no description text
         chart.getDescription().setEnabled(false);
         
-        // mChart.setDrawHorizontalGrid(false);
-        //
         // enable / disable grid background
         chart.setDrawGridBackground(false);
-//        chart.getRenderer().getGridPaint().setGridColor(Color.WHITE & 0x70FFFFFF);
 
         // enable touch gestures
         chart.setTouchEnabled(true);
@@ -73,7 +60,6 @@ public class LineChartActivityColored extends DemoBase {
 
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false);
-
         chart.setBackgroundColor(color);
         
         // set custom chart offsets (automatic offset calculation is hereby disabled)
@@ -98,9 +84,7 @@ public class LineChartActivityColored extends DemoBase {
     }
     
     private LineData getData(int count, float range) {
-
-        ArrayList<Entry> yVals = new ArrayList<Entry>();
-
+        ArrayList<Entry> yVals = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range) + 3;
             yVals.add(new Entry(i, val));
@@ -108,8 +92,6 @@ public class LineChartActivityColored extends DemoBase {
 
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(yVals, "DataSet 1");
-        // set1.setFillAlpha(110);
-        // set1.setFillColor(Color.RED);
 
         set1.setLineWidth(1.75f);
         set1.setCircleRadius(5f);
@@ -120,8 +102,6 @@ public class LineChartActivityColored extends DemoBase {
         set1.setDrawValues(false);
 
         // create a data object with the datasets
-        LineData data = new LineData(set1);
-
-        return data;
+        return new LineData(set1);
     }
 }

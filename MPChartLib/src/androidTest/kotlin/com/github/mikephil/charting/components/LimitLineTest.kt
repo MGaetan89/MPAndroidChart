@@ -36,7 +36,7 @@ class LimitLineTest : ComponentBaseTest<LimitLine>() {
 
 	@Test
 	fun lineColor() {
-		assertThat(this.component.lineColor).isEqualTo(Color.rgb(237, 91, 91))
+		assertThat(this.component.lineColor).isEqualTo(0xED5B5B)
 
 		this.component.lineColor = Color.YELLOW
 		assertThat(this.component.lineColor).isEqualTo(Color.YELLOW)

@@ -34,11 +34,9 @@ public class ColorUtils {
 
     /**
      * Returns the Android ICS holo blue light color.
-     *
-     * @return
      */
     public static int getHoloBlue() {
-        return Color.rgb(51, 181, 229);
+        return 0x33B5E5;
     }
 
     /**

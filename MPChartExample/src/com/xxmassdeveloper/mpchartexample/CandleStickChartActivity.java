@@ -25,7 +25,6 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import java.util.ArrayList;
 
 public class CandleStickChartActivity extends DemoBase implements OnSeekBarChangeListener {
-
     private CandleStickChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
@@ -48,16 +47,13 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
 
         mChart = findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.WHITE);
-
         mChart.getDescription().setEnabled(false);
 
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
+        // if more than 60 entries are displayed in the chart, no values will be drawn
         mChart.setMaxVisibleValueCount(60);
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
         mChart.setDrawGridBackground(false);
 
         XAxis xAxis = mChart.getXAxis();
@@ -65,14 +61,12 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
         xAxis.setDrawGridLines(false);
 
         YAxis leftAxis = mChart.getAxisLeft();  
-//        leftAxis.setEnabled(false);
         leftAxis.setLabelCount(7, false);
         leftAxis.setDrawGridLines(false);
         leftAxis.setDrawAxisLine(false);
         
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
-//        rightAxis.setStartAtZero(false);
 
         // setting data
         mSeekBarX.setProgress(40);
@@ -89,18 +83,19 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                for (IDataSet set : mChart.getData().getDataSets())
+                for (IDataSet set : mChart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleIcons: {
-                for (IDataSet set : mChart.getData().getDataSets())
+                for (IDataSet set : mChart.getData().getDataSets()) {
                     set.setDrawIcons(!set.isDrawIconsEnabled());
+                }
 
                 mChart.invalidate();
                 break;
@@ -113,11 +108,7 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -127,10 +118,6 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
                 break;
             }
             case R.id.actionToggleMakeShadowSameColorAsCandle: {
-                //for (ICandleDataSet set : mChart.getData().getDataSets()) {
-                //    set.setShadowColorSameAsCandle(!set.getShadowColorSameAsCandle());
-                //}
-
                 mChart.invalidate();
                 break;
             }
@@ -143,17 +130,15 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
                 break;
             }
             case R.id.animateXY: {
-
                 mChart.animateXY(3000, 3000);
                 break;
             }
             case R.id.actionSave: {
                 if (mChart.saveToGallery("title" + System.currentTimeMillis(), 50)) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
@@ -162,16 +147,14 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        
         int prog = (mSeekBarX.getProgress() + 1);
 
         tvX.setText("" + prog);
-        tvY.setText("" + (mSeekBarY.getProgress()));
-        
+        tvY.setText("" + mSeekBarY.getProgress());
+
         mChart.resetTracking();
 
         ArrayList<CandleEntry> yVals1 = new ArrayList<>();
-
         for (int i = 0; i < prog; i++) {
             float mult = (mSeekBarY.getProgress() + 1);
             float val = (float) (Math.random() * 40) + mult;
@@ -194,18 +177,15 @@ public class CandleStickChartActivity extends DemoBase implements OnSeekBarChang
         }
 
         CandleDataSet set1 = new CandleDataSet(yVals1, "Data Set");
-
         set1.setDrawIcons(false);
         set1.setAxisDependency(AxisDependency.LEFT);
-//        set1.setColor(Color.rgb(80, 80, 80));
         set1.setShadowColor(Color.DKGRAY);
         set1.setShadowWidth(0.7f);
         set1.setDecreasingColor(Color.RED);
         set1.setDecreasingPaintStyle(Paint.Style.FILL);
-        set1.setIncreasingColor(Color.rgb(122, 242, 84));
+        set1.setIncreasingColor(0x79F254);
         set1.setIncreasingPaintStyle(Paint.Style.STROKE);
         set1.setNeutralColor(Color.BLUE);
-        //set1.setHighlightLineWidth(1f);
 
         CandleData data = new CandleData(set1);
         

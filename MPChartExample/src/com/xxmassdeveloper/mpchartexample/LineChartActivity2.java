@@ -30,9 +30,7 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListener,
-        OnChartValueSelectedListener {
-
+public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListener, OnChartValueSelectedListener {
     private LineChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
@@ -63,7 +61,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
-
         mChart.setDragDecelerationFrictionCoef(0.9f);
 
         // enable scaling and dragging
@@ -95,7 +92,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-//        l.setYOffset(11f);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTypeface(mTfLight);
@@ -130,18 +126,13 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
-
                 mChart.invalidate();
                 break;
             }
@@ -153,84 +144,52 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                 break;
             }
             case R.id.actionToggleFilled: {
-
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.isDrawFilledEnabled())
-                        set.setDrawFilled(false);
-                    else
-                        set.setDrawFilled(true);
+                    set.setDrawFilled(!set.isDrawFilledEnabled());
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleCircles: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.isDrawCirclesEnabled())
-                        set.setDrawCircles(false);
-                    else
-                        set.setDrawCircles(true);
+                    set.setDrawCircles(!set.isDrawCirclesEnabled());
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleCubic: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER
-                            ? LineDataSet.Mode.LINEAR
-                            : LineDataSet.Mode.CUBIC_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER ? LineDataSet.Mode.LINEAR : LineDataSet.Mode.CUBIC_BEZIER);
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleStepped: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED
-                            ? LineDataSet.Mode.LINEAR
-                            : LineDataSet.Mode.STEPPED);
+                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED ? LineDataSet.Mode.LINEAR : LineDataSet.Mode.STEPPED);
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleHorizontalCubic: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER
-                            ? LineDataSet.Mode.LINEAR
-                            : LineDataSet.Mode.HORIZONTAL_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER ? LineDataSet.Mode.LINEAR : LineDataSet.Mode.HORIZONTAL_BEZIER);
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -241,7 +200,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             }
             case R.id.animateX: {
                 mChart.animateX(3000);
-                //mChart.highlightValue(9.7f, 1, false);
                 break;
             }
             case R.id.animateY: {
@@ -252,16 +210,12 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                 mChart.animateXY(3000, 3000);
                 break;
             }
-
             case R.id.actionSave: {
                 if (mChart.saveToPath("title" + System.currentTimeMillis(), "")) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
-
-                // mChart.saveToGallery("title"+System.currentTimeMillis())
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
@@ -270,9 +224,8 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
         tvX.setText("" + (mSeekBarX.getProgress() + 1));
-        tvY.setText("" + (mSeekBarY.getProgress()));
+        tvY.setText("" + mSeekBarY.getProgress());
 
         setData(mSeekBarX.getProgress() + 1, mSeekBarY.getProgress());
 
@@ -281,9 +234,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
     }
 
     private void setData(int count, float range) {
-
         ArrayList<Entry> yVals1 = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             float mult = range / 2f;
             float val = (float) (Math.random() * mult) + 50;
@@ -291,26 +242,19 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         }
 
         ArrayList<Entry> yVals2 = new ArrayList<>();
-
         for (int i = 0; i < count-1; i++) {
             float val = (float) (Math.random() * range) + 450;
             yVals2.add(new Entry(i, val));
-//            if(i == 10) {
-//                yVals2.add(new Entry(i, val + 50));
-//            }
         }
 
         ArrayList<Entry> yVals3 = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range) + 500;
             yVals3.add(new Entry(i, val));
         }
 
         LineDataSet set1, set2, set3;
-
-        if (mChart.getData() != null &&
-                mChart.getData().getDataSetCount() > 0) {
+        if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) mChart.getData().getDataSetByIndex(0);
             set2 = (LineDataSet) mChart.getData().getDataSetByIndex(1);
             set3 = (LineDataSet) mChart.getData().getDataSetByIndex(2);
@@ -322,7 +266,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         } else {
             // create a dataset and give it a type
             set1 = new LineDataSet(yVals1, "DataSet 1");
-
             set1.setAxisDependency(AxisDependency.LEFT);
             set1.setColor(ColorUtils.getHoloBlue());
             set1.setCircleColor(Color.WHITE);
@@ -330,12 +273,8 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set1.setCircleRadius(3f);
             set1.setFillAlpha(65);
             set1.setFillColor(ColorUtils.getHoloBlue());
-            set1.setHighLightColor(Color.rgb(244, 117, 117));
+            set1.setHighLightColor(0xF47575);
             set1.setDrawCircleHole(false);
-            //set1.setFillFormatter(new MyFillFormatter(0f));
-            //set1.setDrawHorizontalHighlightIndicator(false);
-            //set1.setVisible(false);
-            //set1.setCircleHoleColor(Color.WHITE);
 
             // create a dataset and give it a type
             set2 = new LineDataSet(yVals2, "DataSet 2");
@@ -347,8 +286,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set2.setFillAlpha(65);
             set2.setFillColor(Color.RED);
             set2.setDrawCircleHole(false);
-            set2.setHighLightColor(Color.rgb(244, 117, 117));
-            //set2.setFillFormatter(new MyFillFormatter(900f));
+            set2.setHighLightColor(0xF47575);
 
             set3 = new LineDataSet(yVals3, "DataSet 3");
             set3.setAxisDependency(AxisDependency.RIGHT);
@@ -359,7 +297,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set3.setFillAlpha(65);
             set3.setFillColor(ColorTemplate.colorWithAlpha(Color.YELLOW, 200));
             set3.setDrawCircleHole(false);
-            set3.setHighLightColor(Color.rgb(244, 117, 117));
+            set3.setHighLightColor(0xF47575);
 
             // create a data object with the datasets
             LineData data = new LineData(set1, set2, set3);
@@ -375,12 +313,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
     public void onValueSelected(Entry entry, Highlight highlight) {
         Log.i("Entry selected", entry.toString());
 
-        mChart.centerViewToAnimated(entry.getX(), entry.getY(), mChart.getData().getDataSetByIndex(highlight.getDataSetIndex())
-                .getAxisDependency(), 500);
-        //mChart.zoomAndCenterAnimated(2.5f, 2.5f, e.getX(), e.getY(), mChart.getData().getDataSetByIndex(dataSetIndex)
-        // .getAxisDependency(), 1000);
-        //mChart.zoomAndCenterAnimated(1.8f, 1.8f, e.getX(), e.getY(), mChart.getData().getDataSetByIndex(dataSetIndex)
-        // .getAxisDependency(), 1000);
+        mChart.centerViewToAnimated(entry.getX(), entry.getY(), mChart.getData().getDataSetByIndex(highlight.getDataSetIndex()).getAxisDependency(), 500);
     }
 
     @Override

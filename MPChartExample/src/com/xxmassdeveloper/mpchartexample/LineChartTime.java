@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
-
     private LineChart mChart;
     private SeekBar mSeekBarX;
     private TextView tvX;
@@ -57,7 +56,6 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
-
         mChart.setDragDecelerationFrictionCoef(0.9f);
 
         // enable scaling and dragging
@@ -85,16 +83,14 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         xAxis.setTextColor(Color.WHITE);
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(true);
-        xAxis.setTextColor(Color.rgb(255, 192, 56));
+        xAxis.setTextColor(0xFFC038);
         xAxis.setCenterAxisLabels(true);
         xAxis.setGranularity(1f); // one hour
         xAxis.setValueFormatter(new IAxisValueFormatter() {
-
             private SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM HH:mm");
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-
                 long millis = TimeUnit.HOURS.toMillis((long) value);
                 return mFormat.format(new Date(millis));
             }
@@ -109,7 +105,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         leftAxis.setAxisMinimum(0f);
         leftAxis.setAxisMaximum(170f);
         leftAxis.setYOffset(-9f);
-        leftAxis.setTextColor(Color.rgb(255, 192, 56));
+        leftAxis.setTextColor(0xFFC038);
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
@@ -123,14 +119,10 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
@@ -146,72 +138,51 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                 break;
             }
             case R.id.actionToggleFilled: {
-
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.isDrawFilledEnabled())
-                        set.setDrawFilled(false);
-                    else
-                        set.setDrawFilled(true);
+                    set.setDrawFilled(!set.isDrawFilledEnabled());
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleCircles: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.isDrawCirclesEnabled())
-                        set.setDrawCircles(false);
-                    else
-                        set.setDrawCircles(true);
+                    set.setDrawCircles(!set.isDrawCirclesEnabled());
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleCubic: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.getMode() == LineDataSet.Mode.CUBIC_BEZIER)
+                    if (set.getMode() == LineDataSet.Mode.CUBIC_BEZIER) {
                         set.setMode(LineDataSet.Mode.LINEAR);
-                    else
+                    } else {
                         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+                    }
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleStepped: {
-                List<ILineDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<ILineDataSet> sets = mChart.getData().getDataSets();
                 for (ILineDataSet iSet : sets) {
-
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.getMode() == LineDataSet.Mode.STEPPED)
+                    if (set.getMode() == LineDataSet.Mode.STEPPED) {
                         set.setMode(LineDataSet.Mode.LINEAR);
-                    else
+                    } else {
                         set.setMode(LineDataSet.Mode.STEPPED);
+                    }
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -232,16 +203,12 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                 mChart.animateXY(3000, 3000);
                 break;
             }
-
             case R.id.actionSave: {
                 if (mChart.saveToPath("title" + System.currentTimeMillis(), "")) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
-
-                // mChart.saveToGallery("title"+System.currentTimeMillis())
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
@@ -250,8 +217,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        tvX.setText("" + (mSeekBarX.getProgress()));
+        tvX.setText("" + mSeekBarX.getProgress());
 
         setData(mSeekBarX.getProgress(), 50);
 
@@ -260,7 +226,6 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
     }
 
     private void setData(int count, float range) {
-
         // now in hours
         long now = TimeUnit.MILLISECONDS.toHours(System.currentTimeMillis());
 
@@ -286,7 +251,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         set1.setDrawValues(false);
         set1.setFillAlpha(65);
         set1.setFillColor(ColorUtils.getHoloBlue());
-        set1.setHighLightColor(Color.rgb(244, 117, 117));
+        set1.setHighLightColor(0xF47575);
         set1.setDrawCircleHole(false);
 
         // create a data object with the datasets

@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.jobs
 
 import com.google.common.truth.Truth.assertThat
+import org.junit.After
 import org.junit.Test
 
 abstract class AnimatedViewPortJobTest<T : AnimatedViewPortJob> : ViewPortJobTest<T>() {
@@ -26,5 +27,10 @@ abstract class AnimatedViewPortJobTest<T : AnimatedViewPortJob> : ViewPortJobTes
 
 		this.job.setPhase(5f)
 		assertThat(this.job.getPhase()).isEqualTo(5f)
+	}
+
+	@After
+	fun after() {
+		this.job.recycleSelf()
 	}
 }

@@ -27,7 +27,6 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import java.util.ArrayList;
 
 public class RadarChartActivitry extends DemoBase {
-
     private RadarChart mChart;
 
     @Override
@@ -37,34 +36,28 @@ public class RadarChartActivitry extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_radarchart_noseekbar);
 
-        TextView tv = (TextView) findViewById(R.id.textView);
+        TextView tv = findViewById(R.id.textView);
         tv.setTypeface(mTfLight);
         tv.setTextColor(Color.WHITE);
-        tv.setBackgroundColor(Color.rgb(60, 65, 82));
+        tv.setBackgroundColor(0x3C4152);
 
-        mChart = (RadarChart) findViewById(R.id.chart1);
-        mChart.setBackgroundColor(Color.rgb(60, 65, 82));
-
+        mChart = findViewById(R.id.chart1);
+        mChart.setBackgroundColor(0x3C4152);
         mChart.getDescription().setEnabled(false);
-
         mChart.setWebLineWidth(1f);
         mChart.setWebColor(Color.LTGRAY);
         mChart.setWebLineWidthInner(1f);
         mChart.setWebColorInner(Color.LTGRAY);
         mChart.setWebAlpha(100);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout
-        // to use for it
+        // create a custom MarkerView (extend MarkerView) and specify the layout to use for it
         MarkerView mv = new RadarMarkerView(this, R.layout.radar_markerview);
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
 
         setData();
 
-        mChart.animateXY(
-                1400, 1400,
-                Easing.EasingOption.EaseInOutQuad,
-                Easing.EasingOption.EaseInOutQuad);
+        mChart.animateXY(1400, 1400, Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTypeface(mTfLight);
@@ -72,7 +65,6 @@ public class RadarChartActivitry extends DemoBase {
         xAxis.setYOffset(0f);
         xAxis.setXOffset(0f);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
-
             private String[] mActivities = new String[]{"Burger", "Steak", "Salad", "Pasta", "Pizza"};
 
             @Override
@@ -109,11 +101,11 @@ public class RadarChartActivitry extends DemoBase {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                for (IDataSet<?> set : mChart.getData().getDataSets())
+                for (IDataSet<?> set : mChart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 mChart.invalidate();
                 break;
@@ -126,32 +118,20 @@ public class RadarChartActivitry extends DemoBase {
                 break;
             }
             case R.id.actionToggleRotate: {
-                if (mChart.isRotationEnabled())
-                    mChart.setRotationEnabled(false);
-                else
-                    mChart.setRotationEnabled(true);
+                mChart.setRotationEnabled(!mChart.isRotationEnabled());
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleFilled: {
-
-                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) mChart.getData()
-                        .getDataSets();
-
+                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) mChart.getData().getDataSets();
                 for (IRadarDataSet set : sets) {
-                    if (set.isDrawFilledEnabled())
-                        set.setDrawFilled(false);
-                    else
-                        set.setDrawFilled(true);
+                    set.setDrawFilled(!set.isDrawFilledEnabled());
                 }
                 mChart.invalidate();
                 break;
             }
             case R.id.actionToggleHighlightCircle: {
-
-                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) mChart.getData()
-                        .getDataSets();
-
+                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) mChart.getData().getDataSets();
                 for (IRadarDataSet set : sets) {
                     set.setDrawHighlightCircleEnabled(!set.isDrawHighlightCircleEnabled());
                 }
@@ -160,11 +140,10 @@ public class RadarChartActivitry extends DemoBase {
             }
             case R.id.actionSave: {
                 if (mChart.saveToPath("title" + System.currentTimeMillis(), "")) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
             case R.id.actionToggleXLabels: {
@@ -174,7 +153,6 @@ public class RadarChartActivitry extends DemoBase {
                 break;
             }
             case R.id.actionToggleYLabels: {
-
                 mChart.getYAxis().setEnabled(!mChart.getYAxis().isEnabled());
                 mChart.invalidate();
                 break;
@@ -192,8 +170,7 @@ public class RadarChartActivitry extends DemoBase {
                 break;
             }
             case R.id.actionToggleSpin: {
-                mChart.spin(2000, mChart.getRotationAngle(), mChart.getRotationAngle() + 360, Easing.EasingOption
-                        .EaseInCubic);
+                mChart.spin(2000, mChart.getRotationAngle(), mChart.getRotationAngle() + 360, Easing.EasingOption.EaseInCubic);
                 break;
             }
         }
@@ -201,13 +178,12 @@ public class RadarChartActivitry extends DemoBase {
     }
 
     public void setData() {
-
         float mult = 80;
         float min = 20;
         int cnt = 5;
 
-        ArrayList<RadarEntry> entries1 = new ArrayList<RadarEntry>();
-        ArrayList<RadarEntry> entries2 = new ArrayList<RadarEntry>();
+        ArrayList<RadarEntry> entries1 = new ArrayList<>();
+        ArrayList<RadarEntry> entries2 = new ArrayList<>();
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
@@ -220,8 +196,8 @@ public class RadarChartActivitry extends DemoBase {
         }
 
         RadarDataSet set1 = new RadarDataSet(entries1, "Last Week");
-        set1.setColor(Color.rgb(103, 110, 129));
-        set1.setFillColor(Color.rgb(103, 110, 129));
+        set1.setColor(0x676E81);
+        set1.setFillColor(0x676E81);
         set1.setDrawFilled(true);
         set1.setFillAlpha(180);
         set1.setLineWidth(2f);
@@ -229,15 +205,15 @@ public class RadarChartActivitry extends DemoBase {
         set1.setDrawHighlightIndicators(false);
 
         RadarDataSet set2 = new RadarDataSet(entries2, "This Week");
-        set2.setColor(Color.rgb(121, 162, 175));
-        set2.setFillColor(Color.rgb(121, 162, 175));
+        set2.setColor(0x79A2AF);
+        set2.setFillColor(0x79A2AF);
         set2.setDrawFilled(true);
         set2.setFillAlpha(180);
         set2.setLineWidth(2f);
         set2.setDrawHighlightCircleEnabled(true);
         set2.setDrawHighlightIndicators(false);
 
-        ArrayList<IRadarDataSet> sets = new ArrayList<IRadarDataSet>();
+        ArrayList<IRadarDataSet> sets = new ArrayList<>();
         sets.add(set1);
         sets.add(set2);
 

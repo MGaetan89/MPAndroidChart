@@ -45,7 +45,7 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
         mHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mHighlightPaint.setStyle(Paint.Style.FILL);
-        mHighlightPaint.setColor(Color.rgb(0, 0, 0));
+        mHighlightPaint.setColor(Color.BLACK);
         mHighlightPaint.setAlpha(120);
 
         mShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

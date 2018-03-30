@@ -21,7 +21,6 @@ import io.realm.RealmResults;
  * Created by Philipp Jahoda on 21/10/15.
  */
 public class RealmDatabaseActivityCandle extends RealmBaseActivity {
-
     private CandleStickChart mChart;
 
     @Override
@@ -31,7 +30,7 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_candlechart_noseekbar);
 
-        mChart = (CandleStickChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         setup(mChart);
 
         mChart.getAxisLeft().setDrawGridLines(false);
@@ -50,7 +49,6 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
     }
 
     private void setData() {
-
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
         RealmCandleDataSet<RealmDemoData> set = new RealmCandleDataSet<RealmDemoData>(result, "xValue", "high", "low", "open", "close");
@@ -59,11 +57,11 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
         set.setShadowWidth(0.7f);
         set.setDecreasingColor(Color.RED);
         set.setDecreasingPaintStyle(Paint.Style.FILL);
-        set.setIncreasingColor(Color.rgb(122, 242, 84));
+        set.setIncreasingColor(0x7AF254);
         set.setIncreasingPaintStyle(Paint.Style.STROKE);
         set.setNeutralColor(Color.BLUE);
 
-        ArrayList<ICandleDataSet> dataSets = new ArrayList<ICandleDataSet>();
+        ArrayList<ICandleDataSet> dataSets = new ArrayList<>();
         dataSets.add(set); // add the dataset
 
         // create a data object with the dataset list

@@ -22,6 +22,8 @@ class MPPointFTest {
 		val point = MPPointF.getInstance(MPPointF(1f, 2f))
 		assertThat(point.getX()).isEqualTo(1f)
 		assertThat(point.getY()).isEqualTo(2f)
+
+		MPPointF.recycleInstance(point)
 	}
 
 	@Test
@@ -29,6 +31,8 @@ class MPPointFTest {
 		val point = MPPointF.getInstance()
 		assertThat(point.getX()).isEqualTo(0f)
 		assertThat(point.getY()).isEqualTo(0f)
+
+		MPPointF.recycleInstance(point)
 	}
 
 	@Test
@@ -36,6 +40,8 @@ class MPPointFTest {
 		val point = MPPointF.getInstance(1f, 2f)
 		assertThat(point.getX()).isEqualTo(1f)
 		assertThat(point.getY()).isEqualTo(2f)
+
+		MPPointF.recycleInstance(point)
 	}
 
 	@Test
@@ -44,6 +50,8 @@ class MPPointFTest {
 		val instance = point.instantiate() as MPPointF
 		assertThat(instance.getX()).isEqualTo(0f)
 		assertThat(instance.getY()).isEqualTo(0f)
+
+		MPPointF.recycleInstance(point)
 	}
 
 	@Test
@@ -51,6 +59,8 @@ class MPPointFTest {
 		val point = MPPointF(1f, 2f)
 		assertThat(point.getX()).isEqualTo(1f)
 		assertThat(point.getY()).isEqualTo(2f)
+
+		MPPointF.recycleInstance(point)
 	}
 
 	@Test
@@ -58,6 +68,8 @@ class MPPointFTest {
 		val point = MPPointF()
 		assertThat(point.getX()).isEqualTo(0f)
 		assertThat(point.getY()).isEqualTo(0f)
+
+		MPPointF.recycleInstance(point)
 	}
 
 	@Test

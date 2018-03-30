@@ -1,7 +1,6 @@
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
@@ -41,7 +40,7 @@ public class RadarChartRenderer extends LineRadarRenderer {
         mHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mHighlightPaint.setStyle(Paint.Style.STROKE);
         mHighlightPaint.setStrokeWidth(2f);
-        mHighlightPaint.setColor(Color.rgb(255, 187, 115));
+        mHighlightPaint.setColor(0xFFBB73);
 
         mWebPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mWebPaint.setStyle(Paint.Style.STROKE);

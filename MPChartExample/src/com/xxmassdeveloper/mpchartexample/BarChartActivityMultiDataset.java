@@ -1,6 +1,5 @@
 package com.xxmassdeveloper.mpchartexample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,9 +28,7 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 
-public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarChangeListener,
-        OnChartValueSelectedListener {
-
+public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarChangeListener, OnChartValueSelectedListener {
     private BarChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
@@ -57,17 +54,12 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         mChart.setOnChartValueSelectedListener(this);
         mChart.getDescription().setEnabled(false);
 
-//        mChart.setDrawBorders(true);
-
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
         mChart.setDrawBarShadow(false);
-
         mChart.setDrawGridBackground(false);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout
-        // to use for it
+        // create a custom MarkerView (extend MarkerView) and specify the layout to use for it
         MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
@@ -115,21 +107,17 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                for (IBarDataSet set : mChart.getData().getDataSets())
+                for (IBarDataSet set : mChart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 mChart.invalidate();
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -139,8 +127,9 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
                 break;
             }
             case R.id.actionToggleBarBorders: {
-                for (IBarDataSet set : mChart.getData().getDataSets())
-                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1.f ? 0.f : 1.f);
+                for (IBarDataSet set : mChart.getData().getDataSets()) {
+                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
+                }
 
                 mChart.invalidate();
                 break;
@@ -153,7 +142,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
                 break;
             }
             case R.id.actionSave: {
-                // mChart.saveToGallery("title"+System.currentTimeMillis());
                 mChart.saveToPath("title" + System.currentTimeMillis(), "");
                 break;
             }
@@ -175,7 +163,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
         float groupSpace = 0.08f;
         float barSpace = 0.03f; // x4 DataSet
         float barWidth = 0.2f; // x4 DataSet
@@ -186,7 +173,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         int endYear = startYear + groupCount;
 
         tvX.setText(startYear + "-" + endYear);
-        tvY.setText("" + (mSeekBarY.getProgress()));
+        tvY.setText("" + mSeekBarY.getProgress());
 
         ArrayList<BarEntry> yVals1 = new ArrayList<>();
         ArrayList<BarEntry> yVals2 = new ArrayList<>();
@@ -194,7 +181,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         ArrayList<BarEntry> yVals4 = new ArrayList<>();
 
         float randomMultiplier = mSeekBarY.getProgress() * 100000f;
-
         for (int i = startYear; i < endYear; i++) {
             yVals1.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
             yVals2.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
@@ -203,9 +189,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         }
 
         BarDataSet set1, set2, set3, set4;
-
         if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
-
             set1 = (BarDataSet) mChart.getData().getDataSetByIndex(0);
             set2 = (BarDataSet) mChart.getData().getDataSetByIndex(1);
             set3 = (BarDataSet) mChart.getData().getDataSetByIndex(2);
@@ -216,17 +200,16 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
             set4.setValues(yVals4);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
-
         } else {
             // create 4 DataSets
             set1 = new BarDataSet(yVals1, "Company A");
-            set1.setColor(Color.rgb(104, 241, 175));
+            set1.setColor(0x68F1AF);
             set2 = new BarDataSet(yVals2, "Company B");
-            set2.setColor(Color.rgb(164, 228, 251));
+            set2.setColor(0xA4E4FB);
             set3 = new BarDataSet(yVals3, "Company C");
-            set3.setColor(Color.rgb(242, 247, 158));
+            set3.setColor(0xF2F79E);
             set4 = new BarDataSet(yVals4, "Company D");
-            set4.setColor(Color.rgb(255, 102, 0));
+            set4.setColor(0xFF6600);
 
             BarData data = new BarData(set1, set2, set3, set4);
             data.setValueFormatter(new LargeValueFormatter());

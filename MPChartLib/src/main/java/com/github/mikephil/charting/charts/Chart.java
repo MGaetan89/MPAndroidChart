@@ -219,7 +219,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         mXAxis = new XAxis();
         mDescPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mInfoPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mInfoPaint.setColor(Color.rgb(247, 189, 51)); // orange
+        mInfoPaint.setColor(0xF7BD33); // orange
         mInfoPaint.setTextAlign(Align.CENTER);
         mInfoPaint.setTextSize(Utils.convertDpToPixel(12f));
     }

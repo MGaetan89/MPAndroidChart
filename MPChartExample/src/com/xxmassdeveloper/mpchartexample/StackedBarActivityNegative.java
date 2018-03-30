@@ -1,6 +1,5 @@
 package com.xxmassdeveloper.mpchartexample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,8 +17,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -30,9 +29,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StackedBarActivityNegative extends DemoBase implements
-        OnChartValueSelectedListener {
-
+public class StackedBarActivityNegative extends DemoBase implements OnChartValueSelectedListener {
     private HorizontalBarChart mChart;
 
     @Override
@@ -51,7 +48,6 @@ public class StackedBarActivityNegative extends DemoBase implements
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
         mChart.setDrawBarShadow(false);
         mChart.setDrawValueAboveBar(true);
         mChart.setHighlightFullBarEnabled(false);
@@ -76,7 +72,6 @@ public class StackedBarActivityNegative extends DemoBase implements
         xAxis.setLabelCount(12);
         xAxis.setGranularity(10f);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
-
             private DecimalFormat format = new DecimalFormat("###");
 
             @Override
@@ -114,7 +109,7 @@ public class StackedBarActivityNegative extends DemoBase implements
         set.setValueFormatter(new CustomFormatter());
         set.setValueTextSize(7f);
         set.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        set.setColors(Color.rgb(67,67,72), Color.rgb(124,181,236));
+        set.setColors(0x434348, 0x7CB5EC);
         set.setStackLabels(new String[]{
                 "Men", "Women"
         });
@@ -133,14 +128,10 @@ public class StackedBarActivityNegative extends DemoBase implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                List<IBarDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<IBarDataSet> sets = mChart.getData().getDataSets();
                 for (IBarDataSet iSet : sets) {
-
                     BarDataSet set = (BarDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
@@ -149,11 +140,8 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionToggleIcons: {
-                List<IBarDataSet> sets = mChart.getData()
-                        .getDataSets();
-
+                List<IBarDataSet> sets = mChart.getData().getDataSets();
                 for (IBarDataSet iSet : sets) {
-
                     BarDataSet set = (BarDataSet) iSet;
                     set.setDrawIcons(!set.isDrawIconsEnabled());
                 }
@@ -169,11 +157,7 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -183,8 +167,9 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.actionToggleBarBorders: {
-                for (IBarDataSet set : mChart.getData().getDataSets())
-                    ((BarDataSet)set).setBarBorderWidth(set.getBarBorderWidth() == 1.f ? 0.f : 1.f);
+                for (IBarDataSet set : mChart.getData().getDataSets()) {
+                    ((BarDataSet)set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
+                }
 
                 mChart.invalidate();
                 break;
@@ -198,17 +183,15 @@ public class StackedBarActivityNegative extends DemoBase implements
                 break;
             }
             case R.id.animateXY: {
-
                 mChart.animateXY(3000, 3000);
                 break;
             }
             case R.id.actionSave: {
                 if (mChart.saveToGallery("title" + System.currentTimeMillis(), 50)) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
@@ -217,10 +200,8 @@ public class StackedBarActivityNegative extends DemoBase implements
 
     @Override
     public void onValueSelected(Entry e, Highlight highlight) {
-
         BarEntry entry = (BarEntry) e;
-        Log.i("VAL SELECTED",
-                "Value: " + Math.abs(entry.getYVals()[highlight.getStackIndex()]));
+        Log.i("VAL SELECTED", "Value: " + Math.abs(entry.getYVals()[highlight.getStackIndex()]));
     }
 
     @Override
@@ -228,9 +209,7 @@ public class StackedBarActivityNegative extends DemoBase implements
         Log.i("NOTING SELECTED", "");
     }
 
-    private class CustomFormatter implements IValueFormatter, IAxisValueFormatter
-    {
-
+    private class CustomFormatter implements IValueFormatter, IAxisValueFormatter {
         private DecimalFormat mFormat;
 
         public CustomFormatter() {

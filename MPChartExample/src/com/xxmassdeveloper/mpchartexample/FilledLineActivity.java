@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.graphics.Color;
@@ -20,7 +19,6 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import java.util.ArrayList;
 
 public class FilledLineActivity extends DemoBase {
-
     private LineChart mChart;
     private int mFillColor = Color.argb(150, 51, 181, 229);
 
@@ -31,7 +29,7 @@ public class FilledLineActivity extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart_noseekbar);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.WHITE);
         mChart.setGridBackgroundColor(mFillColor);
         mChart.setDrawGridBackground(true);
@@ -66,29 +64,20 @@ public class FilledLineActivity extends DemoBase {
     }
 
     private void setData(int count, float range) {
-
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-
+        ArrayList<Entry> yVals1 = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * range) + 50;// + (float)
-            // ((mult *
-            // 0.1) / 10);
+            float val = (float) (Math.random() * range) + 50;
             yVals1.add(new Entry(i, val));
         }
 
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-
+        ArrayList<Entry> yVals2 = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * range) + 450;// + (float)
-            // ((mult *
-            // 0.1) / 10);
+            float val = (float) (Math.random() * range) + 450;
             yVals2.add(new Entry(i, val));
         }
 
         LineDataSet set1, set2;
-
-        if (mChart.getData() != null &&
-                mChart.getData().getDataSetCount() > 0) {
+        if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet)mChart.getData().getDataSetByIndex(0);
             set2 = (LineDataSet)mChart.getData().getDataSetByIndex(1);
             set1.setValues(yVals1);
@@ -100,14 +89,14 @@ public class FilledLineActivity extends DemoBase {
             set1 = new LineDataSet(yVals1, "DataSet 1");
 
             set1.setAxisDependency(YAxis.AxisDependency.LEFT);
-            set1.setColor(Color.rgb(255, 241, 46));
+            set1.setColor(0xFFF12E);
             set1.setDrawCircles(false);
             set1.setLineWidth(2f);
             set1.setCircleRadius(3f);
             set1.setFillAlpha(255);
             set1.setDrawFilled(true);
             set1.setFillColor(Color.WHITE);
-            set1.setHighLightColor(Color.rgb(244, 117, 117));
+            set1.setHighLightColor(0xF47575);
             set1.setDrawCircleHole(false);
             set1.setFillFormatter(new IFillFormatter() {
                 @Override
@@ -119,7 +108,7 @@ public class FilledLineActivity extends DemoBase {
             // create a dataset and give it a type
             set2 = new LineDataSet(yVals2, "DataSet 2");
             set2.setAxisDependency(YAxis.AxisDependency.LEFT);
-            set2.setColor(Color.rgb(255, 241, 46));
+            set2.setColor(0xFFF12E);
             set2.setDrawCircles(false);
             set2.setLineWidth(2f);
             set2.setCircleRadius(3f);
@@ -127,7 +116,7 @@ public class FilledLineActivity extends DemoBase {
             set2.setDrawFilled(true);
             set2.setFillColor(Color.WHITE);
             set2.setDrawCircleHole(false);
-            set2.setHighLightColor(Color.rgb(244, 117, 117));
+            set2.setHighLightColor(0xF47575);
             set2.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
@@ -135,7 +124,7 @@ public class FilledLineActivity extends DemoBase {
                 }
             });
 
-            ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1); // add the datasets
             dataSets.add(set2);
 

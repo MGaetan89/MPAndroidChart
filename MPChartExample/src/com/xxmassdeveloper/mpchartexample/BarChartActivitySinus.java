@@ -1,6 +1,5 @@
 package com.xxmassdeveloper.mpchartexample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,18 +18,16 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.xxmassdeveloper.mpchartexample.utils.FileUtils;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+import com.xxmassdeveloper.mpchartexample.utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeListener {
-
     protected BarChart mChart;
     private SeekBar mSeekBarX;
     private TextView tvX;
-
     private List<BarEntry> mSinusData;
 
     @Override
@@ -47,26 +44,16 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
         mSeekBarX = findViewById(R.id.seekbarValues);
 
         mChart = findViewById(R.id.chart1);
-
         mChart.setDrawBarShadow(false);
         mChart.setDrawValueAboveBar(true);
-
         mChart.getDescription().setEnabled(false);
 
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
+        // if more than 60 entries are displayed in the chart, no values will be drawn
         mChart.setMaxVisibleValueCount(60);
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
-        // draw shadows for each bar that show the maximum value
-        // mChart.setDrawBarShadow(true);
-
-        // mChart.setDrawXLabels(false);
-
         mChart.setDrawGridBackground(false);
-        // mChart.setDrawYLabels(false);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setEnabled(false);
@@ -111,11 +98,11 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionToggleValues: {
-                for (IBarDataSet set : mChart.getData().getDataSets())
+                for (IBarDataSet set : mChart.getData().getDataSets()) {
                     set.setDrawValues(!set.isDrawValuesEnabled());
+                }
 
                 mChart.invalidate();
                 break;
@@ -128,11 +115,7 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
                 break;
             }
             case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
+                mChart.setPinchZoom(!mChart.isPinchZoomEnabled());
                 mChart.invalidate();
                 break;
             }
@@ -142,8 +125,9 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
                 break;
             }
             case R.id.actionToggleBarBorders: {
-                for (IBarDataSet set : mChart.getData().getDataSets())
-                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1.f ? 0.f : 1.f);
+                for (IBarDataSet set : mChart.getData().getDataSets()) {
+                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
+                }
 
                 mChart.invalidate();
                 break;
@@ -157,17 +141,15 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
                 break;
             }
             case R.id.animateXY: {
-
                 mChart.animateXY(2000, 2000);
                 break;
             }
             case R.id.actionSave: {
                 if (mChart.saveToGallery("title" + System.currentTimeMillis(), 50)) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
         }
@@ -176,8 +158,7 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        tvX.setText("" + (mSeekBarX.getProgress()));
+        tvX.setText("" + mSeekBarX.getProgress());
 
         setData(mSeekBarX.getProgress());
         mChart.invalidate();
@@ -192,24 +173,20 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
     }
 
     private void setData(int count) {
-
         ArrayList<BarEntry> entries = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             entries.add(mSinusData.get(i));
         }
 
         BarDataSet set;
-
-        if (mChart.getData() != null &&
-                mChart.getData().getDataSetCount() > 0) {
+        if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
             set = (BarDataSet) mChart.getData().getDataSetByIndex(0);
             set.setValues(entries);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
             set = new BarDataSet(entries, "Sinus Function");
-            set.setColor(Color.rgb(240, 120, 124));
+            set.setColor(0xF0787C);
         }
 
         BarData data = new BarData(set);

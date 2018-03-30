@@ -23,9 +23,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
-public class RealtimeLineChartActivity extends DemoBase implements
-        OnChartValueSelectedListener {
-
+public class RealtimeLineChartActivity extends DemoBase implements OnChartValueSelectedListener {
     private LineChart mChart;
 
     @Override
@@ -85,7 +83,6 @@ public class RealtimeLineChartActivity extends DemoBase implements
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
-
     }
 
     @Override
@@ -96,7 +93,6 @@ public class RealtimeLineChartActivity extends DemoBase implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.actionAdd: {
                 addEntry();
@@ -116,11 +112,8 @@ public class RealtimeLineChartActivity extends DemoBase implements
     }
 
     private void addEntry() {
-
         LineData data = mChart.getData();
-
         if (data != null) {
-
             ILineDataSet set = data.getDataSetByIndex(0);
             // set.addEntry(...); // can be called as well
 
@@ -137,19 +130,13 @@ public class RealtimeLineChartActivity extends DemoBase implements
 
             // limit the number of visible entries
             mChart.setVisibleXRangeMaximum(120);
-            // mChart.setVisibleYRange(30, AxisDependency.LEFT);
 
             // move to the latest entry
             mChart.moveViewToX(data.getEntryCount());
-
-            // this automatically refreshes the chart (calls invalidate())
-            // mChart.moveViewTo(data.getXValCount()-7, 55f,
-            // AxisDependency.LEFT);
         }
     }
 
     private LineDataSet createSet() {
-
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(AxisDependency.LEFT);
         set.setColor(ColorUtils.getHoloBlue());
@@ -158,7 +145,7 @@ public class RealtimeLineChartActivity extends DemoBase implements
         set.setCircleRadius(4f);
         set.setFillAlpha(65);
         set.setFillColor(ColorUtils.getHoloBlue());
-        set.setHighLightColor(Color.rgb(244, 117, 117));
+        set.setHighLightColor(0xF47575);
         set.setValueTextColor(Color.WHITE);
         set.setValueTextSize(9f);
         set.setDrawValues(false);
@@ -168,12 +155,11 @@ public class RealtimeLineChartActivity extends DemoBase implements
     private Thread thread;
 
     private void feedMultiple() {
-
-        if (thread != null)
+        if (thread != null) {
             thread.interrupt();
+        }
 
         final Runnable runnable = new Runnable() {
-
             @Override
             public void run() {
                 addEntry();
@@ -181,11 +167,9 @@ public class RealtimeLineChartActivity extends DemoBase implements
         };
 
         thread = new Thread(new Runnable() {
-
             @Override
             public void run() {
                 for (int i = 0; i < 1000; i++) {
-
                     // Don't generate garbage runnables inside the loop.
                     runOnUiThread(runnable);
 

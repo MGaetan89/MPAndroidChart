@@ -3,7 +3,7 @@ package com.github.mikephil.charting.utils
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-@Suppress("ReplaceCallWithComparison")
+@Suppress("ReplaceCallWithBinaryOperator")
 class FSizeTest {
 	@Test
 	fun fSize() {
@@ -24,6 +24,8 @@ class FSizeTest {
 		val other = size.instantiate() as FSize
 		assertThat(other.height).isEqualTo(0f)
 		assertThat(other.width).isEqualTo(0f)
+
+		FSize.recycleInstance(size)
 	}
 
 	@Test
@@ -45,6 +47,8 @@ class FSizeTest {
 		val other = size.instantiate() as FSize
 		assertThat(other.height).isEqualTo(0f)
 		assertThat(other.width).isEqualTo(0f)
+
+		FSize.recycleInstance(size)
 	}
 
 	@Test
@@ -52,5 +56,7 @@ class FSizeTest {
 		val size = FSize.getInstance(1f, 2f)
 		assertThat(size.height).isEqualTo(2f)
 		assertThat(size.width).isEqualTo(1f)
+
+		FSize.recycleInstance(size)
 	}
 }
