@@ -1,22 +1,26 @@
 package com.github.mikephil.charting.data;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
- * Created by philipp on 13/06/16.
+ * @author Philipp Jahoda
  */
 public class RadarEntry extends Entry {
-    public RadarEntry(float value) {
-        super(0f, value);
+    public RadarEntry(float y) {
+        super(0f, y);
     }
 
-    public RadarEntry(float value, Object data) {
-        super(0f, value, data);
+    public RadarEntry(float y, @Nullable Object data) {
+        super(0f, y, data);
     }
 
     /**
      * This is the same as getY(). Returns the value of the RadarEntry.
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>getY()</code> instead.
      */
+    @Deprecated
     public float getValue() {
         return getY();
     }

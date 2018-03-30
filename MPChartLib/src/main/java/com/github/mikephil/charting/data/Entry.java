@@ -22,6 +22,7 @@ public class Entry extends BaseEntry implements Parcelable {
     private float x = 0f;
 
     public Entry() {
+        super();
     }
 
     /**
@@ -42,7 +43,7 @@ public class Entry extends BaseEntry implements Parcelable {
      * @param y    the y value (the actual value of the entry)
      * @param data Spot for additional data this Entry represents.
      */
-    public Entry(float x, float y, Object data) {
+    public Entry(float x, float y, @Nullable Object data) {
         super(y, data);
         this.x = x;
     }
@@ -54,7 +55,7 @@ public class Entry extends BaseEntry implements Parcelable {
      * @param y    the y value (the actual value of the entry)
      * @param icon icon image
      */
-    public Entry(float x, float y, Drawable icon) {
+    public Entry(float x, float y, @Nullable Drawable icon) {
         super(y, icon);
         this.x = x;
     }
@@ -67,7 +68,7 @@ public class Entry extends BaseEntry implements Parcelable {
      * @param icon icon image
      * @param data Spot for additional data this Entry represents.
      */
-    public Entry(float x, float y, Drawable icon, Object data) {
+    public Entry(float x, float y, @Nullable Drawable icon, @Nullable Object data) {
         super(y, icon, data);
         this.x = x;
     }

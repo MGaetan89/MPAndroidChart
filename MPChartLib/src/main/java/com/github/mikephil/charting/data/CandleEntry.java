@@ -2,6 +2,7 @@ package com.github.mikephil.charting.data;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Subclass of Entry that holds all values for one entry in a CandleStickChart.
@@ -39,12 +40,7 @@ public class CandleEntry extends Entry {
      * @param close   The close value
      */
     public CandleEntry(float x, float shadowH, float shadowL, float open, float close) {
-        super(x, (shadowH + shadowL) / 2f);
-
-        this.mShadowHigh = shadowH;
-        this.mShadowLow = shadowL;
-        this.mOpen = open;
-        this.mClose = close;
+        this(x, shadowH, shadowL, open, close, null, null);
     }
 
     /**
@@ -57,13 +53,8 @@ public class CandleEntry extends Entry {
      * @param close
      * @param data    Spot for additional data this Entry represents
      */
-    public CandleEntry(float x, float shadowH, float shadowL, float open, float close, Object data) {
-        super(x, (shadowH + shadowL) / 2f, data);
-
-        this.mShadowHigh = shadowH;
-        this.mShadowLow = shadowL;
-        this.mOpen = open;
-        this.mClose = close;
+    public CandleEntry(float x, float shadowH, float shadowL, float open, float close, @Nullable Object data) {
+        this(x, shadowH, shadowL, open, close, null, data);
     }
 
     /**
@@ -76,13 +67,8 @@ public class CandleEntry extends Entry {
      * @param close
      * @param icon    Icon image
      */
-    public CandleEntry(float x, float shadowH, float shadowL, float open, float close, Drawable icon) {
-        super(x, (shadowH + shadowL) / 2f, icon);
-
-        this.mShadowHigh = shadowH;
-        this.mShadowLow = shadowL;
-        this.mOpen = open;
-        this.mClose = close;
+    public CandleEntry(float x, float shadowH, float shadowL, float open, float close, @Nullable Drawable icon) {
+        this(x, shadowH, shadowL, open, close, icon, null);
     }
 
     /**
@@ -96,7 +82,7 @@ public class CandleEntry extends Entry {
      * @param icon    Icon image
      * @param data    Spot for additional data this Entry represents
      */
-    public CandleEntry(float x, float shadowH, float shadowL, float open, float close, Drawable icon, Object data) {
+    public CandleEntry(float x, float shadowH, float shadowL, float open, float close, @Nullable Drawable icon, @Nullable Object data) {
         super(x, (shadowH + shadowL) / 2f, icon, data);
 
         this.mShadowHigh = shadowH;
@@ -117,14 +103,6 @@ public class CandleEntry extends Entry {
      */
     public float getBodyRange() {
         return Math.abs(mOpen - mClose);
-    }
-
-    /**
-     * Returns the center value of the candle. (Middle value between high and low).
-     */
-    @Override
-    public float getY() {
-        return super.getY();
     }
 
     @NonNull

@@ -25,24 +25,23 @@ public abstract class BaseEntry {
     private Drawable mIcon = null;
 
     public BaseEntry() {
+        this(0f);
     }
 
     public BaseEntry(float y) {
-        this.y = y;
+        this(y, null, null);
     }
 
     public BaseEntry(float y, @Nullable Object data) {
-        this(y);
-        this.mData = data;
+        this(y, null, data);
     }
 
     public BaseEntry(float y, @Nullable Drawable icon) {
-        this(y);
-        this.mIcon = icon;
+        this(y, icon, null);
     }
 
     public BaseEntry(float y, @Nullable Drawable icon, @Nullable Object data) {
-        this(y);
+        this.y = y;
         this.mIcon = icon;
         this.mData = data;
     }
