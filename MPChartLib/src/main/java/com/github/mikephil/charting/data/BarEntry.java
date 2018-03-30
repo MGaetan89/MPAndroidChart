@@ -50,7 +50,7 @@ public class BarEntry extends Entry {
      * @param y
      * @param data - Spot for additional data this Entry represents.
      */
-    public BarEntry(float x, float y, Object data) {
+    public BarEntry(float x, float y, @Nullable Object data) {
         super(x, y, data);
     }
 
@@ -61,7 +61,7 @@ public class BarEntry extends Entry {
      * @param y
      * @param icon - icon image
      */
-    public BarEntry(float x, float y, Drawable icon) {
+    public BarEntry(float x, float y, @Nullable Drawable icon) {
         super(x, y, icon);
     }
 
@@ -73,7 +73,7 @@ public class BarEntry extends Entry {
      * @param icon - icon image
      * @param data - Spot for additional data this Entry represents.
      */
-    public BarEntry(float x, float y, Drawable icon, Object data) {
+    public BarEntry(float x, float y, @Nullable Drawable icon, @Nullable Object data) {
         super(x, y, icon, data);
     }
 
@@ -98,7 +98,7 @@ public class BarEntry extends Entry {
      * @param values - the stack values, use at least 2
      * @param data   - Spot for additional data this Entry represents.
      */
-    public BarEntry(float x, @Nullable float[] values, Object data) {
+    public BarEntry(float x, @Nullable float[] values, @Nullable Object data) {
         super(x, calcSum(values), data);
 
         this.mYValues = values;
@@ -113,7 +113,7 @@ public class BarEntry extends Entry {
      * @param values - the stack values, use at least 2
      * @param icon   - icon image
      */
-    public BarEntry(float x, @Nullable float[] values, Drawable icon) {
+    public BarEntry(float x, @Nullable float[] values, @Nullable Drawable icon) {
         super(x, calcSum(values), icon);
 
         this.mYValues = values;
@@ -129,7 +129,7 @@ public class BarEntry extends Entry {
      * @param icon   - icon image
      * @param data   - Spot for additional data this Entry represents.
      */
-    public BarEntry(float x, @Nullable float[] values, Drawable icon, Object data) {
+    public BarEntry(float x, @Nullable float[] values, @Nullable Drawable icon, @Nullable Object data) {
         super(x, calcSum(values), icon, data);
 
         this.mYValues = values;

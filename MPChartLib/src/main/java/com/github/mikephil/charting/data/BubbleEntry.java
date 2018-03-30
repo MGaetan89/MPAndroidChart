@@ -2,6 +2,7 @@ package com.github.mikephil.charting.data;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Subclass of Entry that holds a value for one entry in a BubbleChart. Bubble
@@ -12,7 +13,7 @@ import android.support.annotation.NonNull;
  */
 public class BubbleEntry extends Entry {
     /**
-     * size value
+     * Size value.
      */
     private float mSize;
 
@@ -36,7 +37,7 @@ public class BubbleEntry extends Entry {
      * @param size The size of the bubble.
      * @param data Spot for additional data this Entry represents.
      */
-    public BubbleEntry(float x, float y, float size, Object data) {
+    public BubbleEntry(float x, float y, float size, @Nullable Object data) {
         super(x, y, data);
         this.mSize = size;
     }
@@ -49,7 +50,7 @@ public class BubbleEntry extends Entry {
      * @param size The size of the bubble.
      * @param icon Icon image
      */
-    public BubbleEntry(float x, float y, float size, Drawable icon) {
+    public BubbleEntry(float x, float y, float size, @Nullable Drawable icon) {
         super(x, y, icon);
         this.mSize = size;
     }
@@ -63,7 +64,7 @@ public class BubbleEntry extends Entry {
      * @param icon Icon image
      * @param data Spot for additional data this Entry represents.
      */
-    public BubbleEntry(float x, float y, float size, Drawable icon, Object data) {
+    public BubbleEntry(float x, float y, float size, @Nullable Drawable icon, @Nullable Object data) {
         super(x, y, icon, data);
         this.mSize = size;
     }

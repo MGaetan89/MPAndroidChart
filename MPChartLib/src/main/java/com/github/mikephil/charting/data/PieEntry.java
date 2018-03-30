@@ -1,63 +1,68 @@
 package com.github.mikephil.charting.data;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 /**
  * @author Philipp Jahoda
  */
 public class PieEntry extends Entry {
+    @Nullable
     private String label;
 
-    public PieEntry(float value) {
-        super(0f, value);
+    public PieEntry(float y) {
+        super(0f, y);
     }
 
-    public PieEntry(float value, Object data) {
-        super(0f, value, data);
+    public PieEntry(float y, @Nullable Object data) {
+        super(0f, y, data);
     }
 
-    public PieEntry(float value, Drawable icon) {
-        super(0f, value, icon);
+    public PieEntry(float y, @Nullable Drawable icon) {
+        super(0f, y, icon);
     }
 
-    public PieEntry(float value, Drawable icon, Object data) {
-        super(0f, value, icon, data);
+    public PieEntry(float y, @Nullable Drawable icon, @Nullable Object data) {
+        super(0f, y, icon, data);
     }
 
-    public PieEntry(float value, String label) {
-        super(0f, value);
+    public PieEntry(float y, @Nullable String label) {
+        super(0f, y);
         this.label = label;
     }
 
-    public PieEntry(float value, String label, Object data) {
-        super(0f, value, data);
+    public PieEntry(float y, @Nullable String label, @Nullable Object data) {
+        super(0f, y, data);
         this.label = label;
     }
 
-    public PieEntry(float value, String label, Drawable icon) {
-        super(0f, value, icon);
+    public PieEntry(float y, @Nullable String label, @Nullable Drawable icon) {
+        super(0f, y, icon);
         this.label = label;
     }
 
-    public PieEntry(float value, String label, Drawable icon, Object data) {
-        super(0f, value, icon, data);
+    public PieEntry(float y, @Nullable String label, @Nullable Drawable icon, @Nullable Object data) {
+        super(0f, y, icon, data);
         this.label = label;
     }
 
     /**
      * This is the same as getY(). Returns the value of the PieEntry.
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>getY()</code> instead.
      */
+    @Deprecated
     public float getValue() {
         return getY();
     }
 
+    @Nullable
     public String getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(@Nullable String label) {
         this.label = label;
     }
 
@@ -65,17 +70,15 @@ public class PieEntry extends Entry {
     @Override
     public void setX(float x) {
         super.setX(x);
-        Log.i("DEPRECATED", "Pie entries do not have x values");
     }
 
     @Deprecated
     @Override
     public float getX() {
-        Log.i("DEPRECATED", "Pie entries do not have x values");
         return super.getX();
     }
 
-    @Nullable
+    @NonNull
     public PieEntry copy() {
         return new PieEntry(getY(), label, getData());
     }
