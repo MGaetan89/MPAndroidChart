@@ -99,6 +99,7 @@ public interface IDataSet<T extends Entry> {
      *
      * @param index
      */
+    @Nullable
     T getEntryForIndex(int index);
 
     /**
