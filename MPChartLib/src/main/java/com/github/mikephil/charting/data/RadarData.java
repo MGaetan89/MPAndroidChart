@@ -7,6 +7,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +16,8 @@ import java.util.List;
  * @author Philipp Jahoda
  */
 public class RadarData extends ChartData<IRadarDataSet> {
-    private List<String> mLabels;
+    @NonNull
+    private List<String> mLabels = Collections.emptyList();
 
     public RadarData() {
         super();
@@ -34,7 +36,7 @@ public class RadarData extends ChartData<IRadarDataSet> {
      *
      * @param labels
      */
-    public void setLabels(List<String> labels) {
+    public void setLabels(@NonNull List<String> labels) {
         this.mLabels = labels;
     }
 
@@ -47,6 +49,7 @@ public class RadarData extends ChartData<IRadarDataSet> {
         this.mLabels = Arrays.asList(labels);
     }
 
+    @NonNull
     public List<String> getLabels() {
         return mLabels;
     }

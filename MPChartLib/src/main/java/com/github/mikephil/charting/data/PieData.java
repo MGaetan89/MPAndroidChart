@@ -28,18 +28,25 @@ public class PieData extends ChartData<IPieDataSet> {
      *
      * @param dataSet
      */
-    public void setDataSet(IPieDataSet dataSet) {
+    public void setDataSet(@Nullable IPieDataSet dataSet) {
         mDataSets.clear();
-        mDataSets.add(dataSet);
-        notifyDataChanged();
+        if (dataSet != null) {
+            mDataSets.add(dataSet);
+            notifyDataChanged();
+        }
     }
 
     /**
      * Returns the DataSet this PieData object represents. A PieData object can only contain one
      * DataSet.
      */
+    @Nullable
     public IPieDataSet getDataSet() {
-        return mDataSets.get(0);
+        if (mDataSets.isEmpty()) {
+            return null;
+        } else {
+            return mDataSets.get(0);
+        }
     }
 
     /**
@@ -51,31 +58,48 @@ public class PieData extends ChartData<IPieDataSet> {
     @Nullable
     @Override
     public IPieDataSet getDataSetByIndex(int index) {
-        return index == 0 ? getDataSet() : null;
+        return getDataSet();
     }
 
     @Nullable
     @Override
     public IPieDataSet getDataSetByLabel(@NonNull String label, boolean ignoreCase) {
-        IPieDataSet firstDataSet = mDataSets.get(0);
-        String firstLabel = firstDataSet.getLabel();
+        IPieDataSet dataSet = getDataSet();
+        if (dataSet == null) {
+            return null;
+        }
+
+        String firstLabel = dataSet.getLabel();
         boolean labelMatch = ignoreCase ? label.equalsIgnoreCase(firstLabel) : label.equals(firstLabel);
-        return labelMatch ? firstDataSet : null;
+        return labelMatch ? dataSet : null;
     }
 
     @Nullable
     @Override
     public Entry getEntryForHighlight(@NonNull Highlight highlight) {
-        return getDataSet().getEntryForIndex((int) highlight.getX());
+        IPieDataSet dataSet = getDataSet();
+        if (dataSet == null) {
+            return null;
+        } else {
+            return dataSet.getEntryForIndex((int) highlight.getX());
+        }
     }
 
     /**
      * Returns the sum of all values in this PieData object.
      */
     public float getYValueSum() {
-        float sum = 0;
-        for (int i = 0; i < getDataSet().getEntryCount(); i++) {
-            sum += getDataSet().getEntryForIndex(i).getY();
+        IPieDataSet dataSet = getDataSet();
+        if (dataSet == null) {
+            return 0f;
+        }
+
+        float sum = 0f;
+        for (int i = 0; i < dataSet.getEntryCount(); i++) {
+            PieEntry entry = dataSet.getEntryForIndex(i);
+            if (entry != null) {
+                sum += entry.getY();
+            }
         }
 
         return sum;

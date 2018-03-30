@@ -42,6 +42,9 @@ class BarDataTest : BarLineScatterCandleBubbleDataTest<BarData>() {
 		assertThat(this.data.getDataSetByIndex(1)).isNull()
 		assertThat(this.data.getDataSetForEntry(null)).isNull()
 		assertThat(this.data.getDataSetForEntry(entry)).isNull()
+		assertThat(this.data.colors).isEmpty()
+		assertThat(this.data.getIndexOfDataSet(dataSet)).isEqualTo(-1)
+		assertThat(this.data.contains(dataSet)).isFalse()
 
 		this.data.addDataSet(null)
 		assertThat(this.data.dataSetCount).isEqualTo(0)
@@ -74,6 +77,9 @@ class BarDataTest : BarLineScatterCandleBubbleDataTest<BarData>() {
 		assertThat(this.data.getDataSetByIndex(-1)).isNull()
 		assertThat(this.data.getDataSetByIndex(0)).isEqualTo(dataSet)
 		assertThat(this.data.getDataSetByIndex(1)).isNull()
+		assertThat(this.data.colors).asList().containsExactly(0x8CEAFF)
+		assertThat(this.data.getIndexOfDataSet(dataSet)).isEqualTo(0)
+		assertThat(this.data.contains(dataSet)).isTrue()
 
 		assertThat(this.data.removeDataSet(null)).isFalse()
 		assertThat(this.data.removeDataSet(dataSet)).isTrue()
