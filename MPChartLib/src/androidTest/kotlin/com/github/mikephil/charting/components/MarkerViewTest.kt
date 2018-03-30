@@ -5,9 +5,9 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import com.github.mikephil.charting.R
 import com.github.mikephil.charting.TestActivity
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.test.R
 import com.github.mikephil.charting.utils.MPPointF
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
