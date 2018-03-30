@@ -4,7 +4,6 @@ import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import com.github.mikephil.charting.formatter.IValueFormatter;
@@ -60,7 +59,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * Default constructor.
      */
     public ChartData() {
-        mDataSets = new ArrayList<>();
+        this(new ArrayList<T>());
     }
 
     /**
@@ -69,8 +68,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param dataSets
      */
     public ChartData(T... dataSets) {
-        mDataSets = new ArrayList<>(Arrays.asList(dataSets));
-        notifyDataChanged();
+        this(new ArrayList<>(Arrays.asList(dataSets)));
     }
 
     /**
@@ -296,10 +294,11 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      */
     @Nullable
     public Entry getEntryForHighlight(@NonNull Highlight highlight) {
-        if (highlight.getDataSetIndex() >= mDataSets.size()) {
+        T dataSet = getDataSetByIndex(highlight.getDataIndex());
+        if (dataSet == null) {
             return null;
         } else {
-            return mDataSets.get(highlight.getDataSetIndex()).getEntryForXValue(highlight.getX(), highlight.getY());
+            return dataSet.getEntryForXValue(highlight.getX(), highlight.getY());
         }
     }
 
@@ -314,11 +313,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
     @Nullable
     public T getDataSetByLabel(String label, boolean ignoreCase) {
         int index = getDataSetIndexByLabel(mDataSets, label, ignoreCase);
-        if (index < 0 || index >= mDataSets.size()) {
-            return null;
-        } else {
-            return mDataSets.get(index);
-        }
+        return getDataSetByIndex(index);
     }
 
     @Nullable
@@ -374,12 +369,8 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param index
      */
     public boolean removeDataSet(int index) {
-        if (index >= mDataSets.size() || index < 0) {
-            return false;
-        }
-
-        T set = mDataSets.get(index);
-        return removeDataSet(set);
+        T dataSet = getDataSetByIndex(index);
+        return removeDataSet(dataSet);
     }
 
     /**
@@ -389,16 +380,12 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param dataSetIndex
      */
     public void addEntry(@NonNull Entry entry, int dataSetIndex) {
-        if (mDataSets.size() > dataSetIndex && dataSetIndex >= 0) {
-            IDataSet set = mDataSets.get(dataSetIndex);
+        IDataSet dataSet = getDataSetByIndex(dataSetIndex);
+        if (dataSet != null) {
             // Add the entry to the data set
-            if (!set.addEntry(entry)) {
-                return;
+            if (dataSet.addEntry(entry)) {
+                calcMinMax(entry, dataSet.getAxisDependency());
             }
-
-            calcMinMax(entry, set.getAxisDependency());
-        } else {
-            Log.e("addEntry", "Cannot add Entry because dataSetIndex too high or too low.");
         }
     }
 
@@ -492,22 +479,18 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param dataSetIndex
      */
     public boolean removeEntry(@Nullable Entry entry, int dataSetIndex) {
-        if (entry == null || dataSetIndex >= mDataSets.size()) {
+        IDataSet dataSet = getDataSetByIndex(dataSetIndex);
+        if (dataSet == null || entry == null) {
             return false;
         }
 
-        IDataSet set = mDataSets.get(dataSetIndex);
-        if (set != null) {
-            // Remove the entry from the data set
-            boolean removed = set.removeEntry(entry);
-            if (removed) {
-                calcMinMax();
-            }
-
-            return removed;
-        } else {
-            return false;
+        // Remove the entry from the data set
+        boolean removed = dataSet.removeEntry(entry);
+        if (removed) {
+            calcMinMax();
         }
+
+        return removed;
     }
 
     /**
@@ -518,17 +501,13 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param dataSetIndex
      */
     public boolean removeEntry(float xValue, int dataSetIndex) {
-        if (dataSetIndex >= mDataSets.size()) {
+        T dataSet = getDataSetByIndex(dataSetIndex);
+        if (dataSet == null) {
             return false;
         }
 
-        IDataSet dataSet = mDataSets.get(dataSetIndex);
         Entry entry = dataSet.getEntryForXValue(xValue, Float.NaN);
-        if (entry == null) {
-            return false;
-        }
-
-        return removeEntry(entry, dataSetIndex);
+        return entry != null && removeEntry(entry, dataSetIndex);
     }
 
     /**
@@ -545,7 +524,6 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
 
         for (int i = 0; i < mDataSets.size(); i++) {
             T set = mDataSets.get(i);
-
             for (int j = 0; j < set.getEntryCount(); j++) {
                 if (entry.equalTo(set.getEntryForXValue(entry.getX(), entry.getY()))) {
                     return set;
@@ -626,7 +604,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      */
     public void setValueFormatter(@Nullable IValueFormatter formatter) {
         if (formatter != null) {
-            for (IDataSet set : mDataSets) {
+            for (T set : mDataSets) {
                 set.setValueFormatter(formatter);
             }
         }
@@ -639,7 +617,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param color
      */
     public void setValueTextColor(@ColorInt int color) {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             set.setValueTextColor(color);
         }
     }
@@ -650,7 +628,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param colors
      */
     public void setValueTextColors(@ColorInt List<Integer> colors) {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             set.setValueTextColors(colors);
         }
     }
@@ -661,7 +639,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param typeface
      */
     public void setValueTypeface(Typeface typeface) {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             set.setValueTypeface(typeface);
         }
     }
@@ -672,7 +650,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param size
      */
     public void setValueTextSize(float size) {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             set.setValueTextSize(size);
         }
     }
@@ -683,7 +661,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param enabled
      */
     public void setDrawValues(boolean enabled) {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             set.setDrawValues(enabled);
         }
     }
@@ -693,7 +671,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * true, this means that values can be highlighted programmatically or by touch gesture.
      */
     public void setHighlightEnabled(boolean enabled) {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             set.setHighlightEnabled(enabled);
         }
     }
@@ -702,7 +680,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * Returns true if highlighting of all underlying values is enabled, false if not.
      */
     public boolean isHighlightEnabled() {
-        for (IDataSet set : mDataSets) {
+        for (T set : mDataSets) {
             if (!set.isHighlightEnabled()) {
                 return false;
             }
