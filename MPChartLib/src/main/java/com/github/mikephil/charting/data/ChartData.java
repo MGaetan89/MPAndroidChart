@@ -331,13 +331,11 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      * @param dataSet
      */
     public void addDataSet(@Nullable T dataSet) {
-        if (dataSet == null) {
-            return;
+        if (dataSet != null) {
+            calcMinMax(dataSet);
+
+            mDataSets.add(dataSet);
         }
-
-        calcMinMax(dataSet);
-
-        mDataSets.add(dataSet);
     }
 
     /**
