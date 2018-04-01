@@ -23,7 +23,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     @ColorInt
     private int mBarShadowColor = 0xD7D7D7;
 
-    private float mBarBorderWidth = 0.f;
+    private float mBarBorderWidth = 0f;
 
     @ColorInt
     private int mBarBorderColor = Color.BLACK;
@@ -46,7 +46,7 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
             "Stack"
     };
 
-    public BarDataSet(@NonNull List<BarEntry> yValues, String label) {
+    public BarDataSet(@NonNull List<BarEntry> yValues, @NonNull String label) {
         super(yValues, label);
 
         mHighLightColor = Color.BLACK;

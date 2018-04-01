@@ -11,6 +11,7 @@ class BubbleDataSetTest : BarLineScatterCandleBubbleDataSetTest<BubbleEntry, Bub
 		this.values = mutableListOf(
 			BubbleEntry(1f, 2f, 1f), BubbleEntry(3f, 4f, 2f), BubbleEntry(5f, 6f, 3f)
 		)
+		this.entry = BubbleEntry(7f, 8f, 4f)
 	}
 
 	@Test
