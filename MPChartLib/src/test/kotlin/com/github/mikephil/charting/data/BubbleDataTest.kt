@@ -132,6 +132,42 @@ class BubbleDataTest : ChartDataTest<BubbleEntry, IBubbleDataSet, BubbleData>() 
 		assertThat(this.data.mLeftAxisMin).isEqualTo(5f)
 		assertThat(this.data.mRightAxisMax).isEqualTo(11f)
 		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.addEntry(this.entry, 4)
+
+		assertThat(this.data.yMax).isEqualTo(11f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(10f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(11f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(5f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(11f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.removeEntry(null, 4)
+
+		assertThat(this.data.yMax).isEqualTo(11f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(10f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(11f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(5f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(11f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.removeEntry(null, 0)
+
+		assertThat(this.data.yMax).isEqualTo(11f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(10f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(11f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(5f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(11f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
 	}
 
 	@Test

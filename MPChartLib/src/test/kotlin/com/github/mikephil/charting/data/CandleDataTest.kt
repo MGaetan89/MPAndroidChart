@@ -154,6 +154,42 @@ class CandleDataTest : ChartDataTest<CandleEntry, ICandleDataSet, CandleData>() 
 		assertThat(this.data.mLeftAxisMin).isEqualTo(8f)
 		assertThat(this.data.mRightAxisMax).isEqualTo(17.5f)
 		assertThat(this.data.mRightAxisMin).isEqualTo(3f)
+
+		this.data.addEntry(this.entry, 4)
+
+		assertThat(this.data.yMax).isEqualTo(17.5f)
+		assertThat(this.data.yMin).isEqualTo(3f)
+		assertThat(this.data.xMax).isEqualTo(16f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(17.5f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(17.5f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(3f)
+
+		this.data.removeEntry(null, 4)
+
+		assertThat(this.data.yMax).isEqualTo(17.5f)
+		assertThat(this.data.yMin).isEqualTo(3f)
+		assertThat(this.data.xMax).isEqualTo(16f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(17.5f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(17.5f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(3f)
+
+		this.data.removeEntry(null, 0)
+
+		assertThat(this.data.yMax).isEqualTo(17.5f)
+		assertThat(this.data.yMin).isEqualTo(3f)
+		assertThat(this.data.xMax).isEqualTo(16f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(17.5f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(17.5f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(3f)
 	}
 
 	@Test
