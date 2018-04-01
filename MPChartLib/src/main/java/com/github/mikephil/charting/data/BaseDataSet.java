@@ -68,6 +68,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     /**
      * The typeface used for the value text.
      */
+    @Nullable
     protected Typeface mValueTypeface;
 
     @NonNull
@@ -210,7 +211,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * @param color
      */
     public void setColor(@ColorInt int color) {
-        mColors.clear();
+        mColors = new ArrayList<>();
         mColors.add(color);
     }
 
@@ -283,7 +284,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
     @Override
     public void setValueTextColor(@ColorInt int color) {
-        mValueColors.clear();
+        mValueColors = new ArrayList<>();
         mValueColors.add(color);
     }
 
@@ -293,7 +294,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     }
 
     @Override
-    public void setValueTypeface(Typeface typeface) {
+    public void setValueTypeface(@Nullable Typeface typeface) {
         mValueTypeface = typeface;
     }
 
@@ -314,6 +315,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         return mValueColors.get(index % mValueColors.size());
     }
 
+    @Nullable
     @Override
     public Typeface getValueTypeface() {
         return mValueTypeface;
@@ -418,8 +420,10 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     @Override
     public int getIndexInEntries(int xIndex) {
         for (int i = 0; i < getEntryCount(); i++) {
-            if (xIndex == getEntryForIndex(i).getX())
+            T entry = getEntryForIndex(i);
+            if (entry != null && xIndex == entry.getX()) {
                 return i;
+            }
         }
 
         return -1;
@@ -438,8 +442,8 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     @Override
     public boolean removeLast() {
         if (getEntryCount() > 0) {
-            T e = getEntryForIndex(getEntryCount() - 1);
-            return removeEntry(e);
+            T entry = getEntryForIndex(getEntryCount() - 1);
+            return removeEntry(entry);
         } else {
             return false;
         }
@@ -447,21 +451,23 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
     @Override
     public boolean removeEntryByXValue(float xValue) {
-        T e = getEntryForXValue(xValue, Float.NaN);
-        return removeEntry(e);
+        T entry = getEntryForXValue(xValue, Float.NaN);
+        return removeEntry(entry);
     }
 
     @Override
     public boolean removeEntry(int index) {
-        T e = getEntryForIndex(index);
-        return removeEntry(e);
+        T entry = getEntryForIndex(index);
+        return removeEntry(entry);
     }
 
     @Override
-    public boolean contains(T e) {
+    public boolean contains(T entry) {
         for (int i = 0; i < getEntryCount(); i++) {
-            if (getEntryForIndex(i).equals(e))
+            T currentEntry = getEntryForIndex(i);
+            if (currentEntry != null && currentEntry.equals(entry)) {
                 return true;
+            }
         }
 
         return false;
