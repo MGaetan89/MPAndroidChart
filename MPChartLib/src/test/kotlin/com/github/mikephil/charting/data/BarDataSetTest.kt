@@ -1,10 +1,22 @@
 package com.github.mikephil.charting.data
 
+import android.graphics.Color
+import com.google.common.truth.Truth.assertThat
 import org.junit.Before
+import org.junit.Test
 
-class BarDataSetTest : BaseDataSetTest<BarEntry, BarDataSet>() {
+class BarDataSetTest : BarLineScatterCandleBubbleDataSetTest<BarEntry, BarDataSet>() {
 	@Before
 	fun before() {
-		this.dataSet = BarDataSet(emptyList(), "BarDataSet")
+		this.dataSet = BarDataSet(mutableListOf(), "BarDataSet")
+		this.values = mutableListOf(BarEntry(1f, 2f), BarEntry(3f, 4f), BarEntry(5f, 6f))
+	}
+
+	@Test
+	override fun setHighLightColor() {
+		assertThat(this.dataSet.highLightColor).isEqualTo(Color.BLACK)
+
+		this.dataSet.highLightColor = Color.RED
+		assertThat(this.dataSet.highLightColor).isEqualTo(Color.RED)
 	}
 }

@@ -25,6 +25,84 @@ class ScatterDataTest : ChartDataTest<Entry, IScatterDataSet, ScatterData>() {
 	}
 
 	@Test
+	override fun addEntry() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.data.addEntry(this.entry, 0)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(2f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.addEntry(this.entry, 1)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.addEntry(this.entry, 4)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.removeEntry(null, 4)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.removeEntry(null, 0)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		assertThat(this.data.removeEntry(0f, 4)).isFalse()
+		assertThat(this.data.removeEntry(1f, 1)).isTrue()
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(4f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(3f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(8f)
+	}
+
+	@Test
 	fun constructorList() {
 		this.data = ScatterData(this.dataSets)
 

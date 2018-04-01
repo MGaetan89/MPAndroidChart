@@ -14,7 +14,7 @@ public class BubbleDataSet extends BarLineScatterCandleBubbleDataSet<BubbleEntry
 
     private float mHighlightCircleWidth = 2.5f;
 
-    public BubbleDataSet(List<BubbleEntry> yValues, String label) {
+    public BubbleDataSet(@NonNull List<BubbleEntry> yValues, @NonNull String label) {
         super(yValues, label);
     }
 

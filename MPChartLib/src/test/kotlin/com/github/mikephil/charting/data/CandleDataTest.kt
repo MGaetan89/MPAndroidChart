@@ -190,6 +190,19 @@ class CandleDataTest : ChartDataTest<CandleEntry, ICandleDataSet, CandleData>() 
 		assertThat(this.data.mLeftAxisMin).isEqualTo(8f)
 		assertThat(this.data.mRightAxisMax).isEqualTo(17.5f)
 		assertThat(this.data.mRightAxisMin).isEqualTo(3f)
+
+		assertThat(this.data.removeEntry(0f, 4)).isFalse()
+		assertThat(this.data.removeEntry(1f, 1)).isTrue()
+
+		assertThat(this.data.yMax).isEqualTo(17f)
+		assertThat(this.data.yMin).isEqualTo(8f)
+		assertThat(this.data.xMax).isEqualTo(16f)
+		assertThat(this.data.xMin).isEqualTo(6f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(17f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(17f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(18f)
 	}
 
 	@Test

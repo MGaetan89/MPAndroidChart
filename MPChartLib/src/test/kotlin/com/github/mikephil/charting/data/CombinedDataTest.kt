@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.data
 
 import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet
 import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet
@@ -173,12 +174,119 @@ class CombinedDataTest {
 
 	@Test
 	fun getEntryForHighlight() {
-		// TODO
+		var highlight = Highlight(0f, 0f, 0)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 0f, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 4f, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 4)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 0).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 0f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 4f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 4).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		this.data.setData(this.lineData)
+		this.data.setData(this.barData)
+		this.data.setData(this.scatterData)
+		this.data.setData(this.candleData)
+		this.data.setData(this.bubbleData)
+
+		highlight = Highlight(0f, 0f, 0)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 0f, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 4f, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 4)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 0).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 0f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, 4f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight))
+			.isEqualTo(this.lineData.dataSets[2].getEntryForIndex(0))
+
+		highlight = Highlight(0f, 0f, 4).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 	}
 
 	@Test
 	fun getDataSetByHighlight() {
-		// TODO
+		var highlight = Highlight(0f, 0f, 0)
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2)
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 4)
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 0).also { it.dataIndex = 0 }
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 4).also { it.dataIndex = 0 }
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		this.data.setData(this.lineData)
+		this.data.setData(this.barData)
+		this.data.setData(this.scatterData)
+		this.data.setData(this.candleData)
+		this.data.setData(this.bubbleData)
+
+		highlight = Highlight(0f, 0f, 0)
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 2)
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 4)
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
+
+		highlight = Highlight(0f, 0f, 0).also { it.dataIndex = 0 }
+		assertThat(this.data.getDataSetByHighlight(highlight))
+			.isEqualTo(this.lineData.dataSets[0])
+
+		highlight = Highlight(0f, 0f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getDataSetByHighlight(highlight))
+			.isEqualTo(this.lineData.dataSets[2])
+
+		highlight = Highlight(0f, 0f, 4).also { it.dataIndex = 0 }
+		assertThat(this.data.getDataSetByHighlight(highlight)).isNull()
 	}
 
 	@Test
