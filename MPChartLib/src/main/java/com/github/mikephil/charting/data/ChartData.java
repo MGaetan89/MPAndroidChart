@@ -379,11 +379,9 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      */
     public void addEntry(@NonNull Entry entry, int dataSetIndex) {
         IDataSet dataSet = getDataSetByIndex(dataSetIndex);
-        if (dataSet != null) {
-            // Add the entry to the data set
-            if (dataSet.addEntry(entry)) {
-                calcMinMax(entry, dataSet.getAxisDependency());
-            }
+        // Add the entry to the data set
+        if (dataSet != null && dataSet.addEntry(entry)) {
+            calcMinMax(entry, dataSet.getAxisDependency());
         }
     }
 

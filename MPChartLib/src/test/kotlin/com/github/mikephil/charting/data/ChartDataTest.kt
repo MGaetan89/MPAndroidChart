@@ -234,6 +234,24 @@ abstract class ChartDataTest<E : Entry, D : IDataSet<E>, T : ChartData<D>> {
 	}
 
 	@Test
+	fun addDataSet_null() {
+		this.data.addDataSet(null)
+
+		assertThat(this.data.yMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.yMin).isEqualTo(java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mRightAxisMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mRightAxisMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		assertThat(this.data.dataSetCount).isEqualTo(0)
+		assertThat(this.data.dataSets).isEmpty()
+	}
+
+	@Test
 	open fun removeDataSet() {
 		assertThat(this.data.removeDataSet(null)).isFalse()
 		assertThat(this.data.removeDataSet(this.dataSets[1])).isFalse()
@@ -289,6 +307,42 @@ abstract class ChartDataTest<E : Entry, D : IDataSet<E>, T : ChartData<D>> {
 		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
 
 		this.data.addEntry(this.entry, 1)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.addEntry(this.entry, 4)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.removeEntry(null, 4)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		this.data.removeEntry(null, 0)
 
 		assertThat(this.data.yMax).isEqualTo(8f)
 		assertThat(this.data.yMin).isEqualTo(2f)

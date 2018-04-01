@@ -204,6 +204,42 @@ class PieDataTest : ChartDataTest<PieEntry, IPieDataSet, PieData>() {
 		assertThat(this.data.mLeftAxisMin).isEqualTo(2f)
 		assertThat(this.data.mRightAxisMax).isEqualTo(1f)
 		assertThat(this.data.mRightAxisMin).isEqualTo(1f)
+
+		this.data.addEntry(this.entry, 4)
+
+		assertThat(this.data.yMax).isEqualTo(4f)
+		assertThat(this.data.yMin).isEqualTo(1f)
+		assertThat(this.data.xMax).isEqualTo(0f)
+		assertThat(this.data.xMin).isEqualTo(0f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(4f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(2f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(1f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(1f)
+
+		this.data.removeEntry(null, 4)
+
+		assertThat(this.data.yMax).isEqualTo(4f)
+		assertThat(this.data.yMin).isEqualTo(1f)
+		assertThat(this.data.xMax).isEqualTo(0f)
+		assertThat(this.data.xMin).isEqualTo(0f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(4f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(2f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(1f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(1f)
+
+		this.data.removeEntry(null, 0)
+
+		assertThat(this.data.yMax).isEqualTo(4f)
+		assertThat(this.data.yMin).isEqualTo(1f)
+		assertThat(this.data.xMax).isEqualTo(0f)
+		assertThat(this.data.xMin).isEqualTo(0f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(4f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(2f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(1f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(1f)
 	}
 
 	@Test
