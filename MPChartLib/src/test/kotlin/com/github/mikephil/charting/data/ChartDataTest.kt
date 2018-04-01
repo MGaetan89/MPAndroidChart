@@ -20,6 +20,34 @@ abstract class ChartDataTest<E : Entry, D : IDataSet<E>, T : ChartData<D>> {
 		get() = this.chartType.toLowerCase()
 
 	@Test
+	open fun calcMinMaxY() {
+		this.data.calcMinMaxY(0f, 3f)
+
+		assertThat(this.data.yMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.yMin).isEqualTo(java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mRightAxisMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mRightAxisMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		this.dataSets.forEach(this.data::addDataSet)
+		this.data.calcMinMaxY(0f, 3f)
+
+		assertThat(this.data.yMax).isEqualTo(4f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(5f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(4f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(2f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+	}
+
+	@Test
 	fun calcMinMax() {
 		this.data.calcMinMax()
 
@@ -549,6 +577,15 @@ abstract class ChartDataTest<E : Entry, D : IDataSet<E>, T : ChartData<D>> {
 		this.dataSets.forEach {
 			assertThat(it.isHighlightEnabled).isTrue()
 		}
+	}
+
+	@Test
+	fun isHighlightEnabled() {
+		this.dataSets.forEach(this.data::addDataSet)
+		assertThat(this.data.isHighlightEnabled).isTrue()
+
+		this.dataSets[1].isHighlightEnabled = false
+		assertThat(this.data.isHighlightEnabled).isFalse()
 	}
 
 	@Test

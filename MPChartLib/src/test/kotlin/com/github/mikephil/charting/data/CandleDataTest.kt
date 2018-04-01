@@ -31,6 +31,34 @@ class CandleDataTest : ChartDataTest<CandleEntry, ICandleDataSet, CandleData>() 
 	}
 
 	@Test
+	override fun calcMinMaxY() {
+		this.data.calcMinMaxY(0f, 3f)
+
+		assertThat(this.data.yMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.yMin).isEqualTo(java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mRightAxisMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.mRightAxisMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		this.dataSets.forEach(this.data::addDataSet)
+		this.data.calcMinMaxY(0f, 3f)
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(11f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(7f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(3f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+	}
+
+	@Test
 	override fun addDataSet() {
 		this.dataSets.forEach(this.data::addDataSet)
 

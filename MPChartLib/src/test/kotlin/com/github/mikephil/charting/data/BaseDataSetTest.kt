@@ -320,18 +320,18 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 	}
 
 	@Test
-	fun getIndexInEntries() {
+	open fun getIndexInEntries() {
 		assertThat(this.dataSet.getIndexInEntries(-1)).isEqualTo(-1)
 		assertThat(this.dataSet.getIndexInEntries(0)).isEqualTo(-1)
 	}
 
 	@Test
-	fun removeFirst() {
+	open fun removeFirst() {
 		assertThat(this.dataSet.removeFirst()).isFalse()
 	}
 
 	@Test
-	fun removeLast() {
+	open fun removeLast() {
 		assertThat(this.dataSet.removeLast()).isFalse()
 	}
 
@@ -348,7 +348,7 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 	}
 
 	@Test
-	fun contains() {
+	open fun contains() {
 		assertThat(this.dataSet.contains(null)).isFalse()
 	}
 }

@@ -5,6 +5,7 @@ import org.junit.Test
 
 abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() {
 	protected lateinit var values: List<E>
+	protected lateinit var entry: E
 
 	@Test
 	fun calcMinMax() {
@@ -190,7 +191,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 		assertThat(this.dataSet.xMax).isEqualTo(5f)
 		assertThat(this.dataSet.xMin).isEqualTo(1f)
 
-		this.dataSet.removeEntry(null)
+		assertThat(this.dataSet.removeEntry(null)).isFalse()
 		assertThat(this.dataSet.entryCount).isEqualTo(3)
 		assertThat(this.dataSet.values)
 			.containsExactly(this.values[1], this.values[0], this.values[2])
@@ -199,7 +200,16 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 		assertThat(this.dataSet.xMax).isEqualTo(5f)
 		assertThat(this.dataSet.xMin).isEqualTo(1f)
 
-		this.dataSet.removeEntry(this.values[0])
+		assertThat(this.dataSet.removeEntry(this.values[0])).isTrue()
+		assertThat(this.dataSet.entryCount).isEqualTo(2)
+		assertThat(this.dataSet.values)
+			.containsExactly(this.values[1], this.values[2])
+		assertThat(this.dataSet.yMax).isEqualTo(6f)
+		assertThat(this.dataSet.yMin).isEqualTo(4f)
+		assertThat(this.dataSet.xMax).isEqualTo(5f)
+		assertThat(this.dataSet.xMin).isEqualTo(3f)
+
+		assertThat(this.dataSet.removeEntry(this.entry)).isFalse()
 		assertThat(this.dataSet.entryCount).isEqualTo(2)
 		assertThat(this.dataSet.values)
 			.containsExactly(this.values[1], this.values[2])
@@ -283,5 +293,55 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 		assertThat(this.dataSet.getEntriesForXValue(3f)).containsExactly(this.values[1])
 		assertThat(this.dataSet.getEntriesForXValue(5f)).containsExactly(this.values[2])
 		assertThat(this.dataSet.getEntriesForXValue(7f)).isEmpty()
+	}
+
+	@Test
+	override fun getIndexInEntries() {
+		assertThat(this.dataSet.getIndexInEntries(-1)).isEqualTo(-1)
+		assertThat(this.dataSet.getIndexInEntries(1)).isEqualTo(-1)
+		assertThat(this.dataSet.getIndexInEntries(3)).isEqualTo(-1)
+		assertThat(this.dataSet.getIndexInEntries(5)).isEqualTo(-1)
+		assertThat(this.dataSet.getIndexInEntries(7)).isEqualTo(-1)
+
+		this.dataSet.values = this.values
+		assertThat(this.dataSet.getIndexInEntries(-1)).isEqualTo(-1)
+		assertThat(this.dataSet.getIndexInEntries(1)).isEqualTo(0)
+		assertThat(this.dataSet.getIndexInEntries(3)).isEqualTo(1)
+		assertThat(this.dataSet.getIndexInEntries(5)).isEqualTo(2)
+		assertThat(this.dataSet.getIndexInEntries(7)).isEqualTo(-1)
+	}
+
+	@Test
+	override fun removeFirst() {
+		assertThat(this.dataSet.removeFirst()).isFalse()
+
+		this.dataSet.values = this.values
+		assertThat(this.dataSet.removeFirst()).isTrue()
+		assertThat(this.dataSet.removeFirst()).isTrue()
+		assertThat(this.dataSet.removeFirst()).isTrue()
+		assertThat(this.dataSet.removeFirst()).isFalse()
+	}
+
+	@Test
+	override fun removeLast() {
+		assertThat(this.dataSet.removeLast()).isFalse()
+
+		this.dataSet.values = this.values
+		assertThat(this.dataSet.removeLast()).isTrue()
+		assertThat(this.dataSet.removeLast()).isTrue()
+		assertThat(this.dataSet.removeLast()).isTrue()
+		assertThat(this.dataSet.removeLast()).isFalse()
+	}
+
+	@Test
+	override fun contains() {
+		assertThat(this.dataSet.contains(null)).isFalse()
+
+		this.dataSet.values = this.values
+		assertThat(this.dataSet.contains(null)).isFalse()
+		assertThat(this.dataSet.contains(this.values[0])).isTrue()
+		assertThat(this.dataSet.contains(this.values[1])).isTrue()
+		assertThat(this.dataSet.contains(this.values[2])).isTrue()
+		assertThat(this.dataSet.contains(this.entry)).isFalse()
 	}
 }

@@ -10,6 +10,7 @@ class BarDataSetTest : BarLineScatterCandleBubbleDataSetTest<BarEntry, BarDataSe
 	fun before() {
 		this.dataSet = BarDataSet(mutableListOf(), "BarDataSet")
 		this.values = mutableListOf(BarEntry(1f, 2f), BarEntry(3f, 4f), BarEntry(5f, 6f))
+		this.entry = BarEntry(7f, 8f)
 	}
 
 	@Test
