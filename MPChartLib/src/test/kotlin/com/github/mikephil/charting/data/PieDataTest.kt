@@ -240,6 +240,19 @@ class PieDataTest : ChartDataTest<PieEntry, IPieDataSet, PieData>() {
 		assertThat(this.data.mLeftAxisMin).isEqualTo(2f)
 		assertThat(this.data.mRightAxisMax).isEqualTo(1f)
 		assertThat(this.data.mRightAxisMin).isEqualTo(1f)
+
+		assertThat(this.data.removeEntry(0f, 4)).isTrue()
+		assertThat(this.data.removeEntry(1f, 1)).isTrue()
+
+		assertThat(this.data.yMax).isEqualTo(4f)
+		assertThat(this.data.yMin).isEqualTo(1f)
+		assertThat(this.data.xMax).isEqualTo(-java.lang.Float.MAX_VALUE)
+		assertThat(this.data.xMin).isEqualTo(java.lang.Float.MAX_VALUE)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(4f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(2f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(1f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(1f)
 	}
 
 	@Test

@@ -1,8 +1,12 @@
 package com.github.mikephil.charting.data
 
+import android.graphics.Color
+import android.graphics.Typeface
 import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.IDataSet
+import com.github.mikephil.charting.utils.Utils
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
@@ -353,6 +357,19 @@ abstract class ChartDataTest<E : Entry, D : IDataSet<E>, T : ChartData<D>> {
 		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
 		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
 		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
+
+		assertThat(this.data.removeEntry(0f, 4)).isFalse()
+		assertThat(this.data.removeEntry(1f, 1)).isTrue()
+
+		assertThat(this.data.yMax).isEqualTo(8f)
+		assertThat(this.data.yMin).isEqualTo(2f)
+		assertThat(this.data.xMax).isEqualTo(7f)
+		assertThat(this.data.xMin).isEqualTo(1f)
+
+		assertThat(this.data.mLeftAxisMax).isEqualTo(8f)
+		assertThat(this.data.mLeftAxisMin).isEqualTo(4f)
+		assertThat(this.data.mRightAxisMax).isEqualTo(8f)
+		assertThat(this.data.mRightAxisMin).isEqualTo(2f)
 	}
 
 	@Test
@@ -404,6 +421,134 @@ abstract class ChartDataTest<E : Entry, D : IDataSet<E>, T : ChartData<D>> {
 	fun getFirstRight() {
 		assertThat(this.data.getFirstRight(emptyList())).isNull()
 		assertThat(this.data.getFirstRight(this.dataSets)).isEqualTo(this.dataSets[1])
+	}
+
+	@Test
+	fun setValueFormatter() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.dataSets.forEach {
+			assertThat(it.valueFormatter).isEqualTo(Utils.getDefaultValueFormatter())
+		}
+
+		val formatter = PercentFormatter()
+		this.data.setValueFormatter(formatter)
+		this.dataSets.forEach {
+			assertThat(it.valueFormatter).isEqualTo(formatter)
+		}
+
+		this.data.setValueFormatter(null)
+		this.dataSets.forEach {
+			assertThat(it.valueFormatter).isEqualTo(formatter)
+		}
+	}
+
+	@Test
+	fun setValueTextColor() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.dataSets.forEach {
+			assertThat(it.valueTextColor).isEqualTo(Color.BLACK)
+		}
+
+		val color = Color.RED
+		this.data.setValueTextColor(color)
+		this.dataSets.forEach {
+			assertThat(it.valueTextColor).isEqualTo(color)
+		}
+
+		val colors = listOf(Color.GREEN, Color.YELLOW)
+		this.data.setValueTextColors(colors)
+		this.dataSets.forEach {
+			assertThat((it as BaseDataSet<*>).valueColors).containsExactlyElementsIn(colors)
+		}
+	}
+
+	@Test
+	fun setValueTypeface() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.dataSets.forEach {
+			assertThat(it.valueTypeface).isNull()
+		}
+
+		val typeface = Typeface.MONOSPACE
+		this.data.setValueTypeface(typeface)
+		this.dataSets.forEach {
+			assertThat(it.valueTypeface).isEqualTo(typeface)
+		}
+	}
+
+	@Test
+	fun setValueTextSize() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.dataSets.forEach {
+			assertThat(it.valueTextSize).isEqualTo(17f)
+		}
+
+		this.data.setValueTextSize(-5f)
+		this.dataSets.forEach {
+			assertThat(it.valueTextSize).isEqualTo(-5f)
+		}
+
+		this.data.setValueTextSize(-2.5f)
+		this.dataSets.forEach {
+			assertThat(it.valueTextSize).isEqualTo(-2.5f)
+		}
+
+		this.data.setValueTextSize(0f)
+		this.dataSets.forEach {
+			assertThat(it.valueTextSize).isEqualTo(0f)
+		}
+
+		this.data.setValueTextSize(2.5f)
+		this.dataSets.forEach {
+			assertThat(it.valueTextSize).isEqualTo(2.5f)
+		}
+
+		this.data.setValueTextSize(5f)
+		this.dataSets.forEach {
+			assertThat(it.valueTextSize).isEqualTo(5f)
+		}
+	}
+
+	@Test
+	fun setDrawValues() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.dataSets.forEach {
+			assertThat(it.isDrawValuesEnabled).isTrue()
+		}
+
+		this.data.setDrawValues(false)
+		this.dataSets.forEach {
+			assertThat(it.isDrawValuesEnabled).isFalse()
+		}
+
+		this.data.setDrawValues(true)
+		this.dataSets.forEach {
+			assertThat(it.isDrawValuesEnabled).isTrue()
+		}
+	}
+
+	@Test
+	fun setHighlightEnabled() {
+		this.dataSets.forEach(this.data::addDataSet)
+
+		this.dataSets.forEach {
+			assertThat(it.isHighlightEnabled).isTrue()
+		}
+
+		this.data.isHighlightEnabled = false
+		this.dataSets.forEach {
+			assertThat(it.isHighlightEnabled).isFalse()
+		}
+
+		this.data.isHighlightEnabled = true
+		this.dataSets.forEach {
+			assertThat(it.isHighlightEnabled).isTrue()
+		}
 	}
 
 	@Test

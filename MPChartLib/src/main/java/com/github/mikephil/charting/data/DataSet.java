@@ -49,7 +49,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      * @param values
      * @param label
      */
-    public DataSet(@NonNull List<T> values, String label) {
+    public DataSet(@NonNull List<T> values, @NonNull String label) {
         super(label);
 
         this.mValues = values;

@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.data;
 
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet;
 
@@ -18,7 +19,7 @@ public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry> extends
     @ColorInt
     protected int mHighLightColor = 0xFFBB73;
 
-    public BarLineScatterCandleBubbleDataSet(List<T> yValues, String label) {
+    public BarLineScatterCandleBubbleDataSet(@NonNull List<T> yValues, @NonNull String label) {
         super(yValues, label);
     }
 

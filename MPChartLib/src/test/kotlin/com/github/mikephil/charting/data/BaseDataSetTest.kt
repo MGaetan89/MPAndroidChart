@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.data
 
 import android.graphics.Color
+import android.graphics.DashPathEffect
 import android.graphics.Typeface
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.YAxis
@@ -11,7 +12,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.fail
 import org.junit.Test
 
-abstract class BaseDataSetTest<E : Entry, T : DataSet<E>> {
+abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 	protected lateinit var dataSet: T
 
 	@Test
@@ -109,13 +110,13 @@ abstract class BaseDataSetTest<E : Entry, T : DataSet<E>> {
 
 	@Test
 	fun setLabel() {
-		assertThat(this.dataSet.label).isEqualTo("BarDataSet")
+		assertThat(this.dataSet.label).endsWith("DataSet")
 
 		this.dataSet.label = ""
 		assertThat(this.dataSet.label).isEmpty()
 
-		this.dataSet.label = "Bar data set"
-		assertThat(this.dataSet.label).isEqualTo("Bar data set")
+		this.dataSet.label = "New label"
+		assertThat(this.dataSet.label).isEqualTo("New label")
 	}
 
 	@Test
@@ -255,6 +256,18 @@ abstract class BaseDataSetTest<E : Entry, T : DataSet<E>> {
 	}
 
 	@Test
+	fun setFormLineDashEffect() {
+		assertThat(this.dataSet.formLineDashEffect).isNull()
+
+		val effect = DashPathEffect(floatArrayOf(1f, 2f), 3f)
+		this.dataSet.formLineDashEffect = effect
+		assertThat(this.dataSet.formLineDashEffect).isEqualTo(effect)
+
+		this.dataSet.formLineDashEffect = null
+		assertThat(this.dataSet.formLineDashEffect as Any?).isNull()
+	}
+
+	@Test
 	fun setDrawValues() {
 		assertThat(this.dataSet.isDrawValuesEnabled).isTrue()
 
@@ -304,5 +317,38 @@ abstract class BaseDataSetTest<E : Entry, T : DataSet<E>> {
 
 		this.dataSet.axisDependency = YAxis.AxisDependency.LEFT
 		assertThat(this.dataSet.axisDependency).isEqualTo(YAxis.AxisDependency.LEFT)
+	}
+
+	@Test
+	fun getIndexInEntries() {
+		assertThat(this.dataSet.getIndexInEntries(-1)).isEqualTo(-1)
+		assertThat(this.dataSet.getIndexInEntries(0)).isEqualTo(-1)
+	}
+
+	@Test
+	fun removeFirst() {
+		assertThat(this.dataSet.removeFirst()).isFalse()
+	}
+
+	@Test
+	fun removeLast() {
+		assertThat(this.dataSet.removeLast()).isFalse()
+	}
+
+	@Test
+	fun removeEntryByXValue() {
+		assertThat(this.dataSet.removeEntryByXValue(0f)).isFalse()
+		assertThat(this.dataSet.removeEntryByXValue(1f)).isFalse()
+	}
+
+	@Test
+	fun removeEntry() {
+		assertThat(this.dataSet.removeEntry(-1)).isFalse()
+		assertThat(this.dataSet.removeEntry(0)).isFalse()
+	}
+
+	@Test
+	fun contains() {
+		assertThat(this.dataSet.contains(null)).isFalse()
 	}
 }
