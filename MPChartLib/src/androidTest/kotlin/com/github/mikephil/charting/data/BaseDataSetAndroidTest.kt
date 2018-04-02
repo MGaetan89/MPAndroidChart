@@ -35,7 +35,7 @@ class BaseDataSetAndroidTest {
 
 		val context = this.activityRule.activity
 		val colors = intArrayOf(R.color.blue, R.color.green, R.color.red)
-		val expectedColors = colors.map(context::getColor)
+		val expectedColors = colors.map(context.resources::getColor)
 		this.dataSet.setColors(colors, context)
 		assertThat(this.dataSet.colors).containsExactlyElementsIn(expectedColors).inOrder()
 		assertThat(this.dataSet.color).isEqualTo(expectedColors[0])
@@ -45,7 +45,7 @@ class BaseDataSetAndroidTest {
 			fail("Should have failed")
 		} catch (exception: IndexOutOfBoundsException) {
 			assertThat(exception).hasMessageThat()
-				.isEqualTo("length=10; index=-1")
+				.endsWith("index=-1")
 		}
 
 		assertThat(this.dataSet.getColor(0)).isEqualTo(expectedColors[0])
@@ -93,7 +93,7 @@ class BaseDataSetAndroidTest {
 			fail("Should have failed")
 		} catch (exception: IndexOutOfBoundsException) {
 			assertThat(exception).hasMessageThat()
-				.isEqualTo("length=10; index=-1")
+				.endsWith("index=-1")
 		}
 
 		assertThat(this.dataSet.getColor(0)).isEqualTo(expectedColors[0])
