@@ -8,7 +8,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	protected lateinit var entry: E
 
 	@Test
-	fun calcMinMax() {
+	open fun calcMinMax() {
 		this.dataSet.calcMinMax()
 
 		assertThat(this.dataSet.yMax).isEqualTo(-java.lang.Float.MAX_VALUE)
@@ -25,7 +25,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun calcMinMaxY() {
+	open fun calcMinMaxY() {
 		this.dataSet.calcMinMaxY(0f, 2f)
 
 		assertThat(this.dataSet.yMax).isEqualTo(-java.lang.Float.MAX_VALUE)
@@ -49,7 +49,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun calcMinMax_entry() {
+	open fun calcMinMax_entry() {
 		this.dataSet.calcMinMax(this.values[1])
 
 		assertThat(this.dataSet.yMax).isEqualTo(4f)
@@ -67,7 +67,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun calcMinMaxX_entry() {
+	open fun calcMinMaxX_entry() {
 		this.dataSet.calcMinMaxX(this.values[1])
 
 		assertThat(this.dataSet.xMax).isEqualTo(3f)
@@ -81,7 +81,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun calcMinMaxY_entry() {
+	open fun calcMinMaxY_entry() {
 		this.dataSet.calcMinMaxY(this.values[1])
 
 		assertThat(this.dataSet.yMax).isEqualTo(4f)
@@ -114,7 +114,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun testToString() {
+	open fun testToString() {
 		assertThat(this.dataSet.toString()).isEqualTo("DataSet, label: ${this.dataSet.label}, entries: 0\n")
 
 		this.dataSet.values = this.values
@@ -130,7 +130,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun addEntryOrdered() {
+	open fun addEntryOrdered() {
 		this.dataSet.addEntryOrdered(this.values[1])
 		assertThat(this.dataSet.entryCount).isEqualTo(1)
 		assertThat(this.dataSet.values).containsExactly(this.values[1])
@@ -165,7 +165,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun addEntry() {
+	open fun addEntry() {
 		this.dataSet.addEntry(this.values[1])
 		assertThat(this.dataSet.entryCount).isEqualTo(1)
 		assertThat(this.dataSet.values).containsExactly(this.values[1])
@@ -234,7 +234,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun getEntryForXValue() {
+	open fun getEntryForXValue() {
 		assertThat(this.dataSet.getEntryForXValue(1f, 2f, DataSet.Rounding.UP)).isNull()
 		assertThat(this.dataSet.getEntryForXValue(1f, 2f, DataSet.Rounding.DOWN)).isNull()
 		assertThat(this.dataSet.getEntryForXValue(1f, 2f, DataSet.Rounding.CLOSEST)).isNull()
@@ -280,7 +280,7 @@ abstract class DataSetTest<E : Entry, T : DataSet<E>> : BaseDataSetTest<E, T>() 
 	}
 
 	@Test
-	fun getEntriesForXValue() {
+	open fun getEntriesForXValue() {
 		assertThat(this.dataSet.getEntriesForXValue(0f)).isEmpty()
 		assertThat(this.dataSet.getEntriesForXValue(1f)).isEmpty()
 		assertThat(this.dataSet.getEntriesForXValue(3f)).isEmpty()

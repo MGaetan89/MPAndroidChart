@@ -157,7 +157,7 @@ public class Entry extends BaseEntry implements Parcelable {
         this.x = in.readFloat();
         this.setY(in.readFloat());
         if (in.readInt() == 1) {
-            this.setData(in.readParcelable(Object.class.getClassLoader()));
+            this.setData(in.readParcelable(this.getClass().getClassLoader()));
         }
     }
 

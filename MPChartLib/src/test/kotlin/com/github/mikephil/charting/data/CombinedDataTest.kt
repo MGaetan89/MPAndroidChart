@@ -186,6 +186,9 @@ class CombinedDataTest {
 		highlight = Highlight(3f, 4f, 2)
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
+		highlight = Highlight(3f, java.lang.Float.NaN, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
 		highlight = Highlight(0f, 0f, 4)
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
@@ -199,6 +202,9 @@ class CombinedDataTest {
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
 		highlight = Highlight(3f, 4f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
+		highlight = Highlight(3f, java.lang.Float.NaN, 2).also { it.dataIndex = 0 }
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
 		highlight = Highlight(0f, 0f, 4).also { it.dataIndex = 0 }
@@ -222,6 +228,9 @@ class CombinedDataTest {
 		highlight = Highlight(3f, 4f, 2)
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
+		highlight = Highlight(3f, java.lang.Float.NaN, 2)
+		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
+
 		highlight = Highlight(0f, 0f, 4)
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
@@ -235,6 +244,10 @@ class CombinedDataTest {
 		assertThat(this.data.getEntryForHighlight(highlight)).isNull()
 
 		highlight = Highlight(3f, 4f, 2).also { it.dataIndex = 0 }
+		assertThat(this.data.getEntryForHighlight(highlight))
+			.isEqualTo(this.lineData.dataSets[2].getEntryForIndex(0))
+
+		highlight = Highlight(3f, java.lang.Float.NaN, 2).also { it.dataIndex = 0 }
 		assertThat(this.data.getEntryForHighlight(highlight))
 			.isEqualTo(this.lineData.dataSets[2].getEntryForIndex(0))
 

@@ -30,6 +30,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(1f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(6f)
 		assertThat(this.entry.negativeSum).isEqualTo(3f)
 		assertThat(this.entry.data).isNull()
@@ -57,6 +58,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(5f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(8f)
 		assertThat(this.entry.negativeSum).isEqualTo(2f)
 	}
@@ -82,6 +84,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(1f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(6f)
 		assertThat(this.entry.negativeSum).isEqualTo(3f)
 		assertThat(this.entry.data).isEqualTo(data)
@@ -97,6 +100,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 	}
@@ -121,6 +125,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(1f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(6f)
 		assertThat(this.entry.negativeSum).isEqualTo(3f)
 		assertThat(this.entry.data).isNull()
@@ -136,6 +141,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 	}
@@ -162,6 +168,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(1f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(6f)
 		assertThat(this.entry.negativeSum).isEqualTo(3f)
 		assertThat(this.entry.data).isEqualTo(data)
@@ -177,6 +184,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 	}
@@ -191,6 +199,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 		assertThat(this.entry.data).isNull()
@@ -218,6 +227,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(5f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(8f)
 		assertThat(this.entry.negativeSum).isEqualTo(2f)
 	}
@@ -235,6 +245,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 		assertThat(this.entry.data).isEqualTo(data)
@@ -262,6 +273,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(5f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(8f)
 		assertThat(this.entry.negativeSum).isEqualTo(2f)
 	}
@@ -278,6 +290,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 		assertThat(this.entry.data).isNull()
@@ -305,6 +318,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(5f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(8f)
 		assertThat(this.entry.negativeSum).isEqualTo(2f)
 	}
@@ -323,6 +337,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		assertThat(this.entry.ranges).isNull()
 		assertThat(this.entry.isStacked).isFalse()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(0f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(0f)
 		assertThat(this.entry.negativeSum).isEqualTo(0f)
 		assertThat(this.entry.data).isEqualTo(data)
@@ -350,6 +365,7 @@ class BarEntryTest : BaseEntryTest<BarEntry>() {
 		}
 		assertThat(this.entry.isStacked).isTrue()
 		assertThat(this.entry.getSumBelow(0)).isEqualTo(5f)
+		assertThat(this.entry.getSumBelow(5)).isEqualTo(0f)
 		assertThat(this.entry.positiveSum).isEqualTo(8f)
 		assertThat(this.entry.negativeSum).isEqualTo(2f)
 	}
