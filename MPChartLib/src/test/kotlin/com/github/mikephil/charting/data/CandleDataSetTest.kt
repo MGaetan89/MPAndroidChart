@@ -1,5 +1,8 @@
 package com.github.mikephil.charting.data
 
+import android.graphics.Color
+import android.graphics.Paint
+import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -265,5 +268,154 @@ class CandleDataSetTest : LineScatterCandleRadarDataSetTest<CandleEntry, CandleD
 		assertThat(this.dataSet.getIndexInEntries(6)).isEqualTo(1)
 		assertThat(this.dataSet.getIndexInEntries(11)).isEqualTo(2)
 		assertThat(this.dataSet.getIndexInEntries(16)).isEqualTo(-1)
+	}
+
+	@Test
+	fun copy() {
+		with(this.dataSet.copy() as CandleDataSet) {
+			assertThat(this).isNotSameAs(dataSet)
+			assertThat(this.values).isEmpty()
+			assertThat(this.label).isEqualTo(dataSet.label)
+			assertThat(this.colors).containsExactlyElementsIn(dataSet.colors).inOrder()
+			assertThat(this.shadowWidth).isEqualTo(dataSet.shadowWidth)
+			assertThat(this.showCandleBar).isEqualTo(dataSet.showCandleBar)
+			assertThat(this.barSpace).isEqualTo(dataSet.barSpace)
+			assertThat(this.highLightColor).isEqualTo(dataSet.highLightColor)
+			assertThat(this.increasingPaintStyle).isEqualTo(dataSet.increasingPaintStyle)
+			assertThat(this.decreasingPaintStyle).isEqualTo(dataSet.decreasingPaintStyle)
+			assertThat(this.shadowColor).isEqualTo(dataSet.shadowColor)
+		}
+
+		this.dataSet.values = this.values
+		with(this.dataSet.copy() as CandleDataSet) {
+			assertThat(this).isNotSameAs(dataSet)
+			assertThat(this.values).hasSize(dataSet.values.size)
+			assertThat(this.label).isEqualTo(dataSet.label)
+			assertThat(this.colors).containsExactlyElementsIn(dataSet.colors).inOrder()
+			assertThat(this.shadowWidth).isEqualTo(dataSet.shadowWidth)
+			assertThat(this.showCandleBar).isEqualTo(dataSet.showCandleBar)
+			assertThat(this.barSpace).isEqualTo(dataSet.barSpace)
+			assertThat(this.highLightColor).isEqualTo(dataSet.highLightColor)
+			assertThat(this.increasingPaintStyle).isEqualTo(dataSet.increasingPaintStyle)
+			assertThat(this.decreasingPaintStyle).isEqualTo(dataSet.decreasingPaintStyle)
+			assertThat(this.shadowColor).isEqualTo(dataSet.shadowColor)
+		}
+	}
+
+	@Test
+	fun setBarSpace() {
+		assertThat(this.dataSet.barSpace).isEqualTo(0.1f)
+
+		this.dataSet.barSpace = -0.5f
+		assertThat(this.dataSet.barSpace).isEqualTo(0f)
+
+		this.dataSet.barSpace = 0f
+		assertThat(this.dataSet.barSpace).isEqualTo(0f)
+
+		this.dataSet.barSpace = 0.1f
+		assertThat(this.dataSet.barSpace).isEqualTo(0.1f)
+
+		this.dataSet.barSpace = 0.25f
+		assertThat(this.dataSet.barSpace).isEqualTo(0.25f)
+
+		this.dataSet.barSpace = 0.45f
+		assertThat(this.dataSet.barSpace).isEqualTo(0.45f)
+
+		this.dataSet.barSpace = 0.5f
+		assertThat(this.dataSet.barSpace).isEqualTo(0.45f)
+	}
+
+	@Test
+	fun setShadowWidth() {
+		assertThat(this.dataSet.shadowWidth).isEqualTo(3f)
+
+		this.dataSet.shadowWidth = -5f
+		assertThat(this.dataSet.shadowWidth).isEqualTo(-5f)
+
+		this.dataSet.shadowWidth = -2.5f
+		assertThat(this.dataSet.shadowWidth).isEqualTo(-2.5f)
+
+		this.dataSet.shadowWidth = 0f
+		assertThat(this.dataSet.shadowWidth).isEqualTo(0f)
+
+		this.dataSet.shadowWidth = 2.5f
+		assertThat(this.dataSet.shadowWidth).isEqualTo(2.5f)
+
+		this.dataSet.shadowWidth = 5f
+		assertThat(this.dataSet.shadowWidth).isEqualTo(5f)
+	}
+
+	@Test
+	fun setShowCandleBar() {
+		assertThat(this.dataSet.showCandleBar).isTrue()
+
+		this.dataSet.showCandleBar = false
+		assertThat(this.dataSet.showCandleBar).isFalse()
+
+		this.dataSet.showCandleBar = true
+		assertThat(this.dataSet.showCandleBar).isTrue()
+	}
+
+	@Test
+	fun setNeutralColor() {
+		assertThat(this.dataSet.neutralColor).isEqualTo(ColorTemplate.COLOR_SKIP)
+
+		this.dataSet.neutralColor = Color.RED
+		assertThat(this.dataSet.neutralColor).isEqualTo(Color.RED)
+	}
+
+	@Test
+	fun setIncreasingColor() {
+		assertThat(this.dataSet.increasingColor).isEqualTo(ColorTemplate.COLOR_SKIP)
+
+		this.dataSet.increasingColor = Color.RED
+		assertThat(this.dataSet.increasingColor).isEqualTo(Color.RED)
+	}
+
+	@Test
+	fun setDecreasingColor() {
+		assertThat(this.dataSet.decreasingColor).isEqualTo(ColorTemplate.COLOR_SKIP)
+
+		this.dataSet.decreasingColor = Color.RED
+		assertThat(this.dataSet.decreasingColor).isEqualTo(Color.RED)
+	}
+
+	@Test
+	fun setIncreasingPaintStyle() {
+		assertThat(this.dataSet.increasingPaintStyle).isEqualTo(Paint.Style.STROKE)
+
+		Paint.Style.values().forEach {
+			this.dataSet.increasingPaintStyle = it
+			assertThat(this.dataSet.increasingPaintStyle).isEqualTo(it)
+		}
+	}
+
+	@Test
+	fun setDecreasingPaintStyle() {
+		assertThat(this.dataSet.decreasingPaintStyle).isEqualTo(Paint.Style.FILL)
+
+		Paint.Style.values().forEach {
+			this.dataSet.decreasingPaintStyle = it
+			assertThat(this.dataSet.decreasingPaintStyle).isEqualTo(it)
+		}
+	}
+
+	@Test
+	fun setShadowColor() {
+		assertThat(this.dataSet.shadowColor).isEqualTo(ColorTemplate.COLOR_SKIP)
+
+		this.dataSet.shadowColor = Color.RED
+		assertThat(this.dataSet.shadowColor).isEqualTo(Color.RED)
+	}
+
+	@Test
+	fun setShadowColorSameAsCandle() {
+		assertThat(this.dataSet.shadowColorSameAsCandle).isFalse()
+
+		this.dataSet.shadowColorSameAsCandle = true
+		assertThat(this.dataSet.shadowColorSameAsCandle).isTrue()
+
+		this.dataSet.shadowColorSameAsCandle = false
+		assertThat(this.dataSet.shadowColorSameAsCandle).isFalse()
 	}
 }
