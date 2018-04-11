@@ -30,9 +30,7 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 		try {
 			this.dataSet.getColor(-1)
 			fail("Should have failed")
-		} catch (exception: IndexOutOfBoundsException) {
-			assertThat(exception).hasMessageThat()
-				.isEqualTo("-1")
+		} catch (_: IndexOutOfBoundsException) {
 		}
 
 		assertThat(this.dataSet.getColor(0)).isEqualTo(Color.RED)
@@ -47,9 +45,7 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 		try {
 			this.dataSet.getColor(-1)
 			fail("Should have failed")
-		} catch (exception: IndexOutOfBoundsException) {
-			assertThat(exception).hasMessageThat()
-				.isEqualTo("-1")
+		} catch (_: IndexOutOfBoundsException) {
 		}
 
 		assertThat(this.dataSet.getColor(0)).isEqualTo(Color.YELLOW)
@@ -63,9 +59,7 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 		try {
 			this.dataSet.getColor(-1)
 			fail("Should have failed")
-		} catch (exception: IndexOutOfBoundsException) {
-			assertThat(exception).hasMessageThat()
-				.isEqualTo("-1")
+		} catch (_: IndexOutOfBoundsException) {
 		}
 
 		assertThat(this.dataSet.getColor(0)).isEqualTo(Color.YELLOW)
@@ -156,9 +150,7 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 		try {
 			this.dataSet.getValueTextColor(-1)
 			fail("Should have failed")
-		} catch (exception: IndexOutOfBoundsException) {
-			assertThat(exception).hasMessageThat()
-				.isEqualTo("-1")
+		} catch (_: IndexOutOfBoundsException) {
 		}
 
 		assertThat(this.dataSet.getValueTextColor(0)).isEqualTo(Color.RED)
