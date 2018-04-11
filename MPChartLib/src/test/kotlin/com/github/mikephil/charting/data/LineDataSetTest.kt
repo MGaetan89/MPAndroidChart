@@ -4,6 +4,7 @@ import android.graphics.Color
 import com.github.mikephil.charting.formatter.DefaultFillFormatter
 import com.github.mikephil.charting.formatter.IFillFormatter
 import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 
@@ -15,6 +16,71 @@ class LineDataSetTest : LineRadarDataSetTest<Entry, LineDataSet>() {
 			Entry(1f, 2f), Entry(3f, 4f), Entry(5f, 6f)
 		)
 		this.entry = Entry(7f, 8f)
+	}
+
+	@Test
+	fun setCircleColors() {
+		assertThat(this.dataSet.circleColors).containsExactly(0x8CEAFF)
+		assertThat(this.dataSet.getCircleColor(-1)).isEqualTo(0x8CEAFF)
+		assertThat(this.dataSet.getCircleColor(0)).isEqualTo(0x8CEAFF)
+		assertThat(this.dataSet.getCircleColor(1)).isEqualTo(0x8CEAFF)
+		assertThat(this.dataSet.circleColorCount).isEqualTo(1)
+
+		this.dataSet.circleColors = listOf(Color.RED, Color.GREEN, Color.BLUE)
+		assertThat(this.dataSet.circleColors).containsExactly(Color.RED, Color.GREEN, Color.BLUE)
+		assertThat(this.dataSet.circleColorCount).isEqualTo(3)
+
+		try {
+			this.dataSet.getCircleColor(-1)
+			fail("Should have failed")
+		} catch (_: IndexOutOfBoundsException) {
+		}
+
+		assertThat(this.dataSet.getCircleColor(0)).isEqualTo(Color.RED)
+		assertThat(this.dataSet.getCircleColor(1)).isEqualTo(Color.GREEN)
+		assertThat(this.dataSet.getCircleColor(2)).isEqualTo(Color.BLUE)
+		assertThat(this.dataSet.getCircleColor(3)).isEqualTo(Color.RED)
+
+		this.dataSet.setCircleColors(Color.YELLOW, Color.CYAN)
+		assertThat(this.dataSet.circleColors).containsExactly(Color.YELLOW, Color.CYAN)
+		assertThat(this.dataSet.circleColorCount).isEqualTo(2)
+
+		try {
+			this.dataSet.getCircleColor(-1)
+			fail("Should have failed")
+		} catch (_: IndexOutOfBoundsException) {
+		}
+
+		assertThat(this.dataSet.getCircleColor(0)).isEqualTo(Color.YELLOW)
+		assertThat(this.dataSet.getCircleColor(1)).isEqualTo(Color.CYAN)
+		assertThat(this.dataSet.getCircleColor(2)).isEqualTo(Color.YELLOW)
+
+		this.dataSet.setCircleColor(Color.MAGENTA)
+		assertThat(this.dataSet.circleColors).containsExactly(Color.MAGENTA)
+		assertThat(this.dataSet.circleColorCount).isEqualTo(1)
+		assertThat(this.dataSet.getCircleColor(-1)).isEqualTo(Color.MAGENTA)
+		assertThat(this.dataSet.getCircleColor(0)).isEqualTo(Color.MAGENTA)
+		assertThat(this.dataSet.getCircleColor(1)).isEqualTo(Color.MAGENTA)
+
+		this.dataSet.resetCircleColors()
+		assertThat(this.dataSet.circleColors).isEmpty()
+		assertThat(this.dataSet.circleColorCount).isEqualTo(0)
+
+		try {
+			this.dataSet.getCircleColor(-1)
+			fail("Should have failed")
+		} catch (exception: ArithmeticException) {
+			assertThat(exception).hasMessageThat()
+				.isEqualTo("/ by zero")
+		}
+
+		try {
+			this.dataSet.getCircleColor(0)
+			fail("Should have failed")
+		} catch (exception: ArithmeticException) {
+			assertThat(exception).hasMessageThat()
+				.isEqualTo("/ by zero")
+		}
 	}
 
 	@Test

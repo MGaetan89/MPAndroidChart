@@ -14,6 +14,18 @@ class BarDataSetTest : BarLineScatterCandleBubbleDataSetTest<BarEntry, BarDataSe
 	}
 
 	@Test
+	override fun calcMinMax_entry() {
+		super.calcMinMax_entry()
+
+		this.dataSet.calcMinMax(BarEntry(10f, java.lang.Float.NaN))
+
+		assertThat(this.dataSet.yMax).isEqualTo(6f)
+		assertThat(this.dataSet.yMin).isEqualTo(2f)
+		assertThat(this.dataSet.xMax).isEqualTo(5f)
+		assertThat(this.dataSet.xMin).isEqualTo(1f)
+	}
+
+	@Test
 	override fun setHighLightColor() {
 		assertThat(this.dataSet.highLightColor).isEqualTo(Color.BLACK)
 

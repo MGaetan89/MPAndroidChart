@@ -234,7 +234,7 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     @ColorInt
     @Override
     public int getCircleColor(int index) {
-        return mCircleColors.get(index);
+        return mCircleColors.get(index % mCircleColors.size());
     }
 
     @Override

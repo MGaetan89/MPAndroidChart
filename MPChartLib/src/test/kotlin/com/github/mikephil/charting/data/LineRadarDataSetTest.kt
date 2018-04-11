@@ -1,18 +1,28 @@
 package com.github.mikephil.charting.data
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
 abstract class LineRadarDataSetTest<E : Entry, T : LineRadarDataSet<E>> :
 	LineScatterCandleRadarDataSetTest<E, T>() {
 	@Test
-	fun setFillColor() {
+	fun setFillColor_setFillDrawable() {
 		assertThat(this.dataSet.fillColor).isEqualTo(0x8CEAFF)
 		assertThat(this.dataSet.fillDrawable).isNull()
 
 		this.dataSet.fillColor = Color.RED
 		assertThat(this.dataSet.fillColor).isEqualTo(Color.RED)
+		assertThat(this.dataSet.fillDrawable).isNull()
+
+		val drawable = ColorDrawable(Color.GREEN)
+		this.dataSet.fillDrawable = drawable
+		assertThat(this.dataSet.fillColor).isEqualTo(Color.RED)
+		assertThat(this.dataSet.fillDrawable).isEqualTo(drawable)
+
+		this.dataSet.fillColor = Color.BLUE
+		assertThat(this.dataSet.fillColor).isEqualTo(Color.BLUE)
 		assertThat(this.dataSet.fillDrawable).isNull()
 	}
 

@@ -41,6 +41,12 @@ android {
 	}
 }
 
+tasks.withType(Test) {
+	testLogging {
+		exceptionFormat 'full'
+	}
+}
+
 dependencies {
     implementation 'androidx.annotation:annotation:1.0.0'
 

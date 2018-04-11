@@ -198,4 +198,11 @@ class EntryTest : BaseEntryTest<Entry>() {
 		assertThat(this.entry.toString()).isEqualTo("Entry, x: 5.0 y: 2.0")
 		assertThat(this.entry.describeContents()).isEqualTo(0)
 	}
+
+	@Test
+	fun creator() {
+		assertThat(Entry.CREATOR.newArray(0)).isEmpty()
+		assertThat(Entry.CREATOR.newArray(1)).asList().containsExactly(null)
+		assertThat(Entry.CREATOR.newArray(5)).asList().containsExactly(null, null, null, null, null)
+	}
 }
