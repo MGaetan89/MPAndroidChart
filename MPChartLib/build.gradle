@@ -52,12 +52,12 @@ dependencies {
 
 	testImplementation 'com.google.truth:truth:0.40'
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.31'
+	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.41'
 
 	androidTestImplementation 'com.android.support.test:rules:1.0.1'
 	androidTestImplementation 'com.android.support.test:runner:1.0.1'
 	androidTestImplementation 'com.google.truth:truth:0.40'
-	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.31'
+	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.41'
 }
 
 android.libraryVariants.all { variant ->
