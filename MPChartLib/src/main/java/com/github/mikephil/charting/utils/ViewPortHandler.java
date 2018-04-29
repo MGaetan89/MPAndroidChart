@@ -2,6 +2,7 @@ package com.github.mikephil.charting.utils;
 
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -111,7 +112,7 @@ public class ViewPortHandler {
     }
 
     public boolean hasChartDimens() {
-        return mChartHeight > 0 && mChartWidth > 0;
+        return mChartHeight > 0f && mChartWidth > 0f;
     }
 
     public void restrainViewPort(float offsetLeft, float offsetTop, float offsetRight, float offsetBottom) {
@@ -458,12 +459,12 @@ public class ViewPortHandler {
      *
      * @param xScale
      */
-    public void setMinimumScaleX(float xScale) {
+    public void setMinimumScaleX(@FloatRange(from = 1f) float xScale) {
         if (xScale < 1f) {
-            xScale = 1f;
+            mMinScaleX = 1f;
+        } else {
+            mMinScaleX = xScale;
         }
-
-        mMinScaleX = xScale;
 
         limitTransAndScale(mMatrixTouch, mContentRect);
     }
@@ -473,12 +474,12 @@ public class ViewPortHandler {
      *
      * @param xScale
      */
-    public void setMaximumScaleX(float xScale) {
-        if (xScale == 0f) {
-            xScale = Float.MAX_VALUE;
+    public void setMaximumScaleX(@FloatRange(from = 0f, fromInclusive = false) float xScale) {
+        if (xScale <= 0f) {
+            mMaxScaleX = Float.MAX_VALUE;
+        } else {
+            mMaxScaleX = xScale;
         }
-
-        mMaxScaleX = xScale;
 
         limitTransAndScale(mMatrixTouch, mContentRect);
     }
@@ -489,17 +490,18 @@ public class ViewPortHandler {
      * @param minScaleX
      * @param maxScaleX
      */
-    public void setMinMaxScaleX(float minScaleX, float maxScaleX) {
+    public void setMinMaxScaleX(@FloatRange(from = 1f) float minScaleX, @FloatRange(from = 0f, fromInclusive = false) float maxScaleX) {
         if (minScaleX < 1f) {
-            minScaleX = 1f;
+            mMinScaleX = 1f;
+        } else {
+            mMinScaleX = minScaleX;
         }
 
-        if (maxScaleX == 0f) {
-            maxScaleX = Float.MAX_VALUE;
+        if (maxScaleX <= 0f) {
+            mMaxScaleX = Float.MAX_VALUE;
+        } else {
+            mMaxScaleX = maxScaleX;
         }
-
-        mMinScaleX = minScaleX;
-        mMaxScaleX = maxScaleX;
 
         limitTransAndScale(mMatrixTouch, mContentRect);
     }
@@ -509,12 +511,12 @@ public class ViewPortHandler {
      *
      * @param yScale
      */
-    public void setMinimumScaleY(float yScale) {
+    public void setMinimumScaleY(@FloatRange(from = 1f) float yScale) {
         if (yScale < 1f) {
-            yScale = 1f;
+            mMinScaleY = 1f;
+        } else {
+            mMinScaleY = yScale;
         }
-
-        mMinScaleY = yScale;
 
         limitTransAndScale(mMatrixTouch, mContentRect);
     }
@@ -524,27 +526,28 @@ public class ViewPortHandler {
      *
      * @param yScale
      */
-    public void setMaximumScaleY(float yScale) {
-        if (yScale == 0f) {
-            yScale = Float.MAX_VALUE;
+    public void setMaximumScaleY(@FloatRange(from = 0f, fromInclusive = false) float yScale) {
+        if (yScale <= 0f) {
+            mMaxScaleY = Float.MAX_VALUE;
+        } else {
+            mMaxScaleY = yScale;
         }
-
-        mMaxScaleY = yScale;
 
         limitTransAndScale(mMatrixTouch, mContentRect);
     }
 
-    public void setMinMaxScaleY(float minScaleY, float maxScaleY) {
+    public void setMinMaxScaleY(@FloatRange(from = 1f) float minScaleY, @FloatRange(from = 0f, fromInclusive = false) float maxScaleY) {
         if (minScaleY < 1f) {
-            minScaleY = 1f;
+            mMinScaleY = 1f;
+        } else {
+            mMinScaleY = minScaleY;
         }
 
-        if (maxScaleY == 0f) {
-            maxScaleY = Float.MAX_VALUE;
+        if (maxScaleY <= 0f) {
+            mMaxScaleY = Float.MAX_VALUE;
+        } else {
+            mMaxScaleY = maxScaleY;
         }
-
-        mMinScaleY = minScaleY;
-        mMaxScaleY = maxScaleY;
 
         limitTransAndScale(mMatrixTouch, mContentRect);
     }
@@ -569,12 +572,12 @@ public class ViewPortHandler {
     }
 
     public boolean isInBoundsLeft(float x) {
-        return mContentRect.left <= x + 1;
+        return mContentRect.left <= x + 1f;
     }
 
     public boolean isInBoundsRight(float x) {
-        x = (float) ((int) (x * 100.)) / 100f;
-        return mContentRect.right >= x - 1;
+        x = ((int) (x * 100f)) / 100f;
+        return mContentRect.right >= x - 1f;
     }
 
     public boolean isInBoundsTop(float y) {
@@ -582,7 +585,7 @@ public class ViewPortHandler {
     }
 
     public boolean isInBoundsBottom(float y) {
-        y = (float) ((int) (y * 100f)) / 100f;
+        y = ((int) (y * 100f)) / 100f;
         return mContentRect.bottom >= y;
     }
 

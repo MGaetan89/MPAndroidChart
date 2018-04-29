@@ -24,6 +24,7 @@ class MPPointFTest {
 		assertThat(point.getY()).isEqualTo(2f)
 
 		MPPointF.recycleInstance(point)
+		assertThat(point.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -33,6 +34,7 @@ class MPPointFTest {
 		assertThat(point.getY()).isEqualTo(0f)
 
 		MPPointF.recycleInstance(point)
+		assertThat(point.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -42,6 +44,7 @@ class MPPointFTest {
 		assertThat(point.getY()).isEqualTo(2f)
 
 		MPPointF.recycleInstance(point)
+		assertThat(point.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -52,6 +55,7 @@ class MPPointFTest {
 		assertThat(instance.getY()).isEqualTo(0f)
 
 		MPPointF.recycleInstance(point)
+		assertThat(point.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -61,6 +65,7 @@ class MPPointFTest {
 		assertThat(point.getY()).isEqualTo(2f)
 
 		MPPointF.recycleInstance(point)
+		assertThat(point.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -70,6 +75,24 @@ class MPPointFTest {
 		assertThat(point.getY()).isEqualTo(0f)
 
 		MPPointF.recycleInstance(point)
+		assertThat(point.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
+	}
+
+	@Test
+	fun recycleInstances() {
+		val points = listOf(
+			MPPointF.getInstance(0f, 1f),
+			MPPointF.getInstance(2f, 3f),
+			MPPointF.getInstance(4f, 5f)
+		)
+		points.forEach {
+			assertThat(it.currentOwnerId).isEqualTo(ObjectPool.Poolable.NO_OWNER)
+		}
+
+		MPPointF.recycleInstances(points)
+		points.forEach {
+			assertThat(it.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
+		}
 	}
 
 	@Test

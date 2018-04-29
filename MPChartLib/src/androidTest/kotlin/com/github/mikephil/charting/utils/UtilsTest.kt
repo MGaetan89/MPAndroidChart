@@ -79,19 +79,4 @@ class UtilsTest {
 		assertThat(Utils.calcTextSize(paint, "hello")).isEqualTo(FSize(26f, 10f))
 		assertThat(Utils.calcTextSize(paint, "gif^")).isEqualTo(FSize(19f, 13f))
 	}
-
-	@Test
-	fun velocityTrackerPointerUpCleanUpIfNecessary() {
-		// TODO
-	}
-
-	@Test
-	fun drawImage() {
-		// TODO
-	}
-
-	@Test
-	fun drawXAxisValue() {
-		// TODO
-	}
 }
