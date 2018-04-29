@@ -36,6 +36,11 @@ public interface IPieDataSet extends IDataSet<PieEntry> {
     PieDataSet.ValuePosition getYValuePosition();
 
     /**
+     * When valuePosition is OutsideSlice, use slice colors as line color if true.
+     */
+    boolean isUsingSliceColorAsValueLineColor();
+
+    /**
      * When valuePosition is OutsideSlice, indicates line color.
      */
     @ColorInt
