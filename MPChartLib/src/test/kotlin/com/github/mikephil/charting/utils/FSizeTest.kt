@@ -26,6 +26,7 @@ class FSizeTest {
 		assertThat(other.width).isEqualTo(0f)
 
 		FSize.recycleInstance(size)
+		assertThat(size.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -49,6 +50,7 @@ class FSizeTest {
 		assertThat(other.width).isEqualTo(0f)
 
 		FSize.recycleInstance(size)
+		assertThat(size.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 	}
 
 	@Test
@@ -58,5 +60,23 @@ class FSizeTest {
 		assertThat(size.width).isEqualTo(1f)
 
 		FSize.recycleInstance(size)
+		assertThat(size.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
+	}
+
+	@Test
+	fun recycleInstances() {
+		val sizes = listOf(
+			FSize.getInstance(0f, 1f),
+			FSize.getInstance(2f, 3f),
+			FSize.getInstance(4f, 5f)
+		)
+		sizes.forEach {
+			assertThat(it.currentOwnerId).isEqualTo(ObjectPool.Poolable.NO_OWNER)
+		}
+
+		FSize.recycleInstances(sizes)
+		sizes.forEach {
+			assertThat(it.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
+		}
 	}
 }

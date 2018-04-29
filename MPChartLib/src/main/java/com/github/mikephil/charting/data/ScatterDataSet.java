@@ -141,7 +141,7 @@ public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> impleme
     }
 
     @NonNull
-    public static IShapeRenderer getRendererForShape(@NonNull ScatterChart.ScatterShape shape) {
+    private static IShapeRenderer getRendererForShape(@NonNull ScatterChart.ScatterShape shape) {
         switch (shape) {
             case SQUARE:
                 return new SquareShapeRenderer();

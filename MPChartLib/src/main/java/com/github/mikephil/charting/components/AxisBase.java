@@ -6,7 +6,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
@@ -374,10 +373,6 @@ public abstract class AxisBase extends ComponentBase {
      */
     public void addLimitLine(@NonNull LimitLine limitLine) {
         mLimitLines.add(limitLine);
-
-        if (mLimitLines.size() > 6) {
-            Log.w("MPAndroidChart", "Warning! You have more than 6 LimitLines on your axis, do you really want that?");
-        }
     }
 
     /**

@@ -362,6 +362,17 @@ class PieDataSetTest : DataSetTest<PieEntry, PieDataSet>() {
 	}
 
 	@Test
+	fun setUsingSliceColorAsValueLineColor() {
+		assertThat(this.dataSet.isUsingSliceColorAsValueLineColor).isFalse()
+
+		this.dataSet.isUsingSliceColorAsValueLineColor = true
+		assertThat(this.dataSet.isUsingSliceColorAsValueLineColor).isTrue()
+
+		this.dataSet.isUsingSliceColorAsValueLineColor = false
+		assertThat(this.dataSet.isUsingSliceColorAsValueLineColor).isFalse()
+	}
+
+	@Test
 	fun setValueLineColor() {
 		assertThat(this.dataSet.valueLineColor).isEqualTo(Color.BLACK)
 
