@@ -126,52 +126,11 @@ public class ChartAnimator {
      * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
      * refresh the chart.
      *
-     * @param durationMillisX animation duration along the X axis
-     * @param durationMillisY animation duration along the Y axis
-     * @param easing EasingFunction for both axes
-     */
-    public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX, Easing.EasingOption easingY) {
-        animateXY(durationMillisX, durationMillisY, Easing.getEasingFunctionFromOption(easingX), Easing.getEasingFunctionFromOption(easingY));
-    }
-
-    /**
-     * Animates the rendering of the chart on the x-axis with the specified animation time. If
-     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
-     *
-     * @param durationMillisX animation duration along the X axis
-     * @param durationMillisY animation duration along the Y axis
-     * @param easingX EasingFunction for the X axis
-     * @param easingY EasingFunction for the Y axis
-     */
-    public void animateX(int durationMillis, Easing.EasingOption easing) {
-        animateX(durationMillis, Easing.getEasingFunctionFromOption(easing));
-    }
-
-    /**
-     * Animates the rendering of the chart on the y-axis with the specified animation time. If
-     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
-     *
-     * @param durationMillis animation duration
-     */
-    public void animateY(int durationMillis, Easing.EasingOption easing) {
-        animateY(durationMillis, Easing.getEasingFunctionFromOption(easing));
-    }
-
-    /**
-     * Animates the drawing/rendering of the chart on both x- and y-axis with the specified
-     * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
-     * refresh the chart.
-     *
-     * @param durationMillisX animation duration along the X axis
-     * @param durationMillisY animation duration along the Y axis
-     * @param easingX EasingFunction for the X axis
-     * @param easingY EasingFunction for the Y axis
-     *
-     * @deprecated Use {@link #animateXY(int, int, EasingFunction, EasingFunction)}
-     * @see #animateXY(int, int, EasingFunction, EasingFunction)
+     * @param durationMillisX
+     * @param durationMillisY
      */
     public void animateXY(int durationMillisX, int durationMillisY) {
-        animateXY(durationMillisX, durationMillisY, (TimeInterpolator) null, null);
+        animateXY(durationMillisX, durationMillisY, null, null);
     }
 
     /**
@@ -185,7 +144,7 @@ public class ChartAnimator {
      * @see #animateX(int, EasingFunction)
      */
     public void animateX(int durationMillis) {
-        animateX(durationMillis, (TimeInterpolator) null);
+        animateX(durationMillis, null);
     }
 
     /**
@@ -199,7 +158,7 @@ public class ChartAnimator {
      * @see #animateY(int, EasingFunction)
      */
     public void animateY(int durationMillis) {
-        animateY(durationMillis, (TimeInterpolator) null);
+        animateY(durationMillis, null);
     }
 
     /**

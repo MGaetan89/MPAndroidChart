@@ -11,6 +11,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 

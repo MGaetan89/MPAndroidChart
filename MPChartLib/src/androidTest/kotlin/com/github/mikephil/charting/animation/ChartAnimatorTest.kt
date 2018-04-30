@@ -1,5 +1,6 @@
 package com.github.mikephil.charting.animation
 
+import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.support.test.annotation.UiThreadTest
 import android.support.test.rule.ActivityTestRule
@@ -12,6 +13,8 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ChartAnimatorTest {
+	private val linearEasing = TimeInterpolator { input -> input }
+
 	@JvmField
 	@Rule
 	val activityRule = ActivityTestRule<TestActivity>(TestActivity::class.java)
@@ -47,7 +50,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateX(0, Easing.EasingOption.Linear)
+		animator.animateX(0, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 	}
@@ -59,7 +62,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateX(100, Easing.EasingOption.Linear)
+		animator.animateX(100, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(0f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 	}
@@ -108,7 +111,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateX(0, Easing.EasingOption.Linear)
+		animator.animateX(0, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
@@ -125,7 +128,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateX(100, Easing.EasingOption.Linear)
+		animator.animateX(100, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(0f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
@@ -175,7 +178,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateXY(0, 0, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		animator.animateXY(0, 0, linearEasing, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 	}
@@ -187,7 +190,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateXY(200, 100, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		animator.animateXY(200, 100, linearEasing, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(0f)
 		assertThat(animator.phaseY).isEqualTo(0f)
 	}
@@ -199,7 +202,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateXY(100, 100, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		animator.animateXY(100, 100, linearEasing, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(0f)
 		assertThat(animator.phaseY).isEqualTo(0f)
 	}
@@ -265,7 +268,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateXY(0, 0, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		animator.animateXY(0, 0, linearEasing, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
@@ -282,7 +285,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateXY(200, 100, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		animator.animateXY(200, 100, linearEasing, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(0f)
 		assertThat(animator.phaseY).isEqualTo(0f)
 
@@ -299,7 +302,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateXY(100, 100, Easing.EasingOption.Linear, Easing.EasingOption.Linear)
+		animator.animateXY(100, 100, linearEasing, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(0f)
 		assertThat(animator.phaseY).isEqualTo(0f)
 
@@ -337,7 +340,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateY(0, Easing.EasingOption.Linear)
+		animator.animateY(0, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 	}
@@ -349,7 +352,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateY(100, Easing.EasingOption.Linear)
+		animator.animateY(100, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(0f)
 	}
@@ -398,7 +401,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateY(0, Easing.EasingOption.Linear)
+		animator.animateY(0, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
@@ -415,7 +418,7 @@ class ChartAnimatorTest {
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(1f)
 
-		animator.animateY(100, Easing.EasingOption.Linear)
+		animator.animateY(100, linearEasing)
 		assertThat(animator.phaseX).isEqualTo(1f)
 		assertThat(animator.phaseY).isEqualTo(0f)
 

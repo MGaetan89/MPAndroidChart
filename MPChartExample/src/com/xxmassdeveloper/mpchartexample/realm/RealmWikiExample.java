@@ -16,6 +16,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 

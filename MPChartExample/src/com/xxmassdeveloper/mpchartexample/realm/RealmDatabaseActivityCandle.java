@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.realm.implementation.RealmCandleDataSet
 import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 

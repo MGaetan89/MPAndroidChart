@@ -1,6 +1,7 @@
 package com.github.mikephil.charting.charts;
 
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.content.Context;
@@ -428,12 +429,12 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
      * @param fromAngle
      * @param toAngle
      */
-    public void spin(int durationMillis, float fromAngle, float toAngle, Easing.EasingOption easing) {
+    public void spin(int durationMillis, float fromAngle, float toAngle, TimeInterpolator easing) {
         setRotationAngle(fromAngle);
 
         ObjectAnimator spinAnimator = ObjectAnimator.ofFloat(this, "rotationAngle", fromAngle, toAngle);
         spinAnimator.setDuration(durationMillis);
-        spinAnimator.setInterpolator(Easing.getEasingFunctionFromOption(easing));
+        spinAnimator.setInterpolator(easing);
         spinAnimator.addUpdateListener(new AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

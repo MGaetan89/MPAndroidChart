@@ -22,6 +22,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -88,7 +89,6 @@ public class HalfPieChartActivity extends DemoBase {
     }
 
     private void setData(int count, float range) {
-
         ArrayList<PieEntry> values = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -131,10 +131,9 @@ public class HalfPieChartActivity extends DemoBase {
         display.getSize(size);
         int height = size.y;
 
-        int offset = (int)(height * 0.65); /* percent to move */
+        int offset = (int) (height * 0.65); /* percent to move */
 
-        RelativeLayout.LayoutParams rlParams =
-                (RelativeLayout.LayoutParams) chart.getLayoutParams();
+        RelativeLayout.LayoutParams rlParams = (RelativeLayout.LayoutParams) chart.getLayoutParams();
         rlParams.setMargins(0, 0, 0, -offset);
         chart.setLayoutParams(rlParams);
     }
