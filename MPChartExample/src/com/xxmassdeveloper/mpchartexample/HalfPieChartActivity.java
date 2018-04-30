@@ -12,7 +12,6 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
@@ -21,6 +20,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class HalfPieChartActivity extends DemoBase {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_piechart_half);
 
-        mChart = (PieChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         mChart.setBackgroundColor(Color.WHITE);
 
         moveOffScreen();
@@ -66,7 +66,7 @@ public class HalfPieChartActivity extends DemoBase {
 
         setData(4, 100);
 
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        mChart.animateY(1400, Easing.EaseInOutQuad);
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -84,8 +84,7 @@ public class HalfPieChartActivity extends DemoBase {
     }
 
     private void setData(int count, float range) {
-
-        ArrayList<PieEntry> values = new ArrayList<PieEntry>();
+        ArrayList<PieEntry> values = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             values.add(new PieEntry((float) ((Math.random() * range) + range / 5), mParties[i % mParties.length]));
@@ -127,10 +126,10 @@ public class HalfPieChartActivity extends DemoBase {
         display.getSize(size);
         int height = size.y;
 
-        int offset = (int)(height * 0.65); /* percent to move */
+        int offset = (int) (height * 0.65); /* percent to move */
 
         RelativeLayout.LayoutParams rlParams =
-                (RelativeLayout.LayoutParams)mChart.getLayoutParams();
+                (RelativeLayout.LayoutParams) mChart.getLayoutParams();
         rlParams.setMargins(0, 0, 0, -offset);
         mChart.setLayoutParams(rlParams);
     }

@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -12,6 +11,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class RealmDatabaseActivityLine extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_linechart_noseekbar);
 
-        mChart = (LineChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         setup(mChart);
 
         mChart.getAxisLeft().setAxisMaximum(150f);
@@ -55,7 +55,7 @@ public class RealmDatabaseActivityLine extends RealmBaseActivity {
 
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
-        RealmLineDataSet<RealmDemoData> set = new RealmLineDataSet<RealmDemoData>(result, "xValue", "yValue");
+        RealmLineDataSet<RealmDemoData> set = new RealmLineDataSet<>(result, "xValue", "yValue");
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         set.setLabel("Realm LineDataSet");
         set.setDrawCircleHole(false);
@@ -64,7 +64,7 @@ public class RealmDatabaseActivityLine extends RealmBaseActivity {
         set.setLineWidth(1.8f);
         set.setCircleRadius(3.6f);
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set); // add the dataset
 
         // create a data object with the dataset list
@@ -73,6 +73,6 @@ public class RealmDatabaseActivityLine extends RealmBaseActivity {
 
         // set data
         mChart.setData(data);
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        mChart.animateY(1400, Easing.EaseInOutQuart);
     }
 }

@@ -5,13 +5,13 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.realm.implementation.RealmCandleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
     private void setData() {
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
-        RealmCandleDataSet<RealmDemoData> set = new RealmCandleDataSet<RealmDemoData>(result, "xValue", "high", "low", "open", "close");
+        RealmCandleDataSet<RealmDemoData> set = new RealmCandleDataSet<>(result, "xValue", "high", "low", "open", "close");
         set.setLabel("Realm CandleDataSet");
         set.setShadowColor(Color.DKGRAY);
         set.setShadowWidth(0.7f);
@@ -70,6 +70,6 @@ public class RealmDatabaseActivityCandle extends RealmBaseActivity {
 
         // set data
         mChart.setData(data);
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        mChart.animateY(1400, Easing.EaseInOutQuart);
     }
 }

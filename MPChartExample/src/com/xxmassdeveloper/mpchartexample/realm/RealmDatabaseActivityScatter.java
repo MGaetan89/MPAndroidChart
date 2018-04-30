@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.realm.implementation.RealmScatterDataSet;
@@ -11,6 +10,7 @@ import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class RealmDatabaseActivityScatter extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_scatterchart_noseekbar);
 
-        mChart = (ScatterChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         setup(mChart);
 
         mChart.getAxisLeft().setDrawGridLines(false);
@@ -53,13 +53,13 @@ public class RealmDatabaseActivityScatter extends RealmBaseActivity {
 
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
-        RealmScatterDataSet<RealmDemoData> set = new RealmScatterDataSet<RealmDemoData>(result, "xValue", "yValue");
+        RealmScatterDataSet<RealmDemoData> set = new RealmScatterDataSet<>(result, "xValue", "yValue");
         set.setLabel("Realm ScatterDataSet");
         set.setScatterShapeSize(9f);
         set.setColor(ColorUtils.rgb("#CDDC39"));
         set.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
-        ArrayList<IScatterDataSet> dataSets = new ArrayList<IScatterDataSet>();
+        ArrayList<IScatterDataSet> dataSets = new ArrayList<>();
         dataSets.add(set); // add the dataset
 
         // create a data object with the dataset list
@@ -68,6 +68,6 @@ public class RealmDatabaseActivityScatter extends RealmBaseActivity {
 
         // set data
         mChart.setData(data);
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        mChart.animateY(1400, Easing.EaseInOutQuart);
     }
 }

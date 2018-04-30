@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.realm.implementation.RealmBarDataSet;
@@ -11,6 +10,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class RealmDatabaseActivityBar extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart_noseekbar);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         setup(mChart);
     }
 
@@ -50,11 +50,11 @@ public class RealmDatabaseActivityBar extends RealmBaseActivity {
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
         //RealmBarDataSet<RealmDemoData> set = new RealmBarDataSet<RealmDemoData>(result, "stackValues", "xIndex"); // normal entries
-        RealmBarDataSet<RealmDemoData> set = new RealmBarDataSet<RealmDemoData>(result, "xValue", "yValue"); // stacked entries
-        set.setColors(new int[] {ColorUtils.rgb("#FF5722"), ColorUtils.rgb("#03A9F4")});
+        RealmBarDataSet<RealmDemoData> set = new RealmBarDataSet<>(result, "xValue", "yValue"); // stacked entries
+        set.setColors(ColorUtils.rgb("#FF5722"), ColorUtils.rgb("#03A9F4"));
         set.setLabel("Realm BarDataSet");
 
-        ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set); // add the dataset
 
         // create a data object with the dataset list
@@ -64,6 +64,6 @@ public class RealmDatabaseActivityBar extends RealmBaseActivity {
         // set data
         mChart.setData(data);
         mChart.setFitBars(true);
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        mChart.animateY(1400, Easing.EaseInOutQuart);
     }
 }

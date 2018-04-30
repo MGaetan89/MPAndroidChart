@@ -1,7 +1,6 @@
-package com.github.mikephil.charting.animation;
+package com.xxmassdeveloper.mpchartexample.utils;
 
 import android.animation.TimeInterpolator;
-import android.support.annotation.NonNull;
 
 /**
  * Easing options.
@@ -9,122 +8,28 @@ import android.support.annotation.NonNull;
  * @author Daniel Cohen Gindi
  */
 public final class Easing {
-    public enum EasingOption {
-        Linear,
-        EaseInQuad,
-        EaseOutQuad,
-        EaseInOutQuad,
-        EaseInCubic,
-        EaseOutCubic,
-        EaseInOutCubic,
-        EaseInQuart,
-        EaseOutQuart,
-        EaseInOutQuart,
-        EaseInSine,
-        EaseOutSine,
-        EaseInOutSine,
-        EaseInExpo,
-        EaseOutExpo,
-        EaseInOutExpo,
-        EaseInCirc,
-        EaseOutCirc,
-        EaseInOutCirc,
-        EaseInElastic,
-        EaseOutElastic,
-        EaseInOutElastic,
-        EaseInBack,
-        EaseOutBack,
-        EaseInOutBack,
-        EaseInBounce,
-        EaseOutBounce,
-        EaseInOutBounce,
-    }
-
-    @NonNull
-    public static TimeInterpolator getEasingFunctionFromOption(@NonNull EasingOption easing) {
-        switch (easing) {
-            default:
-            case Linear:
-                return Linear;
-            case EaseInQuad:
-                return EaseInQuad;
-            case EaseOutQuad:
-                return EaseOutQuad;
-            case EaseInOutQuad:
-                return EaseInOutQuad;
-            case EaseInCubic:
-                return EaseInCubic;
-            case EaseOutCubic:
-                return EaseOutCubic;
-            case EaseInOutCubic:
-                return EaseInOutCubic;
-            case EaseInQuart:
-                return EaseInQuart;
-            case EaseOutQuart:
-                return EaseOutQuart;
-            case EaseInOutQuart:
-                return EaseInOutQuart;
-            case EaseInSine:
-                return EaseInSine;
-            case EaseOutSine:
-                return EaseOutSine;
-            case EaseInOutSine:
-                return EaseInOutSine;
-            case EaseInExpo:
-                return EaseInExpo;
-            case EaseOutExpo:
-                return EaseOutExpo;
-            case EaseInOutExpo:
-                return EaseInOutExpo;
-            case EaseInCirc:
-                return EaseInCirc;
-            case EaseOutCirc:
-                return EaseOutCirc;
-            case EaseInOutCirc:
-                return EaseInOutCirc;
-            case EaseInElastic:
-                return EaseInElastic;
-            case EaseOutElastic:
-                return EaseOutElastic;
-            case EaseInOutElastic:
-                return EaseInOutElastic;
-            case EaseInBack:
-                return EaseInBack;
-            case EaseOutBack:
-                return EaseOutBack;
-            case EaseInOutBack:
-                return EaseInOutBack;
-            case EaseInBounce:
-                return EaseInBounce;
-            case EaseOutBounce:
-                return EaseOutBounce;
-            case EaseInOutBounce:
-                return EaseInOutBounce;
-        }
-    }
-
-    private static final TimeInterpolator Linear = new TimeInterpolator() {
+    public static final TimeInterpolator Linear = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return input;
         }
     };
 
-    private static final TimeInterpolator EaseInQuad = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInQuad = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return input * input;
         }
     };
 
-    private static final TimeInterpolator EaseOutQuad = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutQuad = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return -input * (input - 2f);
         }
     };
 
-    private static final TimeInterpolator EaseInOutQuad = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutQuad = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             float position = input / 0.5f;
@@ -136,14 +41,14 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInCubic = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInCubic = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return input * input * input;
         }
     };
 
-    private static final TimeInterpolator EaseOutCubic = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutCubic = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             input--;
@@ -151,7 +56,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInOutCubic = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutCubic = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             float position = input / 0.5f;
@@ -164,20 +69,20 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInQuart = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInQuart = new TimeInterpolator() {
         public float getInterpolation(float input) {
             return input * input * input * input;
         }
     };
 
-    private static final TimeInterpolator EaseOutQuart = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutQuart = new TimeInterpolator() {
         public float getInterpolation(float input) {
             input--;
             return -(input * input * input * input - 1f);
         }
     };
 
-    private static final TimeInterpolator EaseInOutQuart = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutQuart = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             float position = input / 0.5f;
@@ -190,42 +95,42 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInSine = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInSine = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return -(float) Math.cos(input * Math.PI / 2f) + 1f;
         }
     };
 
-    private static final TimeInterpolator EaseOutSine = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutSine = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return (float) Math.sin(input * Math.PI / 2f);
         }
     };
 
-    private static final TimeInterpolator EaseInOutSine = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutSine = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return -0.5f * ((float) Math.cos(Math.PI * input) - 1f);
         }
     };
 
-    private static final TimeInterpolator EaseInExpo = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInExpo = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return input == 0f ? 0f : (float) Math.pow(2.f, 10f * (input - 1f));
         }
     };
 
-    private static final TimeInterpolator EaseOutExpo = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutExpo = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return input == 1f ? 1f : -(float) Math.pow(2f, -10f * (input + 1f));
         }
     };
 
-    private static final TimeInterpolator EaseInOutExpo = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutExpo = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             if (input == 0f || input == 1f) {
@@ -241,14 +146,14 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInCirc = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInCirc = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return -((float) Math.sqrt(1f - input * input) - 1f);
         }
     };
 
-    private static final TimeInterpolator EaseOutCirc = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutCirc = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             input--;
@@ -256,7 +161,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInOutCirc = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutCirc = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             float position = input / 0.5f;
@@ -268,7 +173,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInElastic = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInElastic = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             if (input == 0f || input == 1f) {
@@ -282,7 +187,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseOutElastic = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutElastic = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             if (input == 0f || input == 1f) {
@@ -295,7 +200,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInOutElastic = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutElastic = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             if (input == 0f) {
@@ -317,7 +222,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInBack = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInBack = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             final float s = 1.70158f;
@@ -325,7 +230,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseOutBack = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutBack = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             final float s = 1.70158f;
@@ -335,7 +240,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInOutBack = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutBack = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             float s = 1.70158f;
@@ -348,14 +253,14 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInBounce = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInBounce = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             return 1f - EaseOutBounce.getInterpolation(1f - input);
         }
     };
 
-    private static final TimeInterpolator EaseOutBounce = new TimeInterpolator() {
+    public static final TimeInterpolator EaseOutBounce = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             float position = input;
@@ -371,7 +276,7 @@ public final class Easing {
         }
     };
 
-    private static final TimeInterpolator EaseInOutBounce = new TimeInterpolator() {
+    public static final TimeInterpolator EaseInOutBounce = new TimeInterpolator() {
         @Override
         public float getInterpolation(float input) {
             if (input < 0.5f) {

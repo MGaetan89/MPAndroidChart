@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.components.Legend;
@@ -732,42 +731,6 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * @param easing         a custom easing function to be used on the animation phase
      */
     public void animateY(int durationMillis, TimeInterpolator easing) {
-        mAnimator.animateY(durationMillis, easing);
-    }
-
-    /**
-     * Animates the drawing / rendering of the chart on both x- and y-axis with the specified
-     * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
-     * refresh the chart.
-     *
-     * @param durationMillisX
-     * @param durationMillisY
-     * @param easingX         a predefined easing option
-     * @param easingY         a predefined easing option
-     */
-    public void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX, Easing.EasingOption easingY) {
-        mAnimator.animateXY(durationMillisX, durationMillisY, easingX, easingY);
-    }
-
-    /**
-     * Animates the rendering of the chart on the x-axis with the specified animation time. If
-     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
-     *
-     * @param durationMillis
-     * @param easing         a predefined easing option
-     */
-    public void animateX(int durationMillis, Easing.EasingOption easing) {
-        mAnimator.animateX(durationMillis, easing);
-    }
-
-    /**
-     * Animates the rendering of the chart on the y-axis with the specified animation time. If
-     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
-     *
-     * @param durationMillis
-     * @param easing         a predefined easing option
-     */
-    public void animateY(int durationMillis, Easing.EasingOption easing) {
         mAnimator.animateY(durationMillis, easing);
     }
 

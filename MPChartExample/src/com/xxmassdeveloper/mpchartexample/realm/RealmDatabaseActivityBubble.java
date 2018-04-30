@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BubbleChart;
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.realm.implementation.RealmBubbleDataSet;
@@ -11,6 +10,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.RealmDemoData;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class RealmDatabaseActivityBubble extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_bubblechart_noseekbar);
 
-        mChart = (BubbleChart) findViewById(R.id.chart1);
+        mChart = findViewById(R.id.chart1);
         setup(mChart);
 
         mChart.getXAxis().setDrawGridLines(false);
@@ -53,11 +53,11 @@ public class RealmDatabaseActivityBubble extends RealmBaseActivity {
 
         RealmResults<RealmDemoData> result = mRealm.where(RealmDemoData.class).findAll();
 
-        RealmBubbleDataSet<RealmDemoData> set = new RealmBubbleDataSet<RealmDemoData>(result, "xValue", "yValue", "bubbleSize");
+        RealmBubbleDataSet<RealmDemoData> set = new RealmBubbleDataSet<>(result, "xValue", "yValue", "bubbleSize");
         set.setLabel("Realm BubbleDataSet");
         set.setColors(ColorUtils.COLORFUL_COLORS, 110);
 
-        ArrayList<IBubbleDataSet> dataSets = new ArrayList<IBubbleDataSet>();
+        ArrayList<IBubbleDataSet> dataSets = new ArrayList<>();
         dataSets.add(set); // add the dataset
 
         // create a data object with the dataset list
@@ -66,6 +66,6 @@ public class RealmDatabaseActivityBubble extends RealmBaseActivity {
 
         // set data
         mChart.setData(data);
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        mChart.animateY(1400, Easing.EaseInOutQuart);
     }
 }

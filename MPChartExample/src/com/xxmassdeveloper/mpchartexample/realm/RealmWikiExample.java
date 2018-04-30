@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.realm;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -17,6 +16,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
+import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
 
@@ -37,8 +37,8 @@ public class RealmWikiExample extends RealmBaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_realm_wiki);
 
-        lineChart = (LineChart) findViewById(R.id.lineChart);
-        barChart = (BarChart) findViewById(R.id.barChart);
+        lineChart = findViewById(R.id.lineChart);
+        barChart = findViewById(R.id.barChart);
         setup(lineChart);
         setup(barChart);
 
@@ -95,7 +95,7 @@ public class RealmWikiExample extends RealmBaseActivity {
         lineChart.getXAxis().setValueFormatter(formatter);
         barChart.getXAxis().setValueFormatter(formatter);
 
-        RealmLineDataSet<Score> lineDataSet = new RealmLineDataSet<Score>(results, "scoreNr", "totalScore");
+        RealmLineDataSet<Score> lineDataSet = new RealmLineDataSet<>(results, "scoreNr", "totalScore");
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineDataSet.setLabel("Result Scores");
         lineDataSet.setDrawCircleHole(false);
@@ -104,7 +104,7 @@ public class RealmWikiExample extends RealmBaseActivity {
         lineDataSet.setLineWidth(1.8f);
         lineDataSet.setCircleRadius(3.6f);
 
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(lineDataSet);
 
         LineData lineData = new LineData(dataSets);
@@ -112,15 +112,15 @@ public class RealmWikiExample extends RealmBaseActivity {
 
         // set data
         lineChart.setData(lineData);
-        lineChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        lineChart.animateY(1400, Easing.EaseInOutQuart);
 
 
         // BAR-CHART
-        RealmBarDataSet<Score> barDataSet = new RealmBarDataSet<Score>(results, "scoreNr", "totalScore");
-        barDataSet.setColors(new int[]{ColorUtils.rgb("#FF5722"), ColorUtils.rgb("#03A9F4")});
+        RealmBarDataSet<Score> barDataSet = new RealmBarDataSet<>(results, "scoreNr", "totalScore");
+        barDataSet.setColors(ColorUtils.rgb("#FF5722"), ColorUtils.rgb("#03A9F4"));
         barDataSet.setLabel("Realm BarDataSet");
 
-        ArrayList<IBarDataSet> barDataSets = new ArrayList<IBarDataSet>();
+        ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
         barDataSets.add(barDataSet);
 
         BarData barData = new BarData(barDataSets);
@@ -128,6 +128,6 @@ public class RealmWikiExample extends RealmBaseActivity {
 
         barChart.setData(barData);
         barChart.setFitBars(true);
-        barChart.animateY(1400, Easing.EasingOption.EaseInOutQuart);
+        barChart.animateY(1400, Easing.EaseInOutQuart);
     }
 }
