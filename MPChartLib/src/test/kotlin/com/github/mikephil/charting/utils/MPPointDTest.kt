@@ -28,15 +28,15 @@ class MPPointDTest {
 	@Test
 	fun recycleInstances() {
 		val points = listOf(
-			MPPointF.getInstance(0f, 1f),
-			MPPointF.getInstance(2f, 3f),
-			MPPointF.getInstance(4f, 5f)
+			MPPointD.getInstance(0.0, 1.0),
+			MPPointD.getInstance(2.0, 3.0),
+			MPPointD.getInstance(4.0, 5.0)
 		)
 		points.forEach {
 			assertThat(it.currentOwnerId).isEqualTo(ObjectPool.Poolable.NO_OWNER)
 		}
 
-		MPPointF.recycleInstances(points)
+		MPPointD.recycleInstances(points)
 		points.forEach {
 			assertThat(it.currentOwnerId).isNotEqualTo(ObjectPool.Poolable.NO_OWNER)
 		}

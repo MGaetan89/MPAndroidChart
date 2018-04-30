@@ -4,7 +4,6 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 /**
@@ -417,7 +416,7 @@ public class ViewPortHandler {
      *
      * @param matrix
      */
-    public void limitTransAndScale(@NonNull Matrix matrix, @Nullable RectF content) {
+    public void limitTransAndScale(@NonNull Matrix matrix, @NonNull RectF content) {
         matrix.getValues(matrixBuffer);
 
         float curTransX = matrixBuffer[Matrix.MTRANS_X];
@@ -431,13 +430,8 @@ public class ViewPortHandler {
         // Min scale-y is 1f
         mScaleY = Math.min(Math.max(mMinScaleY, curScaleY), mMaxScaleY);
 
-        float width = 0f;
-        float height = 0f;
-
-        if (content != null) {
-            width = content.width();
-            height = content.height();
-        }
+        float width = content.width();
+        float height = content.height();
 
         float maxTransX = -width * (mScaleX - 1f);
         mTransX = Math.min(Math.max(curTransX, maxTransX - mTransOffsetX), mTransOffsetX);
