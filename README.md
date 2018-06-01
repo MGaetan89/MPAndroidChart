@@ -1,6 +1,6 @@
 **Remember: _It's all about the looks._**
 
-![MPAndroidChart](https://raw.github.com/MGaetan89/MPChart/master/design/feature_graphic_smaller.png)
+![MPAndroidChart](https://raw.github.com/MGaetan89/MPAndroidChart/master/design/feature_graphic_smaller.png)
 
 [![Build Status](https://travis-ci.org/MGaetan89/MPAndroidChart.svg?branch=master)](https://travis-ci.org/MGaetan89/MPAndroidChart)
 [![codecov](https://codecov.io/gh/MGaetan89/MPAndroidChart/branch/master/graph/badge.svg)](https://codecov.io/gh/MGaetan89/MPAndroidChart)
@@ -66,15 +66,15 @@ See the [**javadocs**](https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.0
 
  - **LineChart** with legend, simple design
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/simpledesign_linechart4.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/simpledesign_linechart4.png)
 
  - **LineChart** with legend, simple design
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/simpledesign_linechart3.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/simpledesign_linechart3.png)
 
  - **LineChart** cubic lines
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/cubiclinechart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/cubiclinechart.png)
 
  - **LineChart** gradient fill
 
@@ -82,19 +82,19 @@ See the [**javadocs**](https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.0
 
  - **Combined-Chart** barchart and linechart
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/combined_chart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/combined_chart.png)
 
  - **BarChart** with legend, simple design
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/simpledesign_barchart3.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/simpledesign_barchart3.png)
 
  - **BarChart** grouped DataSets
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/groupedbarchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/groupedbarchart.png)
 
  - **Horizontal-BarChart**
 
-![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/horizontal_barchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/horizontal_barchart.png)
 
  - **PieChart** with selection, ...
 
