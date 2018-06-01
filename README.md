@@ -17,9 +17,9 @@ This project is built on top of the popular [MPAndroidChart](https://github.com/
 
 ### Demo
 
-Download the [MPAndroidChart Example App](https://play.google.com/store/apps/details?id=com.xxmassdeveloper.mpchartexample) or look at the [source code](https://github.com/PhilJay/MPAndroidChart/tree/master/MPChartExample).
+Download the [MPAndroidChart Example App](https://play.google.com/store/apps/details?id=com.xxmassdeveloper.mpchartexample) or look at the [source code](https://github.com/MGaetan89/MPAndroidChart/tree/master/MPChartExample).
 
-[![ScreenShot](https://github.com/PhilJay/MPAndroidChart/blob/master/design/video_thumbnail.png)](https://www.youtube.com/watch?v=ufaK_Hd6BpI)
+[![ScreenShot](https://github.com/MGaetan89/MPAndroidChart/blob/master/design/video_thumbnail.png)](https://www.youtube.com/watch?v=ufaK_Hd6BpI)
 
 ## Goals of this fork
 
@@ -66,55 +66,55 @@ See the [**javadocs**](https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.0
 
  - **LineChart** with legend, simple design
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/simpledesign_linechart4.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/simpledesign_linechart4.png)
 
  - **LineChart** with legend, simple design
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/simpledesign_linechart3.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/simpledesign_linechart3.png)
 
  - **LineChart** cubic lines
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/cubiclinechart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/cubiclinechart.png)
 
  - **LineChart** gradient fill
 
-![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/line_chart_gradient.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/line_chart_gradient.png)
 
  - **Combined-Chart** barchart and linechart
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/combined_chart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/combined_chart.png)
 
  - **BarChart** with legend, simple design
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/simpledesign_barchart3.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/simpledesign_barchart3.png)
 
  - **BarChart** grouped DataSets
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/groupedbarchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/groupedbarchart.png)
 
  - **Horizontal-BarChart**
 
-![alt tag](https://raw.github.com/PhilJay/MPChart/master/screenshots/horizontal_barchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPChart/master/screenshots/horizontal_barchart.png)
 
  - **PieChart** with selection, ...
 
-![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/simpledesign_piechart1.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/simpledesign_piechart1.png)
 
  - **ScatterChart** with squares, triangles, circles, ... and more
 
-![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/scatterchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/scatterchart.png)
 
  - **CandleStickChart** for financial data
 
-![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/candlestickchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/candlestickchart.png)
 
  - **BubbleChart** area covered by bubbles indicates the yValue
 
-![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/bubblechart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/bubblechart.png)
 
  - **RadarChart** spider web chart
 
-![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/radarchart.png)
+![alt tag](https://raw.github.com/MGaetan89/MPAndroidChart/master/screenshots/radarchart.png)
 
 ## License
 
