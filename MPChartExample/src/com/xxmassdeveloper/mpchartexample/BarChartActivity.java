@@ -3,6 +3,7 @@ package com.xxmassdeveloper.mpchartexample;
 import android.annotation.SuppressLint;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,14 +30,15 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.model.GradientColor;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.xxmassdeveloper.mpchartexample.custom.DayAxisValueFormatter;
 import com.xxmassdeveloper.mpchartexample.custom.MyAxisValueFormatter;
 import com.xxmassdeveloper.mpchartexample.custom.XYMarkerView;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
-import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BarChartActivity extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
@@ -218,7 +220,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         tvX.setText("" + (mSeekBarX.getProgress() + 2));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        setData(mSeekBarX.getProgress() + 1 , mSeekBarY.getProgress());
+        setData(mSeekBarX.getProgress() + 1, mSeekBarY.getProgress());
         mChart.invalidate();
     }
 
@@ -257,10 +259,27 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
             mChart.notifyDataSetChanged();
         } else {
             set1 = new BarDataSet(yVals1, "The year 2017");
-
             set1.setDrawIcons(false);
 
-            set1.setColors(ColorUtils.MATERIAL_COLORS);
+            int startColor1 = ContextCompat.getColor(this, android.R.color.holo_orange_light);
+            int startColor2 = ContextCompat.getColor(this, android.R.color.holo_blue_light);
+            int startColor3 = ContextCompat.getColor(this, android.R.color.holo_orange_light);
+            int startColor4 = ContextCompat.getColor(this, android.R.color.holo_green_light);
+            int startColor5 = ContextCompat.getColor(this, android.R.color.holo_red_light);
+            int endColor1 = ContextCompat.getColor(this, android.R.color.holo_blue_dark);
+            int endColor2 = ContextCompat.getColor(this, android.R.color.holo_purple);
+            int endColor3 = ContextCompat.getColor(this, android.R.color.holo_green_dark);
+            int endColor4 = ContextCompat.getColor(this, android.R.color.holo_red_dark);
+            int endColor5 = ContextCompat.getColor(this, android.R.color.holo_orange_dark);
+
+            List<GradientColor> gradientColors = new ArrayList<>();
+            gradientColors.add(new GradientColor(startColor1, endColor1));
+            gradientColors.add(new GradientColor(startColor2, endColor2));
+            gradientColors.add(new GradientColor(startColor3, endColor3));
+            gradientColors.add(new GradientColor(startColor4, endColor4));
+            gradientColors.add(new GradientColor(startColor5, endColor5));
+
+            set1.setGradientColors(gradientColors);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
@@ -298,5 +317,6 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     @Override
-    public void onNothingSelected() { }
+    public void onNothingSelected() {
+    }
 }

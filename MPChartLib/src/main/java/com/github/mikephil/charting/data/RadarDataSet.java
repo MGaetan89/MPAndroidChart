@@ -118,15 +118,24 @@ public class RadarDataSet extends LineRadarDataSet<RadarEntry> implements IRadar
     @NonNull
     @Override
     public DataSet<RadarEntry> copy() {
-        List<RadarEntry> yValues = new ArrayList<>();
+        List<RadarEntry> entries = new ArrayList<>();
         for (int i = 0; i < mValues.size(); i++) {
-            yValues.add(mValues.get(i).copy());
+            entries.add(mValues.get(i).copy());
         }
 
-        RadarDataSet copied = new RadarDataSet(yValues, getLabel());
-        copied.mColors = mColors;
-        copied.mHighLightColor = mHighLightColor;
-
+        RadarDataSet copied = new RadarDataSet(entries, getLabel());
+        copy(copied);
         return copied;
+    }
+
+    protected void copy(RadarDataSet radarDataSet) {
+        super.copy(radarDataSet);
+
+        radarDataSet.mDrawHighlightCircleEnabled = mDrawHighlightCircleEnabled;
+        radarDataSet.mHighlightCircleFillColor = mHighlightCircleFillColor;
+        radarDataSet.mHighlightCircleInnerRadius = mHighlightCircleInnerRadius;
+        radarDataSet.mHighlightCircleStrokeAlpha = mHighlightCircleStrokeAlpha;
+        radarDataSet.mHighlightCircleStrokeColor = mHighlightCircleStrokeColor;
+        radarDataSet.mHighlightCircleStrokeWidth = mHighlightCircleStrokeWidth;
     }
 }

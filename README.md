@@ -1,15 +1,15 @@
+**Remember: _It's all about the looks._**
+
+![MPAndroidChart](https://raw.github.com/MGaetan89/MPChart/master/design/feature_graphic_smaller.png)
+
 [![Build Status](https://travis-ci.org/MGaetan89/MPAndroidChart.svg?branch=master)](https://travis-ci.org/MGaetan89/MPAndroidChart)
 [![codecov](https://codecov.io/gh/MGaetan89/MPAndroidChart/branch/master/graph/badge.svg)](https://codecov.io/gh/MGaetan89/MPAndroidChart)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Release](https://img.shields.io/github/release/PhilJay/MPAndroidChart.svg?style=flat)](https://jitpack.io/#PhilJay/MPAndroidChart)
 
-Remember: *It's all about the looks.*
+:zap: A powerful & easy to use chart library for Android :zap:
 
-![MPAndroidChart](https://raw.github.com/PhilJay/MPChart/master/design/feature_graphic.png)
-
-MPAndroidChart :zap: is a powerful & easy to use chart library for Android. It runs on [API level 14](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels) and upwards.
-
-As an additional feature, this library allows cross-platform development between Android and iOS, as an iOS version of this library is also available: [Charts](https://github.com/danielgindi/Charts) :zap:
+[**Charts**](https://github.com/danielgindi/Charts) is the iOS version of this library
 
 ## Original Project
 
@@ -17,9 +17,9 @@ This project is built on top of the popular [MPAndroidChart](https://github.com/
 
 ### Demo
 
-For a brief overview of the most important features, please download the **PlayStore Demo** [**MPAndroidChart Example**](https://play.google.com/store/apps/details?id=com.xxmassdeveloper.mpchartexample) and try it out. The corresponding code for the demo-application is also included in this repository, inside the [MPChartExample](https://github.com/MGaetan89/MPAndroidChart/tree/master/MPChartExample) folder.
+Download the [MPAndroidChart Example App](https://play.google.com/store/apps/details?id=com.xxmassdeveloper.mpchartexample) or look at the [source code](https://github.com/PhilJay/MPAndroidChart/tree/master/MPChartExample).
 
-[![ScreenShot](https://github.com/MGaetan89/MPAndroidChart/blob/master/design/video_thumbnail.png)](https://www.youtube.com/watch?v=ufaK_Hd6BpI)
+[![ScreenShot](https://github.com/PhilJay/MPAndroidChart/blob/master/design/video_thumbnail.png)](https://www.youtube.com/watch?v=ufaK_Hd6BpI)
 
 ## Goals of this fork
 
@@ -58,9 +58,9 @@ dependencies {
 
 ## Documentation
 
-For a **detailed documentation** :notebook_with_decorative_cover:, please have a look at the [Wiki](https://github.com/PhilJay/MPAndroidChart/wiki) or the [javadocs](https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.0.3/javadoc/).
+See the [**documentation**](https://github.com/PhilJay/MPAndroidChart/wiki) for examples and general use of MPAndroidChart.
 
-Furthermore, you can also rely on the [MPChartExample](https://github.com/MGaetan89/MPAndroidChart/tree/master/MPChartExample) folder, and check out the example code in that project. The corresponding application to the example project is [available on the PlayStore](https://play.google.com/store/apps/details?id=com.xxmassdeveloper.mpchartexample).
+See the [**javadocs**](https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.0.3/javadoc/) for more advanced documentation.
 
 ## Chart types
 
@@ -116,8 +116,8 @@ Furthermore, you can also rely on the [MPChartExample](https://github.com/MGaeta
 
 ![alt tag](https://raw.github.com/PhilJay/MPAndroidChart/master/screenshots/radarchart.png)
 
-License
-=======
+## License
+
 Copyright 2018 Philipp Jahoda
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -132,4 +132,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-**Special thanks** to [danielgindi](https://github.com/danielgindi), [mikegr](https://github.com/mikegr), [tony](https://github.com/tonypatino-monoclesociety) and [jitpack.io](https://github.com/jitpack-io) for their contributions to this project.
+## Special Thanks
+
+These people rock!
+
+- [danielgindi](https://github.com/danielgindi) - Daniel Gindi
+- [mikegr](https://github.com/mikegr) - Michael Greifeneder
+- [tony](https://github.com/tonypatino-monoclesociety) - Tony
+- [almic](https://github.com/almic) - Mick A.
+- [jitpack.io](https://github.com/jitpack-io) - JitPack.io

@@ -20,14 +20,13 @@ import java.text.DecimalFormat;
  * @author Oleksandr Tyshkovets <olexandr.tyshkovets@gmail.com>
  */
 public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter {
-    private static final int MAX_LENGTH = 5;
-
     @NonNull
     private final DecimalFormat mFormat;
+    private int mMaxLength = 5;
     @NonNull
     private String mText = "";
     @NonNull
-    private String[] mSuffix = {};
+    private String[] mSuffix = {"", "k", "m", "b", "t"};
 
     public LargeValueFormatter() {
         this(null);
@@ -84,6 +83,10 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
         }
     }
 
+    public void setMaxLength(int maxLength) {
+        this.mMaxLength = maxLength;
+    }
+
     /**
      * Formats each number properly. Special thanks to Roman Gromov
      * (https://github.com/romangromov) for this piece of code.
@@ -98,7 +101,7 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
 
         formattedNumber = formattedNumber.replaceAll("E[0-9][0-9]", mSuffix[combined / 3]);
 
-        while (formattedNumber.length() > MAX_LENGTH || formattedNumber.matches("[0-9]+\\.[a-z]")) {
+        while (formattedNumber.length() > mMaxLength || formattedNumber.matches("[0-9]+\\.[a-z]")) {
             formattedNumber = formattedNumber.substring(0, formattedNumber.length() - 2) + formattedNumber.substring(formattedNumber.length() - 1);
         }
 

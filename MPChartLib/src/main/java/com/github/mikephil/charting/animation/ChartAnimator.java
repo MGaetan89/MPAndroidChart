@@ -38,6 +38,24 @@ public class ChartAnimator {
         mListener = listener;
     }
 
+    private ObjectAnimator xAnimator(int duration, @Nullable TimeInterpolator easing) {
+        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
+        animatorX.setDuration(duration);
+        if (easing != null) {
+            animatorX.setInterpolator(easing);
+        }
+        return animatorX;
+    }
+
+    private ObjectAnimator yAnimator(int duration, @Nullable TimeInterpolator easing) {
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
+        animatorY.setDuration(duration);
+        if (easing != null) {
+            animatorY.setInterpolator(easing);
+        }
+        return animatorY;
+    }
+
     /**
      * Animates the drawing/rendering of the chart on both x- and y-axis with the specified
      * animation time. If animate(...) is called, no further calling of invalidate() is necessary to
@@ -49,29 +67,20 @@ public class ChartAnimator {
      * @param easingY
      */
     public void animateXY(int durationMillisX, int durationMillisY, @Nullable TimeInterpolator easingX, @Nullable TimeInterpolator easingY) {
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setDuration(durationMillisY);
-        if (easingY != null) {
-            animatorY.setInterpolator(easingY);
-        }
-
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setDuration(durationMillisX);
-        if (easingX != null) {
-            animatorX.setInterpolator(easingX);
-        }
+        ObjectAnimator xAnimator = this.xAnimator(durationMillisX, easingX);
+        ObjectAnimator yAnimator = this.yAnimator(durationMillisY, easingY);
 
         // Make sure only one animator produces update-callbacks (which then call invalidate())
         if (mListener != null) {
             if (durationMillisX > durationMillisY) {
-                animatorX.addUpdateListener(mListener);
+                xAnimator.addUpdateListener(mListener);
             } else {
-                animatorY.addUpdateListener(mListener);
+                yAnimator.addUpdateListener(mListener);
             }
         }
 
-        animatorX.start();
-        animatorY.start();
+        xAnimator.start();
+        yAnimator.start();
     }
 
     /**
@@ -82,15 +91,11 @@ public class ChartAnimator {
      * @param easing
      */
     public void animateX(int durationMillis, @Nullable TimeInterpolator easing) {
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(this, "phaseX", 0f, 1f);
-        animatorX.setDuration(durationMillis);
-        if (easing != null) {
-            animatorX.setInterpolator(easing);
-        }
+        ObjectAnimator xAnimator = this.xAnimator(durationMillis, easing);
         if (mListener != null) {
-            animatorX.addUpdateListener(mListener);
+            xAnimator.addUpdateListener(mListener);
         }
-        animatorX.start();
+        xAnimator.start();
     }
 
     /**
@@ -101,15 +106,11 @@ public class ChartAnimator {
      * @param easing
      */
     public void animateY(int durationMillis, @Nullable TimeInterpolator easing) {
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
-        animatorY.setDuration(durationMillis);
-        if (easing != null) {
-            animatorY.setInterpolator(easing);
-        }
+        ObjectAnimator yAnimator = this.yAnimator(durationMillis, easing);
         if (mListener != null) {
-            animatorY.addUpdateListener(mListener);
+            yAnimator.addUpdateListener(mListener);
         }
-        animatorY.start();
+        yAnimator.start();
     }
 
     /**

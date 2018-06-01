@@ -90,16 +90,18 @@ public class LineChartRenderer extends LineRadarRenderer {
         int width = (int) mViewPortHandler.getChartWidth();
         int height = (int) mViewPortHandler.getChartHeight();
 
-        if (mDrawBitmap == null || (mDrawBitmap.get().getWidth() != width) || (mDrawBitmap.get().getHeight() != height)) {
+        Bitmap drawBitmap = mDrawBitmap == null ? null : mDrawBitmap.get();
+        if (drawBitmap == null || drawBitmap.getWidth() != width || drawBitmap.getHeight() != height) {
             if (width > 0 && height > 0) {
-                mDrawBitmap = new WeakReference<>(Bitmap.createBitmap(width, height, mBitmapConfig));
-                mBitmapCanvas = new Canvas(mDrawBitmap.get());
+                drawBitmap = Bitmap.createBitmap(width, height, mBitmapConfig);
+                mDrawBitmap = new WeakReference<>(drawBitmap);
+                mBitmapCanvas = new Canvas(drawBitmap);
             } else {
                 return;
             }
         }
 
-        mDrawBitmap.get().eraseColor(Color.TRANSPARENT);
+        drawBitmap.eraseColor(Color.TRANSPARENT);
 
         LineData lineData = mChart.getLineData();
         if (lineData != null) {
@@ -110,7 +112,7 @@ public class LineChartRenderer extends LineRadarRenderer {
             }
         }
 
-        canvas.drawBitmap(mDrawBitmap.get(), 0, 0, mRenderPaint);
+        canvas.drawBitmap(drawBitmap, 0, 0, mRenderPaint);
     }
 
     protected void drawDataSet(Canvas canvas, @NonNull ILineDataSet dataSet) {
@@ -703,7 +705,10 @@ public class LineChartRenderer extends LineRadarRenderer {
         }
 
         if (mDrawBitmap != null) {
-            mDrawBitmap.get().recycle();
+            Bitmap drawBitmap = mDrawBitmap.get();
+            if (drawBitmap != null) {
+                drawBitmap.recycle();
+            }
             mDrawBitmap.clear();
             mDrawBitmap = null;
         }

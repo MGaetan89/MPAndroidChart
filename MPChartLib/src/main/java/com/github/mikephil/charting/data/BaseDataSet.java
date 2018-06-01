@@ -13,6 +13,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
+import com.github.mikephil.charting.model.GradientColor;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
@@ -34,6 +35,10 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     @ColorInt
     @NonNull
     protected List<Integer> mColors = Collections.emptyList();
+
+    protected GradientColor mGradientColor = null;
+
+    protected List<GradientColor> mGradientColors = null;
 
     /**
      * List representing all colors that are used for drawing the actual values for this DataSet.
@@ -159,6 +164,21 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         return mColors.get(index % mColors.size());
     }
 
+    @Override
+    public GradientColor getGradientColor() {
+        return mGradientColor;
+    }
+
+    @Override
+    public List<GradientColor> getGradientColors() {
+        return mGradientColors;
+    }
+
+    @Override
+    public GradientColor getGradientColor(int index) {
+        return mGradientColors.get(index % mGradientColors.size());
+    }
+
     /**
      * Sets the colors that should be used fore this DataSet. Colors are reused as soon as the
      * number of Entries the DataSet represents is higher than the size of the colors array.
@@ -213,6 +233,25 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     public void setColor(@ColorInt int color) {
         mColors = new ArrayList<>();
         mColors.add(color);
+    }
+
+    /**
+     * Sets the start and end color for gradient color, ONLY color that should be used for this DataSet.
+     *
+     * @param startColor
+     * @param endColor
+     */
+    public void setGradientColor(int startColor, int endColor) {
+        mGradientColor = new GradientColor(startColor, endColor);
+    }
+
+    /**
+     * Sets the start and end color for gradient colors, ONLY color that should be used for this DataSet.
+     *
+     * @param gradientColors
+     */
+    public void setGradientColors(List<GradientColor> gradientColors) {
+        this.mGradientColors = gradientColors;
     }
 
     /**
@@ -471,5 +510,24 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         }
 
         return false;
+    }
+
+    protected void copy(BaseDataSet baseDataSet) {
+        baseDataSet.mAxisDependency = mAxisDependency;
+        baseDataSet.mColors = mColors;
+        baseDataSet.mDrawIcons = mDrawIcons;
+        baseDataSet.mDrawValues = mDrawValues;
+        baseDataSet.mForm = mForm;
+        baseDataSet.mFormLineDashEffect = mFormLineDashEffect;
+        baseDataSet.mFormLineWidth = mFormLineWidth;
+        baseDataSet.mFormSize = mFormSize;
+        baseDataSet.mGradientColor = mGradientColor;
+        baseDataSet.mGradientColors = mGradientColors;
+        baseDataSet.mHighlightEnabled = mHighlightEnabled;
+        baseDataSet.mIconsOffset = mIconsOffset;
+        baseDataSet.mValueColors = mValueColors;
+        baseDataSet.mValueFormatter = mValueFormatter;
+        baseDataSet.mValueTextSize = mValueTextSize;
+        baseDataSet.mVisible = mVisible;
     }
 }

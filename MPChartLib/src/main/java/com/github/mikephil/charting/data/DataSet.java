@@ -146,6 +146,13 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      */
     public abstract DataSet<T> copy();
 
+    /**
+     * @param dataSet
+     */
+    protected void copy(DataSet dataSet) {
+        super.copy(dataSet);
+    }
+
     @NonNull
     @Override
     public String toString() {

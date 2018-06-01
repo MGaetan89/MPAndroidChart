@@ -12,7 +12,9 @@ import java.util.List;
  *
  * @author Philipp Jahoda
  */
-public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry> extends DataSet<T> implements IBarLineScatterCandleBubbleDataSet<T> {
+public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry>
+        extends DataSet<T>
+        implements IBarLineScatterCandleBubbleDataSet<T> {
     /**
      * Default highlight color.
      */
@@ -36,5 +38,11 @@ public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry> extends
     @Override
     public int getHighLightColor() {
         return mHighLightColor;
+    }
+
+    protected void copy(BarLineScatterCandleBubbleDataSet barLineScatterCandleBubbleDataSet) {
+        super.copy(barLineScatterCandleBubbleDataSet);
+
+        barLineScatterCandleBubbleDataSet.mHighLightColor = mHighLightColor;
     }
 }
