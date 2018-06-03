@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.model.GradientColor
 import com.github.mikephil.charting.utils.MPPointF
 import com.github.mikephil.charting.utils.Utils
 import com.google.common.truth.Truth.assertThat
@@ -95,6 +96,88 @@ abstract class BaseDataSetTest<E : Entry, T : BaseDataSet<E>> {
 
 		try {
 			this.dataSet.getColor(0)
+			fail("Should have failed")
+		} catch (exception: ArithmeticException) {
+			assertThat(exception).hasMessageThat()
+				.isEqualTo("/ by zero")
+		}
+	}
+
+	@Test
+	fun setGradientColors() {
+		assertThat(this.dataSet.gradientColor).isNull()
+		assertThat(this.dataSet.gradientColors).isEmpty()
+
+		try {
+			this.dataSet.getGradientColor(-1)
+			fail("Should have failed")
+		} catch (exception: ArithmeticException) {
+			assertThat(exception).hasMessageThat()
+				.isEqualTo("/ by zero")
+		}
+
+		try {
+			this.dataSet.getGradientColor(0)
+			fail("Should have failed")
+		} catch (exception: ArithmeticException) {
+			assertThat(exception).hasMessageThat()
+				.isEqualTo("/ by zero")
+		}
+
+        this.dataSet.setGradientColor(Color.RED, Color.GREEN)
+        assertThat(this.dataSet.gradientColor).isEqualTo(GradientColor(Color.RED, Color.GREEN))
+        assertThat(this.dataSet.gradientColors).isEmpty()
+
+        try {
+            this.dataSet.getGradientColor(-1)
+            fail("Should have failed")
+        } catch (exception: ArithmeticException) {
+            assertThat(exception).hasMessageThat()
+                .isEqualTo("/ by zero")
+        }
+
+        try {
+            this.dataSet.getGradientColor(0)
+            fail("Should have failed")
+        } catch (exception: ArithmeticException) {
+            assertThat(exception).hasMessageThat()
+                .isEqualTo("/ by zero")
+        }
+
+        val gradientColors = listOf(
+            GradientColor(Color.RED, Color.GREEN),
+            GradientColor(Color.GREEN, Color.BLUE),
+            GradientColor(Color.BLUE, Color.YELLOW)
+        )
+        this.dataSet.gradientColors = gradientColors
+        assertThat(this.dataSet.gradientColor).isEqualTo(GradientColor(Color.RED, Color.GREEN))
+        assertThat(this.dataSet.gradientColors).containsExactlyElementsIn(gradientColors).inOrder()
+
+        try {
+            this.dataSet.getGradientColor(-1)
+            fail("Should have failed")
+        } catch (_: ArrayIndexOutOfBoundsException) {
+        }
+
+        assertThat(this.dataSet.getGradientColor(0)).isEqualTo(gradientColors[0])
+        assertThat(this.dataSet.getGradientColor(1)).isEqualTo(gradientColors[1])
+        assertThat(this.dataSet.getGradientColor(2)).isEqualTo(gradientColors[2])
+        assertThat(this.dataSet.getGradientColor(3)).isEqualTo(gradientColors[0])
+
+		this.dataSet.gradientColors = emptyList()
+		assertThat(this.dataSet.gradientColor).isEqualTo(GradientColor(Color.RED, Color.GREEN))
+		assertThat(this.dataSet.gradientColors).isEmpty()
+
+		try {
+			this.dataSet.getGradientColor(-1)
+			fail("Should have failed")
+		} catch (exception: ArithmeticException) {
+			assertThat(exception).hasMessageThat()
+				.isEqualTo("/ by zero")
+		}
+
+		try {
+			this.dataSet.getGradientColor(0)
 			fail("Should have failed")
 		} catch (exception: ArithmeticException) {
 			assertThat(exception).hasMessageThat()

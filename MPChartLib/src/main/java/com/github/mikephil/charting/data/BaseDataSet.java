@@ -39,7 +39,8 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
     protected GradientColor mGradientColor = null;
 
-    protected List<GradientColor> mGradientColors = null;
+    @NonNull
+    protected List<GradientColor> mGradientColors = Collections.emptyList();
 
     /**
      * List representing all colors that are used for drawing the actual values for this DataSet.
@@ -116,6 +117,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      */
     public BaseDataSet() {
         mColors = new ArrayList<>();
+        mGradientColors = new ArrayList<>();
         mValueColors = new ArrayList<>();
 
         // Default color
@@ -170,6 +172,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         return mGradientColor;
     }
 
+    @NonNull
     @Override
     public List<GradientColor> getGradientColors() {
         return mGradientColors;
@@ -242,7 +245,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * @param startColor
      * @param endColor
      */
-    public void setGradientColor(int startColor, int endColor) {
+    public void setGradientColor(@ColorInt int startColor, @ColorInt int endColor) {
         mGradientColor = new GradientColor(startColor, endColor);
     }
 
