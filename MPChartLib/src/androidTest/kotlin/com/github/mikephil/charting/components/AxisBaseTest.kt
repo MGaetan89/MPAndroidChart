@@ -238,6 +238,17 @@ abstract class AxisBaseTest<T : AxisBase> : ComponentBaseTest<T>() {
 	}
 
 	@Test
+	fun setDrawGridLinesBehindData() {
+		assertThat(this.component.isDrawGridLinesBehindDataEnabled).isTrue()
+
+		this.component.setDrawGridLinesBehindData(false)
+		assertThat(this.component.isDrawGridLinesBehindDataEnabled).isFalse()
+
+		this.component.setDrawGridLinesBehindData(true)
+		assertThat(this.component.isDrawGridLinesBehindDataEnabled).isTrue()
+	}
+
+	@Test
 	fun getLongestLabel() {
 		assertThat(this.component.longestLabel).isEmpty()
 

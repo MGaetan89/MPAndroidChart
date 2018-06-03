@@ -247,6 +247,7 @@ public interface IDataSet<T extends Entry> {
     /**
      * Returns the Gradient colors.
      */
+    @NonNull
     List<GradientColor> getGradientColors();
 
     /**
