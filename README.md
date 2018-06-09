@@ -1,5 +1,3 @@
-**Remember: _It's all about the looks._**
-
 ![MPAndroidChart](https://raw.github.com/MGaetan89/MPAndroidChart/master/design/feature_graphic_smaller.png)
 
 [![Build Status](https://travis-ci.org/MGaetan89/MPAndroidChart.svg?branch=master)](https://travis-ci.org/MGaetan89/MPAndroidChart)
