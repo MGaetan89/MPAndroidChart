@@ -50,13 +50,13 @@ tasks.withType(Test) {
 dependencies {
 	implementation 'com.android.support:support-annotations:27.1.1'
 
-	testImplementation 'com.google.truth:truth:0.41'
+	testImplementation 'com.google.truth:truth:0.40'
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.50'
 
 	androidTestImplementation 'com.android.support.test:rules:1.0.2'
 	androidTestImplementation 'com.android.support.test:runner:1.0.2'
-	androidTestImplementation 'com.google.truth:truth:0.41'
+	androidTestImplementation 'com.google.truth:truth:0.40'
 	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.50'
 }
 
