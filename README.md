@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/MGaetan89/MPAndroidChart.svg?branch=master)](https://travis-ci.org/MGaetan89/MPAndroidChart)
 [![codecov](https://codecov.io/gh/MGaetan89/MPAndroidChart/branch/master/graph/badge.svg)](https://codecov.io/gh/MGaetan89/MPAndroidChart)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
-[![Release](https://img.shields.io/github/release/PhilJay/MPAndroidChart.svg?style=flat)](https://jitpack.io/#PhilJay/MPAndroidChart)
+[![Release](https://img.shields.io/github/release/MGaetan89/MPAndroidChart.svg?style=flat)](https://jitpack.io/#MGaetan89/MPAndroidChart)
 
 :zap: A powerful & easy to use chart library for Android :zap:
 
@@ -50,7 +50,7 @@ In your module `build.gradle` file, add the following dependency:
 
 ```gradle
 dependencies {
-	implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+	implementation 'com.github.MGaetan89:MPAndroidChart:v3.0.3'
 }
 ```
 
@@ -58,7 +58,7 @@ dependencies {
 
 See the [**documentation**](https://github.com/PhilJay/MPAndroidChart/wiki) for examples and general use of MPAndroidChart.
 
-See the [**javadocs**](https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.0.3/javadoc/) for more advanced documentation.
+See the [**javadocs**](https://jitpack.io/com/github/MGaetan89/MPAndroidChart/v3.0.3/javadoc/) for more advanced documentation.
 
 ## Chart types
 
