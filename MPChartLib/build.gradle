@@ -1,7 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.MGaetan89'
 
 android {
 	compileSdkVersion 27
@@ -10,8 +12,8 @@ android {
 	defaultConfig {
 		minSdkVersion 14
 		targetSdkVersion 27
-		versionCode 3
-		versionName '3.0.3'
+		versionCode 4
+		versionName '3.1.0-beta1'
 
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 	}
@@ -60,14 +62,6 @@ dependencies {
 	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.50'
 }
 
-android.libraryVariants.all { variant ->
-	def name = variant.buildType.name
-	def task = project.tasks.create "jar${name.capitalize()}", Jar
-	task.dependsOn variant.javaCompiler
-	task.from variant.javaCompiler.destinationDir
-	artifacts.add('archives', task)
-}
-
 task sourcesJar(type: Jar) {
 	from android.sourceSets.main.java.srcDirs
 	classifier = 'sources'
@@ -78,6 +72,7 @@ task javadoc(type: Javadoc) {
 	failOnError false
 	source = android.sourceSets.main.java.sourceFiles
 	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
