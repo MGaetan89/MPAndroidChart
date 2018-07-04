@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
@@ -170,19 +171,18 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 mRenderPaint.setColor(dataSet.getColor(i / 4));
             }
 
-            if (dataSet.getGradientColor() != null) {
-                GradientColor gradientColor = dataSet.getGradientColor();
-                mRenderPaint.setShader(new LinearGradient(
-                        buffer.buffer[i], buffer.buffer[i + 3], buffer.buffer[i], buffer.buffer[i + 1],
-                        gradientColor.getStartColor(), gradientColor.getEndColor(), android.graphics.Shader.TileMode.MIRROR
-                ));
+            GradientColor gradientColor = dataSet.getGradientColor();
+            if (gradientColor == null) {
+                List<GradientColor> gradientColors = dataSet.getGradientColors();
+                if (gradientColors != null && !gradientColors.isEmpty()) {
+                    gradientColor = dataSet.getGradientColor(i / 4);
+                }
             }
 
-            if (dataSet.getGradientColors() != null) {
-                GradientColor gradientColor = dataSet.getGradientColor(i / 4);
+            if (gradientColor != null) {
                 mRenderPaint.setShader(new LinearGradient(
                         buffer.buffer[i], buffer.buffer[i + 3], buffer.buffer[i], buffer.buffer[i + 1],
-                        gradientColor.getStartColor(), gradientColor.getEndColor(), android.graphics.Shader.TileMode.MIRROR
+                        gradientColor.getStartColor(), gradientColor.getEndColor(), Shader.TileMode.MIRROR
                 ));
             }
 
