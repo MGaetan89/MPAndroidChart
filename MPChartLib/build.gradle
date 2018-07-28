@@ -3,7 +3,7 @@ apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.MGaetan89'
+group = 'com.github.MGaetan89'
 
 android {
     compileSdkVersion 28
@@ -52,14 +52,14 @@ tasks.withType(Test) {
 dependencies {
     implementation 'androidx.annotation:annotation:1.0.0'
 
-	testImplementation 'com.google.truth:truth:0.40'
+	testImplementation 'com.google.truth:truth:0.42'
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.50'
+	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.51'
 
 	androidTestImplementation 'com.android.support.test:rules:1.0.2'
 	androidTestImplementation 'com.android.support.test:runner:1.0.2'
-	androidTestImplementation 'com.google.truth:truth:0.40'
-	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.50'
+	androidTestImplementation 'com.google.truth:truth:0.42'
+	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.51'
 }
 
 task sourcesJar(type: Jar) {
