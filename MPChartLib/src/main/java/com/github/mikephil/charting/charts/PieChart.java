@@ -140,7 +140,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     public void calculateOffsets() {
         super.calculateOffsets();
 
-        if (mData == null) {
+        if (mData == null || mData.getDataSet() == null) {
             return;
         }
 

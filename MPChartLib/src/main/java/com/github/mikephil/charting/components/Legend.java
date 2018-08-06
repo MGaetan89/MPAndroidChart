@@ -749,8 +749,8 @@ public class Legend extends ComponentBase {
                 }
 
                 mNeededWidth = maxLineWidth;
-                mNeededHeight = labelLineHeight * (float) (mCalculatedLineSizes.size()) + labelLineSpacing
-                        * (float) (mCalculatedLineSizes.size() == 0 ? 0 : (mCalculatedLineSizes.size() - 1));
+                mNeededHeight = labelLineHeight * (float) mCalculatedLineSizes.size()
+                        + labelLineSpacing * (float) (mCalculatedLineSizes.isEmpty() ? 0 : (mCalculatedLineSizes.size() - 1));
 
                 break;
             }

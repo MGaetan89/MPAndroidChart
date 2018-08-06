@@ -42,9 +42,7 @@ class LargeValueFormatterTest {
 
 		assertThat(formatter.decimalDigits).isEqualTo(0)
 
-		assertThat(
-			formatter.getFormattedValue(-1000000000000000f, null, 0, null)
-		).isEqualTo("-1q USD")
+		assertThat(formatter.getFormattedValue(-1000000000000000f, null, 0, null)).isEqualTo("-1q USD")
 		assertThat(formatter.getFormattedValue(-1000000000000f, null, 0, null)).isEqualTo("-1t USD")
 		assertThat(formatter.getFormattedValue(-1000000000f, null, 0, null)).isEqualTo("-1b USD")
 		assertThat(formatter.getFormattedValue(-1234567.89f, null, 0, null)).isEqualTo("-1.2m USD")
