@@ -17,6 +17,8 @@ class GradientColorTest {
         assertThat(gradientColor.equals("")).isFalse()
         assertThat(gradientColor.equals(GradientColor(Color.GREEN, Color.RED))).isFalse()
         assertThat(gradientColor.equals(GradientColor(Color.RED, Color.GREEN))).isTrue()
+        assertThat(gradientColor.equals(GradientColor(Color.RED, Color.YELLOW))).isFalse()
+        assertThat(gradientColor.equals(GradientColor(Color.BLUE, Color.YELLOW))).isFalse()
 
         gradientColor.startColor = Color.GREEN
         gradientColor.endColor = Color.RED
@@ -28,5 +30,7 @@ class GradientColorTest {
         assertThat(gradientColor.equals("")).isFalse()
         assertThat(gradientColor.equals(GradientColor(Color.RED, Color.GREEN))).isFalse()
         assertThat(gradientColor.equals(GradientColor(Color.GREEN, Color.RED))).isTrue()
+        assertThat(gradientColor.equals(GradientColor(Color.GREEN, Color.YELLOW))).isFalse()
+        assertThat(gradientColor.equals(GradientColor(Color.BLUE, Color.YELLOW))).isFalse()
     }
 }

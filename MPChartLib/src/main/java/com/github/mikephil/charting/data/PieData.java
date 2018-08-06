@@ -95,11 +95,9 @@ public class PieData extends ChartData<IPieDataSet> {
         }
 
         float sum = 0f;
-        for (int i = 0; i < dataSet.getEntryCount(); i++) {
-            PieEntry entry = dataSet.getEntryForIndex(i);
-            if (entry != null) {
-                sum += entry.getY();
-            }
+        for (int i = 0, count = dataSet.getEntryCount(); i < count; i++) {
+            //noinspection ConstantConditions
+            sum += dataSet.getEntryForIndex(i).getY();
         }
 
         return sum;

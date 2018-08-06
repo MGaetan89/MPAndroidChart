@@ -58,7 +58,7 @@ public class HorizontalBarHighlighter extends BarHighlighter {
     protected List<Highlight> buildHighlights(@NonNull IDataSet set, int dataSetIndex, float xVal, @NonNull DataSet.Rounding rounding) {
         ArrayList<Highlight> highlights = new ArrayList<>();
         List<Entry> entries = set.getEntriesForXValue(xVal);
-        if (entries.size() == 0) {
+        if (entries.isEmpty()) {
             // Try to find closest x-value and take all entries for that x-value
             final Entry closest = set.getEntryForXValue(xVal, Float.NaN, rounding);
             if (closest != null) {
@@ -66,7 +66,7 @@ public class HorizontalBarHighlighter extends BarHighlighter {
             }
         }
 
-        if (entries.size() == 0) {
+        if (entries.isEmpty()) {
             return highlights;
         }
 

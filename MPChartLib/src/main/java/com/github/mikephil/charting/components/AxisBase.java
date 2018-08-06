@@ -438,7 +438,7 @@ public abstract class AxisBase extends ComponentBase {
         String longest = "";
         for (int i = 0; i < mEntries.length; i++) {
             String text = getFormattedLabel(i);
-            if (text != null && longest.length() < text.length()) {
+            if (longest.length() < text.length()) {
                 longest = text;
             }
         }
