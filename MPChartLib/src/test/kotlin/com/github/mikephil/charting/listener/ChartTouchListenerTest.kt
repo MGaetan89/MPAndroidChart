@@ -87,7 +87,12 @@ abstract class ChartTouchListenerTest<C : Chart<*>, L : ChartTouchListener<C>> {
         this.chart.setOnChartValueSelectedListener(selectionListener)
 
         this.listener.performHighlight(highlight, event)
+        verify(this.chart).highlightValue(highlight, true)
+        verify(selectionListener).onNothingSelected()
+        assertThat(this.listener.mLastHighlighted).isEqualTo(highlight)
+
         this.listener.performHighlight(highlight, event)
+        verify(this.chart).highlightValue(null, true)
         verify(selectionListener, Times(2)).onNothingSelected()
         assertThat(this.listener.mLastHighlighted).isNull()
     }
@@ -100,6 +105,7 @@ abstract class ChartTouchListenerTest<C : Chart<*>, L : ChartTouchListener<C>> {
         this.chart.setOnChartValueSelectedListener(selectionListener)
 
         this.listener.performHighlight(null, event)
+        verify(this.chart).highlightValue(null, true)
         verify(selectionListener, Only()).onNothingSelected()
         assertThat(this.listener.mLastHighlighted).isNull()
     }
@@ -113,6 +119,7 @@ abstract class ChartTouchListenerTest<C : Chart<*>, L : ChartTouchListener<C>> {
         this.chart.setOnChartValueSelectedListener(selectionListener)
 
         this.listener.performHighlight(highlight, event)
+        verify(this.chart).highlightValue(highlight, true)
         verify(selectionListener, Only()).onNothingSelected()
         assertThat(this.listener.mLastHighlighted).isEqualTo(highlight)
     }
