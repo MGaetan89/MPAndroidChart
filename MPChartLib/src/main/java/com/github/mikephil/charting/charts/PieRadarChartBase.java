@@ -266,7 +266,6 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
             angle = angle - 360f;
         }
 
-
         return angle;
     }
 

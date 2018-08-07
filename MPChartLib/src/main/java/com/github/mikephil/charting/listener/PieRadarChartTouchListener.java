@@ -225,6 +225,10 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
         mStartAngle = mChart.getAngleForPoint(x, y) - mChart.getRawRotationAngle();
     }
 
+    float getGestureStartAngle() {
+        return mStartAngle;
+    }
+
     /**
      * Updates the view rotation depending on the given touch position, also takes the starting
      * angle into consideration.
@@ -244,8 +248,9 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
     }
 
     public void computeScroll() {
-        if (mDecelerationAngularVelocity == 0f)
+        if (mDecelerationAngularVelocity == 0f) {
             return; // There's no deceleration in progress
+        }
 
         final long currentTime = AnimationUtils.currentAnimationTimeMillis();
 
