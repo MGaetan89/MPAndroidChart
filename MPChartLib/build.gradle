@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.sonarqube'
 
 group = 'com.github.MGaetan89'
 
@@ -40,6 +41,14 @@ android {
 
 	testOptions {
 		unitTests.returnDefaultValues = true // this prevents "not mocked" error
+	}
+}
+
+sonarqube {
+	properties {
+		property('sonar.projectKey', 'com.github.mikephil.charting')
+		property('sonar.projectName', 'MPAndroidChart')
+		property('sonar.projectVersion', android.defaultConfig.versionName)
 	}
 }
 
