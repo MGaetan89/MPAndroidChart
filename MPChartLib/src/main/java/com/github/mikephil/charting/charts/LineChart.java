@@ -42,7 +42,7 @@ public class LineChart extends BarLineChartBase<LineData> implements LineDataPro
     @Override
     protected void onDetachedFromWindow() {
         // Releases the bitmap in the renderer to avoid oom error
-        if (mRenderer != null && mRenderer instanceof LineChartRenderer) {
+        if (mRenderer instanceof LineChartRenderer) {
             ((LineChartRenderer) mRenderer).releaseBitmap();
         }
 

@@ -95,18 +95,22 @@ public class AnimatedZoomJob extends AnimatedViewPortJob implements Animator.Ani
 
     @Override
     public void onAnimationCancel(Animator animation) {
+        // Unused
     }
 
     @Override
     public void onAnimationRepeat(Animator animation) {
+        // Unused
     }
 
     @Override
     public void recycleSelf() {
+        // Unused
     }
 
     @Override
     public void onAnimationStart(Animator animation) {
+        // Unused
     }
 
     @NonNull

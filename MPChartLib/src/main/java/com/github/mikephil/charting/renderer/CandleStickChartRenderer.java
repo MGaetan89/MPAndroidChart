@@ -37,6 +37,7 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
     @Override
     public void initBuffers() {
+        // Unused
     }
 
     @Override
@@ -290,6 +291,7 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
     @Override
     public void drawExtras(Canvas canvas) {
+        // Unused
     }
 
     @Override

@@ -87,12 +87,6 @@ public class ViewPortHandler {
     private float mTransOffsetY = 0f;
 
     /**
-     * Constructor - don't forget calling setChartDimens(...)
-     */
-    public ViewPortHandler() {
-    }
-
-    /**
      * Sets the width and height of the chart.
      *
      * @param width

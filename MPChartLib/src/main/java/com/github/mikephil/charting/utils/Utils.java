@@ -26,15 +26,15 @@ import com.github.mikephil.charting.formatter.IValueFormatter;
  * @author Philipp Jahoda
  */
 public final class Utils {
-    public final static double DEG2RAD = Math.PI / 180.0;
-    public final static float FDEG2RAD = (float) Math.PI / 180f;
-    public final static float FLOAT_EPSILON = Float.intBitsToFloat(1);
+    public static final double DEG2RAD = Math.PI / 180.0;
+    public static final float FDEG2RAD = (float) Math.PI / 180f;
+    public static final float FLOAT_EPSILON = Float.intBitsToFloat(1);
 
     /**
      * Math.pow(...) is very expensive, so avoid calling it and create it yourself.
      */
     @NonNull
-    private static final int POW_10[] = {
+    private static final int[] POW_10 = {
             1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000
     };
 
@@ -392,8 +392,8 @@ public final class Utils {
 
     public static void drawImage(@NonNull Canvas canvas, @NonNull Drawable drawable, int x, int y, int width, int height) {
         MPPointF drawOffset = MPPointF.getInstance();
-        drawOffset.x = x - (width / 2);
-        drawOffset.y = y - (height / 2);
+        drawOffset.x = x - (width / 2f);
+        drawOffset.y = y - (height / 2f);
 
         drawable.copyBounds(mDrawableBoundsCache);
         drawable.setBounds(

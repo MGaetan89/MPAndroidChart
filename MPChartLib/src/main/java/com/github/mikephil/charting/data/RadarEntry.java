@@ -26,6 +26,7 @@ public class RadarEntry extends Entry {
     }
 
     @NonNull
+    @Override
     public RadarEntry copy() {
         return new RadarEntry(getY(), getData());
     }

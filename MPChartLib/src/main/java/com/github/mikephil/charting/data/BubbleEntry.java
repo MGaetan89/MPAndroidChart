@@ -70,6 +70,7 @@ public class BubbleEntry extends Entry {
     }
 
     @NonNull
+    @Override
     public BubbleEntry copy() {
         return new BubbleEntry(getX(), getY(), mSize, getData());
     }

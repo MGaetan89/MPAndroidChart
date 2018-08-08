@@ -51,6 +51,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
@@ -1276,10 +1277,8 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
 
         File extBaseDir = Environment.getExternalStorageDirectory();
         File file = new File(extBaseDir.getAbsolutePath() + "/DCIM/" + subFolderPath);
-        if (!file.exists()) {
-            if (!file.mkdirs()) {
-                return false;
-            }
+        if (!file.exists() && !file.mkdirs()) {
+            return false;
         }
 
         String mimeType;
@@ -1372,7 +1371,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /**
      * Tasks to be done after the view is setup.
      */
-    protected ArrayList<Runnable> mJobs = new ArrayList<>();
+    protected List<Runnable> mJobs = new ArrayList<>();
 
     public void removeViewportJob(Runnable job) {
         mJobs.remove(job);
@@ -1399,7 +1398,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
     /**
      * Returns all jobs that are scheduled to be executed after onSizeChanged(...).
      */
-    public ArrayList<Runnable> getJobs() {
+    public List<Runnable> getJobs() {
         return mJobs;
     }
 

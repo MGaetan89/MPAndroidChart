@@ -79,6 +79,7 @@ public class PieEntry extends Entry {
     }
 
     @NonNull
+    @Override
     public PieEntry copy() {
         return new PieEntry(getY(), label, getData());
     }

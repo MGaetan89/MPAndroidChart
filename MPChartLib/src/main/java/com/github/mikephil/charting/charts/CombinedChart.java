@@ -245,6 +245,7 @@ public class CombinedChart extends BarLineChartBase<CombinedData> implements Com
     /**
      * Draws all MarkerViews on the highlighted positions.
      */
+    @Override
     protected void drawMarkers(@NonNull Canvas canvas) {
         // If there is no marker view or drawing marker is disabled
         if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight()) {

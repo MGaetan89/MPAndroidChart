@@ -145,6 +145,7 @@ public class MarkerImage implements IMarker {
 
     @Override
     public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
+        // Unused
     }
 
     @Override

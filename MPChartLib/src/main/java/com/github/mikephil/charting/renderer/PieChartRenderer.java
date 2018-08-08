@@ -134,6 +134,7 @@ public class PieChartRenderer extends DataRenderer {
 
     @Override
     public void initBuffers() {
+        // Unused
     }
 
     @Override

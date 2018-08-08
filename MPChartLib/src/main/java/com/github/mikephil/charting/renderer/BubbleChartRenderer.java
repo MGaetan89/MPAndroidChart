@@ -27,7 +27,7 @@ import androidx.annotation.NonNull;
 public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
     private final float[] sizeBuffer = new float[4];
     private final float[] pointBuffer = new float[2];
-    private final float[] _hsvBuffer = new float[3];
+    private final float[] hsvBuffer = new float[3];
 
     protected BubbleDataProvider mChart;
 
@@ -44,6 +44,7 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
     @Override
     public void initBuffers() {
+        // Unused
     }
 
     @Override
@@ -188,6 +189,7 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
     @Override
     public void drawExtras(Canvas canvas) {
+        // Unused
     }
 
     @Override
@@ -245,9 +247,9 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
             final int originalColor = set.getColor((int) entry.getX());
 
-            Color.RGBToHSV(Color.red(originalColor), Color.green(originalColor), Color.blue(originalColor), _hsvBuffer);
-            _hsvBuffer[2] *= 0.5f;
-            final int color = Color.HSVToColor(Color.alpha(originalColor), _hsvBuffer);
+            Color.RGBToHSV(Color.red(originalColor), Color.green(originalColor), Color.blue(originalColor), hsvBuffer);
+            hsvBuffer[2] *= 0.5f;
+            final int color = Color.HSVToColor(Color.alpha(originalColor), hsvBuffer);
 
             mHighlightPaint.setColor(color);
             mHighlightPaint.setStrokeWidth(set.getHighlightCircleWidth());
