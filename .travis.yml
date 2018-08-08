@@ -1,5 +1,9 @@
 language: android
 
+addons:
+  sonarcloud:
+    organization: "mgaetan89-github"
+
 env:
   global:
     - ADB_INSTALL_TIMEOUT=10
@@ -27,6 +31,7 @@ before_script:
 
 script:
   - ./gradlew :MPChartLib:jacocoTestReport :MPChartLib:assembleAndroidTest :MPChartLib:connectedDebugAndroidTest :MPChartLib:createDebugCoverageReport -PdisablePreDex
+  - ./gradlew sonarqube
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
