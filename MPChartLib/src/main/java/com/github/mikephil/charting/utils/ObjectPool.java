@@ -194,8 +194,8 @@ public class ObjectPool<T extends ObjectPool.Poolable> {
         return this.objectsPointer + 1;
     }
 
-    public static abstract class Poolable {
-        public static int NO_OWNER = -1;
+    public abstract static class Poolable {
+        public static final int NO_OWNER = -1;
         int currentOwnerId = NO_OWNER;
 
         protected abstract Poolable instantiate();

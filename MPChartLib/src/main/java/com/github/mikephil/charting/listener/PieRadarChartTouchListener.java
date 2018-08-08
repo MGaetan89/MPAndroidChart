@@ -28,7 +28,7 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
     private float mStartAngle = 0f;
 
     @NonNull
-    private final ArrayList<AngularVelocitySample> _velocitySamples = new ArrayList<>();
+    private final ArrayList<AngularVelocitySample> velocitySamples = new ArrayList<>();
 
     private long mDecelerationLastTime = 0L;
     private float mDecelerationAngularVelocity = 0f;
@@ -143,18 +143,18 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
     }
 
     private void resetVelocity() {
-        _velocitySamples.clear();
+        velocitySamples.clear();
     }
 
     private void sampleVelocity(float touchLocationX, float touchLocationY) {
         long currentTime = AnimationUtils.currentAnimationTimeMillis();
 
-        _velocitySamples.add(new AngularVelocitySample(currentTime, mChart.getAngleForPoint(touchLocationX, touchLocationY)));
+        velocitySamples.add(new AngularVelocitySample(currentTime, mChart.getAngleForPoint(touchLocationX, touchLocationY)));
 
         // Remove samples older than our sample time - 1 seconds
-        for (int i = 0, count = _velocitySamples.size(); i < count - 2; i++) {
-            if (currentTime - _velocitySamples.get(i).time > 1000L) {
-                _velocitySamples.remove(0);
+        for (int i = 0, count = velocitySamples.size(); i < count - 2; i++) {
+            if (currentTime - velocitySamples.get(i).time > 1000L) {
+                velocitySamples.remove(0);
                 i--;
                 count--;
             } else {
@@ -164,17 +164,17 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
     }
 
     private float calculateVelocity() {
-        if (_velocitySamples.isEmpty()) {
+        if (velocitySamples.isEmpty()) {
             return 0f;
         }
 
-        AngularVelocitySample firstSample = _velocitySamples.get(0);
-        AngularVelocitySample lastSample = _velocitySamples.get(_velocitySamples.size() - 1);
+        AngularVelocitySample firstSample = velocitySamples.get(0);
+        AngularVelocitySample lastSample = velocitySamples.get(velocitySamples.size() - 1);
 
         // Look for a sample that's closest to the latest sample, but not the same, so we can deduce the direction
         AngularVelocitySample beforeLastSample = firstSample;
-        for (int i = _velocitySamples.size() - 1; i >= 0; i--) {
-            beforeLastSample = _velocitySamples.get(i);
+        for (int i = velocitySamples.size() - 1; i >= 0; i--) {
+            beforeLastSample = velocitySamples.get(i);
             if (beforeLastSample.angle != lastSample.angle) {
                 break;
             }

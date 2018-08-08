@@ -245,7 +245,8 @@ public abstract class PieRadarChartBase<T extends ChartData<? extends IDataSet<?
     public float getAngleForPoint(float x, float y) {
         MPPointF centerOffsets = getCenterOffsets();
 
-        double tx = x - centerOffsets.x, ty = y - centerOffsets.y;
+        double tx = x - centerOffsets.x;
+        double ty = y - centerOffsets.y;
         double length = Math.sqrt(tx * tx + ty * ty);
         double r = Math.acos(ty / length);
 

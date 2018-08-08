@@ -469,5 +469,6 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
     @Override
     public void drawExtras(Canvas canvas) {
+        // Unused
     }
 }

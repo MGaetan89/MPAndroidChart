@@ -307,11 +307,12 @@ public class Transformer {
      * Transform a rectangle with all matrices with potential animation phases.
      *
      * @param rect
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>rectValueToPixel(RectF)</code> instead.
      */
+    @Deprecated
     public void rectValueToPixelHorizontal(RectF rect) {
-        mMatrixValueToPx.mapRect(rect);
-        mViewPortHandler.getMatrixTouch().mapRect(rect);
-        mMatrixOffset.mapRect(rect);
+        rectValueToPixel(rect);
     }
 
     /**
@@ -319,15 +320,12 @@ public class Transformer {
      *
      * @param rect
      * @param phaseY
+     *
+     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>rectToPixelPhaseHorizontal(RectF, float)</code> instead.
      */
+    @Deprecated
     public void rectValueToPixelHorizontal(@NonNull RectF rect, float phaseY) {
-        // Multiply the height of the rect with the phase
-        rect.left *= phaseY;
-        rect.right *= phaseY;
-
-        mMatrixValueToPx.mapRect(rect);
-        mViewPortHandler.getMatrixTouch().mapRect(rect);
-        mMatrixOffset.mapRect(rect);
+        rectToPixelPhaseHorizontal(rect, phaseY);
     }
 
     /**

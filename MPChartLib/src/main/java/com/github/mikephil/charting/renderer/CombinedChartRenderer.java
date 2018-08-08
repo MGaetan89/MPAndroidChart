@@ -5,11 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
-import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.CombinedChart.DrawOrder;
 import com.github.mikephil.charting.data.ChartData;
-import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
@@ -26,14 +24,14 @@ public class CombinedChartRenderer extends DataRenderer {
      */
     protected List<DataRenderer> mRenderers = new ArrayList<>(5);
 
-    protected WeakReference<Chart> mChart;
+    protected WeakReference<CombinedChart> mChart;
 
     @NonNull
     protected List<Highlight> mHighlightBuffer = new ArrayList<>();
 
     public CombinedChartRenderer(CombinedChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
-        mChart = new WeakReference<Chart>(chart);
+        mChart = new WeakReference<>(chart);
         createRenderers();
     }
 
@@ -44,7 +42,7 @@ public class CombinedChartRenderer extends DataRenderer {
     public void createRenderers() {
         mRenderers.clear();
 
-        CombinedChart chart = (CombinedChart) mChart.get();
+        CombinedChart chart = mChart.get();
         if (chart == null) {
             return;
         }
@@ -111,7 +109,7 @@ public class CombinedChartRenderer extends DataRenderer {
 
     @Override
     public void drawHighlighted(Canvas canvas, @NonNull Highlight[] highlights) {
-        Chart chart = mChart.get();
+        CombinedChart chart = mChart.get();
         if (chart == null) {
             return;
         }
@@ -130,7 +128,7 @@ public class CombinedChartRenderer extends DataRenderer {
                 data = ((BubbleChartRenderer) renderer).mChart.getBubbleData();
             }
 
-            int dataIndex = data == null ? -1 : ((CombinedData) chart.getData()).getAllData().indexOf(data);
+            int dataIndex = data == null ? -1 : chart.getData().getAllData().indexOf(data);
 
             mHighlightBuffer.clear();
 

@@ -106,6 +106,7 @@ public class CandleEntry extends Entry {
     }
 
     @NonNull
+    @Override
     public CandleEntry copy() {
         return new CandleEntry(getX(), mShadowHigh, mShadowLow, mOpen, mClose, getData());
     }

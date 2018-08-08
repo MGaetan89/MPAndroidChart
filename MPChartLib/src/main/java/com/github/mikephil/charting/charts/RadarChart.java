@@ -316,6 +316,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     /**
      * Returns the maximum value this chart can display on it's y-axis.
      */
+    @Override
     public float getYChartMax() {
         return mYAxis.mAxisMaximum;
     }
@@ -323,6 +324,7 @@ public class RadarChart extends PieRadarChartBase<RadarData> {
     /**
      * Returns the minimum value this chart can display on it's y-axis.
      */
+    @Override
     public float getYChartMin() {
         return mYAxis.mAxisMinimum;
     }

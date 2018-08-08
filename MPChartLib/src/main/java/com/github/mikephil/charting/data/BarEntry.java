@@ -129,6 +129,7 @@ public class BarEntry extends Entry {
      * Returns an exact copy of the BarEntry.
      */
     @NonNull
+    @Override
     public BarEntry copy() {
         BarEntry copied = new BarEntry(getX(), getY(), getIcon(), getData());
         if (mYValues != null) {

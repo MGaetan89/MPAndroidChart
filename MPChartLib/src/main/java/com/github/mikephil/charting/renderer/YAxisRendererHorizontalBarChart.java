@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
-import com.github.mikephil.charting.components.YAxis.YAxisLabelPosition;
 import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.Utils;
@@ -77,24 +76,14 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
         mAxisLabelPaint.setTextAlign(Align.CENTER);
 
         float baseYOffset = Utils.convertDpToPixel(2.5f);
-        float textHeight = Utils.calcTextHeight(mAxisLabelPaint, "Q");
-
-        AxisDependency dependency = mYAxis.getAxisDependency();
-        YAxisLabelPosition labelPosition = mYAxis.getLabelPosition();
 
         float yPos;
-        if (dependency == AxisDependency.LEFT) {
-            if (labelPosition == YAxisLabelPosition.OUTSIDE_CHART) {
-                yPos = mViewPortHandler.contentTop() - baseYOffset;
-            } else {
-                yPos = mViewPortHandler.contentTop() - baseYOffset;
-            }
+        if (mYAxis.getAxisDependency() == AxisDependency.LEFT) {
+            yPos = mViewPortHandler.contentTop() - baseYOffset;
         } else {
-            if (labelPosition == YAxisLabelPosition.OUTSIDE_CHART) {
-                yPos = mViewPortHandler.contentBottom() + textHeight + baseYOffset;
-            } else {
-                yPos = mViewPortHandler.contentBottom() + textHeight + baseYOffset;
-            }
+            float textHeight = Utils.calcTextHeight(mAxisLabelPaint, "Q");
+
+            yPos = mViewPortHandler.contentBottom() + textHeight + baseYOffset;
         }
 
         drawYLabels(canvas, yPos, positions, mYAxis.getYOffset());

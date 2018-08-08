@@ -83,6 +83,7 @@ public class LineChartRenderer extends LineRadarRenderer {
 
     @Override
     public void initBuffers() {
+        // Unused
     }
 
     @Override
@@ -730,10 +731,7 @@ public class LineChartRenderer extends LineRadarRenderer {
             int size = set.getCircleColorCount();
             boolean changeRequired = false;
 
-            if (circleBitmaps == null) {
-                circleBitmaps = new Bitmap[size];
-                changeRequired = true;
-            } else if (circleBitmaps.length != size) {
+            if (circleBitmaps == null || circleBitmaps.length != size) {
                 circleBitmaps = new Bitmap[size];
                 changeRequired = true;
             }

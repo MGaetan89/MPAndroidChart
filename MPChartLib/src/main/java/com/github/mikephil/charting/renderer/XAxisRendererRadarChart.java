@@ -60,5 +60,6 @@ public class XAxisRendererRadarChart extends XAxisRenderer {
      */
     @Override
     public void renderLimitLines(@NonNull Canvas canvas) {
+        // Unused
     }
 }

@@ -51,10 +51,6 @@ public class PieDataSet extends DataSet<PieEntry> implements IPieDataSet {
         return copied;
     }
 
-    protected void copy(PieDataSet pieDataSet) {
-        super.copy(pieDataSet);
-    }
-
     @Override
     protected void calcMinMax(@NonNull PieEntry entry) {
         calcMinMaxY(entry);

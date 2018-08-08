@@ -110,10 +110,8 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
             }
         }
 
-        if (mTouchMode == NONE) {
-            if (mGestureDetector != null) {
-                mGestureDetector.onTouchEvent(event);
-            }
+        if (mTouchMode == NONE && mGestureDetector != null) {
+            mGestureDetector.onTouchEvent(event);
         }
 
         if (!mChart.isDragEnabled() && !mChart.isScaleXEnabled() && !mChart.isScaleYEnabled()) {
@@ -241,7 +239,9 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
                 break;
 
             case MotionEvent.ACTION_POINTER_UP:
-                Utils.velocityTrackerPointerUpCleanUpIfNecessary(event, mVelocityTracker);
+                if (mVelocityTracker != null) {
+                    Utils.velocityTrackerPointerUpCleanUpIfNecessary(event, mVelocityTracker);
+                }
 
                 mTouchMode = POST_ZOOM;
                 break;

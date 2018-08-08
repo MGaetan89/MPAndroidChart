@@ -1283,6 +1283,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * Returns the current x-scale factor.
      */
+    @Override
     public float getScaleX() {
         if (mViewPortHandler == null) {
             return 1f;
@@ -1294,6 +1295,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * Returns the current y-scale factor.
      */
+    @Override
     public float getScaleY() {
         if (mViewPortHandler == null) {
             return 1f;

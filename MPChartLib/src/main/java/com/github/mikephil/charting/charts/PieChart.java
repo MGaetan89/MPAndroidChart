@@ -258,16 +258,6 @@ public class PieChart extends PieRadarChartBase<PieData> {
      * Calculates the needed angle for a given value.
      *
      * @param value
-     * @return
-     */
-    private float calcAngle(float value) {
-        return calcAngle(value, mData.getYValueSum());
-    }
-
-    /**
-     * Calculates the needed angle for a given value.
-     *
-     * @param value
      * @param yValueSum
      * @return
      */
@@ -277,6 +267,8 @@ public class PieChart extends PieRadarChartBase<PieData> {
 
     /**
      * This will throw an exception, PieChart has no XAxis object.
+     *
+     * @deprecated
      */
     @Deprecated
     @Override
@@ -656,7 +648,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     @Override
     protected void onDetachedFromWindow() {
         // Releases the bitmap in the renderer to avoid oom error
-        if (mRenderer != null && mRenderer instanceof PieChartRenderer) {
+        if (mRenderer instanceof PieChartRenderer) {
             ((PieChartRenderer) mRenderer).releaseBitmap();
         }
 

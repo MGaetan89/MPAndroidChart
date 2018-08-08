@@ -54,6 +54,7 @@ public class RadarChartRenderer extends LineRadarRenderer {
 
     @Override
     public void initBuffers() {
+        // Unused
     }
 
     @Override
@@ -165,7 +166,7 @@ public class RadarChartRenderer extends LineRadarRenderer {
         float yOffset = Utils.convertDpToPixel(5f);
         for (int i = 0; i < mChart.getData().getDataSetCount(); i++) {
             IRadarDataSet dataSet = mChart.getData().getDataSetByIndex(i);
-            if (dataSet == null && !shouldDrawValues(dataSet)) {
+            if (dataSet == null || !shouldDrawValues(dataSet)) {
                 continue;
             }
 

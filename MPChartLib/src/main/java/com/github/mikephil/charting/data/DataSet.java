@@ -146,13 +146,6 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      */
     public abstract DataSet<T> copy();
 
-    /**
-     * @param dataSet
-     */
-    protected void copy(DataSet dataSet) {
-        super.copy(dataSet);
-    }
-
     @NonNull
     @Override
     public String toString() {
@@ -196,7 +189,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     public void addEntryOrdered(@NonNull T entry) {
         calcMinMax(entry);
 
-        if (mValues.size() > 0 && mValues.get(mValues.size() - 1).getX() > entry.getX()) {
+        if (!mValues.isEmpty() && mValues.get(mValues.size() - 1).getX() > entry.getX()) {
             int closestIndex = getEntryIndex(entry.getX(), entry.getY(), Rounding.UP);
             mValues.add(closestIndex, entry);
         } else {
