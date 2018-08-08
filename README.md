@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/MGaetan89/MPAndroidChart.svg?branch=master)](https://travis-ci.org/MGaetan89/MPAndroidChart)
 [![codecov](https://codecov.io/gh/MGaetan89/MPAndroidChart/branch/master/graph/badge.svg)](https://codecov.io/gh/MGaetan89/MPAndroidChart)
+[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=com.github.mikephil.charting&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.mikephil.charting)
 [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Release](https://img.shields.io/github/release/MGaetan89/MPAndroidChart.svg?style=flat)](https://jitpack.io/#MGaetan89/MPAndroidChart)
 
