@@ -517,25 +517,6 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
     }
 
     @Override
-    public boolean onSingleTapUp(MotionEvent event) {
-        mLastGesture = ChartGesture.SINGLE_TAP;
-
-        OnChartGestureListener listener = mChart.getOnChartGestureListener();
-        if (listener != null) {
-            listener.onChartSingleTapped(event);
-        }
-
-        if (!mChart.isHighlightPerTapEnabled()) {
-            return false;
-        }
-
-        Highlight highlight = mChart.getHighlightByTouchPoint(event.getX(), event.getY());
-        performHighlight(highlight, event);
-
-        return super.onSingleTapUp(event);
-    }
-
-    @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
         mLastGesture = ChartGesture.FLING;
 

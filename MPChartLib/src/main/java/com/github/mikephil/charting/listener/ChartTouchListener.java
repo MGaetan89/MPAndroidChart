@@ -109,6 +109,25 @@ public abstract class ChartTouchListener<T extends Chart<?>>
         return mLastGesture;
     }
 
+    @Override
+    public boolean onSingleTapUp(MotionEvent event) {
+        mLastGesture = ChartGesture.SINGLE_TAP;
+
+        OnChartGestureListener listener = mChart.getOnChartGestureListener();
+        if (listener != null) {
+            listener.onChartSingleTapped(event);
+        }
+
+        if (!mChart.isHighlightPerTapEnabled()) {
+            return false;
+        }
+
+        Highlight highlight = mChart.getHighlightByTouchPoint(event.getX(), event.getY());
+        performHighlight(highlight, event);
+
+        return true;
+    }
+
     /**
      * Perform a highlight operation.
      *
