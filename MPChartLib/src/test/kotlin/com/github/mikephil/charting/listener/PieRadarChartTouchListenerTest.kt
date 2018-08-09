@@ -5,15 +5,12 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.charts.PieRadarChartBase
 import com.github.mikephil.charting.data.PieData
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.junit.Before
 import org.junit.Test
-import org.mockito.internal.verification.Times
 
 class PieRadarChartTouchListenerTest : ChartTouchListenerTest<PieRadarChartBase<*>, PieRadarChartTouchListener>() {
     @Before
@@ -57,66 +54,6 @@ class PieRadarChartTouchListenerTest : ChartTouchListenerTest<PieRadarChartBase<
         val event = mock<MotionEvent>()
 
         assertThat(this.listener.onSingleTapConfirmed(event)).isTrue()
-    }
-
-    @Test
-    fun onSingleTapUp_withHighlightPerTap() {
-        val event = mock<MotionEvent> {
-            on { x } doReturn 1f
-            on { y } doReturn 2f
-        }
-        val gestureListener = mock<OnChartGestureListener>()
-
-        this.chart.isHighlightPerTapEnabled = true
-        this.chart.onChartGestureListener = gestureListener
-
-        assertThat(this.listener.onSingleTapUp(event)).isTrue()
-        assertThat(this.listener.lastGesture).isEqualTo(ChartTouchListener.ChartGesture.SINGLE_TAP)
-        verify(gestureListener).onChartSingleTapped(event)
-        verify(this.chart).getHighlightByTouchPoint(event.x, event.y)
-    }
-
-    @Test
-    fun onSingleTapUp_withHighlightPerTap_noListener() {
-        val event = mock<MotionEvent> {
-            on { x } doReturn 1f
-            on { y } doReturn 2f
-        }
-        val gestureListener = mock<OnChartGestureListener>()
-
-        this.chart.isHighlightPerTapEnabled = true
-
-        assertThat(this.listener.onSingleTapUp(event)).isTrue()
-        assertThat(this.listener.lastGesture).isEqualTo(ChartTouchListener.ChartGesture.SINGLE_TAP)
-        verifyZeroInteractions(gestureListener)
-        verify(this.chart).getHighlightByTouchPoint(event.x, event.y)
-    }
-
-    @Test
-    fun onSingleTapUp_withoutHighlightPerTap() {
-        val event = mock<MotionEvent>()
-        val gestureListener = mock<OnChartGestureListener>()
-
-        this.chart.isHighlightPerTapEnabled = false
-        this.chart.onChartGestureListener = gestureListener
-
-        assertThat(this.listener.onSingleTapUp(event)).isFalse()
-        assertThat(this.listener.lastGesture).isEqualTo(ChartTouchListener.ChartGesture.SINGLE_TAP)
-        verify(gestureListener).onChartSingleTapped(event)
-        verify(this.chart, Times(0)).getHighlightByTouchPoint(any(), any())
-    }
-
-    @Test
-    fun onSingleTapUp_withoutHighlightPerTap_noListener() {
-        val event = mock<MotionEvent>()
-        val gestureListener = mock<OnChartGestureListener>()
-
-        this.chart.isHighlightPerTapEnabled = false
-
-        assertThat(this.listener.onSingleTapUp(event)).isFalse()
-        assertThat(this.listener.lastGesture).isEqualTo(ChartTouchListener.ChartGesture.SINGLE_TAP)
-        verifyZeroInteractions(gestureListener)
-        verify(this.chart, Times(0)).getHighlightByTouchPoint(any(), any())
     }
 
     @Test

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 
 import com.github.mikephil.charting.charts.PieRadarChartBase;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 
@@ -120,25 +119,6 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent event) {
-        mLastGesture = ChartGesture.SINGLE_TAP;
-
-        OnChartGestureListener listener = mChart.getOnChartGestureListener();
-        if (listener != null) {
-            listener.onChartSingleTapped(event);
-        }
-
-        if (!mChart.isHighlightPerTapEnabled()) {
-            return false;
-        }
-
-        Highlight highlight = mChart.getHighlightByTouchPoint(event.getX(), event.getY());
-        performHighlight(highlight, event);
-
         return true;
     }
 
