@@ -30,8 +30,7 @@ before_script:
   - adb devices
 
 script:
-  - ./gradlew :MPChartLib:jacocoTestReport :MPChartLib:assembleAndroidTest :MPChartLib:connectedDebugAndroidTest :MPChartLib:createDebugCoverageReport -PdisablePreDex
-  - ./gradlew sonarqube
+  - ./gradlew :MPChartLib:jacocoTestReport :MPChartLib:assembleAndroidTest :MPChartLib:connectedDebugAndroidTest :MPChartLib:createDebugCoverageReport sonarqube
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
