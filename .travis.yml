@@ -15,12 +15,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-27.0.3
     - android-$ANDROID_TARGET
     - sys-img-$ANDROID_ABI-$ANDROID_TAG-$ANDROID_TARGET
-
-before_install:
-  - yes | sdkmanager "platforms;android-27"
 
 before_script:
   - echo no | android create avd -f -n "test_$ANDROID_TARGET" -t "android-$ANDROID_TARGET" -b $ANDROID_ABI -g $ANDROID_TAG
