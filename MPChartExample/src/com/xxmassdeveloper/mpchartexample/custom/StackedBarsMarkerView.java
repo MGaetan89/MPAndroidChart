@@ -9,8 +9,8 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
-import com.github.mikephil.charting.utils.Utils;
 import com.xxmassdeveloper.mpchartexample.R;
+import com.xxmassdeveloper.mpchartexample.utils.Utils;
 
 /**
  * Custom implementation of the MarkerView.
@@ -18,7 +18,6 @@ import com.xxmassdeveloper.mpchartexample.R;
  * @author Philipp Jahoda
  */
 public class StackedBarsMarkerView extends MarkerView {
-
     private TextView tvContent;
 
     public StackedBarsMarkerView(Context context, int layoutResource) {
@@ -31,22 +30,15 @@ public class StackedBarsMarkerView extends MarkerView {
     // content (user-interface)
     @Override
     public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
-
+        float value = entry.getY();
         if (entry instanceof BarEntry) {
-
-            BarEntry be = (BarEntry) entry;
-
-            if(be.getYVals() != null) {
-
-                // draw the stack value
-                tvContent.setText(Utils.formatNumber(be.getYVals()[highlight.getStackIndex()], 0, true));
-            } else {
-                tvContent.setText(Utils.formatNumber(be.getY(), 0, true));
+            BarEntry barEntry = (BarEntry) entry;
+            if (barEntry.getYVals() != null) {
+                value = barEntry.getYVals()[highlight.getStackIndex()];
             }
-        } else {
-
-            tvContent.setText(Utils.formatNumber(entry.getY(), 0, true));
         }
+
+        tvContent.setText(Utils.formatNumber(value, 0, true));
 
         super.refreshContent(entry, highlight);
     }
@@ -54,6 +46,6 @@ public class StackedBarsMarkerView extends MarkerView {
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2), -getHeight());
+        return new MPPointF(-(getWidth() / 2f), -getHeight());
     }
 }

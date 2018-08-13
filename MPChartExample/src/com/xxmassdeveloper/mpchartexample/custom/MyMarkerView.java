@@ -9,8 +9,8 @@ import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
-import com.github.mikephil.charting.utils.Utils;
 import com.xxmassdeveloper.mpchartexample.R;
+import com.xxmassdeveloper.mpchartexample.utils.Utils;
 
 /**
  * Custom implementation of the MarkerView.
@@ -18,7 +18,6 @@ import com.xxmassdeveloper.mpchartexample.R;
  * @author Philipp Jahoda
  */
 public class MyMarkerView extends MarkerView {
-
     private TextView tvContent;
 
     public MyMarkerView(Context context, int layoutResource) {
@@ -31,16 +30,12 @@ public class MyMarkerView extends MarkerView {
     // content (user-interface)
     @Override
     public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
-
+        float value = entry.getY();
         if (entry instanceof CandleEntry) {
-
-            CandleEntry ce = (CandleEntry) entry;
-
-            tvContent.setText(Utils.formatNumber(ce.getHigh(), 0, true));
-        } else {
-
-            tvContent.setText(Utils.formatNumber(entry.getY(), 0, true));
+            value = ((CandleEntry) entry).getHigh();
         }
+
+        tvContent.setText(Utils.formatNumber(value, 0, true));
 
         super.refreshContent(entry, highlight);
     }
@@ -48,6 +43,6 @@ public class MyMarkerView extends MarkerView {
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2), -getHeight());
+        return new MPPointF(-(getWidth() / 2f), -getHeight());
     }
 }

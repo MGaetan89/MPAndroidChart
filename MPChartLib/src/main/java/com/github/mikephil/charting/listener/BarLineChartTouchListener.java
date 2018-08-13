@@ -97,17 +97,19 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View view, MotionEvent event) {
-        if (mVelocityTracker == null) {
-            mVelocityTracker = VelocityTracker.obtain();
+        VelocityTracker velocityTracker = mVelocityTracker;
+        if (velocityTracker == null) {
+            velocityTracker = VelocityTracker.obtain();
+
+            mVelocityTracker = velocityTracker;
         }
 
-        mVelocityTracker.addMovement(event);
+        velocityTracker.addMovement(event);
 
         if (event.getActionMasked() == MotionEvent.ACTION_CANCEL) {
-            if (mVelocityTracker != null) {
-                mVelocityTracker.recycle();
-                mVelocityTracker = null;
-            }
+            velocityTracker.recycle();
+
+            mVelocityTracker = null;
         }
 
         if (mTouchMode == NONE && mGestureDetector != null) {
@@ -199,7 +201,6 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
                 break;
 
             case MotionEvent.ACTION_UP:
-                final VelocityTracker velocityTracker = mVelocityTracker;
                 final int pointerId = event.getPointerId(0);
                 velocityTracker.computeCurrentVelocity(1000, Utils.getMaximumFlingVelocity());
                 final float velocityY = velocityTracker.getYVelocity(pointerId);
@@ -230,18 +231,15 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
                 mTouchMode = NONE;
                 mChart.enableScroll();
 
-                if (mVelocityTracker != null) {
-                    mVelocityTracker.recycle();
-                    mVelocityTracker = null;
-                }
+                velocityTracker.recycle();
+
+                mVelocityTracker = null;
 
                 endAction(event);
                 break;
 
             case MotionEvent.ACTION_POINTER_UP:
-                if (mVelocityTracker != null) {
-                    Utils.velocityTrackerPointerUpCleanUpIfNecessary(event, mVelocityTracker);
-                }
+                Utils.velocityTrackerPointerUpCleanUpIfNecessary(event, velocityTracker);
 
                 mTouchMode = POST_ZOOM;
                 break;
