@@ -1,10 +1,10 @@
 package com.github.mikephil.charting.data;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * A PieData object can only represent one DataSet. Unlike all other charts, the legend labels of

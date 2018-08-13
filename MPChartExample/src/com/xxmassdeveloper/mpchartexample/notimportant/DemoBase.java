@@ -1,21 +1,17 @@
-
 package com.xxmassdeveloper.mpchartexample.notimportant;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import android.view.View;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.Chart;
 import com.xxmassdeveloper.mpchartexample.R;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 /**
  * Base class of all Activities of the Demo Application.

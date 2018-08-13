@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.utils;
 
-import android.support.annotation.NonNull;
-
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Class for describing width and height dimensions in some arbitrary unit.

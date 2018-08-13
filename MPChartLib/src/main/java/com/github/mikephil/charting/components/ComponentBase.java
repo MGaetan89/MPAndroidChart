@@ -2,11 +2,12 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.annotation.ColorInt;
-import android.support.annotation.FloatRange;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.Utils;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
+import androidx.annotation.Nullable;
 
 /**
  * Base class for every chart components (Axis, Legend, LimitLine, ...).

@@ -2,8 +2,6 @@ package com.xxmassdeveloper.mpchartexample.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,6 +17,9 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 public class BarChartFrag extends SimpleFragment implements OnChartGestureListener {
 

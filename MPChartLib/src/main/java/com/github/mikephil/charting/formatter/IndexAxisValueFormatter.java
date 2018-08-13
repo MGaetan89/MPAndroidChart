@@ -1,11 +1,11 @@
 package com.github.mikephil.charting.formatter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.github.mikephil.charting.components.AxisBase;
 
 import java.util.Collection;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * This formatter is used for passing an array of x-axis labels, on whole x steps.
@@ -38,7 +38,7 @@ public class IndexAxisValueFormatter implements IAxisValueFormatter {
      */
     public IndexAxisValueFormatter(@Nullable Collection<String> values) {
         if (values != null && !values.isEmpty()) {
-            setValues(values.toArray(new String[values.size()]));
+            setValues(values.toArray(new String[0]));
         }
     }
 

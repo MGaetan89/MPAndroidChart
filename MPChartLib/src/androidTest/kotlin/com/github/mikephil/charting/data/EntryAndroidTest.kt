@@ -2,7 +2,7 @@ package com.github.mikephil.charting.data
 
 import android.os.Parcel
 import android.os.ParcelFormatException
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.fail
 import org.junit.Test

@@ -1,9 +1,10 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
 import android.graphics.DashPathEffect;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.data.Entry;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author Philipp Jahoda

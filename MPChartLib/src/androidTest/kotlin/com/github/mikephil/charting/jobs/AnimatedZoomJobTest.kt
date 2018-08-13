@@ -1,9 +1,9 @@
 package com.github.mikephil.charting.jobs
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.annotation.UiThreadTest
-import android.support.test.runner.AndroidJUnit4
 import android.widget.FrameLayout
+import androidx.test.InstrumentationRegistry
+import androidx.test.annotation.UiThreadTest
+import androidx.test.runner.AndroidJUnit4
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.utils.Transformer
 import com.github.mikephil.charting.utils.ViewPortHandler

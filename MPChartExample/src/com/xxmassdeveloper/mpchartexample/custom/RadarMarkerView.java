@@ -45,6 +45,6 @@ public class RadarMarkerView extends MarkerView {
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2), -getHeight() - 10);
+        return new MPPointF(-(getWidth() / 2f), -getHeight() - 10);
     }
 }

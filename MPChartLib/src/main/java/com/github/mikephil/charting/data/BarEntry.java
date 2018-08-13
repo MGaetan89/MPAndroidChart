@@ -1,10 +1,11 @@
 package com.github.mikephil.charting.data;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.highlight.Range;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Entry class for the BarChart (especially stacked bars).

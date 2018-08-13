@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
-import android.support.annotation.ColorInt;
-
 import com.github.mikephil.charting.data.Entry;
+
+import androidx.annotation.ColorInt;
 
 /**
  * @author Philipp Jahoda

@@ -1,6 +1,6 @@
 package com.xxmassdeveloper.mpchartexample.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class Utils {
     /**

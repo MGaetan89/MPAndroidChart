@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.components
 
-import android.support.test.annotation.UiThreadTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.annotation.UiThreadTest
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.github.mikephil.charting.TestActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.test.R

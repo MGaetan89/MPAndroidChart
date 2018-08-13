@@ -5,10 +5,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author Philipp Jahoda

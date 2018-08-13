@@ -1,10 +1,10 @@
 package com.github.mikephil.charting.formatter;
 
-import android.support.annotation.NonNull;
-
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import androidx.annotation.NonNull;
 
 /**
  * Default formatter that calculates the position of the filled line.

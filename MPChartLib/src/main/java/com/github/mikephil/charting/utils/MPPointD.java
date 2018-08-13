@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.utils;
 
-import android.support.annotation.NonNull;
-
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Point encapsulating two double values.
@@ -49,6 +49,8 @@ public class MPPointD extends ObjectPool.Poolable {
     /**
      * Returns a string representation of the object.
      */
+    @NonNull
+    @Override
     public String toString() {
         return "MPPointD, x: " + x + ", y: " + y;
     }

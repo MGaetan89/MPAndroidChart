@@ -1,11 +1,12 @@
 package com.github.mikephil.charting.components;
 
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
+
+import androidx.annotation.NonNull;
 
 public interface IMarker {
     /**

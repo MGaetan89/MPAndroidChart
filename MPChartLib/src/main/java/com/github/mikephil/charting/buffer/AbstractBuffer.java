@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.buffer;
 
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 
 /**
  * Buffer class to boost performance while drawing. Concept: Replace instead of recreate.

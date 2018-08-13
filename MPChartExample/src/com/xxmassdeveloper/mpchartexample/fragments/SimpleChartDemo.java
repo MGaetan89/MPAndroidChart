@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample.fragments;
 
 import android.app.AlertDialog;
@@ -7,16 +6,17 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Demonstrates how to keep your charts straight forward, simple and beautiful with the MPAndroidChart library.
@@ -55,34 +55,26 @@ public class SimpleChartDemo extends DemoBase {
     }
 
     private class PageAdapter extends FragmentPagerAdapter {
-
         PageAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int pos) {
-            Fragment f = null;
-
             switch(pos) {
             case 0:
-                f = SineCosineFragment.newInstance();
-                break;
+                return SineCosineFragment.newInstance();
             case 1:
-                f = ComplexityFragment.newInstance();
-                break;
+                return ComplexityFragment.newInstance();
             case 2:
-                f = BarChartFrag.newInstance();
-                break;
+                return BarChartFrag.newInstance();
             case 3:
-                f = ScatterChartFrag.newInstance();
-                break;
+                return ScatterChartFrag.newInstance();
             case 4:
-                f = PieChartFrag.newInstance();
-                break;
+                return PieChartFrag.newInstance();
+            default:
+                return null;
             }
-
-            return f;
         }
 
         @Override

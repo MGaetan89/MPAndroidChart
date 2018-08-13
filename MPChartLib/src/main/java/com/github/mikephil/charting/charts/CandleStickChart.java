@@ -1,12 +1,13 @@
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.interfaces.dataprovider.CandleDataProvider;
 import com.github.mikephil.charting.renderer.CandleStickChartRenderer;
+
+import androidx.annotation.Nullable;
 
 /**
  * Financial chart type that draws candle-sticks (OHCL chart).

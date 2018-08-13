@@ -3,8 +3,6 @@ package com.github.mikephil.charting.charts;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.components.YAxis;
@@ -15,6 +13,9 @@ import com.github.mikephil.charting.renderer.RadarChartRenderer;
 import com.github.mikephil.charting.renderer.XAxisRendererRadarChart;
 import com.github.mikephil.charting.renderer.YAxisRendererRadarChart;
 import com.github.mikephil.charting.utils.Utils;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 /**
  * Implementation of the RadarChart, a "spidernet"-like chart. It works best when displaying 5-10

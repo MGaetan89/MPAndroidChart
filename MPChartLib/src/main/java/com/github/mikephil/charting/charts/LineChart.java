@@ -1,12 +1,13 @@
 package com.github.mikephil.charting.charts;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.renderer.LineChartRenderer;
+
+import androidx.annotation.Nullable;
 
 /**
  * Chart that draws lines, surfaces, circles, ...

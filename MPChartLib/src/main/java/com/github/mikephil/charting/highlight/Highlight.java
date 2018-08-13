@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.highlight;
 
-import android.support.annotation.Nullable;
-
 import com.github.mikephil.charting.components.YAxis;
+
+import androidx.annotation.Nullable;
 
 /**
  * Contains information needed to determine the highlighted value.

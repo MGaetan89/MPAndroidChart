@@ -1,12 +1,13 @@
 package com.github.mikephil.charting.data;
 
 import android.graphics.DashPathEffect;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author Philipp Jahoda

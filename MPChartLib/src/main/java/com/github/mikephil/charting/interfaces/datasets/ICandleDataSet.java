@@ -1,10 +1,11 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.data.CandleEntry;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 /**
  * @author Philipp Jahoda

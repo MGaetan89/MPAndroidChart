@@ -3,7 +3,6 @@ package com.github.mikephil.charting.utils;
 import android.graphics.Matrix;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
@@ -13,6 +12,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Transformer class that contains all matrices and is responsible for transforming values into

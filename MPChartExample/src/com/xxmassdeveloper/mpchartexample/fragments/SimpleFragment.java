@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +28,9 @@ import com.xxmassdeveloper.mpchartexample.utils.FileUtils;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 @SuppressWarnings("SameParameterValue")
 public abstract class SimpleFragment extends Fragment {
 
@@ -53,11 +54,8 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected BarData generateBarData(int dataSets, float range, int count) {
-
         ArrayList<IBarDataSet> sets = new ArrayList<>();
-
         for(int i = 0; i < dataSets; i++) {
-
             ArrayList<BarEntry> entries = new ArrayList<>();
 
             for(int j = 0; j < count; j++) {
@@ -75,13 +73,11 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected ScatterData generateScatterData(int dataSets, float range, int count) {
-
         ArrayList<IScatterDataSet> sets = new ArrayList<>();
 
         ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.values();
 
         for(int i = 0; i < dataSets; i++) {
-
             ArrayList<Entry> entries = new ArrayList<>();
 
             for(int j = 0; j < count; j++) {
@@ -128,7 +124,6 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected LineData generateLineData() {
-
         ArrayList<ILineDataSet> sets = new ArrayList<>();
         LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "sine.txt"), "Sine function");
         LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "cosine.txt"), "Cosine function");
@@ -152,7 +147,6 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected LineData getComplexity() {
-
         ArrayList<ILineDataSet> sets = new ArrayList<>();
 
         LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "n.txt"), "O(n)");

@@ -2,7 +2,6 @@ package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -12,6 +11,8 @@ import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class YAxisRendererRadarChart extends YAxisRenderer {
     private RadarChart mChart;

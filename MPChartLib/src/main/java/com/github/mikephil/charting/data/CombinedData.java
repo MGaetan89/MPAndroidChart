@@ -1,7 +1,5 @@
 package com.github.mikephil.charting.data;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.github.mikephil.charting.highlight.Highlight;
@@ -9,6 +7,9 @@ import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBub
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Data object that allows the combination of Line-, Bar-, Scatter-, Bubble- and CandleData. Used in

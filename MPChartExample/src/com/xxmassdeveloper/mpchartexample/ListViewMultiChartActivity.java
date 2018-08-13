@@ -29,6 +29,8 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+
 /**
  * Demonstrates the use of charts inside a ListView. IMPORTANT: provide a
  * specific height attribute for the chart inside your ListView item

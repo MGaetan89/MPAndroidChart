@@ -1,9 +1,9 @@
 package com.github.mikephil.charting.utils;
 
-import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
-
 import java.util.List;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
 
 /**
  * An object pool for recycling of object instances extending Poolable.

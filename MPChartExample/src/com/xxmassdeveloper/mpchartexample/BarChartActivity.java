@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +40,8 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 public class BarChartActivity extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {

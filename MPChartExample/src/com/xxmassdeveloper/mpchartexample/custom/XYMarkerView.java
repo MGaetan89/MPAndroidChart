@@ -49,6 +49,6 @@ public class XYMarkerView extends MarkerView {
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2), -getHeight());
+        return new MPPointF(-(getWidth() / 2f), -getHeight());
     }
 }

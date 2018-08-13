@@ -1,8 +1,5 @@
 package com.github.mikephil.charting.highlight;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
@@ -13,6 +10,9 @@ import com.github.mikephil.charting.utils.MPPointD;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * @author Philipp Jahoda

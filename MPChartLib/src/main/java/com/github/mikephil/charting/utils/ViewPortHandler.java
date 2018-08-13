@@ -2,9 +2,10 @@ package com.github.mikephil.charting.utils;
 
 import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
 
 /**
  * Class that contains information about the charts current viewport settings, including offsets,

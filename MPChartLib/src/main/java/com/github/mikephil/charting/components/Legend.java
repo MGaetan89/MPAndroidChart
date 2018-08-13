@@ -2,9 +2,6 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.FSize;
@@ -13,6 +10,10 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Class representing the legend of the chart. The legend will contain one entry per color and
@@ -196,7 +197,7 @@ public class Legend extends ComponentBase {
      * @param entries
      */
     public void setEntries(@NonNull List<LegendEntry> entries) {
-        mEntries = entries.toArray(new LegendEntry[entries.size()]);
+        mEntries = entries.toArray(new LegendEntry[0]);
     }
 
     @NonNull
@@ -259,7 +260,7 @@ public class Legend extends ComponentBase {
     }
 
     public void setExtra(@NonNull List<LegendEntry> entries) {
-        mExtraEntries = entries.toArray(new LegendEntry[entries.size()]);
+        mExtraEntries = entries.toArray(new LegendEntry[0]);
     }
 
     public void setExtra(@Nullable LegendEntry[] entries) {
@@ -309,7 +310,7 @@ public class Legend extends ComponentBase {
      * to auto-calculate the legend again).
      */
     public void setCustom(@NonNull List<LegendEntry> entries) {
-        mEntries = entries.toArray(new LegendEntry[entries.size()]);
+        mEntries = entries.toArray(new LegendEntry[0]);
         mIsLegendCustom = true;
     }
 

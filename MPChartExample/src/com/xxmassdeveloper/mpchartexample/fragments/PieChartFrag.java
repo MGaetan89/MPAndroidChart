@@ -3,8 +3,6 @@ package com.xxmassdeveloper.mpchartexample.fragments;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -16,8 +14,10 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.xxmassdeveloper.mpchartexample.R;
 
-public class PieChartFrag extends SimpleFragment {
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
+public class PieChartFrag extends SimpleFragment {
     @NonNull
     public static Fragment newInstance() {
         return new PieChartFrag();

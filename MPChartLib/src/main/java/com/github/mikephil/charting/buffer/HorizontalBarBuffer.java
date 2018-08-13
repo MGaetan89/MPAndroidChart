@@ -1,10 +1,10 @@
 package com.github.mikephil.charting.buffer;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Size;
-
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
 
 public class HorizontalBarBuffer extends BarBuffer {
     /**

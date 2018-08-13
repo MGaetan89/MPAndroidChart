@@ -1,8 +1,7 @@
 package com.xxmassdeveloper.mpchartexample.fragments;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,10 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.xxmassdeveloper.mpchartexample.R;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 public class ComplexityFragment extends SimpleFragment {
-
     @NonNull
     public static Fragment newInstance() {
         return new ComplexityFragment();

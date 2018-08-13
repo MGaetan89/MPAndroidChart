@@ -1,12 +1,13 @@
 package com.github.mikephil.charting.jobs;
 
 import android.animation.ValueAnimator;
-import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.github.mikephil.charting.utils.ObjectPool;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author Philipp Jahoda

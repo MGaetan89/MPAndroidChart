@@ -4,10 +4,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.ParcelFormatException;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.Utils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Class representing one entry in the chart. Might contain multiple values. Might only contain a
