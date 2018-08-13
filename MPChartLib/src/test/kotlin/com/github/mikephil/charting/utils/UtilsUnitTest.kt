@@ -14,40 +14,6 @@ class UtilsUnitTest {
 	}
 
 	@Test
-	fun formatNumber() {
-		assertThat(Utils.formatNumber(-1234.56f, 0, false)).isEqualTo("-1235")
-		assertThat(Utils.formatNumber(-1234.56f, 0, true)).isEqualTo("-1.235")
-		assertThat(Utils.formatNumber(-1234.56f, 2, false)).isEqualTo("-1234,56")
-		assertThat(Utils.formatNumber(-1234.56f, 2, true)).isEqualTo("-1.234,56")
-		assertThat(Utils.formatNumber(-1234.56f, 11, false)).isEqualTo("-2,147483647")
-		assertThat(Utils.formatNumber(-1234.56f, 11, true)).isEqualTo("-2,147483647")
-		assertThat(Utils.formatNumber(-0.5f, 0, false)).isEqualTo("-01")
-		assertThat(Utils.formatNumber(-0.5f, 0, true)).isEqualTo("-01")
-		assertThat(Utils.formatNumber(-0.5f, 2, false)).isEqualTo("-0,50")
-		assertThat(Utils.formatNumber(-0.5f, 2, true)).isEqualTo("-0,50")
-		assertThat(Utils.formatNumber(-0.5f, 11, false)).isEqualTo("-0,500000000")
-		assertThat(Utils.formatNumber(-0.5f, 11, true)).isEqualTo("-0,500000000")
-		assertThat(Utils.formatNumber(0f, 0, false)).isEqualTo("0")
-		assertThat(Utils.formatNumber(0f, 0, true)).isEqualTo("0")
-		assertThat(Utils.formatNumber(0f, 2, false)).isEqualTo("0")
-		assertThat(Utils.formatNumber(0f, 2, true)).isEqualTo("0")
-		assertThat(Utils.formatNumber(0f, 11, false)).isEqualTo("0")
-		assertThat(Utils.formatNumber(0f, 11, true)).isEqualTo("0")
-		assertThat(Utils.formatNumber(0.5f, 0, false)).isEqualTo("01")
-		assertThat(Utils.formatNumber(0.5f, 0, true)).isEqualTo("01")
-		assertThat(Utils.formatNumber(0.5f, 2, false)).isEqualTo("0,50")
-		assertThat(Utils.formatNumber(0.5f, 2, true)).isEqualTo("0,50")
-		assertThat(Utils.formatNumber(0.5f, 11, false)).isEqualTo("0,500000000")
-		assertThat(Utils.formatNumber(0.5f, 11, true)).isEqualTo("0,500000000")
-		assertThat(Utils.formatNumber(1234.56f, 0, false)).isEqualTo("1235")
-		assertThat(Utils.formatNumber(1234.56f, 0, true)).isEqualTo("1.235")
-		assertThat(Utils.formatNumber(1234.56f, 2, false)).isEqualTo("1234,56")
-		assertThat(Utils.formatNumber(1234.56f, 2, true)).isEqualTo("1.234,56")
-		assertThat(Utils.formatNumber(1234.56f, 11, false)).isEqualTo("2,147483647")
-		assertThat(Utils.formatNumber(1234.56f, 11, true)).isEqualTo("2,147483647")
-	}
-
-	@Test
 	fun roundToNextSignificant() {
 		assertThat(Utils.roundToNextSignificant(java.lang.Double.NEGATIVE_INFINITY)).isEqualTo(0f)
 		assertThat(Utils.roundToNextSignificant(java.lang.Double.POSITIVE_INFINITY)).isEqualTo(0f)
