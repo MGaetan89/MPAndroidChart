@@ -1,12 +1,12 @@
 package com.github.mikephil.charting.formatter;
 
-import android.support.annotation.NonNull;
-
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
 
 /**
  * A formatter specifically for stacked BarChart that allows to specify whether the all stack values

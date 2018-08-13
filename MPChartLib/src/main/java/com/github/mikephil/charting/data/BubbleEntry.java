@@ -1,8 +1,9 @@
 package com.github.mikephil.charting.data;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Subclass of Entry that holds a value for one entry in a BubbleChart. Bubble

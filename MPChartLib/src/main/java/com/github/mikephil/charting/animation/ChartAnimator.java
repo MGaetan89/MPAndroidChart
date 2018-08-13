@@ -3,8 +3,9 @@ package com.github.mikephil.charting.animation;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.support.annotation.FloatRange;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.Nullable;
 
 /**
  * Object responsible for all animations in the Chart.

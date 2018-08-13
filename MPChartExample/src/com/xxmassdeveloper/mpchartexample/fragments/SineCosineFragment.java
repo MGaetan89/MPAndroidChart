@@ -1,7 +1,7 @@
 package com.xxmassdeveloper.mpchartexample.fragments;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +12,20 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.xxmassdeveloper.mpchartexample.R;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 public class SineCosineFragment extends SimpleFragment {
 
-    public static Fragment newInstance() {
+    static Fragment newInstance() {
         return new SineCosineFragment();
     }
 
-    private LineChart mChart;
-    
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_simple_line, container, false);
-        
-        mChart = (LineChart) v.findViewById(R.id.lineChart1);
+
+        LineChart mChart = v.findViewById(R.id.lineChart1);
 
         mChart.getDescription().setEnabled(false);
 

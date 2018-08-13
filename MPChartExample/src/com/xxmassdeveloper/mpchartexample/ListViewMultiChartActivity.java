@@ -2,7 +2,6 @@ package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -28,6 +27,8 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Demonstrates the use of charts inside a ListView. IMPORTANT: provide a
@@ -63,7 +64,7 @@ public class ListViewMultiChartActivity extends DemoBase {
 
     /** adapter that supports 3 different item types */
     private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
-        public ChartDataAdapter(Context context, List<ChartItem> objects) {
+        ChartDataAdapter(Context context, List<ChartItem> objects) {
             super(context, 0, objects);
         }
 

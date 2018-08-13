@@ -1,10 +1,10 @@
 package com.github.mikephil.charting.formatter;
 
-import android.support.annotation.NonNull;
-
 import com.github.mikephil.charting.components.AxisBase;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author Philipp Jahoda

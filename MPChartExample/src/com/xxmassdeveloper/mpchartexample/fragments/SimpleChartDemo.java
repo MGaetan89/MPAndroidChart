@@ -1,18 +1,18 @@
-
 package com.xxmassdeveloper.mpchartexample.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.WindowManager;
 
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Demonstrates how to keep your charts straight forward, simple and beautiful with the MPAndroidChart library.
@@ -29,7 +29,7 @@ public class SimpleChartDemo extends DemoBase {
         
         setContentView(R.layout.activity_awesomedesign);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        ViewPager pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
         
         PageAdapter a = new PageAdapter(getSupportFragmentManager());
@@ -51,33 +51,26 @@ public class SimpleChartDemo extends DemoBase {
        
     private class PageAdapter extends FragmentPagerAdapter {
 
-        public PageAdapter(FragmentManager fm) {
+        PageAdapter(FragmentManager fm) {
             super(fm); 
         }
 
         @Override
-        public Fragment getItem(int pos) {  
-            Fragment f = null;
-            
+        public Fragment getItem(int pos) {
             switch(pos) {
             case 0:
-                f = SineCosineFragment.newInstance();
-                break;
+                return SineCosineFragment.newInstance();
             case 1:
-                f = ComplexityFragment.newInstance();
-                break;
+                return ComplexityFragment.newInstance();
             case 2:
-                f = BarChartFrag.newInstance();
-                break;
+                return BarChartFrag.newInstance();
             case 3:
-                f = ScatterChartFrag.newInstance();
-                break;
+                return ScatterChartFrag.newInstance();
             case 4:
-                f = PieChartFrag.newInstance();
-                break;
+                return PieChartFrag.newInstance();
+            default:
+                return null;
             }
-
-            return f;
         }
 
         @Override

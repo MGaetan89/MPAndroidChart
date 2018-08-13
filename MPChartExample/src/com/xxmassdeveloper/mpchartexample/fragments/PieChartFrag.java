@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.fragments;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -15,19 +14,20 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.xxmassdeveloper.mpchartexample.R;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 public class PieChartFrag extends SimpleFragment {
 
-    public static Fragment newInstance() {
+    static Fragment newInstance() {
         return new PieChartFrag();
     }
 
-    private PieChart mChart;
-    
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_simple_pie, container, false);
-        
-        mChart = (PieChart) v.findViewById(R.id.pieChart1);
+
+        PieChart mChart = v.findViewById(R.id.pieChart1);
         mChart.getDescription().setEnabled(false);
         
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");

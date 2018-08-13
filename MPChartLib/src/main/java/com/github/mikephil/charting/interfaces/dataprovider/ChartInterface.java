@@ -1,12 +1,13 @@
 package com.github.mikephil.charting.interfaces.dataprovider;
 
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.MPPointF;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Interface that provides everything there is to know about the dimensions, bounds, and range of

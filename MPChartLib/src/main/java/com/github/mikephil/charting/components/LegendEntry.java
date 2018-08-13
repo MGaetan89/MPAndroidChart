@@ -1,11 +1,12 @@
 package com.github.mikephil.charting.components;
 
 import android.graphics.DashPathEffect;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class LegendEntry {
     public LegendEntry() {

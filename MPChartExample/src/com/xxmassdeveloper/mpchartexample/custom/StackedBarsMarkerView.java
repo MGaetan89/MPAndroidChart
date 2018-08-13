@@ -1,7 +1,6 @@
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
@@ -11,6 +10,8 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.utils.Utils;
+
+import androidx.annotation.NonNull;
 
 /**
  * Custom implementation of the MarkerView.

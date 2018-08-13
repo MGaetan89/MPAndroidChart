@@ -5,7 +5,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.LimitLine;
@@ -19,6 +18,8 @@ import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
     protected BarChart mChart;

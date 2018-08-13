@@ -1,13 +1,13 @@
 package com.github.mikephil.charting.formatter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Predefined value-formatter that formats large numbers in a pretty way.

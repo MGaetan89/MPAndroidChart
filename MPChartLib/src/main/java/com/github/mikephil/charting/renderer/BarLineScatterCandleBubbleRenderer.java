@@ -1,8 +1,5 @@
 package com.github.mikephil.charting.renderer;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
@@ -10,6 +7,9 @@ import com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandle
 import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * @author Philipp Jahoda

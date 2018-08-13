@@ -2,7 +2,6 @@ package com.xxmassdeveloper.mpchartexample.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +14,20 @@ import com.github.mikephil.charting.components.YAxis;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 public class ScatterChartFrag extends SimpleFragment {
 
-    public static Fragment newInstance() {
+    static Fragment newInstance() {
         return new ScatterChartFrag();
     }
 
-    private ScatterChart mChart;
-    
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_simple_scatter, container, false);
-        
-        mChart = (ScatterChart) v.findViewById(R.id.scatterChart1);
+
+        ScatterChart mChart = v.findViewById(R.id.scatterChart1);
         mChart.getDescription().setEnabled(false);
         
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"OpenSans-Light.ttf");

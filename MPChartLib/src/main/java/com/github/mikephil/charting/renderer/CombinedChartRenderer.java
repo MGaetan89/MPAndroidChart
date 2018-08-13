@@ -1,8 +1,6 @@
 package com.github.mikephil.charting.renderer;
 
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -14,6 +12,9 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Renderer class that is responsible for rendering multiple different data-types.
@@ -138,7 +139,7 @@ public class CombinedChartRenderer extends DataRenderer {
                 }
             }
 
-            renderer.drawHighlighted(canvas, mHighlightBuffer.toArray(new Highlight[mHighlightBuffer.size()]));
+            renderer.drawHighlighted(canvas, mHighlightBuffer.toArray(new Highlight[0]));
         }
     }
 

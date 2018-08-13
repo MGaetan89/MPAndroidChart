@@ -1,6 +1,6 @@
 package com.github.mikephil.charting.model;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 public class GradientColor {
     @ColorInt

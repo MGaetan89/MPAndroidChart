@@ -1,11 +1,11 @@
 package com.github.mikephil.charting.data;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-
 import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet;
 
 import java.util.List;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 /**
  * Base class of all DataSets for Bar-, Line-, Scatter- and CandleStickChart.

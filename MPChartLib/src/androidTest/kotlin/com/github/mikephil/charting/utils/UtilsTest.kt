@@ -1,9 +1,9 @@
 package com.github.mikephil.charting.utils
 
 import android.graphics.Paint
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
 import android.view.ViewConfiguration
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.github.mikephil.charting.TestActivity
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule

@@ -1,7 +1,6 @@
 package com.github.mikephil.charting.jobs;
 
 import android.graphics.Matrix;
-import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.github.mikephil.charting.charts.BarLineChartBase;
@@ -9,6 +8,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.utils.ObjectPool;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author Philipp Jahoda

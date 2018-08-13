@@ -1,8 +1,8 @@
 package com.github.mikephil.charting.utils;
 
-import android.support.annotation.NonNull;
-
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Tony Patino on 6/24/16.
@@ -76,6 +76,7 @@ public class MPPointF extends ObjectPool.Poolable {
         return this.x == other.x && this.y == other.y;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "MPPointF, x: " + x + ", y: " + y;

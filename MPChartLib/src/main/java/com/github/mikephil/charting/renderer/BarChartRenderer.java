@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.buffer.BarBuffer;
@@ -24,6 +23,8 @@ import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
     protected BarDataProvider mChart;
@@ -174,7 +175,7 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
             GradientColor gradientColor = dataSet.getGradientColor();
             if (gradientColor == null) {
                 List<GradientColor> gradientColors = dataSet.getGradientColors();
-                if (gradientColors != null && !gradientColors.isEmpty()) {
+                if (!gradientColors.isEmpty()) {
                     gradientColor = dataSet.getGradientColor(i / 4);
                 }
             }

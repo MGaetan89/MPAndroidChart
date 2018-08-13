@@ -1,10 +1,10 @@
 package com.github.mikephil.charting.interfaces.datasets;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 /**
  * @author Philipp Jahoda

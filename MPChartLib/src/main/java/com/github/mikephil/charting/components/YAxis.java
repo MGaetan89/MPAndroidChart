@@ -2,9 +2,10 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
 
 import com.github.mikephil.charting.utils.Utils;
+
+import androidx.annotation.ColorInt;
 
 /**
  * Class representing the y-axis labels settings and its entries. Only use the setter methods to

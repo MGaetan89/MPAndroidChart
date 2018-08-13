@@ -1,7 +1,7 @@
 package com.xxmassdeveloper.mpchartexample.fragments;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,17 +18,19 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.xxmassdeveloper.mpchartexample.R;
 import com.xxmassdeveloper.mpchartexample.custom.MyMarkerView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 public class BarChartFrag extends SimpleFragment implements OnChartGestureListener {
 
-    public static Fragment newInstance() {
+    static Fragment newInstance() {
         return new BarChartFrag();
     }
 
     private BarChart mChart;
     
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_simple_bar, container, false);
         
         // create a new chart object
@@ -60,7 +62,7 @@ public class BarChartFrag extends SimpleFragment implements OnChartGestureListen
         xAxis.setEnabled(false);
         
         // programatically add the chart
-        FrameLayout parent = (FrameLayout) v.findViewById(R.id.parentLayout);
+        FrameLayout parent = v.findViewById(R.id.parentLayout);
         parent.addView(mChart);
         
         return v;

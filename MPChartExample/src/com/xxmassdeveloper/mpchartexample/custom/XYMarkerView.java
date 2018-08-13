@@ -1,7 +1,6 @@
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
@@ -12,6 +11,8 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.xxmassdeveloper.mpchartexample.R;
 
 import java.text.DecimalFormat;
+
+import androidx.annotation.NonNull;
 
 /**
  * Custom implementation of the MarkerView.
@@ -46,6 +47,6 @@ public class XYMarkerView extends MarkerView {
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2), -getHeight());
+        return new MPPointF(-(getWidth() / 2f), -getHeight());
     }
 }

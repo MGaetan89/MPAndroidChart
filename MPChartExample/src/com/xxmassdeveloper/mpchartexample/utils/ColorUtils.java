@@ -1,7 +1,8 @@
 package com.xxmassdeveloper.mpchartexample.utils;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public class ColorUtils {
     /**

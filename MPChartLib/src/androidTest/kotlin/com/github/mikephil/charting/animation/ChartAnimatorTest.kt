@@ -2,9 +2,9 @@ package com.github.mikephil.charting.animation
 
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
-import android.support.test.annotation.UiThreadTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.annotation.UiThreadTest
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import com.github.mikephil.charting.TestActivity
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule

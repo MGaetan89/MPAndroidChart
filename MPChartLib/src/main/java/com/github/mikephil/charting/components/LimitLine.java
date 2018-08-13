@@ -2,12 +2,13 @@ package com.github.mikephil.charting.components;
 
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
-import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.mikephil.charting.utils.Utils;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * The limit line is an additional feature for all Line-, Bar- and ScatterCharts. It allows the

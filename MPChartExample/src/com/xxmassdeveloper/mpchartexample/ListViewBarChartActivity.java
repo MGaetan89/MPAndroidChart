@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,8 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Demonstrates the use of charts inside a ListView. IMPORTANT: provide a
@@ -52,7 +53,7 @@ public class ListViewBarChartActivity extends DemoBase {
     }
 
     private class ChartDataAdapter extends ArrayAdapter<BarData> {
-        public ChartDataAdapter(Context context, List<BarData> objects) {
+        ChartDataAdapter(Context context, List<BarData> objects) {
             super(context, 0, objects);
         }
 

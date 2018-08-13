@@ -1,7 +1,7 @@
 package com.github.mikephil.charting.components
 
 import android.graphics.Paint
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 import com.github.mikephil.charting.utils.MPPointF
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before

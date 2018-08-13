@@ -3,7 +3,6 @@ package com.xxmassdeveloper.mpchartexample.fragments;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,9 @@ import com.xxmassdeveloper.mpchartexample.utils.FileUtils;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 public abstract class SimpleFragment extends Fragment {
     
     private Typeface tf;
@@ -37,21 +39,19 @@ public abstract class SimpleFragment extends Fragment {
     }
     
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     protected BarData generateBarData(int dataSets, float range, int count) {
         
-        ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
+        ArrayList<IBarDataSet> sets = new ArrayList<>();
         
         for(int i = 0; i < dataSets; i++) {
            
-            ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-            
-//            entries = FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "stacked_bars.txt");
-            
+            ArrayList<BarEntry> entries = new ArrayList<>();
+
             for(int j = 0; j < count; j++) {        
                 entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
             }
@@ -68,13 +68,13 @@ public abstract class SimpleFragment extends Fragment {
     
     protected ScatterData generateScatterData(int dataSets, float range, int count) {
         
-        ArrayList<IScatterDataSet> sets = new ArrayList<IScatterDataSet>();
+        ArrayList<IScatterDataSet> sets = new ArrayList<>();
         
         ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.values();
         
         for(int i = 0; i < dataSets; i++) {
            
-            ArrayList<Entry> entries = new ArrayList<Entry>();
+            ArrayList<Entry> entries = new ArrayList<>();
             
             for(int j = 0; j < count; j++) {        
                 entries.add(new Entry(j, (float) (Math.random() * range) + range / 4));
@@ -101,7 +101,7 @@ public abstract class SimpleFragment extends Fragment {
         
         int count = 4;
         
-        ArrayList<PieEntry> entries1 = new ArrayList<PieEntry>();
+        ArrayList<PieEntry> entries1 = new ArrayList<>();
         
         for(int i = 0; i < count; i++) {
             entries1.add(new PieEntry((float) ((Math.random() * 60) + 40), "Quarter " + (i+1)));
@@ -121,7 +121,7 @@ public abstract class SimpleFragment extends Fragment {
     
     protected LineData generateLineData() {
         
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> sets = new ArrayList<>();
         
         LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "sine.txt"), "Sine function");
         LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "cosine.txt"), "Cosine function");
@@ -146,7 +146,7 @@ public abstract class SimpleFragment extends Fragment {
     
     protected LineData getComplexity() {
         
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
+        ArrayList<ILineDataSet> sets = new ArrayList<>();
         
         LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "n.txt"), "O(n)");
         LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "nlogn.txt"), "O(nlogn)");
@@ -185,8 +185,7 @@ public abstract class SimpleFragment extends Fragment {
     }
     
     private String[] mLabels = new String[] { "Company A", "Company B", "Company C", "Company D", "Company E", "Company F" };
-//    private String[] mXVals = new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec" };
-    
+
     private String getLabel(int i) {
         return mLabels[i];
     }
