@@ -71,14 +71,14 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.0.0'
 
 	testImplementation 'com.google.truth:truth:0.42'
-	testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1"
+	testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC2'
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.60'
+	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71'
 
 	androidTestImplementation 'androidx.test:rules:1.1.0-alpha4'
 	androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
 	androidTestImplementation 'com.google.truth:truth:0.42'
-	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.60'
+	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71'
 }
 
 task sourcesJar(type: Jar) {
