@@ -44,62 +44,62 @@ android {
 }
 
 sonarqube {
-	properties {
-		def unit = fileTree(dir: project.projectDir, includes: ['**/*.exec']).files
-		def ui = fileTree(dir: project.projectDir, includes: ['**/*.ec']).files
-		unit.addAll(ui)
-		def files = unit.join(', ')
+    properties {
+        def unit = fileTree(dir: project.projectDir, includes: ['**/*.exec']).files
+        def ui = fileTree(dir: project.projectDir, includes: ['**/*.ec']).files
+        unit.addAll(ui)
+        def files = unit.join(', ')
 
-		property('sonar.projectKey', 'com.github.mikephil.charting')
-		property('sonar.projectName', 'MPAndroidChart')
-		property('sonar.projectVersion', android.defaultConfig.versionName)
+        property('sonar.projectKey', 'com.github.mikephil.charting')
+        property('sonar.projectName', 'MPAndroidChart')
+        property('sonar.projectVersion', android.defaultConfig.versionName)
 
-		property('sonar.android.lint.report', 'build/reports/lint-results.xml')
-		property('sonar.jacoco.reportPaths', files)
-		property('sonar.java.coveragePlugin', 'jacoco')
-		property('sonar.junit.reportsPath', 'build/test-results/testDebugUnitTest')
-	}
+        property('sonar.android.lint.report', 'build/reports/lint-results.xml')
+        property('sonar.jacoco.reportPaths', files)
+        property('sonar.java.coveragePlugin', 'jacoco')
+        property('sonar.junit.reportsPath', 'build/test-results/testDebugUnitTest')
+    }
 }
 
 tasks.withType(Test) {
-	testLogging {
-		exceptionFormat 'full'
-	}
+    testLogging {
+        exceptionFormat 'full'
+    }
 }
 
 dependencies {
     implementation 'androidx.annotation:annotation:1.0.0'
 
-	testImplementation 'com.google.truth:truth:0.42'
-	testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC2'
-	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71'
+    testImplementation 'com.google.truth:truth:0.42'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC2'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71'
 
-	androidTestImplementation 'androidx.test:rules:1.1.0-alpha4'
-	androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-	androidTestImplementation 'com.google.truth:truth:0.42'
-	androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71'
+    androidTestImplementation 'androidx.test:rules:1.1.0-beta01'
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+    androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.71'
 }
 
 task sourcesJar(type: Jar) {
-	from android.sourceSets.main.java.srcDirs
-	classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
 }
 
 task javadoc(type: Javadoc) {
-	options.charSet = 'UTF-8'
-	failOnError false
-	source = android.sourceSets.main.java.sourceFiles
-	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.charSet = 'UTF-8'
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     classpath += configurations.compile
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier = 'javadoc'
-	from javadoc.destinationDir
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {
-	archives sourcesJar
-	archives javadocJar
+    archives sourcesJar
+    archives javadocJar
 }
