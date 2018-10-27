@@ -493,7 +493,7 @@ public class LineChartRenderer extends LineRadarRenderer {
             currentEntry = dataSet.getEntryForIndex(x);
 
             if (isDrawSteppedEnabled) {
-                filled.lineTo(currentEntry.getX(), previousEntry.getY() * phaseY);
+                outputPath.lineTo(currentEntry.getX(), previousEntry.getY() * phaseY);
             }
 
             outputPath.lineTo(currentEntry.getX(), currentEntry.getY() * phaseY);

@@ -71,6 +71,8 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
         if (dataSet.getEntryCount() < 1)
             return;
 
+        Transformer trans = mChart.getTransformer(dataSet.getAxisDependency());
+
         float phaseY = mAnimator.getPhaseY();
 
         mXBounds.set(mChart, dataSet);

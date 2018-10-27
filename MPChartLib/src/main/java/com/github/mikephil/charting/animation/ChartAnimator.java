@@ -78,9 +78,8 @@ public class ChartAnimator {
      *
      * @param durationMillis animation duration
      */
-    @RequiresApi(11)
     public void animateX(int durationMillis) {
-        animateX(durationMillis, Easing.Linear);
+        animateX(durationMillis, null);
     }
 
     /**
@@ -106,8 +105,7 @@ public class ChartAnimator {
      * Animates the rendering of the chart on the y-axis with the specified animation time. If
      * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
-     * @param durationMillisX animation duration along the X axis
-     * @param durationMillisY animation duration along the Y axis
+     * @param durationMillis animation duration along the Y axis
      */
     public void animateY(int durationMillis, @Nullable TimeInterpolator easing) {
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(this, "phaseY", 0f, 1f);
@@ -134,28 +132,10 @@ public class ChartAnimator {
     }
 
     /**
-     * Animates the rendering of the chart on the x-axis with the specified animation time. If
-     * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
-     *
-     * @param durationMillis animation duration
-     * @param easing EasingFunction
-     *
-     * @deprecated Use {@link #animateX(int, EasingFunction)}
-     * @see #animateX(int, EasingFunction)
-     */
-    public void animateX(int durationMillis) {
-        animateX(durationMillis, null);
-    }
-
-    /**
      * Animates the rendering of the chart on the y-axis with the specified animation time. If
      * animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
      *
      * @param durationMillis animation duration
-     * @param easing EasingFunction
-     *
-     * @deprecated Use {@link #animateY(int, EasingFunction)}
-     * @see #animateY(int, EasingFunction)
      */
     public void animateY(int durationMillis) {
         animateY(durationMillis, null);

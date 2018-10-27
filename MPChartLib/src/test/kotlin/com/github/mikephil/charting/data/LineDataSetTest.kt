@@ -219,10 +219,10 @@ class LineDataSetTest : LineRadarDataSetTest<Entry, LineDataSet>() {
 	}
 
 	@Test
-	fun setCircleColorHole() {
+	fun setCircleHoleColor() {
 		assertThat(this.dataSet.circleHoleColor).isEqualTo(Color.WHITE)
 
-		this.dataSet.setCircleColorHole(Color.RED)
+		this.dataSet.circleHoleColor = Color.RED
 		assertThat(this.dataSet.circleHoleColor).isEqualTo(Color.RED)
 	}
 
