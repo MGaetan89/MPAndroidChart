@@ -6,7 +6,10 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.3'
+        // Fix for https://github.com/arturdm/jacoco-android-gradle-plugin/issues/42#issuecomment-379038549
+        classpath('com.dicedmelon.gradle:jacoco-android:0.1.3') {
+            exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+        }
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.0'
         classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2'
