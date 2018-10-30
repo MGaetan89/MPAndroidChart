@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -37,6 +36,8 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
+
+import androidx.core.content.ContextCompat;
 
 public class PieChartActivity extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
@@ -283,13 +284,13 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight h) {
 
         if (e == null)
             return;
         Log.i("VAL SELECTED",
-                "Value: " + e.getY() + ", index: " + highlight.getX()
-                        + ", DataSet index: " + highlight.getDataSetIndex());
+                "Value: " + e.getY() + ", index: " + h.getX()
+                        + ", DataSet index: " + h.getDataSetIndex());
     }
 
     @Override

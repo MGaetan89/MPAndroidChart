@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +30,8 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeListener,
         OnChartGestureListener, OnChartValueSelectedListener {
@@ -91,9 +92,9 @@ public class MultiLineChartActivity extends DemoBase implements OnSeekBarChangeL
     }
 
     private final int[] colors = new int[] {
-            ColorTemplate.VORDIPLOM_COLORS[0],
-            ColorTemplate.VORDIPLOM_COLORS[1],
-            ColorTemplate.VORDIPLOM_COLORS[2]
+            ColorUtils.VORDIPLOM_COLORS[0],
+            ColorUtils.VORDIPLOM_COLORS[1],
+            ColorUtils.VORDIPLOM_COLORS[2]
     };
 
     @Override

@@ -49,6 +49,7 @@ public class StackedBarsMarkerView extends MarkerView {
                 tvContent.setText(Utils.formatNumber(be.getY(), 0, true));
             }
         } else {
+
             tvContent.setText(Utils.formatNumber(e.getY(), 0, true));
         }
 

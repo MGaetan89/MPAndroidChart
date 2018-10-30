@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -29,6 +28,8 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeListener {
 
@@ -197,7 +198,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                     else
                         set.setDrawFilled(true);
                 }
-
                 chart.invalidate();
                 break;
             }
@@ -213,7 +213,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                     else
                         set.setDrawCircles(true);
                 }
-
                 chart.invalidate();
                 break;
             }
@@ -228,7 +227,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                             ? LineDataSet.Mode.LINEAR
                             :  LineDataSet.Mode.CUBIC_BEZIER);
                 }
-
                 chart.invalidate();
                 break;
             }
@@ -243,7 +241,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                             ? LineDataSet.Mode.LINEAR
                             :  LineDataSet.Mode.STEPPED);
                 }
-
                 chart.invalidate();
                 break;
             }
@@ -258,7 +255,6 @@ public class CubicLineChartActivity extends DemoBase implements OnSeekBarChangeL
                             ? LineDataSet.Mode.LINEAR
                             :  LineDataSet.Mode.HORIZONTAL_BEZIER);
                 }
-
                 chart.invalidate();
                 break;
             }

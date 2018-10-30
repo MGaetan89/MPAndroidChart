@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -35,6 +34,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import androidx.core.content.ContextCompat;
 
 public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
@@ -230,6 +231,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                         .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
                     if (set.getMode() == LineDataSet.Mode.CUBIC_BEZIER)
                         set.setMode(LineDataSet.Mode.LINEAR);

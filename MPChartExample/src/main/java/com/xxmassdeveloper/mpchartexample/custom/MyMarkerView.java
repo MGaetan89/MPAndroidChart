@@ -45,6 +45,8 @@ public class MyMarkerView extends MarkerView {
 
             tvContent.setText(Utils.formatNumber(e.getY(), 0, true));
         }
+
+        super.refreshContent(e, highlight);
     }
 
     @NonNull

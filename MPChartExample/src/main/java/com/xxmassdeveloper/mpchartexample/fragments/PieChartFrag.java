@@ -1,5 +1,4 @@
 package com.xxmassdeveloper.mpchartexample.fragments;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;

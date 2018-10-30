@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -29,6 +28,8 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import com.xxmassdeveloper.mpchartexample.utils.Easing;
 
 import java.util.ArrayList;
+
+import androidx.core.content.ContextCompat;
 
 public class RadarChartActivity extends DemoBase {
 
@@ -62,7 +63,7 @@ public class RadarChartActivity extends DemoBase {
 
         setData();
 
-        chart.animateXY(1400, 1400, Easing.EaseInOutQuad);
+        chart.animateXY(1400, 1400, Easing.EaseInOutQuad, Easing.EaseInOutQuad);
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setTypeface(tfLight);
@@ -192,6 +193,7 @@ public class RadarChartActivity extends DemoBase {
 
                 ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) chart.getData()
                         .getDataSets();
+
                 for (IRadarDataSet set : sets) {
                     if (set.isDrawFilledEnabled())
                         set.setDrawFilled(false);

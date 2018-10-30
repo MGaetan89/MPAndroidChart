@@ -132,7 +132,7 @@ public class HalfPieChartActivity extends DemoBase {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-        int height = displayMetrics.heightPixels;;
+        int height = displayMetrics.heightPixels;
 
         int offset = (int)(height * 0.65); /* percent to move */
 

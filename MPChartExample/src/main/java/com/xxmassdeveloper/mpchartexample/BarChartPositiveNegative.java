@@ -159,7 +159,8 @@ public class BarChartPositiveNegative extends DemoBase {
         }
     }
 
-    private class ValueFormatter implements IValueFormatter {
+    private class ValueFormatter implements IValueFormatter
+    {
 
         private final DecimalFormat mFormat;
 

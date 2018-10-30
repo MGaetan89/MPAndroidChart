@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +33,8 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Example of a dual axis {@link LineChart} with multiple data sets.
@@ -174,12 +175,12 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set1 = new LineDataSet(values1, "DataSet 1");
 
             set1.setAxisDependency(AxisDependency.LEFT);
-            set1.setColor(ColorTemplate.getHoloBlue());
+            set1.setColor(ColorUtils.getHoloBlue());
             set1.setCircleColor(Color.WHITE);
             set1.setLineWidth(2f);
             set1.setCircleRadius(3f);
             set1.setFillAlpha(65);
-            set1.setFillColor(ColorTemplate.getHoloBlue());
+            set1.setFillColor(ColorUtils.getHoloBlue());
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
             //set1.setFillFormatter(new MyFillFormatter(0f));
@@ -263,6 +264,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                         .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
                     if (set.isDrawFilledEnabled())
                         set.setDrawFilled(false);
@@ -292,6 +294,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                         .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
                     set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER
                             ? LineDataSet.Mode.LINEAR

@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +34,8 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import androidx.core.content.ContextCompat;
 
 public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
@@ -76,7 +77,8 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
         chart.setDrawGridBackground(false);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout to use for it
+        // create a custom MarkerView (extend MarkerView) and specify the layout
+        // to use for it
         MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
         mv.setChartView(chart); // For bounds control
         chart.setMarker(mv); // Set the marker to the chart

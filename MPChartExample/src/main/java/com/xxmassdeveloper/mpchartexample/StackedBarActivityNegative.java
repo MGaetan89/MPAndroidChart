@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +32,8 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 public class StackedBarActivityNegative extends DemoBase implements OnChartValueSelectedListener {
 
@@ -193,7 +194,7 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
             }
             case R.id.actionToggleBarBorders: {
                 for (IBarDataSet set : chart.getData().getDataSets())
-                    ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
+                    ((BarDataSet)set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
 
                 chart.invalidate();
                 break;
@@ -231,7 +232,8 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
     @Override
     public void onValueSelected(Entry e, Highlight h) {
         BarEntry entry = (BarEntry) e;
-        Log.i("VAL SELECTED", "Value: " + Math.abs(entry.getYVals()[h.getStackIndex()]));
+        Log.i("VAL SELECTED",
+                "Value: " + Math.abs(entry.getYVals()[h.getStackIndex()]));
     }
 
     @Override
