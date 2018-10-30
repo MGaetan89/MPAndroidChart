@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -7,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -237,7 +239,7 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
             });
 
             // set color of filled area
-            if (Utils.getSDKInt() >= 18) {
+            if (Build.VERSION.SDK_INT >= 18) {
                 // drawables only supported on api level 18 and above
                 Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
                 set1.setFillDrawable(drawable);
@@ -442,8 +444,8 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
     }
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
-        Log.i("Entry selected", entry.toString());
+    public void onValueSelected(Entry e, Highlight h) {
+        Log.i("Entry selected", e.toString());
         Log.i("LOW HIGH", "low: " + chart.getLowestVisibleX() + ", high: " + chart.getHighestVisibleX());
         Log.i("MIN MAX", "xMin: " + chart.getXChartMin() + ", xMax: " + chart.getXChartMax() + ", yMin: " + chart.getYChartMin() + ", yMax: " + chart.getYChartMax());
     }

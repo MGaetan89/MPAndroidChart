@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.annotation.SuppressLint;
@@ -39,16 +40,16 @@ public class XYMarkerView extends MarkerView {
     // runs every time the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
+    public void refreshContent(@NonNull Entry e, @NonNull Highlight highlight) {
 
-        tvContent.setText("x: " + xAxisValueFormatter.getFormattedValue(entry.getX(), null) + ", y: " + format.format(entry.getY()));
+        tvContent.setText(String.format("x: %s, y: %s", xAxisValueFormatter.getFormattedValue(e.getX(), null), format.format(e.getY())));
 
-        super.refreshContent(entry, highlight);
+        super.refreshContent(e, highlight);
     }
 
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2f), -getHeight());
+        return new MPPointF(-(getWidth() / 2), -getHeight());
     }
 }

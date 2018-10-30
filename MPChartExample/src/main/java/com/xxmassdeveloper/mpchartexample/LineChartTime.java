@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -36,6 +37,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
+
     private LineChart chart;
     private SeekBar seekBarX;
     private TextView tvX;
@@ -91,10 +93,12 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
         xAxis.setCenterAxisLabels(true);
         xAxis.setGranularity(1f); // one hour
         xAxis.setValueFormatter(new IAxisValueFormatter() {
+
             private final SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM HH:mm", Locale.ENGLISH);
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
+
                 long millis = TimeUnit.HOURS.toMillis((long) value);
                 return mFormat.format(new Date(millis));
             }
@@ -162,6 +166,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -170,9 +175,11 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                 break;
             }
             case R.id.actionToggleValues: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
@@ -188,49 +195,61 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                 break;
             }
             case R.id.actionToggleFilled: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setDrawFilled(!set.isDrawFilledEnabled());
+                    if (set.isDrawFilledEnabled())
+                        set.setDrawFilled(false);
+                    else
+                        set.setDrawFilled(true);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleCircles: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setDrawCircles(!set.isDrawCirclesEnabled());
+                    if (set.isDrawCirclesEnabled())
+                        set.setDrawCircles(false);
+                    else
+                        set.setDrawCircles(true);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleCubic: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.getMode() == LineDataSet.Mode.CUBIC_BEZIER) {
+                    if (set.getMode() == LineDataSet.Mode.CUBIC_BEZIER)
                         set.setMode(LineDataSet.Mode.LINEAR);
-                    } else {
+                    else
                         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-                    }
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleStepped: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
-                    if (set.getMode() == LineDataSet.Mode.STEPPED) {
+                    if (set.getMode() == LineDataSet.Mode.STEPPED)
                         set.setMode(LineDataSet.Mode.LINEAR);
-                    } else {
+                    else
                         set.setMode(LineDataSet.Mode.STEPPED);
-                    }
                 }
                 chart.invalidate();
                 break;
@@ -261,6 +280,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
                 chart.animateXY(2000, 2000);
                 break;
             }
+
             case R.id.actionSave: {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     saveToGallery();
@@ -275,6 +295,7 @@ public class LineChartTime extends DemoBase implements OnSeekBarChangeListener {
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
         tvX.setText(String.valueOf(seekBarX.getProgress()));
 
         setData(seekBarX.getProgress(), 50);

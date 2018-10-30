@@ -54,8 +54,11 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected BarData generateBarData(int dataSets, float range, int count) {
+
         ArrayList<IBarDataSet> sets = new ArrayList<>();
+
         for(int i = 0; i < dataSets; i++) {
+
             ArrayList<BarEntry> entries = new ArrayList<>();
 
             for(int j = 0; j < count; j++) {
@@ -73,11 +76,13 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected ScatterData generateScatterData(int dataSets, float range, int count) {
+
         ArrayList<IScatterDataSet> sets = new ArrayList<>();
 
         ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.values();
 
         for(int i = 0; i < dataSets; i++) {
+
             ArrayList<Entry> entries = new ArrayList<>();
 
             for(int j = 0; j < count; j++) {
@@ -124,6 +129,7 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected LineData generateLineData() {
+
         ArrayList<ILineDataSet> sets = new ArrayList<>();
         LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "sine.txt"), "Sine function");
         LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "cosine.txt"), "Cosine function");
@@ -137,7 +143,7 @@ public abstract class SimpleFragment extends Fragment {
         ds1.setColor(ColorUtils.VORDIPLOM_COLORS[0]);
         ds2.setColor(ColorUtils.VORDIPLOM_COLORS[1]);
 
-        // load DataSets from textfiles in assets folders
+        // load DataSets from files in assets folder
         sets.add(ds1);
         sets.add(ds2);
 
@@ -147,12 +153,13 @@ public abstract class SimpleFragment extends Fragment {
     }
 
     protected LineData getComplexity() {
+
         ArrayList<ILineDataSet> sets = new ArrayList<>();
 
-        LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "n.txt"), "O(n)");
-        LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "nlogn.txt"), "O(nlogn)");
-        LineDataSet ds3 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "square.txt"), "O(n\u00B2)");
-        LineDataSet ds4 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "three.txt"), "O(n\u00B3)");
+        LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "n.txt"), "O(n)");
+        LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "nlogn.txt"), "O(nlogn)");
+        LineDataSet ds3 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "square.txt"), "O(n\u00B2)");
+        LineDataSet ds4 = new LineDataSet(FileUtils.loadEntriesFromAssets(context.getAssets(), "three.txt"), "O(n\u00B3)");
 
         ds1.setColor(ColorUtils.VORDIPLOM_COLORS[0]);
         ds2.setColor(ColorUtils.VORDIPLOM_COLORS[1]);

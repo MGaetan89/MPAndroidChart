@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -282,12 +283,12 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight highlight) {
 
-        if (entry == null)
+        if (e == null)
             return;
         Log.i("VAL SELECTED",
-                "Value: " + entry.getY() + ", index: " + highlight.getX()
+                "Value: " + e.getY() + ", index: " + highlight.getX()
                         + ", DataSet index: " + highlight.getDataSetIndex());
     }
 

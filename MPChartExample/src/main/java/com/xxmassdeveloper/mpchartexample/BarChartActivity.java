@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -300,6 +301,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         saveToGallery(chart, "BarChartActivity");
     }
 
+    @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
     }
 
@@ -310,14 +312,14 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
     private final RectF onValueSelectedRectF = new RectF();
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight h) {
 
-        if (entry == null)
+        if (e == null)
             return;
 
         RectF bounds = onValueSelectedRectF;
-        chart.getBarBounds((BarEntry) entry, bounds);
-        MPPointF position = chart.getPosition(entry, AxisDependency.LEFT);
+        chart.getBarBounds((BarEntry) e, bounds);
+        MPPointF position = chart.getPosition(e, AxisDependency.LEFT);
 
         Log.i("bounds", bounds.toString());
         Log.i("position", position.toString());

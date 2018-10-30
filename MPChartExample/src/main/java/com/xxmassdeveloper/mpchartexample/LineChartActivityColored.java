@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Intent;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("SameParameterValue")
 public class LineChartActivityColored extends DemoBase {
+
     private final LineChart[] charts = new LineChart[4];
 
     @Override
@@ -39,8 +41,9 @@ public class LineChartActivityColored extends DemoBase {
         Typeface mTf = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
 
         for (int i = 0; i < charts.length; i++) {
+
             LineData data = getData(36, 100);
-            data.setValueTypeface(typeface);
+            data.setValueTypeface(mTf);
 
             // add some transparency to the color with "& 0x90FFFFFF"
             setupChart(charts[i], data, colors[i % colors.length]);
@@ -55,6 +58,7 @@ public class LineChartActivityColored extends DemoBase {
     };
 
     private void setupChart(LineChart chart, LineData data, int color) {
+
         ((LineDataSet) data.getDataSetByIndex(0)).setCircleHoleColor(color);
 
         // no description text
@@ -64,6 +68,7 @@ public class LineChartActivityColored extends DemoBase {
         //
         // enable / disable grid background
         chart.setDrawGridBackground(false);
+//        chart.getRenderer().getGridPaint().setGridColor(Color.WHITE & 0x70FFFFFF);
 
         // enable touch gestures
         chart.setTouchEnabled(true);
@@ -74,6 +79,7 @@ public class LineChartActivityColored extends DemoBase {
 
         // if disabled, scaling can be done on x- and y-axis separately
         chart.setPinchZoom(false);
+
         chart.setBackgroundColor(color);
 
         // set custom chart offsets (automatic offset calculation is hereby disabled)
@@ -98,6 +104,7 @@ public class LineChartActivityColored extends DemoBase {
     }
 
     private LineData getData(int count, float range) {
+
         ArrayList<Entry> values = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {

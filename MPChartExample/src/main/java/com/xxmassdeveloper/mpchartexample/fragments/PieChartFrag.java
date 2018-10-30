@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class PieChartFrag extends SimpleFragment {
+
     @NonNull
     public static Fragment newInstance() {
         return new PieChartFrag();

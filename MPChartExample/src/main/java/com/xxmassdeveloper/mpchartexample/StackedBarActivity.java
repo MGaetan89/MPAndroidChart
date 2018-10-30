@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -261,12 +262,12 @@ public class StackedBarActivity extends DemoBase implements OnSeekBarChangeListe
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight h) {
 
         BarEntry entry = (BarEntry) e;
 
         if (entry.getYVals() != null)
-            Log.i("VAL SELECTED", "Value: " + entry.getYVals()[highlight.getStackIndex()]);
+            Log.i("VAL SELECTED", "Value: " + entry.getYVals()[h.getStackIndex()]);
         else
             Log.i("VAL SELECTED", "Value: " + entry.getY());
     }

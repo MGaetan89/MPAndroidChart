@@ -1,13 +1,17 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
 
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -38,6 +42,7 @@ import androidx.annotation.NonNull;
  * @author Philipp Jahoda
  */
 public class ListViewMultiChartActivity extends DemoBase {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +57,8 @@ public class ListViewMultiChartActivity extends DemoBase {
         ArrayList<ChartItem> list = new ArrayList<>();
 
         // 30 items
-        ArrayList<ChartItem> list = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
+
             if(i % 3 == 0) {
                 list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
             } else if(i % 3 == 1) {
@@ -69,6 +74,7 @@ public class ListViewMultiChartActivity extends DemoBase {
 
     /** adapter that supports 3 different item types */
     private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+
         ChartDataAdapter(Context context, List<ChartItem> objects) {
             super(context, 0, objects);
         }
@@ -99,6 +105,7 @@ public class ListViewMultiChartActivity extends DemoBase {
      * @return Line data
      */
     private LineData generateDataLine(int cnt) {
+
         ArrayList<Entry> values1 = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
@@ -110,6 +117,8 @@ public class ListViewMultiChartActivity extends DemoBase {
         d1.setCircleRadius(4.5f);
         d1.setHighLightColor(0xF47575);
         d1.setDrawValues(false);
+
+        ArrayList<Entry> values2 = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
             values2.add(new Entry(i, values1.get(i).getY() - 30));
@@ -136,6 +145,7 @@ public class ListViewMultiChartActivity extends DemoBase {
      * @return Bar data
      */
     private BarData generateDataBar(int cnt) {
+
         ArrayList<BarEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
@@ -157,6 +167,7 @@ public class ListViewMultiChartActivity extends DemoBase {
      * @return Pie data
      */
     private PieData generateDataPie() {
+
         ArrayList<PieEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
@@ -170,6 +181,27 @@ public class ListViewMultiChartActivity extends DemoBase {
         d.setColors(ColorUtils.VORDIPLOM_COLORS);
 
         return new PieData(d);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.only_github, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.viewGithub: {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://github.com/PhilJay/MPAndroidChart/blob/master/MPChartExample/src/com/xxmassdeveloper/mpchartexample/ListViewMultiChartActivity.java"));
+                startActivity(i);
+                break;
+            }
+        }
+
+        return true;
     }
 
     @Override

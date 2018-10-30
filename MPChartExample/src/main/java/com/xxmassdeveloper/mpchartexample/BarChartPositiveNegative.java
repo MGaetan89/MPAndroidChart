@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Intent;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BarChartPositiveNegative extends DemoBase {
+
     private BarChart chart;
 
     @Override
@@ -97,8 +99,6 @@ public class BarChartPositiveNegative extends DemoBase {
     }
 
     private void setData(List<Data> dataList) {
-        ArrayList<BarEntry> values = new ArrayList<>();
-        List<Integer> colors = new ArrayList<>();
 
         ArrayList<BarEntry> values = new ArrayList<>();
         List<Integer> colors = new ArrayList<>();
@@ -107,16 +107,16 @@ public class BarChartPositiveNegative extends DemoBase {
         int red = Color.rgb(211, 74, 88);
 
         for (int i = 0; i < dataList.size(); i++) {
+
             Data d = dataList.get(i);
             BarEntry entry = new BarEntry(d.xValue, d.yValue);
             values.add(entry);
 
             // specific colors
-            if (d.yValue >= 0) {
+            if (d.yValue >= 0)
                 colors.add(red);
-            } else {
+            else
                 colors.add(green);
-            }
         }
 
         BarDataSet set;
@@ -147,9 +147,10 @@ public class BarChartPositiveNegative extends DemoBase {
      * Demo class representing data.
      */
     private class Data {
-        String xAxisValue;
-        float yValue;
-        float xValue;
+
+        final String xAxisValue;
+        final float yValue;
+        final float xValue;
 
         Data(float xValue, float yValue, String xAxisValue) {
             this.xAxisValue = xAxisValue;
@@ -159,7 +160,8 @@ public class BarChartPositiveNegative extends DemoBase {
     }
 
     private class ValueFormatter implements IValueFormatter {
-        private DecimalFormat mFormat;
+
+        private final DecimalFormat mFormat;
 
         ValueFormatter() {
             mFormat = new DecimalFormat("######.0");

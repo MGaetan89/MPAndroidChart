@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -67,6 +68,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         chart.getDescription().setEnabled(false);
 
 //        chart.setDrawBorders(true);
+
         // scaling can now only be done on x- and y-axis separately
         chart.setPinchZoom(false);
 
@@ -196,6 +198,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -204,9 +207,8 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
                 break;
             }
             case R.id.actionToggleValues: {
-                for (IBarDataSet set : chart.getData().getDataSets()) {
+                for (IBarDataSet set : chart.getData().getDataSets())
                     set.setDrawValues(!set.isDrawValuesEnabled());
-                }
 
                 chart.invalidate();
                 break;
@@ -277,8 +279,8 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
     }
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
-        Log.i("Activity", "Selected: " + entry.toString() + ", dataSet: " + highlight.getDataSetIndex());
+    public void onValueSelected(Entry e, Highlight h) {
+        Log.i("Activity", "Selected: " + e.toString() + ", dataSet: " + h.getDataSetIndex());
     }
 
     @Override

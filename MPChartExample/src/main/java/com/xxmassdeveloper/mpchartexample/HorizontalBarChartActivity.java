@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -270,15 +271,15 @@ public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarCha
     private final RectF mOnValueSelectedRectF = new RectF();
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight h) {
 
-        if (entry == null)
+        if (e == null)
             return;
 
         RectF bounds = mOnValueSelectedRectF;
-        chart.getBarBounds((BarEntry) entry, bounds);
+        chart.getBarBounds((BarEntry) e, bounds);
 
-        MPPointF position = chart.getPosition(entry, chart.getData().getDataSetByIndex(highlight.getDataSetIndex())
+        MPPointF position = chart.getPosition(e, chart.getData().getDataSetByIndex(h.getDataSetIndex())
                 .getAxisDependency());
 
         Log.i("bounds", bounds.toString());

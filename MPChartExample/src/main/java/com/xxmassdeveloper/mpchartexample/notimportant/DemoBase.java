@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample.notimportant;
 
 import android.Manifest;
@@ -8,9 +9,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.Chart;
+import com.google.android.material.snackbar.Snackbar;
 import com.xxmassdeveloper.mpchartexample.R;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 /**

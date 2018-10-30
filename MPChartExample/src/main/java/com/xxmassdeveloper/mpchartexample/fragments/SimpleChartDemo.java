@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample.fragments;
 
 import android.app.AlertDialog;
@@ -55,26 +56,34 @@ public class SimpleChartDemo extends DemoBase {
     }
 
     private class PageAdapter extends FragmentPagerAdapter {
+
         PageAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int pos) {
+            Fragment f = null;
+
             switch(pos) {
             case 0:
-                return SineCosineFragment.newInstance();
+                f = SineCosineFragment.newInstance();
+                break;
             case 1:
-                return ComplexityFragment.newInstance();
+                f = ComplexityFragment.newInstance();
+                break;
             case 2:
-                return BarChartFrag.newInstance();
+                f = BarChartFrag.newInstance();
+                break;
             case 3:
-                return ScatterChartFrag.newInstance();
+                f = ScatterChartFrag.newInstance();
+                break;
             case 4:
-                return PieChartFrag.newInstance();
-            default:
-                return null;
+                f = PieChartFrag.newInstance();
+                break;
             }
+
+            return f;
         }
 
         @Override

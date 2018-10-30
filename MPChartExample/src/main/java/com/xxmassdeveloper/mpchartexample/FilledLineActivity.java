@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Intent;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("SameParameterValue")
 public class FilledLineActivity extends DemoBase {
+
     private LineChart chart;
     private final int fillColor = Color.argb(150, 51, 181, 229);
 
@@ -79,13 +81,16 @@ public class FilledLineActivity extends DemoBase {
     }
 
     private void setData(int count, float range) {
+
         ArrayList<Entry> values1 = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range) + 50;
             values1.add(new Entry(i, val));
         }
 
         ArrayList<Entry> values2 = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             float val = (float) (Math.random() * range) + 450;
             values2.add(new Entry(i, val));

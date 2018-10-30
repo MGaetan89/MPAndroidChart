@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -51,7 +52,6 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
 
         tvX = findViewById(R.id.tvXMax);
         tvY = findViewById(R.id.tvYMax);
-
 
         seekBarX = findViewById(R.id.seekBar1);
         seekBarX.setOnSeekBarChangeListener(this);
@@ -231,10 +231,10 @@ public class BubbleChartActivity extends DemoBase implements OnSeekBarChangeList
     }
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight h) {
         Log.i("VAL SELECTED",
-                "Value: " + entry.getY() + ", xIndex: " + entry.getX()
-                        + ", DataSet index: " + highlight.getDataSetIndex());
+                "Value: " + e.getY() + ", xIndex: " + e.getX()
+                        + ", DataSet index: " + h.getDataSetIndex());
     }
 
     @Override

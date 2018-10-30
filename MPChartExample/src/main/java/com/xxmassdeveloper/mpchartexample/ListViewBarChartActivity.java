@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.annotation.SuppressLint;
@@ -39,6 +40,7 @@ import androidx.annotation.NonNull;
  * @author Philipp Jahoda
  */
 public class ListViewBarChartActivity extends DemoBase {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,6 @@ public class ListViewBarChartActivity extends DemoBase {
         ArrayList<BarData> list = new ArrayList<>();
 
         // 20 items
-        ArrayList<BarData> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             list.add(generateData(i + 1));
         }
@@ -63,6 +64,7 @@ public class ListViewBarChartActivity extends DemoBase {
     }
 
     private class ChartDataAdapter extends ArrayAdapter<BarData> {
+
         ChartDataAdapter(Context context, List<BarData> objects) {
             super(context, 0, objects);
         }
@@ -71,11 +73,13 @@ public class ListViewBarChartActivity extends DemoBase {
         @NonNull
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+
             BarData data = getItem(position);
 
             ViewHolder holder;
 
             if (convertView == null) {
+
                 holder = new ViewHolder();
 
                 convertView = LayoutInflater.from(getContext()).inflate(
@@ -83,6 +87,7 @@ public class ListViewBarChartActivity extends DemoBase {
                 holder.chart = convertView.findViewById(R.id.chart);
 
                 convertView.setTag(holder);
+
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
@@ -122,6 +127,7 @@ public class ListViewBarChartActivity extends DemoBase {
         }
 
         private class ViewHolder {
+
             BarChart chart;
         }
     }
@@ -132,6 +138,7 @@ public class ListViewBarChartActivity extends DemoBase {
      * @return Bar data
      */
     private BarData generateData(int cnt) {
+
         ArrayList<BarEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {

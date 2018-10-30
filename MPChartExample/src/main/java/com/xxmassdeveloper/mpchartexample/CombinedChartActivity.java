@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Intent;
@@ -38,6 +39,7 @@ import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 import java.util.ArrayList;
 
 public class CombinedChartActivity extends DemoBase {
+
     private CombinedChart chart;
     private final int count = 12;
 
@@ -104,12 +106,13 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     private LineData generateLineData() {
+
         LineData d = new LineData();
+
         ArrayList<Entry> entries = new ArrayList<>();
 
-        for (int index = 0; index < count; index++) {
+        for (int index = 0; index < count; index++)
             entries.add(new Entry(index + 0.5f, getRandom(15, 5)));
-        }
 
         LineDataSet set = new LineDataSet(entries, "Line DataSet");
         set.setColor(0xF0EE46);
@@ -129,6 +132,7 @@ public class CombinedChartActivity extends DemoBase {
     }
 
     private BarData generateBarData() {
+
         ArrayList<BarEntry> entries1 = new ArrayList<>();
         ArrayList<BarEntry> entries2 = new ArrayList<>();
 
@@ -166,13 +170,14 @@ public class CombinedChartActivity extends DemoBase {
         return d;
     }
 
-    ScatterData generateScatterData() {
+    private ScatterData generateScatterData() {
+
         ScatterData d = new ScatterData();
+
         ArrayList<Entry> entries = new ArrayList<>();
 
-        for (float index = 0; index < count; index += 0.5f) {
+        for (float index = 0; index < count; index += 0.5f)
             entries.add(new Entry(index + 0.25f, getRandom(10, 55)));
-        }
 
         ScatterDataSet set = new ScatterDataSet(entries, "Scatter DataSet");
         set.setColors(ColorUtils.MATERIAL_COLORS);
@@ -184,13 +189,14 @@ public class CombinedChartActivity extends DemoBase {
         return d;
     }
 
-    CandleData generateCandleData() {
+    private CandleData generateCandleData() {
+
         CandleData d = new CandleData();
+
         ArrayList<CandleEntry> entries = new ArrayList<>();
 
-        for (int index = 0; index < count; index += 2) {
+        for (int index = 0; index < count; index += 2)
             entries.add(new CandleEntry(index + 1f, 90, 70, 85, 75f));
-        }
 
         CandleDataSet set = new CandleDataSet(entries, "Candle DataSet");
         set.setDecreasingColor(0x8E96AF);
@@ -203,8 +209,10 @@ public class CombinedChartActivity extends DemoBase {
         return d;
     }
 
-    BubbleData generateBubbleData() {
+   private BubbleData generateBubbleData() {
+
         BubbleData bd = new BubbleData();
+
         ArrayList<BubbleEntry> entries = new ArrayList<>();
 
         for (int index = 0; index < count; index++) {
@@ -241,9 +249,8 @@ public class CombinedChartActivity extends DemoBase {
             }
             case R.id.actionToggleLineValues: {
                 for (IDataSet set : chart.getData().getDataSets()) {
-                    if (set instanceof LineDataSet) {
+                    if (set instanceof LineDataSet)
                         set.setDrawValues(!set.isDrawValuesEnabled());
-                    }
                 }
 
                 chart.invalidate();
@@ -251,9 +258,8 @@ public class CombinedChartActivity extends DemoBase {
             }
             case R.id.actionToggleBarValues: {
                 for (IDataSet set : chart.getData().getDataSets()) {
-                    if (set instanceof BarDataSet) {
+                    if (set instanceof BarDataSet)
                         set.setDrawValues(!set.isDrawValuesEnabled());
-                    }
                 }
 
                 chart.invalidate();

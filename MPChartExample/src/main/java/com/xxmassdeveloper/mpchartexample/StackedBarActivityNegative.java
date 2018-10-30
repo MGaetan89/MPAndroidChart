@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StackedBarActivityNegative extends DemoBase implements OnChartValueSelectedListener {
+
     private HorizontalBarChart chart;
 
     @Override
@@ -77,6 +79,7 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
         xAxis.setLabelCount(12);
         xAxis.setGranularity(10f);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
+
             private final DecimalFormat format = new DecimalFormat("###");
 
             @Override
@@ -95,21 +98,21 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
         l.setXEntrySpace(6f);
 
         // IMPORTANT: When using negative values in stacked bars, always make sure the negative values are in the array first
-        ArrayList<BarEntry> yValues = new ArrayList<>();
-        yValues.add(new BarEntry(5, new float[]{ -10, 10 }));
-        yValues.add(new BarEntry(15, new float[]{ -12, 13 }));
-        yValues.add(new BarEntry(25, new float[]{ -15, 15 }));
-        yValues.add(new BarEntry(35, new float[]{ -17, 17 }));
-        yValues.add(new BarEntry(45, new float[]{ -19, 20 }));
-        yValues.add(new BarEntry(45, new float[]{ -19, 20 }, getResources().getDrawable(R.drawable.star)));
-        yValues.add(new BarEntry(55, new float[]{ -19, 19 }));
-        yValues.add(new BarEntry(65, new float[]{ -16, 16 }));
-        yValues.add(new BarEntry(75, new float[]{ -13, 14 }));
-        yValues.add(new BarEntry(85, new float[]{ -10, 11 }));
-        yValues.add(new BarEntry(95, new float[]{ -5, 6 }));
-        yValues.add(new BarEntry(105, new float[]{ -1, 2 }));
+        ArrayList<BarEntry> values = new ArrayList<>();
+        values.add(new BarEntry(5, new float[]{ -10, 10 }));
+        values.add(new BarEntry(15, new float[]{ -12, 13 }));
+        values.add(new BarEntry(25, new float[]{ -15, 15 }));
+        values.add(new BarEntry(35, new float[]{ -17, 17 }));
+        values.add(new BarEntry(45, new float[]{ -19, 20 }));
+        values.add(new BarEntry(45, new float[]{ -19, 20 }, getResources().getDrawable(R.drawable.star)));
+        values.add(new BarEntry(55, new float[]{ -19, 19 }));
+        values.add(new BarEntry(65, new float[]{ -16, 16 }));
+        values.add(new BarEntry(75, new float[]{ -13, 14 }));
+        values.add(new BarEntry(85, new float[]{ -10, 11 }));
+        values.add(new BarEntry(95, new float[]{ -5, 6 }));
+        values.add(new BarEntry(105, new float[]{ -1, 2 }));
 
-        BarDataSet set = new BarDataSet(yValues, "Age Distribution");
+        BarDataSet set = new BarDataSet(values, "Age Distribution");
         set.setDrawIcons(false);
         set.setValueFormatter(new CustomFormatter());
         set.setValueTextSize(7f);
@@ -133,6 +136,7 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -141,8 +145,11 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
                 break;
             }
             case R.id.actionToggleValues: {
-                List<IBarDataSet> sets = chart.getData().getDataSets();
+                List<IBarDataSet> sets = chart.getData()
+                        .getDataSets();
+
                 for (IBarDataSet iSet : sets) {
+
                     BarDataSet set = (BarDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
@@ -151,8 +158,11 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
                 break;
             }
             case R.id.actionToggleIcons: {
-                List<IBarDataSet> sets = chart.getData().getDataSets();
+                List<IBarDataSet> sets = chart.getData()
+                        .getDataSets();
+
                 for (IBarDataSet iSet : sets) {
+
                     BarDataSet set = (BarDataSet) iSet;
                     set.setDrawIcons(!set.isDrawIconsEnabled());
                 }
@@ -168,7 +178,11 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
                 break;
             }
             case R.id.actionTogglePinch: {
-                chart.setPinchZoom(!chart.isPinchZoomEnabled());
+                if (chart.isPinchZoomEnabled())
+                    chart.setPinchZoom(false);
+                else
+                    chart.setPinchZoom(true);
+
                 chart.invalidate();
                 break;
             }
@@ -178,9 +192,8 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
                 break;
             }
             case R.id.actionToggleBarBorders: {
-                for (IBarDataSet set : chart.getData().getDataSets()) {
+                for (IBarDataSet set : chart.getData().getDataSets())
                     ((BarDataSet) set).setBarBorderWidth(set.getBarBorderWidth() == 1f ? 0f : 1f);
-                }
 
                 chart.invalidate();
                 break;
@@ -194,6 +207,7 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
                 break;
             }
             case R.id.animateXY: {
+
                 chart.animateXY(3000, 3000);
                 break;
             }
@@ -214,9 +228,10 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
         saveToGallery(chart, "StackedBarActivityNegative");
     }
 
-    public void onValueSelected(Entry e, Highlight highlight) {
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
         BarEntry entry = (BarEntry) e;
-        Log.i("VAL SELECTED", "Value: " + Math.abs(entry.getYVals()[highlight.getStackIndex()]));
+        Log.i("VAL SELECTED", "Value: " + Math.abs(entry.getYVals()[h.getStackIndex()]));
     }
 
     @Override
@@ -225,6 +240,7 @@ public class StackedBarActivityNegative extends DemoBase implements OnChartValue
     }
 
     private class CustomFormatter implements IValueFormatter, IAxisValueFormatter {
+
         private final DecimalFormat mFormat;
 
         CustomFormatter() {

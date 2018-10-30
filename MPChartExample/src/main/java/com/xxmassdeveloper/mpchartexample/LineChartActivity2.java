@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -106,6 +107,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
+//        l.setYOffset(11f);
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setTypeface(tfLight);
@@ -227,6 +229,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -235,9 +238,11 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                 break;
             }
             case R.id.actionToggleValues: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
                     set.setDrawValues(!set.isDrawValuesEnabled());
                 }
@@ -253,51 +258,72 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
                 break;
             }
             case R.id.actionToggleFilled: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setDrawFilled(!set.isDrawFilledEnabled());
+                    if (set.isDrawFilledEnabled())
+                        set.setDrawFilled(false);
+                    else
+                        set.setDrawFilled(true);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleCircles: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setDrawCircles(!set.isDrawCirclesEnabled());
+                    if (set.isDrawCirclesEnabled())
+                        set.setDrawCircles(false);
+                    else
+                        set.setDrawCircles(true);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleCubic: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER ? LineDataSet.Mode.LINEAR : LineDataSet.Mode.CUBIC_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.CUBIC_BEZIER
+                            ? LineDataSet.Mode.LINEAR
+                            : LineDataSet.Mode.CUBIC_BEZIER);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleStepped: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED ? LineDataSet.Mode.LINEAR : LineDataSet.Mode.STEPPED);
+                    set.setMode(set.getMode() == LineDataSet.Mode.STEPPED
+                            ? LineDataSet.Mode.LINEAR
+                            : LineDataSet.Mode.STEPPED);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleHorizontalCubic: {
-                List<ILineDataSet> sets = chart.getData().getDataSets();
+                List<ILineDataSet> sets = chart.getData()
+                        .getDataSets();
 
                 for (ILineDataSet iSet : sets) {
+
                     LineDataSet set = (LineDataSet) iSet;
-                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER ? LineDataSet.Mode.LINEAR : LineDataSet.Mode.HORIZONTAL_BEZIER);
+                    set.setMode(set.getMode() == LineDataSet.Mode.HORIZONTAL_BEZIER
+                            ? LineDataSet.Mode.LINEAR
+                            : LineDataSet.Mode.HORIZONTAL_BEZIER);
                 }
                 chart.invalidate();
                 break;
@@ -342,6 +368,7 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
         tvX.setText(String.valueOf(seekBarX.getProgress()));
         tvY.setText(String.valueOf(seekBarY.getProgress()));
 
@@ -357,10 +384,10 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
     }
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
-        Log.i("Entry selected", entry.toString());
+    public void onValueSelected(Entry e, Highlight h) {
+        Log.i("Entry selected", e.toString());
 
-        chart.centerViewToAnimated(entry.getX(), entry.getY(), chart.getData().getDataSetByIndex(highlight.getDataSetIndex())
+        chart.centerViewToAnimated(e.getX(), e.getY(), chart.getData().getDataSetByIndex(h.getDataSetIndex())
                 .getAxisDependency(), 500);
         //chart.zoomAndCenterAnimated(2.5f, 2.5f, e.getX(), e.getY(), chart.getData().getDataSetByIndex(dataSetIndex)
         // .getAxisDependency(), 1000);

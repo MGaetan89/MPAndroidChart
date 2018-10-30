@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -29,6 +30,7 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 import com.xxmassdeveloper.mpchartexample.utils.ColorUtils;
 
 public class RealtimeLineChartActivity extends DemoBase implements OnChartValueSelectedListener {
+
     private LineChart chart;
 
     @Override
@@ -90,36 +92,15 @@ public class RealtimeLineChartActivity extends DemoBase implements OnChartValueS
 
         YAxis rightAxis = chart.getAxisRight();
         rightAxis.setEnabled(false);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.realtime, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.actionAdd: {
-                addEntry();
-                break;
-            }
-            case R.id.actionClear: {
-                mChart.clearValues();
-                Toast.makeText(this, "Chart cleared!", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.actionFeedMultiple: {
-                feedMultiple();
-                break;
-            }
-        }
-        return true;
     }
 
     private void addEntry() {
+
+        LineData data = chart.getData();
+
         if (data != null) {
+
             ILineDataSet set = data.getDataSetByIndex(0);
             // set.addEntry(...); // can be called as well
 
@@ -148,6 +129,7 @@ public class RealtimeLineChartActivity extends DemoBase implements OnChartValueS
     }
 
     private LineDataSet createSet() {
+
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(AxisDependency.LEFT);
         set.setColor(ColorUtils.getHoloBlue());
@@ -166,11 +148,12 @@ public class RealtimeLineChartActivity extends DemoBase implements OnChartValueS
     private Thread thread;
 
     private void feedMultiple() {
-        if (thread != null) {
+
+        if (thread != null)
             thread.interrupt();
-        }
 
         final Runnable runnable = new Runnable() {
+
             @Override
             public void run() {
                 addEntry();
@@ -178,9 +161,11 @@ public class RealtimeLineChartActivity extends DemoBase implements OnChartValueS
         };
 
         thread = new Thread(new Runnable() {
+
             @Override
             public void run() {
                 for (int i = 0; i < 1000; i++) {
+
                     // Don't generate garbage runnables inside the loop.
                     runOnUiThread(runnable);
 

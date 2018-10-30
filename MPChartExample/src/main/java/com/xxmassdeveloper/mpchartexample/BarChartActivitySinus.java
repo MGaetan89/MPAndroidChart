@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -30,9 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeListener {
+
     private BarChart chart;
     private SeekBar seekBarX;
     private TextView tvX;
+
     private List<BarEntry> data;
 
     @Override
@@ -145,6 +148,7 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -153,9 +157,8 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
                 break;
             }
             case R.id.actionToggleValues: {
-                for (IBarDataSet set : chart.getData().getDataSets()) {
+                for (IBarDataSet set : chart.getData().getDataSets())
                     set.setDrawValues(!set.isDrawValuesEnabled());
-                }
 
                 chart.invalidate();
                 break;
@@ -197,6 +200,7 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
                 break;
             }
             case R.id.animateXY: {
+
                 chart.animateXY(2000, 2000);
                 break;
             }
@@ -214,6 +218,7 @@ public class BarChartActivitySinus extends DemoBase implements OnSeekBarChangeLi
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
         tvX.setText(String.valueOf(seekBarX.getProgress()));
 
         setData(seekBarX.getProgress());

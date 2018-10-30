@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -277,13 +278,13 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
     }
 
     @Override
-    public void onValueSelected(Entry entry, Highlight highlight) {
+    public void onValueSelected(Entry e, Highlight h) {
 
-        if (entry == null)
+        if (e == null)
             return;
         Log.i("VAL SELECTED",
-                "Value: " + entry.getY() + ", xIndex: " + entry.getX()
-                        + ", DataSet index: " + highlight.getDataSetIndex());
+                "Value: " + e.getY() + ", xIndex: " + e.getX()
+                        + ", DataSet index: " + h.getDataSetIndex());
     }
 
     @Override

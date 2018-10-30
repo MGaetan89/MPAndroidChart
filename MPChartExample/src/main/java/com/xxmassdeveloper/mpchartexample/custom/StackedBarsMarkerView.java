@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.annotation.SuppressLint;
@@ -22,6 +23,7 @@ import androidx.annotation.NonNull;
 @SuppressWarnings("unused")
 @SuppressLint("ViewConstructor")
 public class StackedBarsMarkerView extends MarkerView {
+
     private TextView tvContent;
 
     public StackedBarsMarkerView(Context context, int layoutResource) {
@@ -33,23 +35,29 @@ public class StackedBarsMarkerView extends MarkerView {
     // runs every time the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
-        float value = entry.getY();
-        if (entry instanceof BarEntry) {
-            BarEntry barEntry = (BarEntry) entry;
-            if (barEntry.getYVals() != null) {
-                value = barEntry.getYVals()[highlight.getStackIndex()];
+    public void refreshContent(@NonNull Entry e, @NonNull Highlight highlight) {
+
+        if (e instanceof BarEntry) {
+
+            BarEntry be = (BarEntry) e;
+
+            if(be.getYVals() != null) {
+
+                // draw the stack value
+                tvContent.setText(Utils.formatNumber(be.getYVals()[highlight.getStackIndex()], 0, true));
+            } else {
+                tvContent.setText(Utils.formatNumber(be.getY(), 0, true));
             }
+        } else {
+            tvContent.setText(Utils.formatNumber(e.getY(), 0, true));
         }
 
-        tvContent.setText(Utils.formatNumber(value, 0, true));
-
-        super.refreshContent(entry, highlight);
+        super.refreshContent(e, highlight);
     }
 
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2f), -getHeight());
+        return new MPPointF(-(getWidth() / 2), -getHeight());
     }
 }

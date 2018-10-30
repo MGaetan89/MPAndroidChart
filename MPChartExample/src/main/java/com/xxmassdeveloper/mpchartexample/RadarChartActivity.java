@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -30,6 +31,7 @@ import com.xxmassdeveloper.mpchartexample.utils.Easing;
 import java.util.ArrayList;
 
 public class RadarChartActivity extends DemoBase {
+
     private RadarChart chart;
 
     @Override
@@ -52,7 +54,8 @@ public class RadarChartActivity extends DemoBase {
         chart.setWebColorInner(Color.LTGRAY);
         chart.setWebAlpha(100);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout to use for it
+        // create a custom MarkerView (extend MarkerView) and specify the layout
+        // to use for it
         MarkerView mv = new RadarMarkerView(this, R.layout.radar_markerview);
         mv.setChartView(chart); // For bounds control
         chart.setMarker(mv); // Set the marker to the chart
@@ -67,6 +70,7 @@ public class RadarChartActivity extends DemoBase {
         xAxis.setYOffset(0f);
         xAxis.setXOffset(0f);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
+
             private final String[] mActivities = new String[]{"Burger", "Steak", "Salad", "Pasta", "Pizza"};
 
             @Override
@@ -154,6 +158,7 @@ public class RadarChartActivity extends DemoBase {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -162,9 +167,8 @@ public class RadarChartActivity extends DemoBase {
                 break;
             }
             case R.id.actionToggleValues: {
-                for (IDataSet<?> set : chart.getData().getDataSets()) {
+                for (IDataSet<?> set : chart.getData().getDataSets())
                     set.setDrawValues(!set.isDrawValuesEnabled());
-                }
 
                 chart.invalidate();
                 break;
@@ -177,20 +181,31 @@ public class RadarChartActivity extends DemoBase {
                 break;
             }
             case R.id.actionToggleRotate: {
-                chart.setRotationEnabled(!chart.isRotationEnabled());
+                if (chart.isRotationEnabled())
+                    chart.setRotationEnabled(false);
+                else
+                    chart.setRotationEnabled(true);
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleFilled: {
-                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) chart.getData().getDataSets();
+
+                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) chart.getData()
+                        .getDataSets();
                 for (IRadarDataSet set : sets) {
-                    set.setDrawFilled(!set.isDrawFilledEnabled());
+                    if (set.isDrawFilledEnabled())
+                        set.setDrawFilled(false);
+                    else
+                        set.setDrawFilled(true);
                 }
                 chart.invalidate();
                 break;
             }
             case R.id.actionToggleHighlightCircle: {
-                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) chart.getData().getDataSets();
+
+                ArrayList<IRadarDataSet> sets = (ArrayList<IRadarDataSet>) chart.getData()
+                        .getDataSets();
+
                 for (IRadarDataSet set : sets) {
                     set.setDrawHighlightCircleEnabled(!set.isDrawHighlightCircleEnabled());
                 }
@@ -204,6 +219,7 @@ public class RadarChartActivity extends DemoBase {
                 break;
             }
             case R.id.actionToggleYLabels: {
+
                 chart.getYAxis().setEnabled(!chart.getYAxis().isEnabled());
                 chart.invalidate();
                 break;

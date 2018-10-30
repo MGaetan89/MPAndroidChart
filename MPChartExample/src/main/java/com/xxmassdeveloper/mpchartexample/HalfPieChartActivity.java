@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -89,6 +91,7 @@ public class HalfPieChartActivity extends DemoBase {
     }
 
     private void setData(int count, float range) {
+
         ArrayList<PieEntry> values = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -126,14 +129,15 @@ public class HalfPieChartActivity extends DemoBase {
 
     private void moveOffScreen() {
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int height = size.y;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-        int offset = (int) (height * 0.65); /* percent to move */
+        int height = displayMetrics.heightPixels;;
 
-        RelativeLayout.LayoutParams rlParams = (RelativeLayout.LayoutParams) chart.getLayoutParams();
+        int offset = (int)(height * 0.65); /* percent to move */
+
+        RelativeLayout.LayoutParams rlParams =
+                (RelativeLayout.LayoutParams) chart.getLayoutParams();
         rlParams.setMargins(0, 0, 0, -offset);
         chart.setLayoutParams(rlParams);
     }

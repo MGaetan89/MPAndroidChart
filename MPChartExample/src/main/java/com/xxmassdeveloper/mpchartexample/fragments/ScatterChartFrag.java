@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class ScatterChartFrag extends SimpleFragment {
+
     @NonNull
     public static Fragment newInstance() {
         return new ScatterChartFrag();

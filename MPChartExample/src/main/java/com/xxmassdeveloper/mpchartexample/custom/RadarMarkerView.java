@@ -1,3 +1,4 @@
+
 package com.xxmassdeveloper.mpchartexample.custom;
 
 import android.annotation.SuppressLint;
@@ -36,15 +37,15 @@ public class RadarMarkerView extends MarkerView {
     // runs every time the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(@NonNull Entry entry, @NonNull Highlight highlight) {
-        tvContent.setText(format.format(entry.getY()) + " %");
+    public void refreshContent(@NonNull Entry e, @NonNull Highlight highlight) {
+        tvContent.setText(String.format("%s %%", format.format(e.getY())));
 
-        super.refreshContent(entry, highlight);
+        super.refreshContent(e, highlight);
     }
 
     @NonNull
     @Override
     public MPPointF getOffset() {
-        return new MPPointF(-(getWidth() / 2f), -getHeight() - 10);
+        return new MPPointF(-(getWidth() / 2), -getHeight() - 10);
     }
 }

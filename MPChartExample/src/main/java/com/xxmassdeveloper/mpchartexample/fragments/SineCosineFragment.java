@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class SineCosineFragment extends SimpleFragment {
+
     @NonNull
     public static Fragment newInstance() {
         return new SineCosineFragment();
