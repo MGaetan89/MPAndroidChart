@@ -12,19 +12,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("15")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -33,19 +33,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5.00")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5.00")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("15.00")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -54,19 +54,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("15")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -75,19 +75,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("15 USD")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -96,19 +96,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5.00 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5.00 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("15.00 USD")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -117,19 +117,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("15 USD")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -138,19 +138,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("6")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("7")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -159,19 +159,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5.00")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5.00")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("5.00")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("6.00")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("7.00")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -180,19 +180,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("5")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("6")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("7")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -201,19 +201,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("6 USD")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("7 USD")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -222,19 +222,19 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5.00 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5.00 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("5.00 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("6.00 USD")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("7.00 USD")
+		).isEqualTo("7.0")
 	}
 
 	@Test
@@ -243,18 +243,18 @@ class StackedValueFormatterTest {
 
 		assertThat(
 			formatter.getFormattedValue(5f, Entry(0f, 1f), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, null), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(5f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("5 USD")
+		).isEqualTo("5.0")
 		assertThat(
 			formatter.getFormattedValue(6f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("6 USD")
+		).isEqualTo("6.0")
 		assertThat(
 			formatter.getFormattedValue(7f, BarEntry(0f, floatArrayOf(4f, 5f, 6f)), 0, null)
-		).isEqualTo("7 USD")
+		).isEqualTo("7.0")
 	}
 }

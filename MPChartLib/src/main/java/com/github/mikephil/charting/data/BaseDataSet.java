@@ -70,7 +70,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * Custom formatter that is used instead of the auto-formatter if set.
      */
     @NonNull
-    protected transient ValueFormatter mValueFormatter;
+    protected transient ValueFormatter mValueFormatter = Utils.getDefaultValueFormatter();
 
     /**
      * The typeface used for the value text.
@@ -317,11 +317,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     @NonNull
     @Override
     public ValueFormatter getValueFormatter() {
-        if (needsFormatter()) {
-            return Utils.getDefaultValueFormatter();
-        } else {
-            return mValueFormatter;
-        }
+        return mValueFormatter;
     }
 
     @Override
