@@ -1,23 +1,12 @@
 package com.github.mikephil.charting.buffer;
 
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 
-public class BarBuffer extends AbstractBuffer<IBarDataSet> {
-    /**
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    protected int mDataSetIndex = 0;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
-    /**
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    protected int mDataSetCount;
+public class BarBuffer extends AbstractBuffer<IBarDataSet> {
     protected boolean mContainsStacks;
     protected boolean mInverted = false;
 
@@ -25,17 +14,6 @@ public class BarBuffer extends AbstractBuffer<IBarDataSet> {
      * Width of the bar on the x-axis, in values (not pixels).
      */
     protected float mBarWidth = 1f;
-
-    /**
-     * @param size
-     * @param dataSetCount
-     * @param containsStacks
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>BarBuffer(int, boolean)</code> instead.
-     */
-    @Deprecated
-    public BarBuffer(@Size(multiple = 4L) int size, @SuppressWarnings("unused") int dataSetCount, boolean containsStacks) {
-        this(size, containsStacks);
-    }
 
     public BarBuffer(@Size(multiple = 4L) int size, boolean containsStacks) {
         super(size);
@@ -45,14 +23,6 @@ public class BarBuffer extends AbstractBuffer<IBarDataSet> {
 
     public void setBarWidth(float barWidth) {
         this.mBarWidth = Math.max(barWidth, 1f);
-    }
-
-    /**
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public void setDataSet(int index) {
-        this.mDataSetIndex = index;
     }
 
     public void setInverted(boolean inverted) {

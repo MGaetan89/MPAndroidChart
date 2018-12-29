@@ -15,16 +15,6 @@ public class RadarEntry extends Entry {
         super(0f, y, data);
     }
 
-    /**
-     * This is the same as getY(). Returns the value of the RadarEntry.
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>getY()</code> instead.
-     */
-    @Deprecated
-    public float getValue() {
-        return getY();
-    }
-
     @NonNull
     @Override
     public RadarEntry copy() {

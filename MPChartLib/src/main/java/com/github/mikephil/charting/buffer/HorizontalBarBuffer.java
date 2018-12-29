@@ -1,23 +1,12 @@
 package com.github.mikephil.charting.buffer;
 
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 
-public class HorizontalBarBuffer extends BarBuffer {
-    /**
-     * @param size
-     * @param dataSetCount
-     * @param containsStacks
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>HorizontalBarBuffer(int, boolean)</code> instead.
-     */
-    @Deprecated
-    public HorizontalBarBuffer(@Size(multiple = 4L) int size, @SuppressWarnings("unused") int dataSetCount, boolean containsStacks) {
-        this(size, containsStacks);
-    }
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
+public class HorizontalBarBuffer extends BarBuffer {
     public HorizontalBarBuffer(@Size(multiple = 4L) int size, boolean containsStacks) {
         super(size, containsStacks);
     }

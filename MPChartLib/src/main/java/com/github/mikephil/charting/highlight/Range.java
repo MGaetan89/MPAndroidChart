@@ -24,20 +24,4 @@ public final class Range {
     public boolean contains(float value) {
         return value > from && value <= to;
     }
-
-    /**
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public boolean isLarger(float value) {
-        return value > to;
-    }
-
-    /**
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public boolean isSmaller(float value) {
-        return value < from;
-    }
 }

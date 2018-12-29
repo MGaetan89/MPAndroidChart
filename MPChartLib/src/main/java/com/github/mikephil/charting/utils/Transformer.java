@@ -4,6 +4,8 @@ import android.graphics.Matrix;
 import android.graphics.Path;
 import android.graphics.RectF;
 
+import androidx.annotation.NonNull;
+
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet;
@@ -12,8 +14,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 /**
  * Transformer class that contains all matrices and is responsible for transforming values into
@@ -302,31 +302,6 @@ public class Transformer {
         mMatrixValueToPx.mapRect(rect);
         mViewPortHandler.getMatrixTouch().mapRect(rect);
         mMatrixOffset.mapRect(rect);
-    }
-
-    /**
-     * Transform a rectangle with all matrices with potential animation phases.
-     *
-     * @param rect
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>rectValueToPixel(RectF)</code> instead.
-     */
-    @Deprecated
-    public void rectValueToPixelHorizontal(RectF rect) {
-        rectValueToPixel(rect);
-    }
-
-    /**
-     * Transform a rectangle with all matrices with potential animation phases.
-     *
-     * @param rect
-     * @param phaseY
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>rectToPixelPhaseHorizontal(RectF, float)</code> instead.
-     */
-    @Deprecated
-    public void rectValueToPixelHorizontal(@NonNull RectF rect, float phaseY) {
-        rectToPixelPhaseHorizontal(rect, phaseY);
     }
 
     /**

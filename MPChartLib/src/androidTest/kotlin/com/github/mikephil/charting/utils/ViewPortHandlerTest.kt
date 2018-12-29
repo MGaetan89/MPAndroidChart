@@ -10,8 +10,7 @@ class ViewPortHandlerTest {
 
 	@Before
 	fun before() {
-		// TODO Use `ViewPortHandler()` in 3.2.0
-		this.viewPortHandler = HorizontalViewPortHandler()
+		this.viewPortHandler = ViewPortHandler()
 	}
 
 	@Test

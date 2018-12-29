@@ -9,7 +9,7 @@ import org.junit.Test
 class BarBufferTest {
 	@Test
 	fun barBuffer_empty_noStacks_notInverted() {
-		val buffer = BarBuffer(0, 0, false)
+		val buffer = BarBuffer(0, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -38,22 +38,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -108,7 +92,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_notInverted() {
-		val buffer = BarBuffer(0, 0, true)
+		val buffer = BarBuffer(0, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -137,22 +121,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -207,7 +175,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_notInverted() {
-		val buffer = BarBuffer(12, 0, false)
+		val buffer = BarBuffer(12, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -236,22 +204,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -306,7 +258,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_stacks_notInverted() {
-		val buffer = BarBuffer(12, 0, true)
+		val buffer = BarBuffer(12, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -335,22 +287,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -405,7 +341,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_empty_noStacks_inverted() {
-		val buffer = BarBuffer(0, 0, false)
+		val buffer = BarBuffer(0, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -434,22 +370,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -504,7 +424,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_inverted() {
-		val buffer = BarBuffer(0, 0, true)
+		val buffer = BarBuffer(0, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -533,22 +453,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -603,7 +507,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_inverted() {
-		val buffer = BarBuffer(12, 0, false)
+		val buffer = BarBuffer(12, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -632,22 +536,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -702,7 +590,7 @@ class BarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_stacks_inverted() {
-		val buffer = BarBuffer(12, 0, true)
+		val buffer = BarBuffer(12, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -731,22 +619,6 @@ class BarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -797,21 +669,5 @@ class BarBufferTest {
 		assertThat(buffer.buffer[1]).isEqualTo(0f)
 		assertThat(buffer.buffer[2]).isEqualTo(7.5f)
 		assertThat(buffer.buffer[3]).isEqualTo(1.5f)
-	}
-
-	@Test
-	fun setDataSet() {
-		val buffer = BarBuffer(0, 0, false)
-
-		assertThat(buffer.mDataSetIndex).isEqualTo(0)
-
-		buffer.setDataSet(-5)
-		assertThat(buffer.mDataSetIndex).isEqualTo(-5)
-
-		buffer.setDataSet(0)
-		assertThat(buffer.mDataSetIndex).isEqualTo(0)
-
-		buffer.setDataSet(5)
-		assertThat(buffer.mDataSetIndex).isEqualTo(5)
 	}
 }

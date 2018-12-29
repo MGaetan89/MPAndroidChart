@@ -10,9 +10,9 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEmpty()
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEmpty()
 	}
 
 	@Test
@@ -21,14 +21,14 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEqualTo(arrayOf("Chocolate", "Strawberry", "Cheese"))
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEqualTo("Chocolate")
-		assertThat(formatter.getFormattedValue(0.5f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEqualTo("Strawberry")
-		assertThat(formatter.getFormattedValue(1.1f, null)).isEqualTo("Strawberry")
-		assertThat(formatter.getFormattedValue(2f, null)).isEqualTo("Cheese")
-		assertThat(formatter.getFormattedValue(2.7f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(3f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEqualTo("Chocolate")
+		assertThat(formatter.getFormattedValue(0.5f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEqualTo("Strawberry")
+		assertThat(formatter.getFormattedValue(1.1f)).isEqualTo("Strawberry")
+		assertThat(formatter.getFormattedValue(2f)).isEqualTo("Cheese")
+		assertThat(formatter.getFormattedValue(2.7f)).isEmpty()
+		assertThat(formatter.getFormattedValue(3f)).isEmpty()
 	}
 
 	@Test
@@ -37,14 +37,14 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEqualTo(arrayOf("Chocolate", "Strawberry", "Cheese"))
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEqualTo("Chocolate")
-		assertThat(formatter.getFormattedValue(0.5f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEqualTo("Strawberry")
-		assertThat(formatter.getFormattedValue(1.1f, null)).isEqualTo("Strawberry")
-		assertThat(formatter.getFormattedValue(2f, null)).isEqualTo("Cheese")
-		assertThat(formatter.getFormattedValue(2.7f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(3f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEqualTo("Chocolate")
+		assertThat(formatter.getFormattedValue(0.5f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEqualTo("Strawberry")
+		assertThat(formatter.getFormattedValue(1.1f)).isEqualTo("Strawberry")
+		assertThat(formatter.getFormattedValue(2f)).isEqualTo("Cheese")
+		assertThat(formatter.getFormattedValue(2.7f)).isEmpty()
+		assertThat(formatter.getFormattedValue(3f)).isEmpty()
 	}
 
 	@Test
@@ -53,9 +53,9 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEmpty()
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEmpty()
 	}
 
 	@Test
@@ -64,9 +64,9 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEmpty()
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEmpty()
 	}
 
 	@Test
@@ -75,9 +75,9 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEmpty()
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEmpty()
 	}
 
 	@Test
@@ -86,9 +86,9 @@ class IndexAxisValueFormatterTest {
 
 		assertThat(formatter.values).isEmpty()
 
-		assertThat(formatter.getFormattedValue(-1f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(0f, null)).isEmpty()
-		assertThat(formatter.getFormattedValue(1f, null)).isEmpty()
+		assertThat(formatter.getFormattedValue(-1f)).isEmpty()
+		assertThat(formatter.getFormattedValue(0f)).isEmpty()
+		assertThat(formatter.getFormattedValue(1f)).isEmpty()
 	}
 
 	@Test

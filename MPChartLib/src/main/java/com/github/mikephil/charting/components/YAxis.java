@@ -3,9 +3,9 @@ package com.github.mikephil.charting.components;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.github.mikephil.charting.utils.Utils;
-
 import androidx.annotation.ColorInt;
+
+import com.github.mikephil.charting.utils.Utils;
 
 /**
  * Class representing the y-axis labels settings and its entries. Only use the setter methods to
@@ -35,16 +35,6 @@ public class YAxis extends AxisBase {
      * Flag that indicates if the zero-line should be drawn regardless of other grid lines.
      */
     protected boolean mDrawZeroLine = false;
-
-    /**
-     * Flag indicating that auto scale min restriction should be used.
-     */
-    private boolean mUseAutoScaleRestrictionMin = false;
-
-    /**
-     * Flag indicating that auto scale max restriction should be used.
-     */
-    private boolean mUseAutoScaleRestrictionMax = false;
 
     /**
      * Color of the zero line.
@@ -327,42 +317,8 @@ public class YAxis extends AxisBase {
         return isEnabled() && isDrawLabelsEnabled() && getLabelPosition() == YAxisLabelPosition.OUTSIDE_CHART;
     }
 
-    /**
-     * Returns true if autoscale restriction for axis min value is enabled
-     */
-    @Deprecated
-    public boolean isUseAutoScaleMinRestriction( ) {
-        return mUseAutoScaleRestrictionMin;
-    }
-
-    /**
-     * Sets autoscale restriction for axis min value as enabled/disabled
-     */
-    @Deprecated
-    public void setUseAutoScaleMinRestriction( boolean isEnabled ) {
-        mUseAutoScaleRestrictionMin = isEnabled;
-    }
-
-    /**
-     * Returns true if autoscale restriction for axis max value is enabled
-     */
-    @Deprecated
-    public boolean isUseAutoScaleMaxRestriction() {
-        return mUseAutoScaleRestrictionMax;
-    }
-
-    /**
-     * Sets autoscale restriction for axis max value as enabled/disabled
-     */
-    @Deprecated
-    public void setUseAutoScaleMaxRestriction( boolean isEnabled ) {
-        mUseAutoScaleRestrictionMax = isEnabled;
-    }
-
-
     @Override
     public void calculate(float dataMin, float dataMax) {
-
         float min = dataMin;
         float max = dataMax;
 

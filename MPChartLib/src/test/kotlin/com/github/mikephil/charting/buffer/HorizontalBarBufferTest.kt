@@ -9,7 +9,7 @@ import org.junit.Test
 class HorizontalBarBufferTest {
 	@Test
 	fun barBuffer_empty_noStacks_notInverted() {
-		val buffer = HorizontalBarBuffer(0, 0, false)
+		val buffer = HorizontalBarBuffer(0, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -38,22 +38,6 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -81,7 +65,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_notInverted() {
-		val buffer = HorizontalBarBuffer(0, 0, true)
+		val buffer = HorizontalBarBuffer(0, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -110,22 +94,6 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -153,7 +121,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_notInverted() {
-		val buffer = HorizontalBarBuffer(12, 0, false)
+		val buffer = HorizontalBarBuffer(12, false)
 		buffer.setInverted(false)
 
 		// size()
@@ -182,22 +150,6 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -225,7 +177,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_stacks_notInverted() {
-		val buffer = HorizontalBarBuffer(12, 0, true)
+		val buffer = HorizontalBarBuffer(12, true)
 		buffer.setInverted(false)
 
 		// size()
@@ -255,22 +207,6 @@ class HorizontalBarBufferTest {
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
 
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
-
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
 		assertThat(buffer.index).isEqualTo(4)
@@ -297,7 +233,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_empty_noStacks_inverted() {
-		val buffer = HorizontalBarBuffer(0, 0, false)
+		val buffer = HorizontalBarBuffer(0, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -326,22 +262,6 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		try {
@@ -369,7 +289,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_empty_stacks_inverted() {
-		val buffer = HorizontalBarBuffer(0, 0, true)
+		val buffer = HorizontalBarBuffer(0, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -399,22 +319,6 @@ class HorizontalBarBufferTest {
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
 
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
-
 		// addBar()
 		try {
 			buffer.addBar(1f, 2f, 3f, 4f)
@@ -441,7 +345,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_noStacks_inverted() {
-		val buffer = HorizontalBarBuffer(12, 0, false)
+		val buffer = HorizontalBarBuffer(12, false)
 		buffer.setInverted(true)
 
 		// size()
@@ -470,22 +374,6 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)
@@ -513,7 +401,7 @@ class HorizontalBarBufferTest {
 
 	@Test
 	fun barBuffer_notEmpty_stacks_inverted() {
-		val buffer = HorizontalBarBuffer(12, 0, true)
+		val buffer = HorizontalBarBuffer(12, true)
 		buffer.setInverted(true)
 
 		// size()
@@ -542,22 +430,6 @@ class HorizontalBarBufferTest {
 		buffer.setPhases(0.75f, 0.25f)
 		assertThat(buffer.phaseX).isEqualTo(0.75f)
 		assertThat(buffer.phaseY).isEqualTo(0.25f)
-
-		// limitFrom
-		buffer.limitFrom(-1)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(0)
-		assertThat(buffer.mFrom).isEqualTo(0)
-		buffer.limitFrom(1)
-		assertThat(buffer.mFrom).isEqualTo(1)
-
-		// limitTo
-		buffer.limitTo(-1)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(0)
-		assertThat(buffer.mTo).isEqualTo(0)
-		buffer.limitTo(1)
-		assertThat(buffer.mTo).isEqualTo(1)
 
 		// addBar()
 		buffer.addBar(1f, 2f, 3f, 4f)

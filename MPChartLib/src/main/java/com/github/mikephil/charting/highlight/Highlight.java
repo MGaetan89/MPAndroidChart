@@ -1,8 +1,9 @@
 package com.github.mikephil.charting.highlight;
 
-import com.github.mikephil.charting.components.YAxis;
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.github.mikephil.charting.components.YAxis;
 
 /**
  * Contains information needed to determine the highlighted value.
@@ -191,17 +192,6 @@ public class Highlight {
         return mDrawY;
     }
 
-    /**
-     * Returns true if this highlight object is equal to the other.
-     *
-     * @param h
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public boolean equalTo(@Nullable Highlight h) {
-        return this.equals(h);
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Highlight)) {
@@ -213,6 +203,7 @@ public class Highlight {
                 && this.mStackIndex == other.mStackIndex && this.mDataIndex == other.mDataIndex;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Highlight, x: " + mX + ", y: " + mY + ", dataSetIndex: " + mDataSetIndex

@@ -19,8 +19,6 @@ class RadarEntryTest : BaseEntryTest<RadarEntry>() {
 		assertThat(this.entry.data).isNull()
 		assertThat(this.entry.icon).isNull()
 
-		assertThat(this.entry.value).isEqualTo(2f)
-
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
 		assertThat(copy.equalTo(this.entry)).isTrue()
@@ -52,8 +50,6 @@ class RadarEntryTest : BaseEntryTest<RadarEntry>() {
 		assertThat(this.entry.y).isEqualTo(2f)
 		assertThat(this.entry.data).isEqualTo(data)
 		assertThat(this.entry.icon).isNull()
-
-		assertThat(this.entry.value).isEqualTo(2f)
 
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)

@@ -1,9 +1,9 @@
 package com.github.mikephil.charting.formatter;
 
-import java.text.DecimalFormat;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.text.DecimalFormat;
 
 /**
  * Predefined value-formatter that formats large numbers in a pretty way.
@@ -91,13 +91,5 @@ public class LargeValueFormatter extends ValueFormatter {
         }
 
         return formattedNumber;
-    }
-
-    /**
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public int getDecimalDigits() {
-        return 0;
     }
 }

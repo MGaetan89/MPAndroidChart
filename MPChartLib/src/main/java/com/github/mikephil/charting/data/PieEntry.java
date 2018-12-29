@@ -48,16 +48,6 @@ public class PieEntry extends Entry {
         this.label = label;
     }
 
-    /**
-     * This is the same as getY(). Returns the value of the PieEntry.
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0. Use <code>getY()</code> instead.
-     */
-    @Deprecated
-    public float getValue() {
-        return getY();
-    }
-
     @Nullable
     public String getLabel() {
         return label;

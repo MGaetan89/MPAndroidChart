@@ -261,26 +261,4 @@ class YAxisTest : AxisBaseTest<YAxis>() {
 		this.component.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
 		assertThat(this.component.needsOffset()).isTrue()
 	}
-
-	@Test
-	fun setUseAutoScaleMinRestriction() {
-		assertThat(this.component.isUseAutoScaleMinRestriction).isFalse()
-
-		this.component.isUseAutoScaleMinRestriction = true
-		assertThat(this.component.isUseAutoScaleMinRestriction).isTrue()
-
-		this.component.isUseAutoScaleMinRestriction = false
-		assertThat(this.component.isUseAutoScaleMinRestriction).isFalse()
-	}
-
-	@Test
-	fun setUseAutoScaleMaxRestriction() {
-		assertThat(this.component.isUseAutoScaleMaxRestriction).isFalse()
-
-		this.component.isUseAutoScaleMaxRestriction = true
-		assertThat(this.component.isUseAutoScaleMaxRestriction).isTrue()
-
-		this.component.isUseAutoScaleMaxRestriction = false
-		assertThat(this.component.isUseAutoScaleMaxRestriction).isFalse()
-	}
 }

@@ -1,7 +1,6 @@
 package com.github.mikephil.charting.buffer;
 
 import androidx.annotation.FloatRange;
-import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
 /**
@@ -34,22 +33,6 @@ public abstract class AbstractBuffer<T> {
     protected float phaseY = 1f;
 
     /**
-     * Indicates from which x-index the visible data begins.
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    protected int mFrom = 0;
-
-    /**
-     * Indicates to which x-index the visible data range ends.
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    protected int mTo = 0;
-
-    /**
      * Initialization with buffer-size.
      *
      * @param size
@@ -57,26 +40,6 @@ public abstract class AbstractBuffer<T> {
     public AbstractBuffer(int size) {
         index = 0;
         buffer = new float[size];
-    }
-
-    /**
-     * Limits the drawing on the x-axis.
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public void limitFrom(@IntRange(from = 0) int from) {
-        mFrom = Math.max(from, 0);
-    }
-
-    /**
-     * Limits the drawing on the x-axis.
-     *
-     * @deprecated since version 3.1.0. Will be removed in version 3.2.0.
-     */
-    @Deprecated
-    public void limitTo(@IntRange(from = 0) int to) {
-        mTo = Math.max(to, 0);
     }
 
     /**

@@ -22,8 +22,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.data).isNull()
 		assertThat(this.entry.icon).isNull()
 
-		assertThat(this.entry.value).isEqualTo(2f)
-
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
 		assertThat(copy.equalTo(this.entry)).isTrue()
@@ -66,8 +64,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.data).isEqualTo(data)
 		assertThat(this.entry.icon).isNull()
 
-		assertThat(this.entry.value).isEqualTo(2f)
-
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
 		assertThat(copy.equalTo(this.entry)).isTrue()
@@ -108,8 +104,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.label).isNull()
 		assertThat(this.entry.data).isNull()
 		assertThat(this.entry.icon).isEqualTo(icon)
-
-		assertThat(this.entry.value).isEqualTo(2f)
 
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
@@ -154,8 +148,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.data).isEqualTo(data)
 		assertThat(this.entry.icon).isEqualTo(icon)
 
-		assertThat(this.entry.value).isEqualTo(2f)
-
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
 		assertThat(copy.equalTo(this.entry)).isTrue()
@@ -194,8 +186,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.label).isEqualTo("Hello")
 		assertThat(this.entry.data).isNull()
 		assertThat(this.entry.icon).isNull()
-
-		assertThat(this.entry.value).isEqualTo(2f)
 
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
@@ -239,8 +229,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.data).isEqualTo(data)
 		assertThat(this.entry.icon).isNull()
 
-		assertThat(this.entry.value).isEqualTo(2f)
-
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
 		assertThat(copy.equalTo(this.entry)).isTrue()
@@ -281,8 +269,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.label).isEqualTo("Hello")
 		assertThat(this.entry.data).isNull()
 		assertThat(this.entry.icon).isEqualTo(icon)
-
-		assertThat(this.entry.value).isEqualTo(2f)
 
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
@@ -326,8 +312,6 @@ class PieEntryTest : BaseEntryTest<PieEntry>() {
 		assertThat(this.entry.label).isEqualTo("Hello")
 		assertThat(this.entry.data).isEqualTo(data)
 		assertThat(this.entry.icon).isEqualTo(icon)
-
-		assertThat(this.entry.value).isEqualTo(2f)
 
 		val copy = this.entry.copy()
 		assertThat(copy).isNotSameAs(this.entry)
