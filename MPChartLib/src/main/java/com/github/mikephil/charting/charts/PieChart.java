@@ -626,14 +626,6 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-<<<<<<< HEAD
-     * Returns true if the chart is set to draw each end of a pie-slice "rounded".
-||||||| merged common ancestors
-     * Returns true if the chart is set to draw each end of a pie-slice
-     * "rounded".
-     *
-     * @return
-=======
      * Sets whether to draw slices in a curved fashion, only works if drawing the hole is enabled
      * and if the slices are not drawn under the hole.
      *
@@ -644,11 +636,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
     }
 
     /**
-     * Returns true if the chart is set to draw each end of a pie-slice
-     * "rounded".
-     *
-     * @return
->>>>>>> upstream/master
+     * Returns true if the chart is set to draw each end of a pie-slice "rounded".
      */
     public boolean isDrawRoundedSlicesEnabled() {
         return mDrawRoundedSlices;
