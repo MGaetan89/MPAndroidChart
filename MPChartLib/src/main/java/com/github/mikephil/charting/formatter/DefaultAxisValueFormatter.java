@@ -1,7 +1,5 @@
 package com.github.mikephil.charting.formatter;
 
-import com.github.mikephil.charting.components.AxisBase;
-
 import java.text.DecimalFormat;
 
 import androidx.annotation.NonNull;
@@ -9,7 +7,7 @@ import androidx.annotation.NonNull;
 /**
  * @author Philipp Jahoda
  */
-public class DefaultAxisValueFormatter implements IAxisValueFormatter {
+public class DefaultAxisValueFormatter extends ValueFormatter {
     /**
      * DecimalFormat for formatting.
      */
@@ -42,7 +40,7 @@ public class DefaultAxisValueFormatter implements IAxisValueFormatter {
 
     @NonNull
     @Override
-    public String getFormattedValue(float value, AxisBase axis) {
+    public String getFormattedValue(float value) {
         // avoid memory allocations here (for performance)
         return mFormat.format(value);
     }

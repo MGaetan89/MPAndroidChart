@@ -140,7 +140,7 @@ public class XAxisRendererHorizontalBarChart extends XAxisRenderer {
         for (int i = 0; i < positions.length; i += 2) {
             float y = positions[i + 1];
             if (mViewPortHandler.isInBoundsY(y)) {
-                String label = mXAxis.getValueFormatter().getFormattedValue(mXAxis.mEntries[i / 2], mXAxis);
+                String label = mXAxis.getValueFormatter().getAxisLabel(mXAxis.mEntries[i / 2], mXAxis);
                 drawLabel(canvas, label, pos, y, anchor, labelRotationAngleDegrees);
             }
         }

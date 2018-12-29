@@ -1,9 +1,5 @@
 package com.github.mikephil.charting.formatter;
 
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ViewPortHandler;
-
 import java.text.DecimalFormat;
 
 import androidx.annotation.NonNull;
@@ -19,15 +15,14 @@ import androidx.annotation.Nullable;
  * @author Philipp Jahoda
  * @author Oleksandr Tyshkovets <olexandr.tyshkovets@gmail.com>
  */
-public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter {
-    private static final int MAX_LENGTH = 5;
-
+public class LargeValueFormatter extends ValueFormatter {
     @NonNull
-    private final DecimalFormat mFormat;
-    @NonNull
+    private String[] mSuffix = new String[]{
+            "", "k", "m", "b", "t"
+    };
+    private int mMaxLength = 5;
+    private DecimalFormat mFormat;
     private String mText = "";
-    @NonNull
-    private String[] mSuffix = {};
 
     public LargeValueFormatter() {
         this(null);
@@ -45,15 +40,8 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
         this.setSuffix(null);
     }
 
-    @NonNull
     @Override
-    public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        return makePretty(value) + mText;
-    }
-
-    @NonNull
-    @Override
-    public String getFormattedValue(float value, AxisBase axis) {
+    public String getFormattedValue(float value) {
         return makePretty(value) + mText;
     }
 
@@ -98,7 +86,7 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
 
         formattedNumber = formattedNumber.replaceAll("E[0-9][0-9]", mSuffix[combined / 3]);
 
-        while (formattedNumber.length() > MAX_LENGTH || formattedNumber.matches("[0-9]+\\.[a-z]")) {
+        while (formattedNumber.length() > mMaxLength || formattedNumber.matches("[0-9]+\\.[a-z]")) {
             formattedNumber = formattedNumber.substring(0, formattedNumber.length() - 2) + formattedNumber.substring(formattedNumber.length() - 1);
         }
 

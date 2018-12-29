@@ -7,7 +7,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.model.GradientColor;
 
@@ -292,13 +292,13 @@ public interface IDataSet<T extends Entry> {
      *
      * @param formatter
      */
-    void setValueFormatter(@NonNull IValueFormatter formatter);
+    void setValueFormatter(@NonNull ValueFormatter formatter);
 
     /**
      * Returns the formatter used for drawing the values inside the chart.
      */
     @NonNull
-    IValueFormatter getValueFormatter();
+    ValueFormatter getValueFormatter();
 
     /**
      * Returns true if the valueFormatter object of this DataSet is null.

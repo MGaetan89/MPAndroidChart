@@ -6,7 +6,9 @@ import com.github.mikephil.charting.components.AxisBase;
  * Custom formatter interface that allows formatting of axis labels before they are being drawn.
  *
  * @author Philipp Jahoda
+ * @deprecated Extend {@link ValueFormatter} instead
  */
+@Deprecated
 public interface IAxisValueFormatter {
     /**
      * Called when a value from an axis is to be formatted before being drawn. For performance
@@ -15,6 +17,9 @@ public interface IAxisValueFormatter {
      * @param value the value to be formatted
      * @param axis  the axis the value belongs to
      * @return
+     *
+     * @deprecated Extend {@link ValueFormatter} and use {@link ValueFormatter#getAxisLabel(float, AxisBase)}
      */
+    @Deprecated
     String getFormattedValue(float value, AxisBase axis);
 }

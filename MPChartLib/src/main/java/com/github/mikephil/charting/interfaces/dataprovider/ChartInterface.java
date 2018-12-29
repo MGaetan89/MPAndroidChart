@@ -3,7 +3,7 @@ package com.github.mikephil.charting.interfaces.dataprovider;
 import android.graphics.RectF;
 
 import com.github.mikephil.charting.data.ChartData;
-import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.MPPointF;
 
 import androidx.annotation.NonNull;
@@ -58,7 +58,7 @@ public interface ChartInterface {
     RectF getContentRect();
 
     @NonNull
-    IValueFormatter getDefaultValueFormatter();
+    ValueFormatter getDefaultValueFormatter();
 
     @Nullable
     ChartData getData();

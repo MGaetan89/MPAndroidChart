@@ -3,7 +3,7 @@ package com.github.mikephil.charting.data;
 import android.graphics.Typeface;
 
 import com.github.mikephil.charting.components.YAxis.AxisDependency;
-import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
@@ -599,7 +599,7 @@ public abstract class ChartData<T extends IDataSet<? extends Entry>> {
      *
      * @param formatter
      */
-    public void setValueFormatter(@Nullable IValueFormatter formatter) {
+    public void setValueFormatter(ValueFormatter formatter) {
         if (formatter != null) {
             for (T set : mDataSets) {
                 set.setValueFormatter(formatter);

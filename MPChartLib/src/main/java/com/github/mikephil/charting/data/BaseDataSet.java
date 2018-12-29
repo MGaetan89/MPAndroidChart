@@ -7,7 +7,7 @@ import android.graphics.Typeface;
 
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.model.GradientColor;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -70,7 +70,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * Custom formatter that is used instead of the auto-formatter if set.
      */
     @NonNull
-    protected transient IValueFormatter mValueFormatter = Utils.getDefaultValueFormatter();
+    protected transient ValueFormatter mValueFormatter;
 
     /**
      * The typeface used for the value text.
@@ -310,14 +310,18 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     }
 
     @Override
-    public void setValueFormatter(@NonNull IValueFormatter formatter) {
+    public void setValueFormatter(@NonNull ValueFormatter formatter) {
         mValueFormatter = formatter;
     }
 
     @NonNull
     @Override
-    public IValueFormatter getValueFormatter() {
-        return mValueFormatter;
+    public ValueFormatter getValueFormatter() {
+        if (needsFormatter()) {
+            return Utils.getDefaultValueFormatter();
+        } else {
+            return mValueFormatter;
+        }
     }
 
     @Override

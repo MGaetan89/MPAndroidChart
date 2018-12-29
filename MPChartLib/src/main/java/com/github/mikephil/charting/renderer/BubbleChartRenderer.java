@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.BubbleEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.dataprovider.BubbleDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet;
@@ -149,6 +150,8 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 final float[] positions = mChart.getTransformer(dataSet.getAxisDependency()).generateTransformedValuesBubble(dataSet, phaseY, mXBounds.min, mXBounds.max);
                 final float alpha = phaseX == 1f ? phaseY : phaseX;
 
+                ValueFormatter formatter = dataSet.getValueFormatter();
+
                 MPPointF iconsOffset = MPPointF.getInstance(dataSet.getIconsOffset());
                 iconsOffset.x = Utils.convertDpToPixel(iconsOffset.x);
                 iconsOffset.y = Utils.convertDpToPixel(iconsOffset.y);
@@ -171,7 +174,7 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
                     BubbleEntry entry = dataSet.getEntryForIndex(j / 2 + mXBounds.min);
 
                     if (dataSet.isDrawValuesEnabled()) {
-                        drawValue(canvas, dataSet.getValueFormatter(), entry.getSize(), entry, i, x, y + (0.5f * lineHeight), valueTextColor);
+                        drawValue(canvas, formatter.getBubbleLabel(entry), x, y + (0.5f * lineHeight), valueTextColor);
                     }
 
                     if (entry.getIcon() != null && dataSet.isDrawIconsEnabled()) {
@@ -187,6 +190,11 @@ public class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 MPPointF.recycleInstance(iconsOffset);
             }
         }
+    }
+
+    public void drawValue(Canvas canvas, String valueText, float x, float y, int color) {
+        mValuePaint.setColor(color);
+        canvas.drawText(valueText, x, y, mValuePaint);
     }
 
     @Override

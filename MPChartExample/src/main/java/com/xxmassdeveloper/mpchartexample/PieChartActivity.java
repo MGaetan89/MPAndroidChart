@@ -161,7 +161,7 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
         //dataSet.setSelectionShift(0f);
 
         PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
+        data.setValueFormatter(new PercentFormatter(chart));
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
         data.setValueTypeface(tfLight);
@@ -208,6 +208,27 @@ public class PieChartActivity extends DemoBase implements OnSeekBarChangeListene
                     chart.setDrawHoleEnabled(false);
                 else
                     chart.setDrawHoleEnabled(true);
+                chart.invalidate();
+                break;
+            }
+            case R.id.actionToggleMinAngles: {
+                if (chart.getMinAngleForSlices() == 0f)
+                    chart.setMinAngleForSlices(36f);
+                else
+                    chart.setMinAngleForSlices(0f);
+                chart.notifyDataSetChanged();
+                chart.invalidate();
+                break;
+            }
+            case R.id.actionToggleCurvedSlices: {
+                boolean toSet = !chart.isDrawRoundedSlicesEnabled() || !chart.isDrawHoleEnabled();
+                chart.setDrawRoundedSlices(toSet);
+                if (toSet && !chart.isDrawHoleEnabled()) {
+                    chart.setDrawHoleEnabled(true);
+                }
+                if (toSet && chart.isDrawSlicesUnderHoleEnabled()) {
+                    chart.setDrawSlicesUnderHole(false);
+                }
                 chart.invalidate();
                 break;
             }

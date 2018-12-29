@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
@@ -51,7 +51,7 @@ public final class Utils {
     private static final Paint.FontMetrics mFontMetrics = new Paint.FontMetrics();
 
     @NonNull
-    private static final IValueFormatter mDefaultValueFormatter = new DefaultValueFormatter(1);
+    private static final ValueFormatter mDefaultValueFormatter = new DefaultValueFormatter(1);
 
     /**
      * Initialize method.
@@ -173,7 +173,7 @@ public final class Utils {
      * @return The default value formatter used for all chart components that needs a default
      */
     @NonNull
-    public static IValueFormatter getDefaultValueFormatter() {
+    public static ValueFormatter getDefaultValueFormatter() {
         return mDefaultValueFormatter;
     }
 
