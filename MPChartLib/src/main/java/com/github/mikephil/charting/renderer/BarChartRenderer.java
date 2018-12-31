@@ -185,7 +185,7 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                         android.graphics.Shader.TileMode.MIRROR));
             }
 
-            if (dataSet.getGradientColors() != null) {
+            if (!dataSet.getGradientColors().isEmpty()) {
                  mRenderPaint.setShader(
                     new LinearGradient(
                         buffer.buffer[i],
