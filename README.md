@@ -14,7 +14,7 @@
 
 This project is built on top of the popular [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library. Feel free to check it out, and show your support to [PhilJay](https://github.com/PhilJay).
 
-### Demo
+### Demo
 
 Download the [MPAndroidChart Example App](https://play.google.com/store/apps/details?id=com.xxmassdeveloper.mpchartexample) or look at the [source code](https://github.com/MGaetan89/MPAndroidChart/tree/master/MPChartExample).
 
