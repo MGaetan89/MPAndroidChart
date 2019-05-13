@@ -22,7 +22,7 @@ before_install:
 - yes | sdkmanager "system-images;android-$ANDROID_TARGET;$ANDROID_TAG;$ANDROID_ABI"
 
 before_script:
-  - echo no | android create avd -f -n "test_$ANDROID_TARGET" -t "android-$ANDROID_TARGET" -b $ANDROID_ABI -g $ANDROID_TAG
+  - echo no | avdmanager create avd -f -n "test_$ANDROID_TARGET" -k "system-images;android-$ANDROID_TARGET;$ANDROID_TAG;$ANDROID_ABI"
   - emulator-headless -memory 2048 -avd "test_$ANDROID_TARGET" -no-audio -no-window -no-snapshot &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
