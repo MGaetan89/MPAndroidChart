@@ -9,22 +9,21 @@ env:
     - ADB_INSTALL_TIMEOUT=10
 
   matrix:
-    - ANDROID_TARGET=21 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+    - ANDROID_TARGET=28 ANDROID_ABI=x86_64 ANDROID_TAG=google_apis ANDROID_BUILD_TOOLS=28.0.3
 
 android:
   components:
     - tools
     - platform-tools
-    - build-tools-28.0.0
-    - android-$ANDROID_TARGET
-    - sys-img-$ANDROID_ABI-$ANDROID_TAG-$ANDROID_TARGET
 
 before_install:
-- yes | sdkmanager "platforms;android-28"
+- yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
+- yes | sdkmanager "platforms;android-$ANDROID_TARGET"
+- yes | sdkmanager "system-images;android-$ANDROID_TARGET;$ANDROID_TAG;$ANDROID_ABI"
 
 before_script:
   - echo no | android create avd -f -n "test_$ANDROID_TARGET" -t "android-$ANDROID_TARGET" -b $ANDROID_ABI -g $ANDROID_TAG
-  - emulator -memory 2048 -avd "test_$ANDROID_TARGET" -no-audio -no-window -gpu off -engine classic &
+  - emulator-headless -memory 2048 -avd "test_$ANDROID_TARGET" -no-audio -no-window -no-snapshot &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
   - adb devices
