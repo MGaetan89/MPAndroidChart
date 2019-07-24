@@ -14,14 +14,14 @@ env:
 android:
   components:
     - tools
-    - emulator
     - platform-tools
 
 before_install:
 - yes | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS"
 - yes | sdkmanager "platforms;android-$ANDROID_TARGET"
 - yes | sdkmanager "system-images;android-$ANDROID_TARGET;$ANDROID_TAG;$ANDROID_ABI"
-- sdkmanager --update &> /dev/null
+- sdkmanager --channel=3 --update &> /dev/null
+- sdkmanager --list
 
 before_script:
   - echo no | avdmanager create avd -f -n "test_$ANDROID_TARGET" -k "system-images;android-$ANDROID_TARGET;$ANDROID_TAG;$ANDROID_ABI"
