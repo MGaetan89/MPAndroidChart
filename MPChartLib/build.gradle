@@ -1,10 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'jacoco-android'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 apply plugin: 'org.sonarqube'
-
-group = 'com.github.MGaetan89'
 
 android {
     compileSdkVersion 29
@@ -46,6 +44,27 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true // this prevents "not mocked" error
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.github.MGaetan89'
+            artifactId = 'MPAndroidChart'
+            version = android.defaultConfig.versionName
+
+            pom {
+                name = 'MPAndroidChart'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
     }
 }
 
