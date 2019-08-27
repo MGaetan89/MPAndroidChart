@@ -3,6 +3,8 @@ package com.github.mikephil.charting.renderer;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.NonNull;
+
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
@@ -18,8 +20,6 @@ import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
     protected ScatterDataProvider mChart;
@@ -79,7 +79,7 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                 continue;
             }
 
-            mRenderPaint.setColor(dataSet.getColor(i / 2));
+            mRenderPaint.setColor(dataSet.getColor(i));
             renderer.renderShape(canvas, dataSet, mViewPortHandler, mPixelBuffer[0], mPixelBuffer[1], mRenderPaint);
         }
     }
