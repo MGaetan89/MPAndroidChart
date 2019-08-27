@@ -391,7 +391,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     /**
-     * Determines how to round DataSet index values fo
+     * Determines how to round DataSet index values for
      * {@link DataSet#getEntryIndex(float, float, Rounding)} DataSet.getEntryIndex()} when an exact
      * x-index is not found.
      */

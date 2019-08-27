@@ -608,7 +608,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * Draws all MarkerViews on the highlighted positions.
      */
     protected void drawMarkers(@NonNull Canvas canvas) {
-        // IOf there is no marker view or drawing marker is disabled
+        // If there is no marker view or drawing marker is disabled
         if (mMarker == null || !isDrawMarkersEnabled() || !valuesToHighlight()) {
             return;
         }
@@ -689,15 +689,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * @param newValue
      */
     public void setDragDecelerationFrictionCoef(float newValue) {
-        if (newValue < 0f) {
-            newValue = 0f;
-        }
-
-        if (newValue >= 1f) {
-            newValue = 0.999f;
-        }
-
-        mDragDecelerationFrictionCoef = newValue;
+        mDragDecelerationFrictionCoef = Math.max(0f, Math.min(0.999f, newValue));
     }
 
     /**
