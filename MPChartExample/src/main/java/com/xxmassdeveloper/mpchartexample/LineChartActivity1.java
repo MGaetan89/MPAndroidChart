@@ -1,4 +1,3 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.Manifest;
@@ -17,6 +16,8 @@ import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -40,13 +41,11 @@ import com.xxmassdeveloper.mpchartexample.utils.Easing;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.core.content.ContextCompat;
-
 /**
  * Example of a heavily customized {@link LineChart} with limit lines, custom line shapes, etc.
  *
- * @since 1.7.4
  * @version 3.1.0
+ * @since 1.7.4
  */
 public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
@@ -270,7 +269,7 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("https://github.com/PhilJay/MPAndroidChart/blob/master/MPChartExample/src/com/xxmassdeveloper/mpchartexample/LineChartActivity1.java"));
+                i.setData(Uri.parse("https://github.com/PhilJay/MPAndroidChart/blob/master/MPChartExample/src/main/java/com/xxmassdeveloper/mpchartexample/LineChartActivity1.java"));
                 startActivity(i);
                 break;
             }
@@ -301,7 +300,7 @@ public class LineChartActivity1 extends DemoBase implements OnSeekBarChangeListe
                 break;
             }
             case R.id.actionToggleHighlight: {
-                if(chart.getData() != null) {
+                if (chart.getData() != null) {
                     chart.getData().setHighlightEnabled(!chart.getData().isHighlightEnabled());
                     chart.invalidate();
                 }
