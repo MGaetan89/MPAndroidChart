@@ -18,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all {
+        it.getGenerateBuildConfigProvider().configure {
+            it.enabled = false
+        }
+    }
 }
 
 dependencies {

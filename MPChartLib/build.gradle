@@ -29,6 +29,12 @@ android {
         }
     }
 
+    libraryVariants.all {
+        it.getGenerateBuildConfigProvider().get().configure {
+            it.enabled = false
+        }
+    }
+
     lintOptions {
         abortOnError false
     }

@@ -7,6 +7,9 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.highlight.Highlight;
@@ -17,9 +20,6 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * View that represents a pie chart. Draws cake like slices.
@@ -261,7 +261,7 @@ public class PieChart extends PieRadarChartBase<PieData> {
             }
         }
 
-        if (hasMinAngle) {
+        if (diff != 0 && hasMinAngle) {
             // Correct bigger slices by relatively reducing their angles based on the total angle needed to subtract
             // This requires that `entryCount * mMinAngleForSlices <= mMaxAngle` be true to properly work!
             for (int i = 0; i < entryCount; i++) {
