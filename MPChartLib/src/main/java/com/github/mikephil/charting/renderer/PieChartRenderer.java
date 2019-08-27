@@ -14,6 +14,8 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 
+import androidx.annotation.NonNull;
+
 import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -31,8 +33,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 public class PieChartRenderer extends DataRenderer {
     protected PieChart mChart;
@@ -618,7 +618,7 @@ public class PieChartRenderer extends DataRenderer {
     @Override
     public void drawExtras(@NonNull Canvas canvas) {
         drawHole(canvas);
-        canvas.drawBitmap(mDrawBitmap.get(), 0, 0, null);
+        drawBitmap(canvas);
         drawCenterText(canvas);
     }
 
@@ -654,6 +654,15 @@ public class PieChartRenderer extends DataRenderer {
             }
 
             MPPointF.recycleInstance(center);
+        }
+    }
+
+    protected void drawBitmap(@NonNull Canvas canvas) {
+        if (mDrawBitmap != null) {
+            Bitmap bitmap = mDrawBitmap.get();
+            if (bitmap != null) {
+                canvas.drawBitmap(bitmap, 0, 0, null);
+            }
         }
     }
 
